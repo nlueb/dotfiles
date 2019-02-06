@@ -1,0 +1,5 @@
+XSym
+0040
+b04a71e14339071d5e6fdcee9633cfe7
+/Users/nils/.fzf/shell/key-bindings.fish
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

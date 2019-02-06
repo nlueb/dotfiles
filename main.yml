@@ -1,0 +1,5 @@
+- name: Set up environment
+  hosts: local
+  roles:
+    - vim
+    - tmux
