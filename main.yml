@@ -1,6 +1,7 @@
-- name: Set up environment
+- name: Install dotfiles
   hosts: local
   roles:
+    - environment
     - vim
     - tmux
     - fish

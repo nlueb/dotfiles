@@ -1,0 +1,5 @@
+- name: Install Arch dependencies
+  pacman:
+    name: "{{ global_packages + arch_packages }}"
+    state: present
+  become: true

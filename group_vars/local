@@ -3,4 +3,8 @@ home_dir: "{{ '~' | expanduser }}"
 dotfiles_dir: "{{ home_dir }}/dotfiles"
 config_dir: "{{ home_dir }}/.config"
 
+global_packages: ["vim", "neovim", "tmux"]
+macos_packages: []
+arch_packages: ["exa"]
+
 # vim: set ft=yaml.ansible
