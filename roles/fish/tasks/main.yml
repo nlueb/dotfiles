@@ -1,0 +1,17 @@
+- name: Create fish folder structure
+  file:
+    path: "{{ config_dir }}/fish"
+    state: directory
+    recurse: yes
+
+- name: Link fish config
+  file:
+    src: "{{ role_path }}/files/config.fish"
+    dest: "{{ config_dir }}/fish/config.fish"
+    state: link
+
+- name: Link fish functions
+  file:
+    src: "{{ role_path }}/files/functions"
+    dest: "{{ config_dir }}/fish/functions"
+    state: link

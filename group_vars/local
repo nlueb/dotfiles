@@ -1,5 +1,6 @@
 
-home_dir: "{{'~' | expanduser}}"
-dotfiles_dir: "{{home_dir}}/dotfiles"
+home_dir: "{{ '~' | expanduser }}"
+dotfiles_dir: "{{ home_dir }}/dotfiles"
+config_dir: "{{ home_dir }}/.config"
 
 # vim: set ft=yaml.ansible

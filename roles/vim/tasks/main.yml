@@ -4,9 +4,9 @@
     state: directory
     recurse: yes
   with_items:
-    - "{{ home_dir }}/.config/nvim/undo"
-    - "{{ home_dir }}/.config/nvim/backup"
-    - "{{ home_dir }}/.config/nvim/swap"
+    - "{{ config_dir }}/nvim/undo"
+    - "{{ config_dir }}/nvim/backup"
+    - "{{ config_dir }}/nvim/swap"
     - "{{ home_dir }}/.local/share/nvim/site/autoload"
 
 - name: Create swap, backup, undo and autoload folders for Vim
@@ -33,7 +33,7 @@
 - name: Link NeoVim config
   file:
     src: "{{ role_path }}/files/init.vim"
-    dest: "{{ home_dir }}/.config/nvim/init.vim"
+    dest: "{{ config_dir }}/nvim/init.vim"
     state: link
 
 - name: Link Vim config
