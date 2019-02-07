@@ -1,8 +1,9 @@
 - name: Install dotfiles
-  hosts: localhost
+  hosts: local
   roles:
     - environment
     - bash
     - vim
     - tmux
     - fish
+    - { role: alacritty, when: ansible_os_family == "Archlinux" }

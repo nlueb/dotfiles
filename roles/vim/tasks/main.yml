@@ -1,4 +1,4 @@
-- name: Create swap, backup, undo and autoload folders for NeoVim
+- name: Create swap, backup, undo and autoload directories for NeoVim
   file:
     path: "{{ item }}"
     state: directory
@@ -9,7 +9,7 @@
     - "{{ config_dir }}/nvim/swap"
     - "{{ home_dir }}/.local/share/nvim/site/autoload"
 
-- name: Create swap, backup, undo and autoload folders for Vim
+- name: Create swap, backup, undo and autoload directories for Vim
   file:
     path: "{{ item }}"
     state: directory

@@ -1,0 +1,11 @@
+- name: Create Alacritty config directory
+  file:
+    path: "{{ config_dir }}/alacritty"
+    state: directory
+    recurse: yes
+
+- name: Link Alacritty config
+  file:
+    src: "{{ role_path }}/files/alacritty.yml"
+    dest: "{{ config_dir }}/alacritty/alacritty.yml"
+    state: link
