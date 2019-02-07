@@ -25,6 +25,7 @@ Plug 'osyo-manga/vim-over'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'pearofducks/ansible-vim'
 Plug 'morhetz/gruvbox'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 " }}}
 
@@ -133,8 +134,12 @@ vnoremap <leader>f <esc>'>o<esc>:call setline(line('.'), split(&commentstring, '
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-inoremap <C-k> <C-p>
+" nnoremap <silent> <C-l> :wincmd l<cr>
+" nnoremap <silent> <C-k> :wincmd k<cr>
+" nnoremap <silent> <C-j> :wincmd j<cr>
+" nnoremap <silent> <C-h> :wincmd h<cr>
 inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
