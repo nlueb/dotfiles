@@ -388,7 +388,7 @@ elseif g:colors_name == 'badwolf'
 elseif g:colors_name == 'gruvbox'
 	hi! link SignColumn Normal
 	hi! link ALEErrorSign WarningMsg
-	hi TabLineSel guifg=#282a36 guibg=#ebebeb
+	hi! TabLineSel guifg=#282a36 guibg=#ebebeb
 elseif g:colors_name == 'dracula'
 	hi! link CursorLineNr Normal
 	hi! link SignColumn Normal

@@ -5,6 +5,6 @@ config_dir: "{{ home_dir }}/.config"
 
 global_packages: ["vim", "neovim", "tmux"]
 macos_packages: []
-arch_packages: ["exa"]
+arch_packages: ["exa", "alacritty"]
 
 # vim: set ft=yaml.ansible

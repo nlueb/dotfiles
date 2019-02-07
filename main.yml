@@ -1,7 +1,8 @@
 - name: Install dotfiles
-  hosts: local
+  hosts: localhost
   roles:
     - environment
+    - bash
     - vim
     - tmux
     - fish

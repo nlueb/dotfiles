@@ -3,7 +3,7 @@
     path: "{{ item }}"
     state: directory
     recurse: yes
-  with_items:
+  loop:
     - "{{ config_dir }}/nvim/undo"
     - "{{ config_dir }}/nvim/backup"
     - "{{ config_dir }}/nvim/swap"
@@ -14,7 +14,7 @@
     path: "{{ item }}"
     state: directory
     recurse: yes
-  with_items:
+  loop:
     - "{{ home_dir }}/.vim/undo"
     - "{{ home_dir }}/.vim/backup"
     - "{{ home_dir }}/.vim/swap"

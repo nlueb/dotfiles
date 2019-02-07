@@ -1,0 +1,9 @@
+- name: Link Bash config files
+  file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ home_dir }}/{{ item }}"
+    state: link
+  loop:
+    - .bashrc
+    - .bash_profile
+    - .dir_colors
