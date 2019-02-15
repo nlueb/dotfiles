@@ -26,6 +26,8 @@ Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'pearofducks/ansible-vim'
 Plug 'morhetz/gruvbox'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'lervag/vimtex'
+Plug 'donRaphaco/neotex', { 'for': 'tex' }
 call plug#end()
 " }}}
 
@@ -276,6 +278,12 @@ set foldnestmax=10
 set foldmethod=syntax
 " }}}
 
+" NeoTeX settings {{{
+let g:tex_flavor = 'latex'
+let g:neotex_enabled = 1 " 0=always disabled, 1=default off, 2=default on
+let g:neotex_delay = 1000
+let g:neotex_latexdiff = 0
+" }}}
 "IndentLine settings {{{
 let g:indentLine_char = '│'
 " }}}

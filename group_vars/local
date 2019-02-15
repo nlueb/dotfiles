@@ -3,8 +3,20 @@ home_dir: "{{ '~' | expanduser }}"
 dotfiles_dir: "{{ home_dir }}/dotfiles"
 config_dir: "{{ home_dir }}/.config"
 
-global_packages: ["vim", "neovim", "tmux"]
+global_packages: [
+  "vim",
+  "neovim",
+  "tmux",
+  "alacritty",    # terminal emulator
+]
 macos_packages: []
-arch_packages: ["exa", "alacritty"]
+arch_packages: [
+  "exa",          # better ls
+  "texlive-most", # LaTeX
+  "texlive-lang", # extra languages
+  "biber",        # BibTeX
+  "zathura",      # document viewer
+  "zathura-pdf-poppler" # pdf support for zathura
+]
 
 # vim: set ft=yaml.ansible
