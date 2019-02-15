@@ -4,10 +4,10 @@
     state: directory
     recurse: yes
   loop:
-    - "{{ config_dir }}/nvim/undo"
-    - "{{ config_dir }}/nvim/backup"
-    - "{{ config_dir }}/nvim/swap"
-    - "{{ home_dir }}/.local/share/nvim/site/autoload"
+    - "{{ paths.config }}/nvim/undo"
+    - "{{ paths.config }}/nvim/backup"
+    - "{{ paths.config }}/nvim/swap"
+    - "{{ paths.home }}/.local/share/nvim/site/autoload"
 
 - name: Create swap, backup, undo and autoload directories for Vim
   file:
@@ -15,31 +15,31 @@
     state: directory
     recurse: yes
   loop:
-    - "{{ home_dir }}/.vim/undo"
-    - "{{ home_dir }}/.vim/backup"
-    - "{{ home_dir }}/.vim/swap"
-    - "{{ home_dir }}/.vim/autoload"
+    - "{{ paths.home }}/.vim/undo"
+    - "{{ paths.home }}/.vim/backup"
+    - "{{ paths.home }}/.vim/swap"
+    - "{{ paths.home }}/.vim/autoload"
 
 - name: Install Vim-Plug for NeoVim
   get_url:
     url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    dest: "{{ home_dir }}/.local/share/nvim/site/autoload/plug.vim"
+    dest: "{{ paths.home }}/.local/share/nvim/site/autoload/plug.vim"
 
 - name: Install Vim-Plug for Vim
   get_url:
     url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    dest: "{{ home_dir }}/.vim/autoload/plug.vim"
+    dest: "{{ paths.home }}/.vim/autoload/plug.vim"
 
 - name: Link NeoVim config
   file:
     src: "{{ role_path }}/files/init.vim"
-    dest: "{{ config_dir }}/nvim/init.vim"
+    dest: "{{ paths.config }}/nvim/init.vim"
     state: link
 
 - name: Link Vim config
   file:
     src: "{{ role_path }}/files/init.vim"
-    dest: "{{ home_dir }}/.vimrc"
+    dest: "{{ paths.home }}/.vimrc"
     state: link
 
 # - import_tasks: macos.yml

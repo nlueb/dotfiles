@@ -1,22 +1,35 @@
 
-home_dir: "{{ '~' | expanduser }}"
-dotfiles_dir: "{{ home_dir }}/dotfiles"
-config_dir: "{{ home_dir }}/.config"
+paths:
+  home: "{{ '~' | expanduser }}"
+  dotfiles: "{{ '~' | expanduser }}/dotfiles"
+  config: "{{ '~' | expanduser }}/.config"
 
-global_packages: [
-  "vim",
-  "neovim",
-  "tmux",
-  "alacritty",    # terminal emulator
-]
-macos_packages: []
-arch_packages: [
-  "exa",          # better ls
-  "texlive-most", # LaTeX
-  "texlive-lang", # extra languages
-  "biber",        # BibTeX
-  "zathura",      # document viewer
-  "zathura-pdf-poppler" # pdf support for zathura
-]
+packages:
+  arch:
+    core:
+      - xorg-server
+      - xorg-xinit
+      - xclip
+      - bspwm
+      - sxhkd
+      - exa
+      - zathura
+      - zathura-pdf-poppler
+      - firefox
+      - dmenu
+      - openssl
+      - openssh
+      # - texlive-most
+      # - texlive-lang
+      # - biber
+    aur:
+      - nerd-fonts-iosevka
+      - bitwarden-bin
+  # macos:
+  global:
+    - vim
+    - neovim
+    - tmux
+
 
 # vim: set ft=yaml.ansible

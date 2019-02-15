@@ -1,7 +1,7 @@
 - name: Link Bash config files
   file:
     src: "{{ role_path }}/files/{{ item }}"
-    dest: "{{ home_dir }}/{{ item }}"
+    dest: "{{ paths.home }}/{{ item }}"
     state: link
   loop:
     - .bashrc
