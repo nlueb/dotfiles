@@ -9,10 +9,12 @@ packages:
     core:
       - xorg-server
       - xorg-xinit
+      - xorg-xrandr
       - xclip
       - bspwm
       - sxhkd
-      - exa
+      - exa # ls alternativ
+      - bat # cat alternativ
       - zathura
       - zathura-pdf-poppler
       - firefox

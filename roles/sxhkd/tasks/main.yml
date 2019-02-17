@@ -1,0 +1,11 @@
+- name: Create config directories for sxhkd
+  file:
+    path: "{{ paths.config }}/sxhkd"
+    state: directory
+    recurse: yes
+
+- name: Link sxhkd config
+  file:
+    src: "{{ role_path }}/files/sxhkdrc"
+    dest: "{{ paths.config }}/sxhkd/sxhkdrc"
+    state: link

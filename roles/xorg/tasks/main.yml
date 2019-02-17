@@ -1,0 +1,8 @@
+- name: Link Xorg config files
+  file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ paths.home }}/{{ item }}"
+    state: link
+  loop:
+    - .xinitrc
+    - .Xresources

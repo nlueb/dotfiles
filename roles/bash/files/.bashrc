@@ -96,6 +96,8 @@ alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 alias v='nvim'
+alias ls='exa'
+alias cat='bat'
 
 xhost +local:root > /dev/null 2>&1
 

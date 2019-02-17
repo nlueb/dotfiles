@@ -1,0 +1,16 @@
+- name: Create config directories for bspwm
+  file:
+    path: "{{ paths.config }}/bspwm"
+    state: directory
+    recurse: yes
+
+- name: Make bspwmrc executable
+  file:
+    path: "{{ role_path }}/files/bspwmrc"
+    mode: 0755
+
+- name: Link bspwm config
+  file:
+    src: "{{ role_path }}/files/bspwmrc"
+    dest: "{{ paths.config }}/bspwm/bspwmrc"
+    state: link
