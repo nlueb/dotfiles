@@ -25,7 +25,7 @@ Plug 'osyo-manga/vim-over'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'pearofducks/ansible-vim'
 Plug 'morhetz/gruvbox'
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 Plug 'lervag/vimtex'
 Plug 'donRaphaco/neotex', { 'for': 'tex' }
 call plug#end()

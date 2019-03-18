@@ -70,9 +70,9 @@ if ${use_color} ; then
 	fi
 
 	if [[ ${EUID} == 0 ]] ; then
-		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\n\$\[\033[00m\] '
 	else
-		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\n\$\[\033[00m\] '
 	fi
 
 	alias ls='ls --color=auto'
@@ -97,7 +97,10 @@ alias np='nano -w PKGBUILD'
 alias more=less
 alias v='nvim'
 alias ls='exa'
-alias cat='bat'
+alias c='bat'
+alias cp='rsync -avhW --no-compress --progress'
+
+export PATH=$PATH:/home/nils/scrips:/home/nils/bin/DDNet-11.8-linux_x86_64/
 
 xhost +local:root > /dev/null 2>&1
 
