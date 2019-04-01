@@ -99,6 +99,10 @@ alias v='nvim'
 alias ls='exa'
 alias c='bat'
 alias cp='rsync -avhW --no-compress --progress'
+alias paci='sudo pacman -S'
+alias pacr='sudo pacman -R'
+alias _='sudo'
+alias ctl='systemctl'
 
 export PATH=$PATH:/home/nils/scrips:/home/nils/bin/DDNet-11.8-linux_x86_64/
 
