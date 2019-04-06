@@ -103,6 +103,9 @@ alias paci='sudo pacman -S'
 alias pacr='sudo pacman -R'
 alias _='sudo'
 alias ctl='systemctl'
+alias paci='sudo pacman -S'
+alias pacr='sudo pacman -R'
+alias pacu='sudo pacman -Syu'
 
 export PATH=$PATH:/home/nils/scrips:/home/nils/bin/DDNet-11.8-linux_x86_64/
 
