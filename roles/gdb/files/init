@@ -1,0 +1,6 @@
+dashboard -layout assembly registers source memory stack !history !expressions !threads
+dashboard assembly -style context 10
+dashboard source -style context 18
+dashboard stack -style limit 10
+dashboard stack -style locals True
+dashboard history -style limit 5

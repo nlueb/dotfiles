@@ -7,6 +7,7 @@
     - tmux
     - fish
     - teeworlds
+    - gdb
     - { role: alacritty, when: ansible_os_family == "Archlinux" }
     - { role: xorg, when: ansible_os_family == "Archlinux" }
     - { role: bspwm, when: ansible_os_family == "Archlinux" }

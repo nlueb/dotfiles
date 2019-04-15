@@ -28,6 +28,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'christoomey/vim-tmux-navigator'
 Plug 'lervag/vimtex'
 Plug 'donRaphaco/neotex', { 'for': 'tex' }
+Plug 'shmup/vim-sql-syntax'
 call plug#end()
 " }}}
 
