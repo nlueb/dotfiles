@@ -29,6 +29,8 @@ Plug 'morhetz/gruvbox'
 Plug 'lervag/vimtex'
 Plug 'donRaphaco/neotex', { 'for': 'tex' }
 Plug 'shmup/vim-sql-syntax'
+Plug 'sjl/badwolf'
+Plug 'mhinz/vim-signify'
 call plug#end()
 " }}}
 
@@ -69,7 +71,7 @@ set termguicolors
 " let ayucolor="dark"   " for dark version of theme
 let g:gruvbox_italic=1
 " colorscheme monotone
-colorscheme gruvbox
+colorscheme badwolf
 " show linenumbers
 set number
 " show relative linenumbers
@@ -207,6 +209,10 @@ set magic
 " Show matching brackets when text indicator is over them
 set showmatch
 
+" more natural split opening
+set splitbelow
+set splitright
+
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
@@ -247,14 +253,14 @@ set smarttab
 " Show indent guides
 set list listchars=tab:\│\ ,trail:━
 " set list listchars=tab:\|\ ,trail:━
-" set list listchars=tab:\
+" set list listchars=tab:\ ,trail:━
 " set list listchars=tab:\|\ ,trail:■
 " set list listchars=tab:\╽\
 
 " 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 
 set ai "Auto indent
 set si "Smart indent
@@ -372,6 +378,16 @@ let g:python_highlight_builtins = 1
 let g:python_highlight_class_vars = 1
 let g:python_highlight_operators = 1
 " }}}
+" Signify {{{
+let g:signify_vcs_list = ['git']
+let g:signify_realtime = 1
+let g:signify_sign_show_count = 0
+let g:signify_sign_add = '+'
+let g:signify_sign_delete = '-'
+let g:signify_sign_delete_first_line = '-'
+let g:signify_sign_change = '~'
+let g:signify_sign_changedelete = '~'
+" }}}
 
 " Extra color settings {{{
 if !exists('g:colors_name')
@@ -386,6 +402,12 @@ if g:colors_name == 'ayu'
 	hi! link StatusLineNC Normal
 	hi! link MatchParen SpellRare
 elseif g:colors_name == 'badwolf'
+	hi! link SignifyLineAdd PreProc
+	hi! link SignifyLineChange Function
+	hi! link SignifyLineDelete Keyword
+	hi! link SignifySignAdd PreProc
+	hi! link SignifySignChange Function
+	hi! link SignifySignDelete Keyword
 	hi! link ALEWarningSign Normal
 	hi! link SignColumn Normal
 	hi! link ALEErrorSign ErrorMsg
@@ -419,7 +441,6 @@ elseif g:colors_name == 'monotone'
 	hi! link Folded Comment
 endif
 
-"nor working in neovim :(
 hi Cursor cterm=reverse ctermbg=NONE ctermfg=NONE gui=reverse guifg=NONE guibg=NONE
 
 hi! link pythonNone pythonBoolean
