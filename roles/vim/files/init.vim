@@ -1,3 +1,7 @@
+" Variables {{{
+let s:os = system("uname -s")
+" }}}
+
 "Plugins {{{
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'mhinz/vim-startify'
@@ -31,6 +35,8 @@ Plug 'donRaphaco/neotex', { 'for': 'tex' }
 Plug 'shmup/vim-sql-syntax'
 Plug 'sjl/badwolf'
 Plug 'mhinz/vim-signify'
+Plug 'arakashic/chromatica.nvim'
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 call plug#end()
 " }}}
 
@@ -127,6 +133,9 @@ map <leader>d :%s/\s\+$//e<cr>
 map <leader>b :Buffers<cr>
 map <leader>f :Files<cr>
 
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
 " Create a fold around visual selection in vimrc
 vnoremap <leader>f <esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A }}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_a 
 " remove strange mappings
@@ -145,6 +154,26 @@ vnoremap <leader>f <esc>'>o<esc>:call setline(line('.'), split(&commentstring, '
 " nnoremap <silent> <C-h> :wincmd h<cr>
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
+
+" Coc Mappings {{{
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" }}}
+
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -174,6 +203,9 @@ set incsearch
 
 " Misc settings {{{
 
+" Smaller updatetime for CursorHold and CursorHoldI
+set updatetime=300
+
 set wildignore=*.o,*.obj,*.class
 
 " Set to auto read when a file is changed from the outside
@@ -190,7 +222,7 @@ set wildmenu
 set showcmd
 
 " A buffer becomes hidden when it is abandoned
-set hid
+set hidden
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -238,6 +270,9 @@ set fillchars+=stlnc:−
 
 " check the last line of a file for vim settings
 set modelines=1
+
+" always show signcolumn
+set signcolumn=yes
 
 " turn on PASTE mode with F6
 set pastetoggle=<F6>
@@ -365,8 +400,13 @@ set completeopt-=preview
 " let g:deoplete#sources#rust#rust_source_path='/Users/nils/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 " }}}
 "Chromatic settings {{{
-let g:chromatica#libclang_path='/usr/local/Cellar/llvm/5.0.0/lib/libclang.dylib'
-let g:chromatica#enable_at_startup=0
+if s:os ==? 'Darwin'
+	let g:chromatica#libclang_path = '/usr/local/Cellar/llvm/5.0.0/lib/libclang.dylib'
+elseif s:os ==? 'Linux'
+	let g:chromatica#libclang_path = '/usr/lib/libclang.so'
+endif
+let g:chromatica#enable_at_startup = 0
+let g:chromatica#responsive_mode = 1
 " }}}
 "UltiSnips settings {{{
 let g:UltiSnipsExpandTrigger="<c-l>"
@@ -388,6 +428,13 @@ let g:signify_sign_delete_first_line = '-'
 let g:signify_sign_change = '~'
 let g:signify_sign_changedelete = '~'
 " }}}
+" Coc settings {{{
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+autocmd FileType json syntax match Comment +\/\/.\+$+
+" }}}
 
 " Extra color settings {{{
 if !exists('g:colors_name')
@@ -408,6 +455,10 @@ elseif g:colors_name == 'badwolf'
 	hi! link SignifySignAdd PreProc
 	hi! link SignifySignChange Function
 	hi! link SignifySignDelete Keyword
+	hi! CocHighlightText cterm=reverse gui=reverse
+	hi! link CocErrorSign Keyword
+	hi! link CocWarningSign Normal
+	hi! link CocInfoSign Normal
 	hi! link ALEWarningSign Normal
 	hi! link SignColumn Normal
 	hi! link ALEErrorSign ErrorMsg
@@ -498,6 +549,18 @@ function! ToggleList(bufname, pfx)
 		wincmd p
 	endif
 endfunction
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
 " }}}
 
-" vim: foldmethod=marker foldlevel=0 foldenable
+" vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro
