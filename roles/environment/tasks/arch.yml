@@ -3,3 +3,9 @@
     name: "{{ packages.global + packages.arch.core }}"
     state: present
   become: true
+
+- name: Create bin directory
+  file:
+    path: "{{ paths.bin }}"
+    state: directory
+    recurse: yes

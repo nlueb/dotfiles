@@ -1,0 +1,9 @@
+- name: Clone yay repository (https://aur.archlinux.org/yay.git)
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: "{{ paths.bin }}/yay"
+
+- name: Install yay
+  command: "makepkg -si --noconfirm"
+  args:
+    chdir: "{{ paths.bin }}/yay"

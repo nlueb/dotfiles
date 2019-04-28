@@ -3,6 +3,7 @@ paths:
   home: "{{ '~' | expanduser }}"
   dotfiles: "{{ '~' | expanduser }}/dotfiles"
   config: "{{ '~' | expanduser }}/.config"
+  bin: "{{ '~' | expanduser }}/bin"
 
 packages:
   arch:
@@ -34,6 +35,8 @@ packages:
     - vim
     - neovim
     - tmux
+    - nodejs
+    - yarn
 
 
 # vim: set ft=yaml.ansible

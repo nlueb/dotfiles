@@ -1,6 +1,7 @@
 - name: Install dotfiles
   hosts: local
   roles:
+    - { role: yay, when: ansible_os_family == "Archlinux" }
     - environment
     - bash
     - vim
