@@ -1,11 +1,11 @@
-- name: Install Arch dependencies
+- name: Install Arch core dependencies
   pacman:
     name: "{{ packages.global + packages.arch.core }}"
     state: present
   become: true
 
-- name: Create bin directory
-  file:
-    path: "{{ paths.bin }}"
-    state: directory
-    recurse: yes
+- name: Install Arch AUR dependencies
+  yay:
+    name: "{{ packages.arch.aur }}"
+    state: present
+  become: true

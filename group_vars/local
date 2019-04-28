@@ -33,7 +33,7 @@ packages:
   # macos:
   global:
     - vim
-    - neovim
+    # - neovim
     - tmux
     - nodejs
     - yarn
