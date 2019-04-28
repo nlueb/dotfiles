@@ -21,12 +21,14 @@ packages:
       - dmenu
       - openssl
       - openssh
+      - dunst
       # - texlive-most
       # - texlive-lang
       # - biber
     aur:
       - nerd-fonts-iosevka
       - bitwarden-bin
+      - neovim-nightly
   # macos:
   global:
     - vim

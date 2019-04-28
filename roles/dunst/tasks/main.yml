@@ -1,0 +1,11 @@
+- name: Create config directory for dunst
+  file:
+    path: "{{ paths.config }}/dunst"
+    state: directory
+    recurse: yes
+
+- name: Link dunst config
+  file:
+    src: "{{ role_path }}/files/dunstrc"
+    dest: "{{ paths.config }}/dunst/dunstrc"
+    state: link

@@ -37,6 +37,7 @@ Plug 'sjl/badwolf'
 Plug 'mhinz/vim-signify'
 Plug 'arakashic/chromatica.nvim'
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'honza/vim-snippets'
 call plug#end()
 " }}}
 
@@ -152,8 +153,8 @@ vnoremap <leader>f <esc>'>o<esc>:call setline(line('.'), split(&commentstring, '
 " nnoremap <silent> <C-k> :wincmd k<cr>
 " nnoremap <silent> <C-j> :wincmd j<cr>
 " nnoremap <silent> <C-h> :wincmd h<cr>
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
+" inoremap <C-j> <C-n>
+" inoremap <C-k> <C-p>
 
 " Coc Mappings {{{
 " Use tab for trigger completion with characters ahead and navigate.
@@ -172,6 +173,13 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-h> <Plug>(coc-snippets-select)
 " }}}
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -434,6 +442,10 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 autocmd FileType json syntax match Comment +\/\/.\+$+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
 " }}}
 
 " Extra color settings {{{
