@@ -30,13 +30,14 @@ packages:
       - nerd-fonts-iosevka
       - bitwarden-bin
       - neovim-nightly
-  # macos:
+  macos:
+    neovim
   global:
     - vim
-    # - neovim
     - tmux
     - nodejs
     - yarn
+    - ctags
 
 
 # vim: set ft=yaml.ansible

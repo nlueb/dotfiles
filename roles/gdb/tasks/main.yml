@@ -6,7 +6,7 @@
 
 - name: Install gdb dashboard
   get_url:
-    url: "git.io/.gdbinit"
+    url: "https://git.io/.gdbinit"
     dest: "{{ paths.home }}/.gdbinit"
 
 - name: Link dashboard config

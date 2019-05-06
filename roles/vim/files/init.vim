@@ -29,15 +29,14 @@ Plug 'osyo-manga/vim-over'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'pearofducks/ansible-vim'
 Plug 'morhetz/gruvbox'
-" Plug 'christoomey/vim-tmux-navigator'
 Plug 'lervag/vimtex'
 Plug 'donRaphaco/neotex', { 'for': 'tex' }
 Plug 'shmup/vim-sql-syntax'
 Plug 'sjl/badwolf'
 Plug 'mhinz/vim-signify'
-Plug 'arakashic/chromatica.nvim'
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'honza/vim-snippets'
+Plug 'cormacrelf/vim-colors-github'
 call plug#end()
 " }}}
 
@@ -79,12 +78,13 @@ set termguicolors
 let g:gruvbox_italic=1
 " colorscheme monotone
 colorscheme badwolf
+" colorscheme github
 " show linenumbers
 set number
 " show relative linenumbers
 set relativenumber
 " highlight the line where the cursor is at
-" set cursorline
+set cursorline
 " }}}
 
 " Statusline {{{
@@ -133,6 +133,7 @@ map <leader>h :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")
 map <leader>d :%s/\s\+$//e<cr>
 map <leader>b :Buffers<cr>
 map <leader>f :Files<cr>
+map <silent> <leader>x :call ToggleSourceHeader(@%)<cr>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -226,6 +227,11 @@ language en_US.UTF-8
 " Turn on the Wild menu
 set wildmenu
 
+if has('nvim')
+	" Display the completion matches using the popupmenu
+	" set wildoptions=pum
+endif
+
 " show command in bottom bar
 set showcmd
 
@@ -252,6 +258,9 @@ set showmatch
 " more natural split opening
 set splitbelow
 set splitright
+
+" Enable mouse support
+" set mouse=a
 
 " No annoying sound on errors
 set noerrorbells
@@ -345,6 +354,13 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
+
+" let g:ale_c_parse_makefile = 1
+let g:ale_c_gcc_options = '-O2 -pedantic -Wextra -Wall -Wfloat-equal -Wundef -Wpointer-arith -Wswitch-default -Wswitch-enum -Wconversion -Wunreachable-code -Winit-self -std=gnu17'
+let g:ale_c_clang_options = '-O2 -pedantic -Wextra -Wall -Wfloat-equal -Wundef -Wpointer-arith -Wswitch-default -Wswitch-enum -Wconversion -Wunreachable-code -Winit-self -std=gnu17'
+let g:ale_c_clangd_options = '-O2 -pedantic -Wextra -Wall -Wfloat-equal -Wundef -Wpointer-arith -Wswitch-default -Wswitch-enum -Wconversion -Wunreachable-code -Winit-self -std=gnu17'
+let g:ale_c_uncrustify_options = '-c ~/scripts/uncrustify-c-cpp.cfg'
+
 " let g:ale_sign_error = '█'
 " let g:ale_sign_warning = '█'
 
@@ -484,6 +500,30 @@ elseif g:colors_name == 'badwolf'
 	hi! link ALEError SpellCap
 	hi! link luaDocTag String
 	hi! link SpecialComment String
+elseif g:colors_name == 'github'
+	hi! link SignifyLineAdd Question
+	hi! link SignifyLineChange Function
+	hi! link SignifyLineDelete Keyword
+	hi! link SignifySignAdd Question
+	hi! link SignifySignChange Function
+	hi! link SignifySignDelete Keyword
+	hi! CocHighlightText cterm=reverse gui=reverse
+	hi! link CocErrorSign Keyword
+	hi! link CocWarningSign Normal
+	hi! link CocInfoSign Normal
+	hi! link ALEWarningSign Normal
+	hi! link SignColumn Normal
+	hi! link ALEErrorSign ErrorMsg
+	hi! link VertSplit Comment
+	hi! link StatusLine Comment
+	hi! link StatusLineNC Comment
+	hi! link TabLine LineNr
+	hi! link TabLineSel Normal
+	hi! link CursorLineNr Normal
+	hi! link ALEWarning SpellBad
+	hi! link ALEError SpellCap
+	hi! link luaDocTag String
+	hi! link SpecialComment String
 elseif g:colors_name == 'gruvbox'
 	hi! link SignColumn Normal
 	hi! link ALEErrorSign WarningMsg
@@ -527,9 +567,10 @@ let g:terminal_color_14 = '#00f5e9'
 let g:terminal_color_15 = '#eeeeec'
 
 augroup vimrc_autocmds
-	autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#44475a
-	autocmd BufEnter * match OverLength /\%>80v.\+/
-	" autocmd TermOpen * match OverLength //
+	" autocmd BufEnter * if &buftype != 'nofile' | highlight OverLength ctermbg=darkgrey guibg=#eeeeec | endif
+	" autocmd BufEnter * match OverLength /\%>80v.\+/
+	" autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#44475a
+	autocmd BufEnter * if &buftype == '' || &buftype == 'acwrite' | set cc=80 | endif
 augroup END
 
 " }}}
@@ -562,10 +603,20 @@ function! ToggleList(bufname, pfx)
 	endif
 endfunction
 
+function! ToggleSourceHeader(file)
+	let l:split_file = split(a:file, '\.')
+	if l:split_file[-1] == 'h'
+		execute 'edit '.l:split_file[0].'.c'
+	else
+		execute 'edit '.l:split_file[0].'.h'
+	endif
+endfunction
+
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 function! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
 		execute 'h '.expand('<cword>')
