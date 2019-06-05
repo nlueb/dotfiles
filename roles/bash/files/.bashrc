@@ -101,13 +101,18 @@ alias c='bat'
 alias cp='rsync -avhW --no-compress --progress'
 alias paci='sudo pacman -S'
 alias pacr='sudo pacman -R'
+alias pacs='pacman -Ss'
 alias _='sudo'
-alias ctl='systemctl'
+alias ctl='sudo systemctl'
+alias uctl='systemctl --user'
 alias paci='sudo pacman -S'
 alias pacr='sudo pacman -R'
 alias pacu='sudo pacman -Syu'
+alias dockerc='docker images -f "dangling=true" -q | xargs --no-run-if-empty docker rmi -f'
 
 export PATH=$PATH:/home/nils/scrips:/home/nils/bin/DDNet-11.8-linux_x86_64/
+source ~/.cargo/env
+export ALSA_CARD=G4M1
 
 xhost +local:root > /dev/null 2>&1
 
@@ -168,3 +173,4 @@ man() {
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# source /home/nils/.oh-my-git/prompt.sh

@@ -14,3 +14,4 @@
     - { role: bspwm, when: ansible_os_family == "Archlinux" }
     - { role: sxhkd, when: ansible_os_family == "Archlinux" }
     - { role: dunst, when: ansible_os_family == "Archlinux" }
+    - { role: systemd, when: ansible_os_family == "Archlinux" }

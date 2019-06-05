@@ -1,0 +1,13 @@
+- name: Create systemd user directory
+  file:
+    path: "{{ paths.config }}/systemd"
+    state: directory
+    recurse: yes
+
+- name: Link systemd user unit files
+  file:
+    src: "{{ item }}"
+    dest: "{{ paths.config }}/systemd/{{ item | basename }}"
+    state: link
+  with_fileglob:
+    - "{{ role_path }}/files/*.service"

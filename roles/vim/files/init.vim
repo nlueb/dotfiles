@@ -9,7 +9,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive'
+" Plug 'w0rp/ale'
 Plug 'junegunn/vim-easy-align'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-peekaboo'
@@ -37,6 +38,8 @@ Plug 'mhinz/vim-signify'
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'honza/vim-snippets'
 Plug 'cormacrelf/vim-colors-github'
+Plug 'machakann/vim-highlightedyank'
+Plug 'jeetsukumaran/vim-markology'
 call plug#end()
 " }}}
 
@@ -212,6 +215,16 @@ set incsearch
 
 " Misc settings {{{
 
+" Neovim specific settings {{{
+if has('nvim')
+	" Display the completion matches using the popupmenu
+	" set wildoptions=pum
+
+	" Enable live feedback for the :substitute command
+	set inccommand=split
+endif
+" }}}
+
 " Smaller updatetime for CursorHold and CursorHoldI
 set updatetime=300
 
@@ -226,11 +239,6 @@ language en_US.UTF-8
 
 " Turn on the Wild menu
 set wildmenu
-
-if has('nvim')
-	" Display the completion matches using the popupmenu
-	" set wildoptions=pum
-endif
 
 " show command in bottom bar
 set showcmd
@@ -335,6 +343,9 @@ set foldnestmax=10
 
 " fold based on indent level
 set foldmethod=syntax
+
+" Improved foldtext
+" set foldtext=FoldText()
 " }}}
 
 " NeoTeX settings {{{
@@ -463,6 +474,13 @@ let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
 " }}}
+" Markology {{{
+let g:markology_textlower="\t"
+let g:markology_textupper=g:markology_textlower
+let g:markology_textother=g:markology_textlower
+let g:markology_disable_mappings=1
+let g:markology_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.'`^<>[]\""
+" }}}
 
 " Extra color settings {{{
 if !exists('g:colors_name')
@@ -477,6 +495,10 @@ if g:colors_name == 'ayu'
 	hi! link StatusLineNC Normal
 	hi! link MatchParen SpellRare
 elseif g:colors_name == 'badwolf'
+	hi! link MarkologyHLl ShowMarksHLl
+	hi! link MarkologyHLu ShowMarksHLl
+	hi! link MarkologyHLo ShowMarksHLl
+	hi! link MarkologyHLm ShowMarksHLl
 	hi! link SignifyLineAdd PreProc
 	hi! link SignifyLineChange Function
 	hi! link SignifyLineDelete Keyword
@@ -623,6 +645,27 @@ function! s:show_documentation()
 	else
 		call CocAction('doHover')
 	endif
+endfunction
+
+function! FoldText()
+	" Get first non-blank line
+	let fs = v:foldstart
+	while getline(fs) =~? '^\s*$' | let fs = nextnonblank(fs + 1)
+	endwhile
+	if fs > v:foldend
+		let line = getline(v:foldstart)
+	else
+		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+	endif
+
+	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+	let foldSize = 1 + v:foldend - v:foldstart
+	let foldSizeStr = ' ' . foldSize . ' lines '
+	let foldLevelStr = repeat('+--', v:foldlevel)
+	let lineCount = line('$')
+	let foldPercentage = printf('[%.1f', (foldSize*1.0)/lineCount*100) . '%] '
+	let expansionString = repeat('.', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endfunction
 " }}}
 
