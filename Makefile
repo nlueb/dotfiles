@@ -1,2 +1,2 @@
 install:
-	@ansible-playbook -i hosts main.yml
+	@ansible-playbook main.yml
