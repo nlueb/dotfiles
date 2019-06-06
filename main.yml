@@ -5,6 +5,7 @@
   hosts: 127.0.0.1
   vars_files:
     - vars/all
+    - vars/preferences.priv
   roles:
     - { role: yay, when: ansible_os_family == "Archlinux" }
     - environment
@@ -14,6 +15,7 @@
     - fish
     - teeworlds
     - gdb
+    - git
     - { role: alacritty, when: ansible_os_family == "Archlinux" }
     - { role: xorg, when: ansible_os_family == "Archlinux" }
     - { role: bspwm, when: ansible_os_family == "Archlinux" }

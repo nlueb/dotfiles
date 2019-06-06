@@ -1,6 +1,6 @@
-- name: Parsing .gitconfig template
+- name: Parsing gitconfig template
   template:
-    src: "{{ role_path }}/files/.gitconfig.j2"
+    src: "{{ role_path }}/templates/gitconfig.j2"
     dest: "{{ role_path }}/files/.gitconfig"
 
 - name: Link .gitconfig file
