@@ -10,7 +10,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-" Plug 'w0rp/ale'
 Plug 'junegunn/vim-easy-align'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-peekaboo'
@@ -38,8 +37,10 @@ Plug 'mhinz/vim-signify'
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'honza/vim-snippets'
 Plug 'cormacrelf/vim-colors-github'
-Plug 'machakann/vim-highlightedyank'
 Plug 'jeetsukumaran/vim-markology'
+Plug 'liuchengxu/space-vim-theme'
+Plug 'ARM9/arm-syntax-vim'
+Plug 'liuchengxu/vista.vim'
 call plug#end()
 " }}}
 
@@ -80,7 +81,8 @@ set termguicolors
 " let ayucolor="dark"   " for dark version of theme
 let g:gruvbox_italic=1
 " colorscheme monotone
-colorscheme badwolf
+" colorscheme badwolf
+colorscheme space_vim_theme
 " colorscheme github
 " show linenumbers
 set number
@@ -127,6 +129,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <leader>vs :so /Users/nils/.vimrc<cr>:setlocal foldmethod=marker<cr>:nohl
 map <silent> <leader>ll :call ToggleList("Location List", 'l')<cr>
+map <silent> <leader>lc :CocList diagnostics<cr>
 map <silent> <leader>ff :call ToggleList("Quickfix List", 'c')<cr>
 map <leader>r :AsyncRun 
 map <leader>ch f#lcw
@@ -137,6 +140,7 @@ map <leader>d :%s/\s\+$//e<cr>
 map <leader>b :Buffers<cr>
 map <leader>f :Files<cr>
 map <silent> <leader>x :call ToggleSourceHeader(@%)<cr>
+map <silent> <leader>y :<C-u>CocList -A --normal yank<cr>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -494,6 +498,37 @@ if g:colors_name == 'ayu'
 	hi! link StatusLine Normal
 	hi! link StatusLineNC Normal
 	hi! link MatchParen SpellRare
+elseif g:colors_name == 'space_vim_theme'
+	" hi! Folded guifg=#a45bad guibg=cleared
+	" hi! link Folded Pmenu
+	let g:space_vim_italic = 1
+	hi! link MarkologyHLl ShowMarksHLl
+	hi! link MarkologyHLu ShowMarksHLl
+	hi! link MarkologyHLo ShowMarksHLl
+	hi! link MarkologyHLm ShowMarksHLl
+	hi! link SignifyLineAdd String
+	hi! link SignifyLineChange NvimArrow
+	hi! link SignifyLineDelete Type
+	hi! link SignifySignAdd String
+	hi! link SignifySignChange NvimArrow
+	hi! link SignifySignDelete Type
+	hi! CocHighlightText cterm=reverse gui=reverse
+	hi! link CocErrorSign Type
+	hi! CocWarningSign guifg=#b2b2b2
+	hi! CocInfoSign guifg=#b2b2b2
+	hi! link VertSplit Comment
+	hi! link StatusLine Comment
+	hi! link StatusLineNC Comment
+	hi! link TabLine LineNr
+	hi! link TabLineSel Normal
+	" hi! link CursorLineNr Normal
+	hi! link ALEWarningSign Normal
+	hi! link SignColumn Normal
+	hi! link ALEErrorSign ErrorMsg
+	hi! link ALEWarning SpellBad
+	hi! link ALEError SpellCap
+	hi! link luaDocTag String
+	hi! link SpecialComment String
 elseif g:colors_name == 'badwolf'
 	hi! link MarkologyHLl ShowMarksHLl
 	hi! link MarkologyHLu ShowMarksHLl
@@ -597,17 +632,22 @@ augroup END
 
 " }}}
 
-" misc functions {{{
+" Commands {{{
+command! -nargs=1 -complete=command R call RedirectOutput(<q-args>)
+command! -nargs=1 -complete=command Rp call RedirectOutput(<q-args>, 1)
+" }}}
+
+" Functions {{{
 function! GetBufferList()
-	redir =>buflist
+	redir => buflist
 	silent! ls!
 	redir END
-	return buflist
+	return l:buflist
 endfunction
 
 function! ToggleList(bufname, pfx)
-	let buflist = GetBufferList()
-	for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+	let l:buflist = GetBufferList()
+	for bufnum in map(filter(split(l:buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
 		if bufwinnr(bufnum) != -1
 			exec(a:pfx.'close')
 			return
@@ -635,8 +675,8 @@ function! ToggleSourceHeader(file)
 endfunction
 
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+	let l:col = col('.') - 1
+	return !l:col || getline('.')[l:col - 1]  =~# '\s'
 endfunction
 
 function! s:show_documentation()
@@ -649,23 +689,49 @@ endfunction
 
 function! FoldText()
 	" Get first non-blank line
-	let fs = v:foldstart
-	while getline(fs) =~? '^\s*$' | let fs = nextnonblank(fs + 1)
+	let l:fs = v:foldstart
+	while getline(l:fs) =~? '^\s*$' | let l:fs = nextnonblank(l:fs + 1)
 	endwhile
-	if fs > v:foldend
-		let line = getline(v:foldstart)
+	if l:fs > v:foldend
+		let l:line = getline(v:foldstart)
 	else
-		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+		let l:line = substitute(getline(l:fs), '\t', repeat(' ', &tabstop), 'g')
 	endif
 
-	let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-	let foldSize = 1 + v:foldend - v:foldstart
-	let foldSizeStr = ' ' . foldSize . ' lines '
-	let foldLevelStr = repeat('+--', v:foldlevel)
-	let lineCount = line('$')
-	let foldPercentage = printf('[%.1f', (foldSize*1.0)/lineCount*100) . '%] '
-	let expansionString = repeat('.', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+	let l:w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+	let l:foldSize = 1 + v:foldend - v:foldstart
+	let l:foldSizeStr = ' ' . l:foldSize . ' lines '
+	let l:foldLevelStr = repeat('+--', v:foldlevel)
+	let l:lineCount = line('$')
+	let l:foldPercentage = printf('[%.1f', (l:foldSize*1.0)/l:lineCount*100) . '%] '
+	let l:expansionString = repeat('.', l:w - strwidth(l:foldSizeStr.line.foldLevelStr.foldPercentage))
+	return l:line . l:expansionString . l:foldSizeStr . l:foldPercentage . l:foldLevelStr
+endfunction
+
+function! RedirectOutput(cmd, ...)
+	" Get the first argument from varargs, if not present default to 0 (false)
+	let l:paste_to_buffer = get(a:, 1, 0)
+
+	let l:message = ""
+
+	" Redirect messages from a:cmd to the variable l:message or the paste register
+	if l:paste_to_buffer
+		redir => l:message
+	else
+		" Redirect messages from a:cmd to the paste register
+		redir @"
+	endif
+
+	" Execute the given ex command
+	silent execute a:cmd
+
+	" Tur off the redirection
+	redir END
+
+	" Paste the message to the current buffer
+	if l:paste_to_buffer
+		silent put=l:message
+	endif
 endfunction
 " }}}
 

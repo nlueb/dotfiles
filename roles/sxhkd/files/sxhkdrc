@@ -4,6 +4,9 @@
 
 # terminal emulator
 super + Return
+	kitty
+
+super + shift + Return
 	alacritty
 
 # program launcher

@@ -16,7 +16,8 @@
     - teeworlds
     - gdb
     - git
-    - { role: alacritty, when: ansible_os_family == "Archlinux" }
+    - alacritty
+    - kitty
     - { role: xorg, when: ansible_os_family == "Archlinux" }
     - { role: bspwm, when: ansible_os_family == "Archlinux" }
     - { role: sxhkd, when: ansible_os_family == "Archlinux" }

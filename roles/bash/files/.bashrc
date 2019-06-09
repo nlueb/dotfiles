@@ -105,9 +105,9 @@ alias pacs='pacman -Ss'
 alias _='sudo'
 alias ctl='sudo systemctl'
 alias uctl='systemctl --user'
-alias paci='sudo pacman -S'
-alias pacr='sudo pacman -R'
-alias pacu='sudo pacman -Syu'
+alias paci='sudo pacman --color=auto -S'
+alias pacr='sudo pacman --color=auto -R'
+alias pacu='sudo pacman --color=auto -Syu'
 alias dockerc='docker images -f "dangling=true" -q | xargs --no-run-if-empty docker rmi -f'
 
 export PATH=$PATH:/home/nils/scrips:/home/nils/bin/DDNet-11.8-linux_x86_64/

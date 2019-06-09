@@ -1,0 +1,11 @@
+- name: Create directories for Kitty configuration
+  file:
+    path: "{{ paths.config }}/kitty/"
+    state: directory
+    recurse: yes
+
+- name: Link Kitty config
+  file:
+    src: "{{ role_path }}/files/kitty.conf"
+    dest: "{{ paths.config }}/kitty/kitty.conf"
+    state: link
