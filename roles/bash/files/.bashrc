@@ -109,10 +109,18 @@ alias paci='sudo pacman --color=auto -S'
 alias pacr='sudo pacman --color=auto -R'
 alias pacu='sudo pacman --color=auto -Syu'
 alias dockerc='docker images -f "dangling=true" -q | xargs --no-run-if-empty docker rmi -f'
+alias e="edit.sh"
+alias er="edit.sh /"
+alias ed="edit.sh ."
+alias eh="edit.sh ~"
+alias live="less +F" # Live reload files
 
-export PATH=$PATH:/home/nils/scrips:/home/nils/bin/DDNet-11.8-linux_x86_64/
+export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 source ~/.cargo/env
 export ALSA_CARD=G4M1
+
+# Make java apps work with bspwm
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 xhost +local:root > /dev/null 2>&1
 

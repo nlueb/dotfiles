@@ -286,6 +286,7 @@ set fillchars=vert:\╎
 " set fillchars=vert:\┊
 set fillchars+=stl:\- 
 set fillchars+=stlnc:− 
+set fillchars+=fold:⠀ 
 " set fillchars=fold:\- 
 " set fillchars=vert:\║
 " set fillchars+=stl:\═
@@ -349,19 +350,19 @@ set foldnestmax=10
 set foldmethod=syntax
 
 " Improved foldtext
-" set foldtext=FoldText()
+set foldtext=FoldText()
 " }}}
 
-" NeoTeX settings {{{
+" NeoTeX {{{
 let g:tex_flavor = 'latex'
 let g:neotex_enabled = 1 " 0=always disabled, 1=default off, 2=default on
 let g:neotex_delay = 1000
 let g:neotex_latexdiff = 0
 " }}}
-"IndentLine settings {{{
+"IndentLine {{{
 let g:indentLine_char = '│'
 " }}}
-" ALE settings {{{
+" ALE {{{
 let g:ale_statusline_format = [' %d ', ' %d ', ' ok ']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -400,31 +401,31 @@ let g:ale_lua_luacheck_executable='/users/nils/.luarocks/bin/luacheck'
 " }}}
 
 " }}}
-" AutoPair settings {{{
+" AutoPair {{{
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutJump = '<c-q>'
 " }}}
-" Completor settings {{{
+" Completor {{{
 let g:completor_min_chars = 1
 let g:completor_racer_binary = '~/.cargo/bin/racer'
 " }}}
-" VimShell settings {{{
+" VimShell {{{
 let g:vimshell_editor_command='/usr/local/bin/mvim'
 " }}}
-" NERDTree settings {{{
+" NERDTree {{{
 let g:NERDTreeDirArrowExpandable  = '●'
 let g:NERDTreeDirArrowCollapsible = '○'
 " }}}
-" Colorizer settings {{{
+" Colorizer {{{
 let g:colorizer_auto_filetype = 'css,html'
 let g:colorizer_auto_color    = 0
 " }}}
-" Startify settings {{{
+" Startify {{{
 let g:startify_fortune_use_unicode = 1
 let g:startify_session_sort = 1
 let g:startify_custom_header = []
 " }}}
-"Deoplete settings{{{
+"Deoplete {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/5.0.0/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/5.0.0/lib/clang'
@@ -438,7 +439,7 @@ set completeopt-=preview
 " let g:deoplete#sources#rust#racer_binary='/Users/nils/.cargo/bin/racer'
 " let g:deoplete#sources#rust#rust_source_path='/Users/nils/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 " }}}
-"Chromatic settings {{{
+"Chromatic {{{
 if s:os ==? 'Darwin'
 	let g:chromatica#libclang_path = '/usr/local/Cellar/llvm/5.0.0/lib/libclang.dylib'
 elseif s:os ==? 'Linux'
@@ -447,7 +448,7 @@ endif
 let g:chromatica#enable_at_startup = 0
 let g:chromatica#responsive_mode = 1
 " }}}
-"UltiSnips settings {{{
+"UltiSnips {{{
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-h>"
@@ -502,6 +503,7 @@ elseif g:colors_name == 'space_vim_theme'
 	" hi! Folded guifg=#a45bad guibg=cleared
 	" hi! link Folded Pmenu
 	let g:space_vim_italic = 1
+	hi! Comment guifg=#5C6370 ctermfg=59
 	hi! link MarkologyHLl ShowMarksHLl
 	hi! link MarkologyHLu ShowMarksHLl
 	hi! link MarkologyHLo ShowMarksHLl
@@ -692,10 +694,25 @@ function! FoldText()
 	let l:fs = v:foldstart
 	while getline(l:fs) =~? '^\s*$' | let l:fs = nextnonblank(l:fs + 1)
 	endwhile
+
 	if l:fs > v:foldend
 		let l:line = getline(v:foldstart)
 	else
 		let l:line = substitute(getline(l:fs), '\t', repeat(' ', &tabstop), 'g')
+	endif
+
+	if &foldmethod == 'marker' && &filetype == 'vim'
+		let l:test = luaeval("string.match(_A, '\"%s*([%w%s]+)%s*')", l:line)
+		" return  "ⵗ " . l:test
+		" return  "⯆ " . l:test
+		" return  "◢ " . l:test
+		" return  "● " . l:test
+		" return  "▼ " . l:test
+		" return  "⏷ " . l:test
+		" return  "⎖ " . l:test
+		" return "∎ " . l:test
+		return "∟ " . l:test
+		" return "∫ " . l:test
 	endif
 
 	let l:w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
