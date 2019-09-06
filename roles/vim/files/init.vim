@@ -637,6 +637,7 @@ augroup END
 " Commands {{{
 command! -nargs=1 -complete=command R call RedirectOutput(<q-args>)
 command! -nargs=1 -complete=command Rp call RedirectOutput(<q-args>, 1)
+command Ws :w !sudo tee %
 " }}}
 
 " Functions {{{

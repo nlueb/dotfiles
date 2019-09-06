@@ -116,6 +116,8 @@ alias eh="edit.sh ~"
 alias live="less +F" # Live reload files
 
 export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$(go env GOPATH)
 source ~/.cargo/env
 export ALSA_CARD=G4M1
 
