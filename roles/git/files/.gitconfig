@@ -26,3 +26,20 @@
 
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[http "https://dhad-wbench.wesp.telekom.net"]
+	sslKey = /home/nils/workbench/userkey.pem
+	sslCert = /home/nils/workbench/user.crt
+	postBuffer = 104857600
+
+[credential "https://dhad-wbench.wesp.telekom.net"]
+	username = nils.luebker
+	helper = cache --timeout=999999
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[credential]
+	helper = cache --timeout=999999

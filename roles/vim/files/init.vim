@@ -1,3 +1,15 @@
+"
+"             88
+"             ""
+"
+" 8b       d8 88 88,dPYba,,adPYba,  8b,dPPYba,  ,adPPYba,
+" `8b     d8' 88 88P'   "88"    "8a 88P'   "Y8 a8"     ""
+"  `8b   d8'  88 88      88      88 88         8b
+"   `8b,d8'   88 88      88      88 88         "8a,   ,aa
+"     "8"     88 88      88      88 88          `"Ybbd8"'
+"
+"
+
 " Variables {{{
 let s:os = system("uname -s")
 " }}}
@@ -7,7 +19,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-easy-align'
@@ -18,15 +30,13 @@ Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-fold'
 Plug 'glts/vim-textobj-indblock'
 Plug 'kana/vim-textobj-indent'
+Plug 'unblevable/quick-scope'
 Plug 'wellle/targets.vim'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'posva/vim-vue'
 Plug 'gcmt/taboo.vim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'pearofducks/ansible-vim'
-Plug 'lervag/vimtex'
-Plug 'donRaphaco/neotex', { 'for': 'tex' }
 Plug 'shmup/vim-sql-syntax'
 Plug 'mhinz/vim-signify'
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
@@ -35,6 +45,9 @@ Plug 'jeetsukumaran/vim-markology'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'ARM9/arm-syntax-vim'
 Plug 'liuchengxu/vista.vim'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 " }}}
 
@@ -73,10 +86,19 @@ set termguicolors
 " let ayucolor="light"  " for light version of theme
 " let ayucolor="mirage" " for mirage version of theme
 " let ayucolor="dark"   " for dark version of theme
+
+" Gruvbox Settings {{{
 let g:gruvbox_italic=1
+" }}}
+
+" One Dark Settings {{{
+let g:onedark_terminal_italics=1
+" }}}
+
 " colorscheme monotone
 " colorscheme badwolf
-colorscheme space_vim_theme
+" colorscheme space_vim_theme
+colorscheme onedark
 " colorscheme github
 " show linenumbers
 set number
@@ -88,14 +110,23 @@ set cursorline
 
 " Statusline {{{
 " show statusline all the time
-set laststatus=0
-set statusline=\ 
+set laststatus=1
+" set statusline=\ 
 " don't show mode, bcs it's already in the statusline
 set noshowmode
 
-let g:lightline = {
-			\ 'colorscheme': 'gruvbox',
-			\ }
+let g:airline_theme='onedark'
+
+" Airline {{{
+let g:airline_powerline_fonts = 1
+" }}}
+
+" Lightline {{{
+" let g:lightline = {
+" 			\ 'colorscheme': 'gruvbox',
+" 			\ }
+" }}}
+
 " }}}
 
 "Tabline {{{
@@ -162,10 +193,11 @@ vnoremap <leader>f <esc>'>o<esc>:call setline(line('.'), split(&commentstring, '
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+			\ pumvisible() ? "\<C-n>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
+			\ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use K to show documentation in preview window
@@ -235,6 +267,9 @@ set autoread
 set encoding=utf8
 language en_US.UTF-8
 
+" Turn off line wrapping
+set nowrap
+
 " Turn on the Wild menu
 set wildmenu
 
@@ -274,25 +309,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" set fillchars=
-set fillchars=vert:\╎ 
-" set fillchars=vert:\⁣
-" set fillchars=vert:\┊
-set fillchars+=stl:\- 
-set fillchars+=stlnc:− 
-set fillchars+=fold:⠀ 
-" set fillchars=fold:\- 
-" set fillchars=vert:\║
-" set fillchars+=stl:\═
-" set fillchars+=stlnc:\═
-" set fillchars=vert:\┊
-" set fillchars+=stl:\╌
-" set fillchars+=stlnc:\╌
-" set statusline=╍
-" set fillchars=vert:\╿
-" set fillchars=vert:\|
-
 " check the last line of a file for vim settings
+set modeline
 set modelines=1
 
 " always show signcolumn
@@ -301,6 +319,33 @@ set signcolumn=yes
 " turn on PASTE mode with F6
 set pastetoggle=<F6>
 " }}}
+
+"Fillchars {{{
+
+" VertSplit
+" set fillchars=
+" set fillchars=vert:\╎ 
+" set fillchars=vert:\⁣
+" set fillchars=vert:\┊
+" set fillchars=vert:\┊
+" set fillchars=vert:\║
+" set fillchars=vert:\╿
+set fillchars=vert:\|
+
+" Statusline
+" set fillchars+=stl:\- 
+" set fillchars+=stlnc:− 
+" set fillchars+=stl:\═
+" set fillchars+=stlnc:\═
+" set fillchars+=stl:\╌
+" set fillchars+=stlnc:\╌
+" set statusline=╍
+
+" Folding
+set fillchars+=fold:⠀ 
+" set fillchars=fold:\- 
+
+"}}}
 
 " Indentation {{{
 " Use spaces instead of tabs
@@ -345,6 +390,29 @@ set foldmethod=syntax
 
 " Improved foldtext
 set foldtext=FoldText()
+" }}}
+
+" Terminal {{{
+if has('nvim')
+	tnoremap <Esc> <C-\><C-N>
+
+	let g:terminal_color_0  = '#2e3436'
+	let g:terminal_color_1  = '#cc0000'
+	let g:terminal_color_2  = '#4e9a06'
+	let g:terminal_color_3  = '#c4a000'
+	let g:terminal_color_4  = '#3465a4'
+	let g:terminal_color_5  = '#75507b'
+	let g:terminal_color_6  = '#0b939b'
+	let g:terminal_color_7  = '#d3d7cf'
+	let g:terminal_color_8  = '#555753'
+	let g:terminal_color_9  = '#ef2929'
+	let g:terminal_color_10 = '#8ae234'
+	let g:terminal_color_11 = '#fce94f'
+	let g:terminal_color_12 = '#729fcf'
+	let g:terminal_color_13 = '#ad7fa8'
+	let g:terminal_color_14 = '#00f5e9'
+	let g:terminal_color_15 = '#eeeeec'
+endif
 " }}}
 
 " NeoTeX {{{
@@ -417,7 +485,7 @@ let g:colorizer_auto_color    = 0
 " Startify {{{
 let g:startify_fortune_use_unicode = 1
 let g:startify_session_sort = 1
-let g:startify_custom_header = []
+" let g:startify_custom_header = []
 " }}}
 "Deoplete {{{
 let g:deoplete#enable_at_startup = 1
@@ -468,6 +536,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 autocmd FileType json syntax match Comment +\/\/.\+$+
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
@@ -480,8 +549,16 @@ let g:markology_textother=g:markology_textlower
 let g:markology_disable_mappings=1
 let g:markology_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.'`^<>[]\""
 " }}}
+" Vista {{{
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'coc'
+let g:vista_fzf_preview = ['right:50%']
+" }}}
 
 " Extra color settings {{{
+
+hi Cursor cterm=reverse ctermbg=NONE ctermfg=NONE gui=reverse guifg=NONE guibg=NONE
+
 if !exists('g:colors_name')
 	let g:colors_name = 'monotone'
 endif
@@ -525,6 +602,47 @@ elseif g:colors_name == 'space_vim_theme'
 	hi! link ALEError SpellCap
 	hi! link luaDocTag String
 	hi! link SpecialComment String
+elseif g:colors_name == 'gruvbox'
+	hi! link MarkologyHLl NonText
+	hi! link MarkologyHLu NonText
+	hi! link MarkologyHLo NonText
+	hi! link MarkologyHLm NonText
+	hi! link SignifyLineAdd String
+	hi! link SignifyLineChange Number
+	hi! link SignifyLineDelete Keyword
+	hi! link SignifySignAdd String
+	hi! link SignifySignChange Number
+	hi! link SignifySignDelete Keyword
+	hi! link SignColumn Normal
+	hi! link CocErrorSign WarningMsg
+	hi! link CocInfoSign Todo
+	hi! link CocInfoSign MoreMsg
+	hi! link TabLine LineNr
+	hi! link TabLineFill LineNr
+	hi! link TabLineSel Normal
+	hi! CocHighlightText gui=bold guibg=#3c3836
+elseif g:colors_name == 'onedark'
+	hi! link MarkologyHLl NonText
+	hi! link MarkologyHLu NonText
+	hi! link MarkologyHLo NonText
+	hi! link MarkologyHLm NonText
+	hi! link SignifyLineAdd String
+	hi! link SignifyLineChange Number
+	hi! link SignifyLineDelete Keyword
+	hi! link SignifySignAdd String
+	hi! link SignifySignChange Number
+	hi! link SignifySignDelete Keyword
+	hi! link SignColumn Normal
+	hi! link CocErrorSign WarningMsg
+	hi! link CocInfoSign Todo
+	hi! link CocInfoSign MoreMsg
+	hi! link TabLine LineNr
+	hi! link TabLineFill LineNr
+	hi! link TabLineSel Normal
+	hi! link VertSplit NonText
+	hi! CocHighlightText gui=bold
+	hi! link QuickScopePrimary DiffChange
+	hi! link QuickScopeSecondary SpellBad
 elseif g:colors_name == 'badwolf'
 	hi! link MarkologyHLl ShowMarksHLl
 	hi! link MarkologyHLu ShowMarksHLl
@@ -577,10 +695,6 @@ elseif g:colors_name == 'github'
 	hi! link ALEError SpellCap
 	hi! link luaDocTag String
 	hi! link SpecialComment String
-elseif g:colors_name == 'gruvbox'
-	hi! link SignColumn Normal
-	hi! link ALEErrorSign WarningMsg
-	hi! TabLineSel guifg=#282a36 guibg=#ebebeb
 elseif g:colors_name == 'dracula'
 	hi! link CursorLineNr Normal
 	hi! link SignColumn Normal
@@ -597,33 +711,13 @@ elseif g:colors_name == 'monotone'
 	hi! link Folded Comment
 endif
 
-hi Cursor cterm=reverse ctermbg=NONE ctermfg=NONE gui=reverse guifg=NONE guibg=NONE
-
 hi! link pythonNone pythonBoolean
-
-"Neovim :terminal colors
-let g:terminal_color_0  = '#2e3436'
-let g:terminal_color_1  = '#cc0000'
-let g:terminal_color_2  = '#4e9a06'
-let g:terminal_color_3  = '#c4a000'
-let g:terminal_color_4  = '#3465a4'
-let g:terminal_color_5  = '#75507b'
-let g:terminal_color_6  = '#0b939b'
-let g:terminal_color_7  = '#d3d7cf'
-let g:terminal_color_8  = '#555753'
-let g:terminal_color_9  = '#ef2929'
-let g:terminal_color_10 = '#8ae234'
-let g:terminal_color_11 = '#fce94f'
-let g:terminal_color_12 = '#729fcf'
-let g:terminal_color_13 = '#ad7fa8'
-let g:terminal_color_14 = '#00f5e9'
-let g:terminal_color_15 = '#eeeeec'
 
 augroup vimrc_autocmds
 	" autocmd BufEnter * if &buftype != 'nofile' | highlight OverLength ctermbg=darkgrey guibg=#eeeeec | endif
 	" autocmd BufEnter * match OverLength /\%>80v.\+/
 	" autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#44475a
-	autocmd BufEnter * if &buftype == '' || &buftype == 'acwrite' | set cc=80 | endif
+	autocmd BufEnter * if &buftype == '' || &buftype == 'acwrite' | set cc=120 | endif
 augroup END
 
 " }}}
@@ -635,6 +729,11 @@ command Ws :w !sudo tee %
 " }}}
 
 " Functions {{{
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
 function! GetBufferList()
 	redir => buflist
 	silent! ls!
@@ -747,4 +846,4 @@ function! RedirectOutput(cmd, ...)
 endfunction
 " }}}
 
-" vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro
+" vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0

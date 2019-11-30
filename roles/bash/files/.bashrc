@@ -1,38 +1,17 @@
 #
-# ~/.bashrc
+#  88                               88
+#  88                               88
+#  88                               88
+#  88,dPPYba,  ,adPPYYba, ,adPPYba, 88,dPPYba,  8b,dPPYba,  ,adPPYba,
+#  88P'    "8a ""     `Y8 I8[    "" 88P'    "8a 88P'   "Y8 a8"     ""
+#  88       d8 ,adPPPPP88  `"Y8ba,  88       88 88         8b
+#  88b,   ,a8" 88,    ,88 aa    ]8I 88       88 88         "8a,   ,aa
+#  8Y"Ybbd8"'  `"8bbdP"Y8 `"YbbdP"' 88       88 88          `"Ybbd8"'
 #
 
 [[ $- != *i* ]] && return
 
-colors() {
-	local fgc bgc vals seq0
-
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
-
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
-
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
-
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-		echo; echo
-	done
-}
-
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-
+# Configure {{{
 # Change the window title of X terminals
 case ${TERM} in
 	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
@@ -89,19 +68,15 @@ else
 fi
 
 unset use_color safe_term match_lhs sh
+# }}}
 
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
+# Alias {{{
 alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
 alias more=less
 alias v='nvim'
 alias ls='exa'
 alias c='bat'
 alias cp='rsync -avhW --no-compress --progress'
-alias paci='sudo pacman -S'
-alias pacr='sudo pacman -R'
-alias pacs='pacman -Ss'
 alias _='sudo'
 alias ctl='sudo systemctl'
 alias uctl='systemctl --user'
@@ -114,16 +89,27 @@ alias er="edit.sh /"
 alias ed="edit.sh ."
 alias eh="edit.sh ~"
 alias live="less +F" # Live reload files
+# }}}
 
+# Exports {{{
 export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
-source ~/.cargo/env
+# export GOFLAGS="-mod=vendor"
 export ALSA_CARD=G4M1
-
 # Make java apps work with bspwm
 export _JAVA_AWT_WM_NONREPARENTING=1
+# better yaourt colors
+export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# }}}
 
+# Sources {{{
+# source /home/nils/.oh-my-git/prompt.sh
+source ~/.cargo/env
+# }}}
+
+# Misc {{{
 xhost +local:root > /dev/null 2>&1
 
 complete -cf sudo
@@ -140,6 +126,41 @@ shopt -s expand_aliases
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
+
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+# }}}
+
+# Functions {{{
+colors() {
+	local fgc bgc vals seq0
+
+	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
+
+	# foreground colors
+	for fgc in {30..37}; do
+		# background colors
+		for bgc in {40..47}; do
+			fgc=${fgc#37} # white
+			bgc=${bgc#40} # black
+
+			vals="${fgc:+$fgc;}${bgc}"
+			vals=${vals%%;}
+
+			seq0="${vals:+\e[${vals}m}"
+			printf "  %-9s" "${seq0:-(default)}"
+			printf " ${seq0}TEXT\e[m"
+			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+		done
+		echo; echo
+	done
+}
+
+average() {
+	awk '{ total += $1; count++ } END { print total/count }' $1
+}
 
 #
 # # ex - archive extractor
@@ -178,9 +199,6 @@ man() {
 		LESS_TERMCAP_us=$'\e[1;32m' \
 			man "$@"
 }
+# }}}
 
-# better yaourt colors
-export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-# source /home/nils/.oh-my-git/prompt.sh
+# vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -f "./settings_ddnet_fake.cfg" ]; then
+	mv settings_ddnet.cfg settings_ddnet_orig.cfg
+	mv settings_ddnet_fake.cfg settings_ddnet.cfg
+else
+	mv settings_ddnet.cfg settings_ddnet_fake.cfg
+	mv settings_ddnet_orig.cfg settings_ddnet.cfg
+fi
