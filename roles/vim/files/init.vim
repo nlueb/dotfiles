@@ -48,6 +48,9 @@ Plug 'liuchengxu/vista.vim'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
+Plug 'lambdalisue/suda.vim'
+Plug 'simnalamburt/vim-mundo'
+Plug 'rhysd/git-messenger.vim'
 call plug#end()
 " }}}
 
@@ -72,7 +75,12 @@ set timeoutlen=0 ttimeoutlen=0
 " Temporary files {{{
 set undofile
 set undodir=~/.config/nvim/undo
+
+set backup
+set backupcopy=yes
 set backupdir=~/.config/nvim/backup
+
+set swapfile
 set directory=~/.config/nvim/swap
 " }}}
 
@@ -225,6 +233,8 @@ nnoremap \ o<Esc>0d$
 nnoremap <S-CR> s<cr><esc>
 nnoremap <BS> O<Esc>0d$
 nnoremap <S-BS> O<Esc>0d$j
+nnoremap Z :MundoToggle<CR>
+nnoremap <C-g> :GitMessenger<CR>
 
 tnoremap <Esc> <C-\><C-n>
 " }}}
@@ -373,6 +383,7 @@ set wrap "Wrap lines
 " Linebreak on 500 characters
 set lbr
 set tw=500
+let &showbreak='〉'
 " }}}
 
 " Folding {{{
@@ -553,6 +564,10 @@ let g:markology_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.'`
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_default_executive = 'coc'
 let g:vista_fzf_preview = ['right:50%']
+" }}}
+" Suda {{{
+let g:suda#prefix = ['suda://', 'sudo://', '_://']
+let g:suda_smart_edit = 1
 " }}}
 
 " Extra color settings {{{

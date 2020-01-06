@@ -1,0 +1,48 @@
+{"settings": {
+	"sidebar_active": 1,
+	"sidebar_tab": 0,
+	},
+ "filter": [
+	{"Favorites": {
+		"type": 3,
+		"extended": 0,
+		"settings": {
+			"filter_hash": 3084,
+			"filter_gametype": [
+			],
+			"filter_ping": 999,
+			"filter_serverlevel": 0,
+			"filter_address": "",
+			"filter_country": -1,
+			}
+		}
+	},
+	{"Teeworlds": {
+		"type": 2,
+		"extended": 0,
+		"settings": {
+			"filter_hash": 14348,
+			"filter_gametype": [
+			],
+			"filter_ping": 999,
+			"filter_serverlevel": 0,
+			"filter_address": "",
+			"filter_country": -1,
+			}
+		}
+	},
+	{"All": {
+		"type": 1,
+		"extended": 1,
+		"settings": {
+			"filter_hash": 2060,
+			"filter_gametype": [
+			],
+			"filter_ping": 999,
+			"filter_serverlevel": 0,
+			"filter_address": "",
+			"filter_country": -1,
+			}
+		}
+	}]
+}

@@ -71,7 +71,7 @@ unset use_color safe_term match_lhs sh
 # }}}
 
 # Alias {{{
-alias free='free -m'                      # show sizes in MB
+alias free='free -m' # show sizes in MB
 alias more=less
 alias v='nvim'
 alias ls='exa'
@@ -131,7 +131,7 @@ shopt -s histappend
 # }}}
 
 # Functions {{{
-colors() {
+termcolors() {
 	local fgc bgc vals seq0
 
 	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
