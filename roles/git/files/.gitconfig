@@ -18,7 +18,7 @@
 	prompt = false
 
 [diff]
-	tool = vimdiff
+	tool = nvim -d
 
 [diff "bin"]
 	# hexdump should be used to diff binary files

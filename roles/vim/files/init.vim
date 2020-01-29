@@ -174,6 +174,7 @@ map <leader>b :Buffers<cr>
 map <leader>f :Files<cr>
 map <silent> <leader>x :call ToggleSourceHeader(@%)<cr>
 map <silent> <leader>y :<C-u>CocList -A --normal yank<cr>
+map <silent> <leader>u :MundoToggle<cr>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -198,13 +199,6 @@ vnoremap <leader>f <esc>'>o<esc>:call setline(line('.'), split(&commentstring, '
 " inoremap <C-k> <C-p>
 
 " Coc Mappings {{{
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -365,7 +359,8 @@ set fillchars+=fold:⠀
 set smarttab
 
 " Show indent guides
-set list listchars=tab:\│\ ,trail:━
+" set list listchars=tab:\│\ ,trail:━
+set list listchars=tab:\│\ ,space:.,trail:━
 " set list listchars=tab:\|\ ,trail:━
 " set list listchars=tab:\ ,trail:━
 " set list listchars=tab:\|\ ,trail:■
@@ -546,6 +541,8 @@ let g:signify_sign_changedelete = '~'
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 autocmd FileType json syntax match Comment +\/\/.\+$+
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
@@ -658,6 +655,7 @@ elseif g:colors_name == 'onedark'
 	hi! CocHighlightText gui=bold
 	hi! link QuickScopePrimary DiffChange
 	hi! link QuickScopeSecondary SpellBad
+	hi Character ctermfg=173 guifg=#D19A66
 elseif g:colors_name == 'badwolf'
 	hi! link MarkologyHLl ShowMarksHLl
 	hi! link MarkologyHLu ShowMarksHLl

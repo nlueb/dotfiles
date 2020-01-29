@@ -107,6 +107,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Sources {{{
 # source /home/nils/.oh-my-git/prompt.sh
 source ~/.cargo/env
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # }}}
 
 # Misc {{{
