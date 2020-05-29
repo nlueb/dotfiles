@@ -39,7 +39,7 @@ Plug 'gcmt/taboo.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'shmup/vim-sql-syntax'
 Plug 'mhinz/vim-signify'
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'jeetsukumaran/vim-markology'
 Plug 'liuchengxu/space-vim-theme'
@@ -103,11 +103,8 @@ let g:gruvbox_italic=1
 let g:onedark_terminal_italics=1
 " }}}
 
-" colorscheme monotone
-" colorscheme badwolf
 " colorscheme space_vim_theme
 colorscheme onedark
-" colorscheme github
 " show linenumbers
 set number
 " show relative linenumbers
@@ -172,6 +169,7 @@ map <leader>h :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")
 map <leader>d :%s/\s\+$//e<cr>
 map <leader>b :Buffers<cr>
 map <leader>f :Files<cr>
+map <leader>g :GFiles<cr>
 map <silent> <leader>x :call ToggleSourceHeader(@%)<cr>
 map <silent> <leader>y :<C-u>CocList -A --normal yank<cr>
 map <silent> <leader>u :MundoToggle<cr>
@@ -195,8 +193,8 @@ vnoremap <leader>f <esc>'>o<esc>:call setline(line('.'), split(&commentstring, '
 " nnoremap <silent> <C-k> :wincmd k<cr>
 " nnoremap <silent> <C-j> :wincmd j<cr>
 " nnoremap <silent> <C-h> :wincmd h<cr>
-" inoremap <C-j> <C-n>
-" inoremap <C-k> <C-p>
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 
 " Coc Mappings {{{
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

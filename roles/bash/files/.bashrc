@@ -89,11 +89,13 @@ alias er="edit.sh /"
 alias ed="edit.sh ."
 alias eh="edit.sh ~"
 alias live="less +F" # Live reload files
+alias ss20="cd ~/Documents/h-da/ss20/"
 # }}}
 
 # Exports {{{
 export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:/home/nils/.local/bin
 export GOPATH=$(go env GOPATH)
 # export GOFLAGS="-mod=vendor"
 export ALSA_CARD=G4M1
@@ -102,12 +104,14 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # better yaourt colors
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export EDITOR="nvim"
 # }}}
 
 # Sources {{{
 # source /home/nils/.oh-my-git/prompt.sh
-source ~/.cargo/env
+# source ~/.cargo/env
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source /home/nils/.config/broot/launcher/bash/br
 # }}}
 
 # Misc {{{

@@ -2,7 +2,7 @@
 
 sxhkd &
 
-bspc monitor DP-2 -d I II III IV
+bspc monitor DP-1 -d I II III IV
 bspc monitor DVI-D-1 -d V VI VII VIII
 
 bspc config border_width         2
