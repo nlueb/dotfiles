@@ -1,0 +1,198 @@
+require 'util'
+
+-- Cursor {{{
+set {'guicursor', 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'}
+-- }}}
+
+-- Temporary files {{{
+setb 'undofile'
+set {'undodir', '/home/nils/.config/nvim/undo'}
+
+set 'backup'
+setb {'backupcopy', 'auto'}
+set {'backupdir', '/home/nils/.config/nvim/backup'}
+
+setb 'swapfile'
+set {'directory', '/home/nils/.config/nvim/swap'}
+-- }}}
+
+-- Color settings {{{
+cmd [[syntax on]]
+cmd [[filetype plugin on]]
+cmd [[filetype indent on]]
+
+set 'termguicolors'
+
+-- -- Dark {{{
+-- set {'background', 'dark'}
+-- cmd [[colorscheme yin]]
+-- -- }}}
+-- Light {{{
+set {'background', 'light'}
+cmd [[colorscheme yang]]
+-- }}}
+
+-- show linenumbers
+setw 'number'
+
+-- show relative linenumbers
+setw 'relativenumber'
+
+-- highlight the line where the cursor is at
+setw 'nocursorline'
+-- }}}
+
+-- Modeline {{{
+setb 'modeline'
+set {'modelines', 1}
+-- }}}
+
+-- Statusline {{{
+-- show statusline all the time
+set {'laststatus', 1}
+-- don't show mode, bcs it's already in the statusline
+set 'noshowmode'
+-- }}}
+
+-- Search {{{
+-- Ignore case when searching
+set 'ignorecase'
+-- When searching try to be smart about cases
+set 'smartcase'
+-- Highlight search results
+set 'hlsearch'
+-- Makes search act like search in modern browsers
+set 'incsearch'
+-- }}}
+
+-- Fillchars {{{
+-- VertSplit
+setw {'fillchars', 'vert:┃,fold:─'}
+
+-- Statusline
+-- set fillchars+=stl:\- 
+-- set fillchars+=stlnc:− 
+-- set fillchars+=stl:\═
+-- set fillchars+=stlnc:\═
+-- set fillchars+=stl:\╌
+-- set fillchars+=stlnc:\╌
+-- set statusline=╍
+
+-- Folding
+-- setw {'fillchars', 'fold:─'}
+-- }}}
+
+-- Indentation {{{
+-- Use tabs instead of spaces
+setb 'noexpandtab'
+
+-- Be smart when using tabs ;)
+set 'smarttab'
+
+-- Show indent guides
+setw 'list'
+setw {'listchars', 'tab:│ ,trail:━'}
+
+-- Tabstop width
+setb {'shiftwidth', 4}
+setb {'tabstop', 4}
+setb {'softtabstop', 4}
+
+setb 'autoindent'
+setb 'smartindent'
+
+setw {'wrap', false}
+
+-- Linebreak on 500 characters
+setw 'linebreak'
+setb {'textwidth', 500}
+-- set {g, 'showbreak', '〉'}
+-- }}}
+
+-- Folding {{{
+-- Enable folding
+setw 'foldenable'
+
+-- Open most folds by default
+set {'foldlevelstart', 10}
+
+-- 10 nested fold max
+setw {'foldnestmax', 10}
+
+-- Fold based on indent level
+-- set foldmethod=syntax
+
+-- Fold based on treesitter
+setw {'foldmethod', 'expr'}
+setw {'foldexpr', 'nvim_treesitter#foldexpr()'}
+
+-- Improved foldtext
+-- set {g, 'foldtext', 'FoldText()'}
+-- }}}
+
+-- Misc settings {{{
+
+-- Display the completion matches using the popupmenu
+set {'wildoptions', 'pum'}
+
+-- Enable live feedback for the :substitute command
+set {'inccommand', 'split'}
+
+-- Smaller updatetime for CursorHold and CursorHoldI
+set {'updatetime', 300}
+
+set {'wildignore', '*.o,*.obj,*.class'}
+
+-- Set to auto read when a file is changed from the outside
+setb 'autoread'
+
+-- Set utf8 as standard encoding and en_US as the standard language
+set {'encoding', 'utf8'}
+cmd [[language en_US.UTF-8]]
+
+-- Turn on the Wild menu
+set 'wildmenu'
+
+-- show command in bottom bar
+set 'showcmd'
+
+-- A buffer becomes hidden when it is abandoned
+set 'hidden'
+
+-- -- Configure backspace so it acts as it should act
+set {'backspace', 'eol,start,indent'}
+set {'whichwrap', 'b,s'}
+
+-- Don't redraw while executing macros (good performance config)
+set 'lazyredraw'
+
+-- don't give |ins-completion-menu| messages.  For example,
+-- '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
+set {'shortmess', vim.o.shortmess .. 'c'}
+
+-- For regular expressions turn magic on
+set 'magic'
+
+-- Show matching brackets when text indicator is over them
+set 'showmatch'
+
+-- More natural split opening
+set 'splitbelow'
+set 'splitright'
+
+-- Enable mouse support
+set {'mouse', 'a'}
+
+-- No annoying sound on errors
+set {'errorbells', false}
+set {'visualbell', false}
+set {'timeoutlen', 500}
+
+-- Always show signcolumn
+setw {'signcolumn', 'yes'}
+
+-- Turn on PASTE mode with F6
+set {'pastetoggle', '<F6>'}
+-- }}}
+
+-- vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0
