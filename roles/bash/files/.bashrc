@@ -81,8 +81,11 @@ alias _='sudo'
 alias ctl='sudo systemctl'
 alias uctl='systemctl --user'
 alias paci='sudo pacman --color=auto -S'
-alias pacr='sudo pacman --color=auto -R'
+alias pacr='sudo pacman --color=auto -Rs'
 alias pacu='sudo pacman --color=auto -Syu'
+alias yi='yay -S'
+alias yr='yay -R'
+alias yu='yay -Syu --devel --timeupdate'
 alias dockerc='docker images -f "dangling=true" -q | xargs --no-run-if-empty docker rmi -f'
 alias e="edit.sh"
 alias er="edit.sh /"
@@ -96,6 +99,7 @@ alias ss20="cd ~/Documents/h-da/ss20/"
 export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:/home/nils/.local/bin
+export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
 export GOPATH=$(go env GOPATH)
 # export GOFLAGS="-mod=vendor"
 export ALSA_CARD=G4M1
@@ -104,7 +108,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # better yaourt colors
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export EDITOR="nvim"
+export EDITOR=nvim
+export TERM=alacritty
 # }}}
 
 # Sources {{{
@@ -176,8 +181,9 @@ ex ()
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar -xvf $1  ;;
       *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
+      *.rar)       unrar x $1   ;;
       *.gz)        gunzip $1    ;;
       *.tar)       tar xf $1    ;;
       *.tbz2)      tar xjf $1   ;;

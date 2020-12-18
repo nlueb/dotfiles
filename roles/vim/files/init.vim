@@ -14,7 +14,7 @@
 let s:os = system("uname -s")
 " }}}
 
-"Plugins {{{
+" Plugins {{{
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
@@ -40,17 +40,25 @@ Plug 'pearofducks/ansible-vim'
 Plug 'shmup/vim-sql-syntax'
 Plug 'mhinz/vim-signify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rafcamlet/coc-nvim-lua'
 Plug 'honza/vim-snippets'
 Plug 'jeetsukumaran/vim-markology'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'ARM9/arm-syntax-vim'
 Plug 'liuchengxu/vista.vim'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'simnalamburt/vim-mundo'
 Plug 'rhysd/git-messenger.vim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'romgrk/nvim-treesitter-context'
+Plug 'preservim/nerdtree'
+Plug 'vmchale/dhall-vim'
+Plug 'sainnhe/edge'
+Plug 'tweekmonster/startuptime.vim'
 call plug#end()
 " }}}
 
@@ -104,7 +112,7 @@ let g:onedark_terminal_italics=1
 " }}}
 
 " colorscheme space_vim_theme
-colorscheme onedark
+colorscheme gruvbox
 " show linenumbers
 set number
 " show relative linenumbers
@@ -120,7 +128,7 @@ set laststatus=1
 " don't show mode, bcs it's already in the statusline
 set noshowmode
 
-let g:airline_theme='onedark'
+let g:airline_theme='gruvbox'
 
 " Airline {{{
 let g:airline_powerline_fonts = 1
@@ -134,7 +142,7 @@ let g:airline_powerline_fonts = 1
 
 " }}}
 
-"Tabline {{{
+" Tabline {{{
 let g:taboo_tab_format = " %l%f "
 " }}}
 
@@ -322,17 +330,10 @@ set signcolumn=yes
 set pastetoggle=<F6>
 " }}}
 
-"Fillchars {{{
+" Fillchars {{{
 
 " VertSplit
-" set fillchars=
-" set fillchars=vert:\╎ 
-" set fillchars=vert:\⁣
-" set fillchars=vert:\┊
-" set fillchars=vert:\┊
-" set fillchars=vert:\║
-" set fillchars=vert:\╿
-set fillchars=vert:\|
+set fillchars=vert:\┃
 
 " Statusline
 " set fillchars+=stl:\- 
@@ -344,21 +345,22 @@ set fillchars=vert:\|
 " set statusline=╍
 
 " Folding
-set fillchars+=fold:⠀ 
+set fillchars+=fold:\─
 " set fillchars=fold:\- 
 
 "}}}
 
 " Indentation {{{
-" Use spaces instead of tabs
-" set expandtab
+" Use tabs instead of spaces
+set noexpandtab
 
 " Be smart when using tabs ;)
 set smarttab
 
 " Show indent guides
 " set list listchars=tab:\│\ ,trail:━
-set list listchars=tab:\│\ ,space:.,trail:━
+set list listchars=tab:\│\ ,trail:━
+" set list listchars=tab:\│\ ,space:.,trail:━
 " set list listchars=tab:\|\ ,trail:━
 " set list listchars=tab:\ ,trail:━
 " set list listchars=tab:\|\ ,trail:■
@@ -390,7 +392,11 @@ set foldlevelstart=10
 set foldnestmax=10
 
 " fold based on indent level
-set foldmethod=syntax
+" set foldmethod=syntax
+
+" fold based on treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 " Improved foldtext
 set foldtext=FoldText()
@@ -425,7 +431,7 @@ let g:neotex_enabled = 1 " 0=always disabled, 1=default off, 2=default on
 let g:neotex_delay = 1000
 let g:neotex_latexdiff = 0
 " }}}
-"IndentLine {{{
+" IndentLine {{{
 let g:indentLine_char = '│'
 " }}}
 " ALE {{{
@@ -481,6 +487,8 @@ let g:vimshell_editor_command='/usr/local/bin/mvim'
 " NERDTree {{{
 let g:NERDTreeDirArrowExpandable  = '●'
 let g:NERDTreeDirArrowCollapsible = '○'
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
 " }}}
 " Colorizer {{{
 let g:colorizer_auto_filetype = 'css,html'
@@ -491,7 +499,7 @@ let g:startify_fortune_use_unicode = 1
 let g:startify_session_sort = 1
 " let g:startify_custom_header = []
 " }}}
-"Deoplete {{{
+" Deoplete {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/5.0.0/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/5.0.0/lib/clang'
@@ -505,7 +513,7 @@ set completeopt-=preview
 " let g:deoplete#sources#rust#racer_binary='/Users/nils/.cargo/bin/racer'
 " let g:deoplete#sources#rust#rust_source_path='/Users/nils/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 " }}}
-"Chromatic {{{
+" Chromatic {{{
 if s:os ==? 'Darwin'
 	let g:chromatica#libclang_path = '/usr/local/Cellar/llvm/5.0.0/lib/libclang.dylib'
 elseif s:os ==? 'Linux'
@@ -514,12 +522,12 @@ endif
 let g:chromatica#enable_at_startup = 0
 let g:chromatica#responsive_mode = 1
 " }}}
-"UltiSnips {{{
+" UltiSnips {{{
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 " }}}
-"Polyglot {{{
+" Polyglot {{{
 let g:python_highlight_builtins = 1
 let g:python_highlight_class_vars = 1
 let g:python_highlight_operators = 1
@@ -563,6 +571,19 @@ let g:vista_fzf_preview = ['right:50%']
 " Suda {{{
 let g:suda#prefix = ['suda://', 'sudo://', '_://']
 let g:suda_smart_edit = 1
+" }}}
+" Treesitter {{{
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",     -- one of "all", "language", or a list of languages
+  refactor = {
+    -- highlight_current_scope = { enable = true },
+  },
+  highlight = { enable = true },
+  textobjects = { enable = true },
+  indent = { enable = true },
+}
+EOF
 " }}}
 
 " Extra color settings {{{
@@ -613,6 +634,8 @@ elseif g:colors_name == 'space_vim_theme'
 	hi! link luaDocTag String
 	hi! link SpecialComment String
 elseif g:colors_name == 'gruvbox'
+	hi! link CocWarningSign GruvboxOrangeBold
+	hi! link CocHintSign GruvboxAquaBold
 	hi! link MarkologyHLl NonText
 	hi! link MarkologyHLu NonText
 	hi! link MarkologyHLo NonText
@@ -630,6 +653,7 @@ elseif g:colors_name == 'gruvbox'
 	hi! link TabLine LineNr
 	hi! link TabLineFill LineNr
 	hi! link TabLineSel Normal
+	hi! link Folded vimLineComment
 	hi! CocHighlightText gui=bold guibg=#3c3836
 elseif g:colors_name == 'onedark'
 	hi! link MarkologyHLl NonText
@@ -806,28 +830,18 @@ function! FoldText()
 		let l:line = substitute(getline(l:fs), '\t', repeat(' ', &tabstop), 'g')
 	endif
 
-	if &foldmethod == 'marker' && &filetype == 'vim'
-		let l:test = luaeval("string.match(_A, '\"%s*([%w%s]+)%s*')", l:line)
-		" return  "ⵗ " . l:test
-		" return  "⯆ " . l:test
-		" return  "◢ " . l:test
-		" return  "● " . l:test
-		" return  "▼ " . l:test
-		" return  "⏷ " . l:test
-		" return  "⎖ " . l:test
-		" return "∎ " . l:test
-		return "∟ " . l:test
-		" return "∫ " . l:test
+	if &foldmethod == 'marker'
+		let l:name = luaeval("string.match(_A, '^[^%s]+%s*(.*)%s*{{{$')", l:line)
+		let l:line = "► " . l:name
 	endif
 
 	let l:w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
 	let l:foldSize = 1 + v:foldend - v:foldstart
-	let l:foldSizeStr = ' ' . l:foldSize . ' lines '
-	let l:foldLevelStr = repeat('+--', v:foldlevel)
+	let l:foldSizeStr = '┤ ' . l:foldSize . ' lines '
 	let l:lineCount = line('$')
-	let l:foldPercentage = printf('[%.1f', (l:foldSize*1.0)/l:lineCount*100) . '%] '
-	let l:expansionString = repeat('.', l:w - strwidth(l:foldSizeStr.line.foldLevelStr.foldPercentage))
-	return l:line . l:expansionString . l:foldSizeStr . l:foldPercentage . l:foldLevelStr
+	let l:foldPercentage = printf('[%.1f', (l:foldSize*1.0)/l:lineCount*100) . '%] ├'
+	let l:expansionString = repeat('─', l:w - strwidth(l:foldSizeStr.line.foldPercentage))
+	return l:line . l:expansionString . l:foldSizeStr . l:foldPercentage
 endfunction
 
 function! RedirectOutput(cmd, ...)
