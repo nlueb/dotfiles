@@ -25,13 +25,16 @@ vnoremap('<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstri
 xmap('ga', [[<Plug>(EasyAlign)]])
 -- Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap('ga', [[<Plug>(EasyAlign)]])
+
 -- Insert new lines with enter and backspace in normal mode
-nnoremap('\\', [[o<Esc>0d$]])
-nnoremap('<S-CR>', [[s<cr><esc>]])
-nnoremap('<BS>', [[O<Esc>0d$]])
-nnoremap('<S-BS>', [[O<Esc>0d$j]])
-nnoremap('Z', [[:MundoToggle<CR>]])
-nnoremap('<C-g>', [[:GitMessenger<CR>]])
+nnoremap('\\', [[m'O<esc>0d$`']])
+nnoremap('<CR>', [[m'o<esc>0d$`']])
+
+-- Tab shifting
+nnoremap('<Tab>', '>>')
+nnoremap('<S-Tab>', '<<')
+vnoremap('<Tab>', '>gv')
+vnoremap('<S-Tab>', '<gv')
 -- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0

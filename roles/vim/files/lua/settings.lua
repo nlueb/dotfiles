@@ -49,7 +49,7 @@ set {'modelines', 1}
 
 -- Statusline {{{
 -- show statusline all the time
-set {'laststatus', 1}
+set {'laststatus', 2}
 -- don't show mode, bcs it's already in the statusline
 set 'noshowmode'
 -- }}}

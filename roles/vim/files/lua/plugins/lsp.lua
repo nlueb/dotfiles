@@ -6,7 +6,28 @@ local completion = require 'completion'
 
 lspcfg.sumneko_lua.setup {
 	cmd = {"/usr/bin/lua-language-server"},
-	on_attach = completion.on_attach
+	on_attach = completion.on_attach,
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LuaJIT",
+				path = vim.split(package.path, ";")
+			},
+			diagnostics = {
+				enable = true,
+				globals = {
+					"vim",
+					"it",
+				},
+			},
+			workspace = {
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.expand("~/.config/nvim/lua")] = true,
+				},
+			},
+		}
+	}
 }
 
 lspcfg.gopls.setup {
@@ -22,10 +43,11 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(
 		underline = true,
 		virtual_text = {
 			spacing = 4,
+			-- prefix = '',
 			-- prefix = '',
-			-- prefix = '',
+			prefix = '',
 			-- prefix = '',
-			prefix = '',
+			-- prefix = '',
 			-- prefix = '',
 			-- prefix = '',
 			-- prefix = '',

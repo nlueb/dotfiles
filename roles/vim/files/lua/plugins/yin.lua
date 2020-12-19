@@ -14,37 +14,38 @@ vim.api.nvim_set_option('background', 'dark')
 vim.g.colors_name = 'yin'
 
 -- Colors {{{
-Color.new('blackest',   '#080808')
-Color.new('black',      '#1c1c1c')
-Color.new('gray01',     '#262626')
-Color.new('gray02',     '#444444')
-Color.new('gray03',     '#4e4e4e')
-Color.new('gray04',     '#585858')
-Color.new('gray05',     '#666666')
-Color.new('gray06',     '#767676')
-Color.new('gray07',     '#808080')
-Color.new('gray08',     '#8a8a8a')
-Color.new('gray09',     '#949494')
-Color.new('gray10',     '#9e9e9e')
-Color.new('gray11',     '#a8a8a8')
-Color.new('gray12',     '#b2b2b2')
-Color.new('gray13',     '#bcbcbc')
-Color.new('gray14',     '#c6c6c6')
-Color.new('gray15',     '#e4e4e4')
-Color.new('white',      '#eeeeee')
+Color.new('blackest',      '#080808')
+Color.new('black',         '#1c1c1c')
+Color.new('gray01',        '#262626')
+Color.new('gray02',        '#444444')
+Color.new('gray03',        '#4e4e4e')
+Color.new('gray04',        '#585858')
+Color.new('gray05',        '#666666')
+Color.new('gray06',        '#767676')
+Color.new('gray07',        '#808080')
+Color.new('gray08',        '#8a8a8a')
+Color.new('gray09',        '#949494')
+Color.new('gray10',        '#9e9e9e')
+Color.new('gray11',        '#a8a8a8')
+Color.new('gray12',        '#b2b2b2')
+Color.new('gray13',        '#bcbcbc')
+Color.new('gray14',        '#c6c6c6')
+Color.new('gray15',        '#e4e4e4')
+Color.new('white',         '#eeeeee')
 
-Color.new('red',        '#ce4257')
-Color.new('lightred',   '#fe938c')
-Color.new('blue',       '#457b9d')
-Color.new('lightblue',  '#95a1c3')
-Color.new('green',      '#52796f')
-Color.new('lightgreen', '#84a98c')
-Color.new('purple',     '#c77dff')
-Color.new('orange',     '#eb5e28')
-Color.new('yellow',     '#ffc857')
-Color.new('magenta',    '#ff0a54')
-Color.new('pink',       '#f194b4')
-Color.new('brown',      '#b08968')
+Color.new('red',           '#ce4257')
+Color.new('lightred',      '#fe938c')
+Color.new('blue',          '#457b9d')
+Color.new('lightblue',     '#95a1c3')
+Color.new('green',         '#52796f')
+Color.new('lightgreen',    '#84a98c')
+Color.new('purple',        '#c77dff')
+Color.new('orange',        '#f4a261')
+Color.new('bright_orange', '#eb5e28')
+Color.new('yellow',        '#ffc857')
+Color.new('magenta',       '#ff0a54')
+Color.new('pink',          '#f194b4')
+Color.new('brown',         '#b08968')
 -- }}}
 
 -- NeoVim Terminal {{{
@@ -153,6 +154,19 @@ Group.new('DiffChanged', c.blue, c.black, s.none)
 Group.new('DiffRemoved', c.red, c.black, s.none)
 -- }}}
 
+-- Status Line {{{
+Group.new('SLModeText', c.black, c.gray09, s.bold)
+Group.new('SLModeSep', c.gray09, c.black, s.none)
+Group.new('SLNormalText', c.gray09, c.black, s.none)
+Group.new('SLDimText', c.gray01, c.black, s.none)
+Group.new('SLLightText', c.gray09, c.gray01, s.none)
+Group.new('SLLightSep', c.gray01, c.black, s.none)
+Group.new('SLError', c.red, c.none, s.none)
+Group.new('SLWarning', c.orange, c.none, s.none)
+Group.new('SLInfo', c.blue, c.none, s.none)
+Group.new('SLHint', c.gray15, c.none, s.none)
+-- }}}
+
 -- Treesitter {{{
 Group.new('TSPunctDelimiter', g.Delimiter, g.Delimiter, g.Delimiter)
 Group.new('TSPunctBracket', g.Delimiter, g.Delimiter, g.Delimiter)
@@ -205,28 +219,28 @@ Group.new('TSPlaygroundFocus', g.Visual, g.Visual, g.Visual)
 
 -- LSP {{{
 Group.new('LspDiagnosticsDefaultHint', c.gray15, c.none, s.none)
-Group.new('LspDiagnosticsVirtualTextHint', g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint)
+Group.new('LspDiagnosticsVirtualTextHint', g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint, s.italic)
 Group.new('LspDiagnosticsFloatingHint', g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint)
 Group.new('LspDiagnosticsSignHint', g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint)
-Group.new('LspDiagnosticsUnderlineHint', g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint, s.underline)
+Group.new('LspDiagnosticsUnderlineHint', g.LspDiagnosticsDefaultHint, g.LspDiagnosticsDefaultHint, s.italic)
 
 Group.new('LspDiagnosticsDefaultError', c.red, c.none, s.none)
-Group.new('LspDiagnosticsVirtualTextError', g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError)
+Group.new('LspDiagnosticsVirtualTextError', g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError, s.italic)
 Group.new('LspDiagnosticsFloatingError', g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError)
 Group.new('LspDiagnosticsSignError', g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError)
-Group.new('LspDiagnosticsUnderlineError', g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError, s.underline)
+Group.new('LspDiagnosticsUnderlineError', g.LspDiagnosticsDefaultError, g.LspDiagnosticsDefaultError, s.italic)
 
 Group.new('LspDiagnosticsDefaultWarning', c.orange, c.none, s.none)
-Group.new('LspDiagnosticsVirtualTextWarning', g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning)
+Group.new('LspDiagnosticsVirtualTextWarning', g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning, s.italic)
 Group.new('LspDiagnosticsFloatingWarning', g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning)
 Group.new('LspDiagnosticsSignWarning', g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning)
-Group.new('LspDiagnosticsUnderlineWarning', g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning, s.underline)
+Group.new('LspDiagnosticsUnderlineWarning', g.LspDiagnosticsDefaultWarning, g.LspDiagnosticsDefaultWarning, s.italic)
 
 Group.new('LspDiagnosticsDefaultInformation', c.blue, c.none, s.none)
-Group.new('LspDiagnosticsVirtualTextInformation', g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation)
+Group.new('LspDiagnosticsVirtualTextInformation', g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation, s.italic)
 Group.new('LspDiagnosticsFloatingInformation', g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation)
 Group.new('LspDiagnosticsSignInformation', g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation)
-Group.new('LspDiagnosticsUnderlineInformation', g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation, s.underline)
+Group.new('LspDiagnosticsUnderlineInformation', g.LspDiagnosticsDefaultInformation, g.LspDiagnosticsDefaultInformation, s.italic)
 
 -- Group.new("LspReferenceText", c.nord_10, c.none)
 -- Group.new("LspReferenceRead", c.nord_10, c.none)
@@ -250,6 +264,12 @@ Group.new('TelescopeMatching', c.gray14, c.none, s.none)
 
 -- Used for the prompt prefix
 Group.new('TelescopePromptPrefix', c.gray12, c.none, s.none)
+-- }}}
+
+-- Gitsigns {{{
+Group.new('DiffAddSign', c.green, c.none, s.none)
+Group.new('DiffChangeSign', c.blue, c.none, s.none)
+Group.new('DiffDeleteSign', c.red, c.none, s.none)
 -- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0

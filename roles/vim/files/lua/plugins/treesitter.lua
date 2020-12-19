@@ -3,7 +3,6 @@ local ts = require 'nvim-treesitter.configs'
 ts.setup {
 	ensure_installed = 'all', -- one of "all", "language", or a list of languages
 	highlight = { enable = true },
-	textobjects = { enable = true },
 	indent = { enable = true },
 	playground = {
 		enable = true,

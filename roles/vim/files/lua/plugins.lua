@@ -22,7 +22,7 @@ local function init(use)
 	use 'tpope/vim-commentary'
 	use 'tpope/vim-repeat'
 	use 'tpope/vim-fugitive'
-	
+
 	use 'machakann/vim-sandwich'
 
 	use 'junegunn/vim-peekaboo'
@@ -40,6 +40,7 @@ local function init(use)
 
 	use {
 		'vim-airline/vim-airline',
+		disable = true,
 		config = [[require 'plugins/airline']],
 		requires = 'vim-airline/vim-airline-themes'
 	}
@@ -70,15 +71,13 @@ local function init(use)
 	}
 
 	use {
-		'hrsh7th/vim-vsnip-integ',
-		disable = true
+		'hrsh7th/vim-vsnip',
+		config = [[require 'plugins/vsnip']]
 	}
 
 	use {
-		'hrsh7th/vim-vsnip',
-		disable = true,
-		after = 'vim-vsnip-integ',
-		config = [[require 'plugins/vsnip']]
+		'hrsh7th/vim-vsnip-integ',
+		after = 'vim-vsnip'
 	}
 
 	use {
@@ -112,6 +111,20 @@ local function init(use)
 	use {
 		'bfredl/nvim-luadev',
 		config = [[require 'plugins/luadev']]
+	}
+
+	use {
+		'glepnir/galaxyline.nvim',
+		disable = true,
+		config = [[require 'plugins/yin-yang-line']]
+	}
+
+	use {
+		'lewis6991/gitsigns.nvim',
+		config = [[require 'plugins/gitsigns']],
+		requires = {
+			'nvim-lua/plenary.nvim'
+		}
 	}
 
 end

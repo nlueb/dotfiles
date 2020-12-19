@@ -1,10 +1,8 @@
 require 'util'
 
-local map = vim.api.nvim_set_keymap
-
 -- Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap('<Tab>', [[pumvisible() ? "<C-n>" : "<Tab>"]], {expr = true})
-inoremap('<S-Tab>', [[pumvisible() ? "<C-p>" : "<S-Tab>"]], {expr = true})
+inoremap('<C-j>', [[pumvisible() ? "<C-n>" : "<C-j>"]], {expr = true})
+inoremap('<C-k>', [[pumvisible() ? "<C-p>" : "<C-k>"]], {expr = true})
 
 -- Set completeopt to have a better completion experience
 set {'completeopt', 'menuone,noinsert,noselect'}

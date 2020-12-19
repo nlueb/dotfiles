@@ -9,10 +9,10 @@ smap('<Enter>', [[vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<Enter>']], {ex
 -- smap('<C-l>',   [[vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>']], {expr = true})
 
 -- Jump forward or backward
-imap('<Right>', [[vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Right>']], {expr = true})
-smap('<Right>', [[vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Right>']], {expr = true})
-imap('<Left>',  [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Left>']], {expr = true})
-smap('<Left>',  [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Left>']], {expr = true})
+imap('<C-l>', [[vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-l>']], {expr = true})
+smap('<C-l>', [[vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-l>']], {expr = true})
+imap('<C-h>',  [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-h>']], {expr = true})
+smap('<C-h>',  [[vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-h>']], {expr = true})
 
 -- Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
 -- See https://github.com/hrsh7th/vim-vsnip/pull/50
