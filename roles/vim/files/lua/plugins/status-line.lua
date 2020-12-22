@@ -1,3 +1,4 @@
+
 -- Local Variable {{{
 local vim = vim
 local M = {}
@@ -29,8 +30,8 @@ local Icon = {
 	Warning = '',
 	Info    = '',
 	Hint    = '',
-	-- Help    = '',
-	Help    = '',
+	Help    = '',
+	-- Help    = '',
 	Default = ''
 }
 
@@ -204,7 +205,16 @@ local function GetLSPDisagnosticCount(diagnostic_type)
 	return vim.lsp.diagnostic.get_count(0, diagnostic_type)
 end
 
-local function GetLSPStatusline()
+local function InsideOfFunctionBlock()
+	return vim.fn.exists('b:lsp_current_function') == 1
+	and not StrEmpty(vim.api.nvim_buf_get_var(0, 'lsp_current_function'))
+end
+
+local function GetLSPCurrentFunction()
+	return vim.api.nvim_buf_get_var(0, 'lsp_current_function')
+end
+
+local function GetLSPDiagnosticsStatusline()
 	local statusline = ''
 	statusline = statusline .. Spacer() .. HlGroup.NormalText
 	local error_count = GetLSPDisagnosticCount('Error')
@@ -249,8 +259,15 @@ function M.ActiveLine()
 		statusline = statusline .. GetGitStatusline()
 	end
 	if HasLSP() then
-		statusline = statusline .. GetLSPStatusline()
+		statusline = statusline .. GetLSPDiagnosticsStatusline()
 	end
+	-- Start a new section
+	statusline = statusline .. '%='
+	-- statusline = statusline .. require("lsp-status").status() .. Spacer()
+	if InsideOfFunctionBlock() then
+		statusline = statusline .. GetLSPCurrentFunction() .. Spacer()
+	end
+	statusline = statusline .. HlGroup.DimText .. 'Ln %-3l Col %-2c'
 	return statusline
 end
 -- }}}
@@ -270,4 +287,4 @@ end
 
 return M
 
--- vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0
+-- vim: foldmethod=marker foldlevel=0 foldenable

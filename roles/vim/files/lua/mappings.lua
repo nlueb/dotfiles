@@ -4,20 +4,20 @@ require 'util'
 vim.g.mapleader = ' '
 
 -- Leader mappings {{{
-map('<leader>tn', [[:tabnew<cr>]])
-map('<leader>tc', [[:tabclose<cr>]])
-map('<leader>tm', [[:tabmove<cr>]])
-map('<leader>]', [[:tabnext<cr>]])
-map('<leader>[', [[:tabprevious<cr>]])
-map('<leader>>', [[:bn<cr>]])
-map('<leader><', [[:bp<cr>]])
+map('<leader>tn', [[:tabnew<cr>]], {silent = true})
+map('<leader>tc', [[:tabclose<cr>]], {silent = true})
+map('<leader>tm', [[:tabmove<cr>]], {silent = true})
+map('<leader>]', [[:tabnext<cr>]], {silent = true})
+map('<leader>[', [[:tabprevious<cr>]], {silent = true})
+map('<leader>>', [[:bn<cr>]], {silent = true})
+map('<leader><', [[:bp<cr>]], {silent = true})
 map('<leader>h', [[:lua ShowHighlightCaptures()<cr>]], {silent = true})
 -- map('<leader>h', [[:echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>]])
-map('<leader>d', [[:%s/\s\+$//e<cr>]])
+map('<leader>d', [[:%s/\s\+$//e<cr>]], {silent = true})
 map('<leader>n', [[:noh<cr>]], {silent = true})
 
 -- Create a fold around visual selection in vimrc
-vnoremap('<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A }}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]])
+vnoremap('<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A }}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true})
 -- }}}
 
 -- Mappings {{{

@@ -61,9 +61,16 @@ local function init(use)
 
 	use {
 		'neovim/nvim-lspconfig',
-		after = 'completion-nvim',
+		after = {'completion-nvim', 'lsp-status.nvim'},
 		config = [[require 'plugins/lsp']],
 	}
+
+	use 'nvim-lua/lsp-status.nvim'
+	-- use {
+	-- 	'nlueb/lsp-status.nvim',
+	-- 	branch = 'fix-doautocmd-modeline'
+	-- }
+	-- use '~/Documents/lua/lsp-status.nvim'
 
 	use {
 		'nvim-lua/completion-nvim',

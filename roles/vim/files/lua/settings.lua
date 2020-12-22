@@ -141,7 +141,7 @@ set {'inccommand', 'split'}
 -- Smaller updatetime for CursorHold and CursorHoldI
 set {'updatetime', 300}
 
-set {'wildignore', '*.o,*.obj,*.class'}
+set {'wildignore', '*.o,*.obj,*.class,*/nvim/backup/*,*/nvim/undo/*,*/nvim/swap/*'}
 
 -- Set to auto read when a file is changed from the outside
 setb 'autoread'

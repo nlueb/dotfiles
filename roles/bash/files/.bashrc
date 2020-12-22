@@ -109,7 +109,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export EDITOR=nvim
-export TERM=alacritty
 # }}}
 
 # Sources {{{

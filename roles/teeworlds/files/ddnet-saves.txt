@@ -1,6 +1,0 @@
-Time,Player,Map,Code
-2020-06-28 18:03:45,el 64,Flow Fever,1231
-2020-07-26 18:42:58,:,Justice 2,".,"
-2020-09-01 16:55:33,=phacrum=,Polarity,aids
-2020-11-30 19:00:11,el Noberto,Tatooine,1231
-2020-12-05 18:13:34,el Noberto,run_guy_25,slate pupil life

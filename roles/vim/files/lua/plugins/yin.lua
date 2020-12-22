@@ -70,6 +70,7 @@ vim.g.terminal_color_15 = '#eeeeee'
 -- Vim Editor {{{
 Group.new('Normal', c.gray13, c.black, s.none)
 Group.new('Whitespace', c.gray01, c.none, s.none)
+Group.new('EndOfBuffer', c.gray01, c.none, s.none)
 Group.new('Conceal', g.Normal, g.Normal, g.Normal)
 Group.new('Constant', c.gray05, c.none, s.bold)
 Group.new('Character', g.Constant, g.Constant, g.Constant)
