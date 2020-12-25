@@ -13,17 +13,14 @@ local function init(use)
 	use {'wbthomason/packer.nvim', opt = true}
 
 	-- Colorscheme
-	use 'pgdouyon/vim-yin-yang'
-	use {
-		'tjdevries/colorbuddy.vim',
-		config = [[require 'plugins/colorbuddy']]
-	}
+	use { 'tjdevries/colorbuddy.vim', config = [[require 'plugins/colorbuddy']] }
 
 	use 'tpope/vim-commentary'
 	use 'tpope/vim-repeat'
 	use 'tpope/vim-fugitive'
 
 	use 'machakann/vim-sandwich'
+	use 'rstacruz/vim-closer'
 
 	use 'junegunn/vim-peekaboo'
 	use 'junegunn/vim-easy-align'
@@ -37,13 +34,6 @@ local function init(use)
 	-- Syntax
 	use 'sheerun/vim-polyglot'
 	use 'vmchale/dhall-vim'
-
-	use {
-		'vim-airline/vim-airline',
-		disable = true,
-		config = [[require 'plugins/airline']],
-		requires = 'vim-airline/vim-airline-themes'
-	}
 
 	use {'gcmt/taboo.vim', config = [[require 'plugins/taboo']]}
 
@@ -66,11 +56,6 @@ local function init(use)
 	}
 
 	use 'nvim-lua/lsp-status.nvim'
-	-- use {
-	-- 	'nlueb/lsp-status.nvim',
-	-- 	branch = 'fix-doautocmd-modeline'
-	-- }
-	-- use '~/Documents/lua/lsp-status.nvim'
 
 	use {
 		'nvim-lua/completion-nvim',
@@ -121,19 +106,15 @@ local function init(use)
 	}
 
 	use {
-		'glepnir/galaxyline.nvim',
-		disable = true,
-		config = [[require 'plugins/yin-yang-line']]
+		'lewis6991/gitsigns.nvim',
+		config = [[require 'plugins/gitsigns']],
+		requires = 'nvim-lua/plenary.nvim'
 	}
 
 	use {
-		'lewis6991/gitsigns.nvim',
-		config = [[require 'plugins/gitsigns']],
-		requires = {
-			'nvim-lua/plenary.nvim'
-		}
+		'lambdalisue/suda.vim',
+		config = [[require 'plugins/suda']]
 	}
-
 end
 
 local config = {

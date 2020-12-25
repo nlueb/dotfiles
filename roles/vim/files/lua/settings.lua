@@ -23,13 +23,13 @@ cmd [[filetype indent on]]
 
 set 'termguicolors'
 
--- -- Dark {{{
+-- Dark {{{
 -- set {'background', 'dark'}
 -- cmd [[colorscheme yin]]
--- -- }}}
+-- }}}
 -- Light {{{
-set {'background', 'light'}
-cmd [[colorscheme yang]]
+-- set {'background', 'light'}
+-- cmd [[colorscheme yang]]
 -- }}}
 
 -- show linenumbers
@@ -67,7 +67,7 @@ set 'incsearch'
 
 -- Fillchars {{{
 -- VertSplit
-setw {'fillchars', 'vert:┃,fold:─'}
+setw {'fillchars', 'vert:┃,fold: '}
 
 -- Statusline
 -- set fillchars+=stl:\- 
@@ -127,7 +127,7 @@ setw {'foldmethod', 'expr'}
 setw {'foldexpr', 'nvim_treesitter#foldexpr()'}
 
 -- Improved foldtext
--- set {g, 'foldtext', 'FoldText()'}
+setw {'foldtext', [[luaeval('FoldText()')]]}
 -- }}}
 
 -- Misc settings {{{
@@ -195,4 +195,4 @@ setw {'signcolumn', 'yes'}
 set {'pastetoggle', '<F6>'}
 -- }}}
 
--- vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0
+-- vim: foldmethod=marker foldlevel=0 foldenable

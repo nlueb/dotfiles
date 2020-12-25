@@ -90,4 +90,8 @@ function smap(trigger, sequence, args)
 	_map('s', trigger, sequence, args)
 end
 
+function cmap(trigger, sequence, args)
+	_map('c', trigger, sequence, args)
+end
+
 cmd = vim.cmd

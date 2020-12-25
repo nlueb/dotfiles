@@ -1,8 +1,9 @@
 cl_antiping 1
 cl_antiping_smooth 1
+cl_nameplates 0
 cl_nameplates_clan 1
 cl_nameplates_clan_size 0
-cl_text_entities_size 60
+cl_text_entities 0
 cl_authed_player_color 5898183
 cl_same_clan_color 5898183
 cl_autoswitch_weapons 0
@@ -16,11 +17,11 @@ cl_smooth_zoom_time 0
 player_use_custom_color 1
 player_color_body 8349952
 player_color_feet 1891083
-player_skin "clefairy"
-ui_page 6
-ui_settings_page 7
+player_skin "redbopp"
+ui_page 10
+ui_settings_page 3
 ui_toolbox_page 2
-ui_server_address "79.192.149.239:8303"
+ui_server_address "31.186.250.44:8302"
 ui_mousesens 50
 ui_color 4278190080
 dummy_name "el Norberto"
@@ -34,20 +35,19 @@ cl_skip_start_menu 1
 player_name "el Noberto"
 player_clan "Eagle"
 player_country 638
-cl_skin_filter_string "cle"
 cl_auto_demo_record 1
 cl_auto_demo_max 1000
 br_filter_string ""
-br_sort 1
 br_demo_sort 1
 snd_volume 5
-snd_ambient_volume 51
+snd_ambient_volume 52
 snd_background_music_volume 51
 snd_gun 0
-gfx_screen_width 3840
-gfx_screen_height 2160
+gfx_screen_width 1920
+gfx_screen_height 1080
 gfx_fullscreen 0
 gfx_resizable 1
+gfx_high_detail 0
 gfx_refresh_rate 800
 gfx_tune_overlay 1
 cl_race_binds_set 1
@@ -62,6 +62,7 @@ conn_timeout 1000
 cl_show_ids 1
 cl_race_show_ghost 0
 cl_overlay_entities 100
+cl_show_quads 0
 cl_background_entities "bg_668.map"
 cl_menu_map ""
 cl_background_show_tiles_layers 1
@@ -161,6 +162,7 @@ add_friend "slow" "QuintessenZ"
 add_friend "٭ıƞdex'<3" ""
 add_friend "Bumbletee" ""
 add_friend "|Ŗaþŧurę|" "Eagle"
+add_friend "FireRed" ""
 add_friend "<BµmM>" "unique"
 add_friend "estern" "BIG BOSS"
 add_friend "sheep" ""
@@ -191,6 +193,7 @@ add_friend "moonlight" ""
 add_friend "=Syntex=" ""
 add_friend "kesvanqelt" ""
 add_friend "Moonlight" ""
+add_friend "hilaS" "sidahiJ"
 add_friend "=mrs.Smith=" "Eagle"
 add_friend "mrs.Smith" "Eagle"
 add_friend "=Moonlight=" "Eagle"
@@ -200,19 +203,16 @@ add_friend "Neox" "GEMEN"
 add_friend "Splash" "GEMEN"
 add_friend "badwolf" "???????????"
 add_friend "PX-7" "GEMEN"
+add_friend "≈EryX≈" "Sestra|TC"
 add_friend "Kicker" "Renaissance"
 add_friend "=fadi=" "Eagle"
 add_friend "TS_Chatress" ""
 add_friend "kuhmooouh" "desufnoc"
 add_friend "vak" ""
+add_friend "gigi7187" "Spæd"
 add_friend "ems4u4" ""
 add_friend "=LeafGreen=" ""
 add_friend "Norbert" ""
 add_friend "BRONIVIK" ""
 add_friend "nolanfoure85500" "Warz"
 add_friend "lahmacunlulu" ""
-add_friend "PTsquire" "BananaBread"
-add_friend "Creamy" "[!FAKE!]"
-add_friend "ABTeemo" "123"
-add_friend "Jololli" ""
-add_friend "Freezestyler" "Fuck off"

@@ -70,6 +70,11 @@ lspcfg.rust_analyzer.setup {
 	on_attach = CustomOnAttach,
 	capabilities = lsp_status.capabilities
 }
+
+lspcfg.cssls.setup{
+	on_attach = CustomOnAttach,
+	capabilities = lsp_status.capabilities
+}
 -- }}}
 
 -- Handlers {{{
@@ -109,10 +114,10 @@ nnoremap('<leader>ll', [[<cmd>lua print(vim.lsp.buf.server_ready())<CR>]], {sile
 -- }}}
 
 -- Signs {{{
-cmd [[sign define LspDiagnosticsSignError text=▋ texthl=LspDiagnosticsSignError linehl= numhl=]]
-cmd [[sign define LspDiagnosticsSignWarning text=▋  texthl=LspDiagnosticsSignWarning linehl= numhl=]]
-cmd [[sign define LspDiagnosticsSignInformation text=▋ texthl=LspDiagnosticsSignInformation linehl= numhl=]]
-cmd [[sign define LspDiagnosticsSignHint text=▋ texthl=LspDiagnosticsSignHint linehl= numhl=]]
+cmd [[sign define LspDiagnosticsSignError text=▌ texthl=LspDiagnosticsSignError linehl= numhl=]]
+cmd [[sign define LspDiagnosticsSignWarning text=▌  texthl=LspDiagnosticsSignWarning linehl= numhl=]]
+cmd [[sign define LspDiagnosticsSignInformation text=▌ texthl=LspDiagnosticsSignInformation linehl= numhl=]]
+cmd [[sign define LspDiagnosticsSignHint text=▌ texthl=LspDiagnosticsSignHint linehl= numhl=]]
 
 -- cmd [[sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=]]
 -- cmd [[sign define LspDiagnosticsSignWarning text=  texthl=LspDiagnosticsSignWarning linehl= numhl=]]

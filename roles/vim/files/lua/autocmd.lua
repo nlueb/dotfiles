@@ -17,6 +17,7 @@ end
 
 -- Highlight yanked region
 cmd [[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]]
+cmd [[au VimLeave * set guicursor=a:ver30-blinkoff0]]
 
 vim.api.nvim_exec([[
 	function! InActiveLine()
@@ -32,6 +33,9 @@ local autocmds = {
 	StatusLine = {
 		{'WinEnter,BufEnter', '*', [[setlocal statusline=%!ActiveLine()]]},
 		{'WinLeave,BufLeave', '*', [[setlocal statusline=%!InActiveLine()]]},
+	},
+	FoldText = {
+		{'BufEnter,InsertLeave,TextChanged', '*', [[lua UpdateLongestFoldTitle()]]},
 	},
 }
 
