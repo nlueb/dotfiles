@@ -75,6 +75,27 @@ lspcfg.cssls.setup{
 	on_attach = CustomOnAttach,
 	capabilities = lsp_status.capabilities
 }
+
+lspcfg.bashls.setup{
+	on_attach = CustomOnAttach,
+	capabilities = lsp_status.capabilities
+}
+
+lspcfg.pyright.setup{
+	on_attach = CustomOnAttach,
+	capabilities = lsp_status.capabilities
+}
+
+lspcfg.jdtls.setup{
+	on_attach = CustomOnAttach,
+	capabilities = lsp_status.capabilities,
+	root_dir = lspcfg.util.root_pattern('.git', 'pom.xml'),
+}
+
+lspcfg.yamlls.setup{
+	on_attach = CustomOnAttach,
+	capabilities = lsp_status.capabilities,
+}
 -- }}}
 
 -- Handlers {{{
@@ -125,4 +146,4 @@ cmd [[sign define LspDiagnosticsSignHint text=▌ texthl=LspDiagnosticsSignHint 
 -- cmd [[sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=]]
 -- }}}
 
--- vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0
+-- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

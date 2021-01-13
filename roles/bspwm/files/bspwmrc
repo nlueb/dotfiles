@@ -2,9 +2,9 @@
 
 sxhkd &
 
-bspc monitor DisplayPort-1 -d I II III IV V VI VII VIII
-# bspc monitor DisplayPort-0 -d I II III IV
-# bspc monitor DisplayPort-1 -d V VI VII VIII
+# bspc monitor DisplayPort-1 -d I II III IV V VI VII VIII
+bspc monitor DisplayPort-0 -d I II III IV
+bspc monitor DisplayPort-1 -d V VI VII VIII
 
 bspc config border_width         2
 bspc config window_gap          24

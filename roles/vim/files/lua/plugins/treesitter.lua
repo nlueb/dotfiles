@@ -10,6 +10,9 @@ ts.setup {
 		updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
 		persist_queries = false -- Whether the query persists across vim sessions
 	},
+	refactor = {
+		highlight_definitions = { enable = true },
+	},
 	textobjects = {
 		select = {
 			enable = true,

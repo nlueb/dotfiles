@@ -1,5 +1,6 @@
 -- Local Variables {{{
 local fold_metadata = {}
+local vim = vim
 -- }}}
 
 -- String Functions {{{
@@ -8,7 +9,7 @@ function string:split(delimiter)
 end
 
 function string:to_regex()
-	return self:gsub('[%(%)%%%.%+%-%*%[%?%^%$]', '%%%1')
+	return self:gsub('[%{%}%(%)%%%.%+%-%*%[%?%^%$]', '%%%1')
 end
 
 local function CenterString(str, length)
@@ -110,24 +111,35 @@ end
 -- }}}
 
 -- Fold[Marker] Helper {{{
-local function GetCommentStringAsRegex()
+local function GetCommentString()
 	local comment_string = vim.api.nvim_buf_get_option(0, 'commentstring')
 	-- Commentstring contains %s at the end, this needs to be removed
 	comment_string = string.format(comment_string, '')
-	-- As commentstring will be used in a regex pattern special characters
-	-- need to be escaped. e.g. (( ) % . + - * [ ? ^ $)
-	return comment_string:to_regex()
+	return comment_string
+end
+
+local function GetFoldMarker()
+	local markers = vim.api.nvim_win_get_option(0, 'foldmarker')
+	markers = markers:split(',')
+	return {
+		start = markers[1],
+		finish = markers[2]
+	}
 end
 
 function UpdateLongestFoldTitle()
+	if vim.api.nvim_win_get_option(0, 'foldmethod') ~= 'marker' then
+		return
+	end
 	local buf_handle = vim.api.nvim_get_current_buf()
-	local current_lines = vim.api.nvim_buf_get_lines(buf_handle, 1, -1, false)
-	local comment_string = GetCommentStringAsRegex()
+	-- Use -2 because modeline should be ignored
+	local current_lines = vim.api.nvim_buf_get_lines(buf_handle, 1, -2, false)
+	local comment_string = GetCommentString()
 	current_lines = vim.tbl_filter(function(line)
-		return line:match(comment_string .. '.*%{%{%{') ~= nil
+		return line:match(comment_string:to_regex() .. '.*%{%{%{') ~= nil
 	end, current_lines)
 	current_lines = vim.tbl_map(function(line)
-		return line:match(comment_string .. '%s*(.-)%s*%{%{%{')
+		return line:match(comment_string:to_regex() .. '%s*(.-)%s*%{%{%{')
 	end, current_lines)
 	local longest = 0
 	for _, line in pairs(current_lines) do
@@ -165,17 +177,24 @@ end
 
 -- Fold[Marker] Text {{{
 local function FoldMarkerText(foldstart, foldend)
-	local comment_string = GetCommentStringAsRegex()
+	local comment_string = GetCommentString()
+
+	local markers = GetFoldMarker()
 
 	local first_line = vim.fn.getline(foldstart)
 	local number_of_lines = (foldend + 1) - foldstart
-	local section_title = first_line:match(comment_string .. '%s*(.-)%s*%{%{%{')
+	local section_title
+	if vim.startswith(first_line, comment_string) then
+		section_title = first_line:match(comment_string:to_regex() .. '%s*(.-)%s*' .. markers.start:to_regex())
+	else
+		section_title = first_line:match('%s*(.-)%s*' .. markers.start:to_regex())
+	end
 	local line_count = vim.api.nvim_buf_line_count(0)
 	local line_percent = math.floor((number_of_lines / line_count) * 100)
 	local line_width = GetLineWidth()
 
 	local foldtext_left = '■─── '
-	    .. section_title:align(GetLongestFoldTitle() + 1)
+		.. section_title:align(GetLongestFoldTitle() + 1)
 		.. '─'
 	local foldtext_left_width = vim.api.nvim_strwidth(foldtext_left)
 
@@ -185,13 +204,13 @@ local function FoldMarkerText(foldstart, foldend)
 	local foldtext_right_width = vim.api.nvim_strwidth(foldtext_right)
 
 	return foldtext_left
-	    .. string.rep('─', line_width - foldtext_left_width - foldtext_right_width)
+		.. string.rep('─', line_width - foldtext_left_width - foldtext_right_width)
 		.. foldtext_right
 end
 -- }}}
 
 -- Fold[Other] Text {{{
-local function FoldOtherText(foldstart, foldend)
+local function FoldOtherTextEnd(foldstart, foldend)
 	local first_line = vim.fn.getline(foldstart)
 
 	if vim.startswith(first_line, '\t') then
@@ -204,6 +223,27 @@ local function FoldOtherText(foldstart, foldend)
 	return first_line .. '...' .. last_line
 	-- local number_of_lines = (foldend + 1) - foldstart
 	-- return first_line .. ' ' .. number_of_lines .. 'ℓ ' .. last_line
+end
+
+local function FoldOtherTextNoEnd(foldstart, foldend)
+	local first_line = vim.fn.getline(foldstart)
+
+	if vim.startswith(first_line, '\t') then
+		first_line = first_line:gsub('\t',
+			string.rep(' ', vim.api.nvim_buf_get_option(0, 'tabstop'))
+		)
+	end
+
+	return first_line .. ' ...'
+end
+
+local function FoldOtherText(foldstart, foldend)
+	local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+	if vim.tbl_contains({'yaml'}, filetype) then
+		return FoldOtherTextNoEnd(foldstart, foldend)
+	else
+		return FoldOtherTextEnd(foldstart, foldend)
+	end
 end
 -- }}}
 
@@ -221,4 +261,4 @@ function FoldText()
 end
 -- }}}
 
--- vim: foldmethod=marker foldlevel=0 foldenable
+-- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

@@ -35,6 +35,8 @@ nnoremap('<Tab>', '>>')
 nnoremap('<S-Tab>', '<<')
 vnoremap('<Tab>', '>gv')
 vnoremap('<S-Tab>', '<gv')
+-- imap('<cr>', [[pumvisible() ? complete_info()['selected'] != '-1' ? '<Plug>(completion_confirm_completion)' : '<c-e><CR>' : '<CR>']], {expr = true})
+-- imap('<Enter>', [[vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<Enter>']], {expr = true})
 -- }}}
 
--- vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0
+-- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

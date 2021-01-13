@@ -45,7 +45,8 @@ local function init(use)
 		requires = {
 			'romgrk/nvim-treesitter-context',
 			'nvim-treesitter/playground',
-			'nvim-treesitter/nvim-treesitter-textobjects'
+			'nvim-treesitter/nvim-treesitter-textobjects',
+			'nvim-treesitter/nvim-treesitter-refactor'
 		}
 	}
 
@@ -59,12 +60,20 @@ local function init(use)
 
 	use {
 		'nvim-lua/completion-nvim',
-		config = [[require 'plugins/completion']]
+		config = [[require 'plugins/completion']],
+		requires = {
+			'steelsojka/completion-buffers'
+		}
 	}
 
 	use {
 		'hrsh7th/vim-vsnip',
-		config = [[require 'plugins/vsnip']]
+		config = [[require 'plugins/vsnip']],
+		requires = {
+			'golang/vscode-go',
+			'microsoft/vscode-python',
+			'keyring/vsc-lua'
+		}
 	}
 
 	use {

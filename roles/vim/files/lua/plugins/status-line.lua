@@ -32,7 +32,8 @@ local Icon = {
 	Hint    = '',
 	Help    = '',
 	-- Help    = '',
-	Default = ''
+	Default = '',
+	Function = '𝑓',
 }
 
 -- }}}
@@ -265,26 +266,31 @@ function M.ActiveLine()
 	statusline = statusline .. '%='
 	-- statusline = statusline .. require("lsp-status").status() .. Spacer()
 	if InsideOfFunctionBlock() then
-		statusline = statusline .. GetLSPCurrentFunction() .. Spacer()
+		statusline = statusline ..HlGroup.LightSep .. Sep.Left
+				  .. HlGroup.LightText .. Icon.Function .. Spacer()
+				  .. GetLSPCurrentFunction() .. HlGroup.LightSep .. Sep.Right
+				  .. Spacer(2)
 	end
-	statusline = statusline .. HlGroup.DimText .. 'Ln %-3l Col %-2c'
+	statusline = statusline .. HlGroup.NormalText .. 'Ln %-3l Col %-2c'
 	return statusline
 end
 -- }}}
 
 -- Inactive Line {{{
 function M.InActiveLine()
-	local statusline = ''
-	statusline = statusline
-			  .. HlGroup.LightSep .. Sep.Left
-			  .. HlGroup.LightText .. GetMode()
-			  .. HlGroup.LightSep .. Sep.Right
-			  .. HlGroup.NormalText .. Spacer(2) .. GetFileIcon()
-			  .. Spacer() .. GetFileName()
+	local name = vim.fn.expand('%:t')
+	local statusline = name
+	-- local statusline = ''
+	-- statusline = statusline
+	-- 		  .. HlGroup.LightSep .. Sep.Left
+	-- 		  .. HlGroup.LightText .. GetMode()
+	-- 		  .. HlGroup.LightSep .. Sep.Right
+	-- 		  .. HlGroup.NormalText .. Spacer(2) .. GetFileIcon()
+	-- 		  .. Spacer() .. GetFileName()
 	return statusline
 end
 -- }}}
 
 return M
 
--- vim: foldmethod=marker foldlevel=0 foldenable
+-- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

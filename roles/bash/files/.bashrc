@@ -109,6 +109,13 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export EDITOR=nvim
+export ES_HOME=/home/nils/Documents/tracing/elk/elasticsearch-7.10.1
+export KIBANA_HOME=/home/nils/Documents/tracing/elk/kibana-7.10.1
+export JAVA_HOME=/usr/lib/jvm/java-15-openjdk
+export JAR=/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.0.v20200915-1508.jar
+export GRADLE_HOME=/usr/share/java/gradle
+export JDTLS_CONFIG=/usr/share/java/jdtls/config_linux
+export WORKSPACE=/home/nils/.local/share/jdt-ls
 # }}}
 
 # Sources {{{
@@ -209,6 +216,19 @@ man() {
 		LESS_TERMCAP_us=$'\e[1;32m' \
 			man "$@"
 }
+# }}}
+
+# Direnv {{{
+_direnv_hook() {
+  local previous_exit_status=$?;
+  trap -- '' SIGINT;
+  eval "$("/usr/bin/direnv" export bash)";
+  trap - SIGINT;
+  return $previous_exit_status;
+};
+if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
+  PROMPT_COMMAND="_direnv_hook${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+fi
 # }}}
 
 # vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0

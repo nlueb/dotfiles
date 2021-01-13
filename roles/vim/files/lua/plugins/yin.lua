@@ -77,8 +77,8 @@ Group.new('Constant', c.gray05, c.none, s.bold)
 Group.new('Character', g.Constant, g.Constant, g.Constant)
 Group.new('String', c.gray10, c.none, s.none)
 Group.new('Number', c.gray06, c.none, s.none)
-Group.new('Float', c.gray06, c.gray01, s.none)
-Group.new('NormalFloat', c.gray06, c.gray01, s.none)
+Group.new('Float', c.gray06, c.none, s.none)
+Group.new('NormalFloat', c.gray06, c.none, s.none)
 Group.new('Boolean', g.Number, g.Number, g.Number)
 Group.new('Identifier', c.gray08, c.none, s.none)
 Group.new('Function', c.gray08, c.none, s.none)
@@ -112,7 +112,7 @@ Group.new('LineNr', c.gray04, c.none, s.none)
 Group.new('Folded', g.LineNr, g.LineNr, s.italic)
 Group.new('FoldColumn', c.gray07, c.gray01, s.none)
 Group.new('SignColumn', c.gray07, c.none, s.none)
-Group.new('ColorColumn', g.FoldColumn, g.FoldColumn, g.FoldColumn)
+Group.new('ColorColumn', c.none, c.blacker, s.none)
 Group.new('CursorLine', c.none, c.gray01, s.none)
 Group.new('CursorColumn', g.CursorLine, g.CursorLine, g.CursorLine)
 Group.new('CursorLineNr', c.gray10, g.LineNr, s.bold)
@@ -217,6 +217,12 @@ Group.new('TSURI', g.Underlined, g.Underlined, g.Underlined)
 Group.new('TSTag', g.Label, g.Label, g.Label)
 Group.new('TSTagDelimiter', g.Delimiter, g.Delimiter, g.Delimiter)
 Group.new('TSPlaygroundFocus', g.Visual, g.Visual, g.Visual)
+
+-- Refactor {{{
+Group.new('TSDefinitionUsage', c.white, c.none, s.none)
+Group.new('TSDefinition', c.pink, c.none, s.none)
+-- }}}
+
 -- }}}
 
 -- LSP {{{
@@ -274,4 +280,4 @@ Group.new('DiffChangeSign', c.blue, c.none, s.none)
 Group.new('DiffDeleteSign', c.red, c.none, s.none)
 -- }}}
 
--- vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0
+-- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

@@ -69,6 +69,9 @@ set 'incsearch'
 -- VertSplit
 setw {'fillchars', 'vert:┃,fold: '}
 
+-- Highlight characters after 90
+-- setw {'colorcolumn', '90'}
+
 -- Statusline
 -- set fillchars+=stl:\- 
 -- set fillchars+=stlnc:− 
@@ -114,7 +117,7 @@ setb {'textwidth', 500}
 setw 'foldenable'
 
 -- Open most folds by default
-set {'foldlevelstart', 10}
+set {'foldlevelstart', 0}
 
 -- 10 nested fold max
 setw {'foldnestmax', 10}
@@ -128,6 +131,9 @@ setw {'foldexpr', 'nvim_treesitter#foldexpr()'}
 
 -- Improved foldtext
 setw {'foldtext', [[luaeval('FoldText()')]]}
+
+-- Fold Markers
+setw {'foldmarker', '{{{,}}}'}
 -- }}}
 
 -- Misc settings {{{
@@ -195,4 +201,4 @@ setw {'signcolumn', 'yes'}
 set {'pastetoggle', '<F6>'}
 -- }}}
 
--- vim: foldmethod=marker foldlevel=0 foldenable
+-- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
