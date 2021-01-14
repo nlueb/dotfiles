@@ -30,6 +30,9 @@ nmap('ga', [[<Plug>(EasyAlign)]])
 nnoremap('\\', [[m'O<esc>0d$`']])
 nnoremap('<CR>', [[m'o<esc>0d$`']])
 
+-- Leave Terminal with Ctrl-\ Ctrl-[
+tnoremap([[<C-\><C-[>]], [[<C-\><C-n>]])
+
 -- Tab shifting
 nnoremap('<Tab>', '>>')
 nnoremap('<S-Tab>', '<<')

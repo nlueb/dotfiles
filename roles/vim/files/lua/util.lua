@@ -69,6 +69,19 @@ function inoremap(trigger, sequence, args)
 	imap(trigger, sequence, args)
 end
 
+function tmap(trigger, sequence, args)
+	_map('t', trigger, sequence, args)
+end
+
+function tnoremap(trigger, sequence, args)
+	if args == nil then
+		tmap(trigger, sequence, {noremap = true})
+		return
+	end
+	args.noremap = true
+	tmap(trigger, sequence, args)
+end
+
 function xmap(trigger, sequence, args)
 	_map('x', trigger, sequence, args)
 end

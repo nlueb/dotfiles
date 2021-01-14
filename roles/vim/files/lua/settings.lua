@@ -1,5 +1,7 @@
 require 'util'
 
+local vim = vim
+
 -- Cursor {{{
 set {'guicursor', 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'}
 -- }}}
@@ -199,6 +201,12 @@ setw {'signcolumn', 'yes'}
 
 -- Turn on PASTE mode with F6
 set {'pastetoggle', '<F6>'}
+-- }}}
+
+-- Neovide settings {{{
+vim.g.neovide_refresh_rate = 144
+-- vim.g.neovide_cursor_vfx_mode = "railgun"
+set {'guifont', 'JetBrainsMono Nerd Font:h32'}
 -- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

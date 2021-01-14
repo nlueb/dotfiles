@@ -68,6 +68,17 @@ function ShowHighlightCaptures()
 end
 -- }}}
 
+-- Telescope {{{
+function PopulateLocationList()
+	if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
+		vim.lsp.diagnostic.set_loclist { open_loclist=false }
+	end
+	local builtin = require('telescope.builtin')
+	builtin.loclist()
+end
+-- }}}
+
+-- Folding {{{
 -- Misc {{{
 local function GetSigncolumnWidth()
 	local signcolumn = vim.api.nvim_win_get_option(0, 'signcolumn')
@@ -259,6 +270,7 @@ function FoldText()
 		return FoldMarkerText(foldstart, foldend)
 	end
 end
+-- }}}
 -- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

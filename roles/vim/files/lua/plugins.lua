@@ -25,6 +25,9 @@ local function init(use)
 	use 'junegunn/vim-peekaboo'
 	use 'junegunn/vim-easy-align'
 
+	-- Visualize undo tree
+	use 'simnalamburt/vim-mundo'
+
 	-- Highlight chars for f and t motions
 	-- use 'unblevable/quick-scope'
 
@@ -105,6 +108,11 @@ local function init(use)
 	}
 
 	use {
+		'nvim-telescope/telescope-fzy-native.nvim',
+		config = [[require 'plugins/fzy']]
+	}
+
+	use {
 		'kyazdani42/nvim-web-devicons',
 		config = [[require 'plugins/devicons']]
 	}
@@ -124,6 +132,8 @@ local function init(use)
 		'lambdalisue/suda.vim',
 		config = [[require 'plugins/suda']]
 	}
+
+	use 'Shougo/deol.nvim'
 end
 
 local config = {

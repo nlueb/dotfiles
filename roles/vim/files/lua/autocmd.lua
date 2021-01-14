@@ -21,11 +21,11 @@ cmd [[au VimLeave * set guicursor=a:ver30-blinkoff0]]
 
 vim.api.nvim_exec([[
 	function! InActiveLine()
-		return luaeval("require'plugins/status-line'.InActiveLine()")
+		return luaeval("require'plugins/status-line'.InActiveLine(vim.api.nvim_win_get_buf(_A), _A)", g:statusline_winid)
 	endfunction
 
 	function! ActiveLine()
-		return luaeval("require'plugins/status-line'.ActiveLine()")
+		return luaeval("require'plugins/status-line'.ActiveLine(vim.api.nvim_win_get_buf(_A), _A)", g:statusline_winid)
 	endfunction
 ]], false)
 
