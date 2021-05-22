@@ -8,7 +8,8 @@ inoremap('<C-k>', [[pumvisible() ? "<C-p>" : "<C-k>"]], {expr = true})
 
 -- Use Enter for completion
 vim.g.completion_confirm_key = ''
-imap('<CR>', [[pumvisible() ? complete_info()['selected'] != '-1' ? '<Plug>(completion_confirm_completion)' : '<c-e><CR>' : '<CR><Plug>CloserClose']], {expr = true})
+imap('<CR>', [[pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)" : "<c-e><CR>" : "<CR>"]], {expr = true})
+-- imap('<CR>', [[pumvisible() ? complete_info()['selected'] != '-1' ? '<Plug>(completion_confirm_completion)' : '<c-e><CR>' : '<CR><Plug>CloserClose']], {expr = true})
 
 -- Set completeopt to have a better completion experience
 set {'completeopt', 'menuone,noinsert,noselect'}

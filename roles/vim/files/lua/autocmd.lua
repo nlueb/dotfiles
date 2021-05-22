@@ -17,7 +17,8 @@ end
 
 -- Highlight yanked region
 cmd [[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]]
-cmd [[au VimLeave * set guicursor=a:ver30-blinkoff0]]
+-- Set Cursor to beam when leaving vim
+-- cmd [[au VimLeave * set guicursor=a:ver30-blinkoff0]]
 
 vim.api.nvim_exec([[
 	function! InActiveLine()
@@ -33,10 +34,17 @@ local autocmds = {
 	StatusLine = {
 		{'WinEnter,BufEnter', '*', [[setlocal statusline=%!ActiveLine()]]},
 		{'WinLeave,BufLeave', '*', [[setlocal statusline=%!InActiveLine()]]},
+		{'User StartifyReady', '', [[setlocal statusline=%!ActiveLine()]]},
 	},
 	FoldText = {
 		{'BufEnter,InsertLeave,TextChanged', '*', [[lua UpdateLongestFoldTitle()]]},
 	},
+	FernCustom = {
+		{'FileType', 'fern', [[lua FernInit()]]}
+	},
+	FiletypeSettings = {
+		{'FileType', 'scheme', [[setlocal shiftwidth=2 softtabstop=2 expandtab | let b:AutoPairs = {"(": ")", "[":"]", "{":"}", '"':'"'}]]}
+	}
 }
 
 nvim_create_augroups(autocmds)

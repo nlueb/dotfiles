@@ -32,9 +32,11 @@ local Icon = {
 	Info    = '',
 	Hint    = '',
 	Help    = '',
+	Lambda  = 'ﬦ',
 	-- Help    = '',
 	Default = '',
 	Function = '𝑓',
+	NoFile = ' ',
 }
 
 -- }}}
@@ -54,6 +56,38 @@ end
 
 local function VimBufExpand(bufnr, expand)
 	return vim.fn.expand('#' .. bufnr .. expand)
+end
+-- }}}
+
+-- Debug {{{
+local debug_output = {}
+local debug_once = {}
+local function DebugPrint(bufnr, message)
+	if message == nil or message == '' then
+		return
+	end
+	if not vim.tbl_contains(vim.tbl_keys(debug_once), bufnr) then
+		debug_once[bufnr] = {}
+	end
+	if vim.tbl_contains(debug_once[bufnr], message) then
+		return
+	end
+	table.insert(debug_once[bufnr], message)
+	if not vim.tbl_contains(vim.tbl_keys(debug_output), bufnr) then
+		debug_output[bufnr] = ''
+	end
+	if debug_output[bufnr] == '' then
+		debug_output[bufnr] = message
+	else
+		debug_output[bufnr] = debug_output[bufnr] .. Spacer() .. message
+	end
+end
+
+local function DebugOut(bufnr)
+	if not vim.tbl_contains(vim.tbl_keys(debug_output), bufnr) then
+		return ''
+	end
+	return debug_output[bufnr]
 end
 -- }}}
 
@@ -110,12 +144,29 @@ end
 -- }}}
 
 -- File {{{
+local function DetectNoFile(bufnr)
+	local filename = vim.api.nvim_buf_get_name(bufnr)
+	return filename == ''
+end
+
 local function GetFileIcon(bufnr)
+	if DetectNoFile(bufnr) then
+		return Icon.NoFile
+	end
 	-- Mb look at https://github.com/liuchengxu/eleline.vim/blob/master/plugin/eleline.vim#L79-L83
 	if vim.api.nvim_buf_get_option(bufnr, 'buftype')  == 'help' then
 		return Icon.Help
 	end
-	local ok,devicons = pcall(require,'nvim-web-devicons')
+
+	local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+	local icons_extra = {
+		scheme = Icon.Lambda,
+	}
+	if vim.tbl_contains(vim.tbl_keys(icons_extra), filetype) then
+		return icons_extra[filetype]
+	end
+
+	local ok, devicons = pcall(require,'nvim-web-devicons')
 	if not ok then
 		error [[Missing dependencie 'nvim-web-devicons']]
 	end
@@ -129,6 +180,9 @@ local function GetFileIcon(bufnr)
 end
 
 local function GetFileName(bufnr)
+	if DetectNoFile(bufnr) then
+		return ''
+	end
 	if vim.api.nvim_buf_get_option(bufnr, 'buftype') == 'help' then
 		return 'help'
 	end
@@ -256,34 +310,74 @@ end
 -- }}}
 
 -- Plugin integration {{{
-local mundo_focused = false
+local function GenericPluginStatusLine(plugin_name, active)
+	if active then
+		return HlGroup.ModeSep .. Sep.Left
+			.. HlGroup.ModeText .. plugin_name
+			.. HlGroup.ModeSep .. Sep.Right
+	end
+	return HlGroup.LightSep .. Sep.Left
+		.. HlGroup.LightText .. plugin_name
+		.. HlGroup.LightSep .. Sep.Right
+end
 
-local function MundoStatusLine(bufnr, winnr, active)
+local mundo_focused = false
+local function MundoStatusLine(_, winnr, active)
 	mundo_focused = active
 	local win_width = vim.api.nvim_win_get_width(winnr)
 	return HlGroup.DarkText .. string.rep('━', win_width)
 end
 
-local function MundoDiffStatusLine(bufnr, winnr, active)
-	mundo_focused = mundo_focused or active
-	if mundo_focused then
-		return HlGroup.ModeSep .. Sep.Left
-			.. HlGroup.ModeText .. '社Mundo'
-			.. HlGroup.ModeSep .. Sep.Right
-	end
-	return HlGroup.LightSep .. Sep.Left
-		.. HlGroup.LightText .. '社Mundo'
-		.. HlGroup.LightSep .. Sep.Right
+local function MundoDiffStatusLine(_, _, active)
+	return GenericPluginStatusLine('社Mundo', mundo_focused or active)
+end
+
+local function StartupTimeStatusLine(_, _, active)
+	return GenericPluginStatusLine(' StartupTime', active)
+end
+
+local function StartifyStatusLine(_, _, active)
+	return GenericPluginStatusLine(' Startify', active)
+end
+
+local function NetrwStatusLine(_, _, active)
+	return GenericPluginStatusLine(' Netrw', active)
+end
+
+local function FernStatusLine(_, _, active)
+	return GenericPluginStatusLine('🌿 Fern ', active)
+end
+
+local function ManStatusLine(bufnr, _, active)
+	return GenericPluginStatusLine(' Man', active)
+		.. Spacer(2)
+	    .. HlGroup.NormalText ..  GetFileName(bufnr)
+end
+
+local function TSPlaygroundLine(_, _, active)
+	return GenericPluginStatusLine(' TSPlayground', active)
+end
+
+local function GitCommitMessageLine(_, _, active)
+	return GenericPluginStatusLine(' Message', active)
 end
 
 local function DetectPluginWindow(bufnr, winnr, active)
 	local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+	local filename = GetFileName(bufnr)
 	local plugin_list = {
 		Mundo = MundoStatusLine,
-		MundoDiff = MundoDiffStatusLine
+		MundoDiff = MundoDiffStatusLine,
+		['startup-log.txt'] = StartupTimeStatusLine,
+		startify = StartifyStatusLine,
+		netrw = NetrwStatusLine,
+		fern = FernStatusLine,
+		man = ManStatusLine,
+		tsplayground = TSPlaygroundLine,
+		gitcommit = GitCommitMessageLine,
 	}
 	for plugin, func in pairs(plugin_list) do
-		if filetype == plugin then
+		if filetype == plugin or filename == plugin then
 			return func(bufnr, winnr, active)
 		end
 	end
@@ -300,13 +394,15 @@ function M.ActiveLine(bufnr, winnr)
 	statusline = statusline
 			  .. GetModeStatusline()
 			  .. GetFileStatusline(bufnr)
-	if not StrEmpty(GetGitDir(bufnr)) then
+	if not StrEmpty(GetGitBranch(bufnr)) then
 		statusline = statusline .. GetGitStatusline(bufnr)
 	end
 	if HasLSP(bufnr) then
 		statusline = statusline .. GetLSPDiagnosticsStatusline(bufnr)
 	end
 	-- Start a new section
+	statusline = statusline .. '%='
+	statusline = statusline .. '%.40(' .. HlGroup.DimText .. DebugOut(bufnr) .. '%)'
 	statusline = statusline .. '%='
 	-- statusline = statusline .. require("lsp-status").status() .. Spacer()
 	if InsideOfFunctionBlock(bufnr) then
@@ -333,6 +429,9 @@ function M.InActiveLine(bufnr, winnr)
 			  .. HlGroup.LightSep .. Sep.Right
 			  .. HlGroup.NormalText .. Spacer(2) .. GetFileIcon(bufnr)
 			  .. Spacer() .. GetFileName(bufnr)
+	statusline = statusline .. '%='
+	statusline = statusline .. '%.40(' .. HlGroup.DimText .. DebugOut(bufnr) .. '%)'
+	statusline = statusline .. '%='
 	return statusline
 end
 -- }}}

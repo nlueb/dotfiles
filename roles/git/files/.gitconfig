@@ -1,6 +1,7 @@
 [user]
-	email = 9465658+nlueb@users.noreply.github.com
-	name = nlueb
+	email = nils.luebker@telekom.de
+	name = nils.luebker
+	signingKey = ""
 
 [core]
 	editor = nvim
@@ -43,3 +44,11 @@
 	process = git-lfs filter-process
 [credential]
 	helper = cache --timeout=999999
+[pull]
+	ff = only
+[gpg]
+	program = gpg
+[commit]
+	gpgSign = false
+[tag]
+	forceSignAnnotated = false

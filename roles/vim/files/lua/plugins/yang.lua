@@ -146,9 +146,9 @@ Group.new('TabLineFill', g.StatusLineNC, g.StatusLineNC, g.StatusLineNC)
 Group.new('WildMenu', c.gray08, c.none, s.none)
 Group.new('VertSplit', c.whitest, c.none, s.none)
 Group.new('DiffAdd', c.white, c.green, s.none)
-Group.new('DiffChange', c.white, c.blue, s.none)
+Group.new('DiffChange', c.white, c.lightblue, s.none)
 Group.new('DiffDelete', c.white, c.red, s.none)
-Group.new('DiffText', c.white, c.darkblue, s.none)
+Group.new('DiffText', c.white, c.blue, s.none)
 Group.new('DiffAdded', c.green, c.white, s.none)
 Group.new('DiffChanged', c.blue, c.white, s.none)
 Group.new('DiffRemoved', c.red, c.white, s.none)
@@ -271,6 +271,20 @@ Group.new('TelescopeMatching', c.gray02, c.none, s.none)
 
 -- Used for the prompt prefix
 Group.new('TelescopePromptPrefix', c.gray04, c.none, s.none)
+-- }}}
+
+-- Startify {{{
+Group.new('StartifyBracket', c.none, c.none, s.none)
+Group.new('StartifyFile', c.none, c.none, s.none)
+Group.new('StartifyFooter', c.none, c.none, s.none)
+Group.new('StartifyHeader', c.none, c.none, s.none)
+Group.new('StartifyNumber', c.none, c.none, s.none)
+Group.new('StartifyPath', c.none, c.none, s.none)
+Group.new('StartifySection', c.none, c.none, s.none)
+Group.new('StartifySelect', c.none, c.none, s.none)
+Group.new('StartifySlash', c.none, c.none, s.none)
+Group.new('StartifySpecial', c.none, c.none, s.none)
+Group.new('StartifyVar', c.none, c.none, s.none)
 -- }}}
 
 -- Gitsigns {{{

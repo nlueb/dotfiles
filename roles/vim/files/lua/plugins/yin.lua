@@ -78,7 +78,7 @@ Group.new('Character', g.Constant, g.Constant, g.Constant)
 Group.new('String', c.gray10, c.none, s.none)
 Group.new('Number', c.gray06, c.none, s.none)
 Group.new('Float', c.gray06, c.none, s.none)
-Group.new('NormalFloat', c.gray06, c.none, s.none)
+Group.new('NormalFloat', c.gray12, c.gray01, s.none)
 Group.new('Boolean', g.Number, g.Number, g.Number)
 Group.new('Identifier', c.gray08, c.none, s.none)
 Group.new('Function', c.gray08, c.none, s.none)
@@ -256,6 +256,51 @@ Group.new('LspDiagnosticsUnderlineInformation', g.LspDiagnosticsDefaultInformati
 -- Group.new("LspReferenceWrite", c.nord_10, c.none)
 -- }}}
 
+-- Lsp Saga {{{
+-- Misc
+Group.new('LspFloatWinBorder', c.gray12, c.black, s.none)
+Group.new('LspSagaBorderTitle', c.gray10, c.none, s.bold)
+Group.new('TargetWord', c.gray04, c.none, s.none)
+Group.new('TargetFileName', c.gray04, c.none, s.none)
+Group.new('ProviderTruncateLine', c.gray01, c.none, s.none)
+Group.new('SagaShadow', c.red, c.none, s.none)
+Group.new('LspSagaFinderSelection', c.gray15, c.none, s.none)
+-- Diagnostic
+Group.new('LspLinesDiagBorder', c.gray12, c.black, s.none)
+Group.new('DiagnosticTruncateLine', c.gray01, c.none, s.none)
+Group.new('DiagnosticError', c.none, c.none, s.none)
+Group.new('DiagnosticWarning', c.none, c.none, s.none)
+Group.new('DiagnosticInformation', c.none, c.none, s.none)
+Group.new('DiagnosticHint', c.none, c.none, s.none)
+Group.new('LspSagaShTruncateLine', c.gray01, c.none, s.none)
+Group.new('LspSagaDocTruncateLine', c.gray01, c.none, s.none)
+Group.new('LineDiagTuncateLine', c.gray01, c.none, s.none)
+-- Code Action
+Group.new('LspSagaCodeActionTitle', c.gray10, c.none, s.none)
+Group.new('LspSagaCodeActionTruncateLine', c.gray01, c.none, s.none)
+Group.new('LspSagaCodeActionContent', c.gray07, c.none, s.none)
+Group.new('LspSagaCodeActionBorder', c.gray12, c.black, s.none)
+-- Rename
+Group.new('LspSagaRenamePromptPrefix', c.gray08, c.none, s.none)
+Group.new('LspSagaRenameBorder', c.gray12, c.black, s.none)
+-- Hover
+Group.new('LspSagaHoverBorder', c.gray12, c.black, s.none)
+Group.new('LspSagaSignatureHelpBorder', c.gray12, c.black, s.none)
+Group.new('LspSagaAutoPreview', c.gray12, c.none, s.none)
+-- Definition
+Group.new('LspSagaDefPreviewBorder', c.gray12, c.black, s.none)
+Group.new('DefinitionPreviewTitle', c.gray10, c.none, s.none)
+Group.new('ReferencesCount', c.gray08, c.none, s.none)
+Group.new('DefinitionCount', c.gray08, c.none, s.none)
+Group.new('DefinitionIcon', c.gray08, c.none, s.none)
+Group.new('ReferencesIcon', c.gray08, c.none, s.none)
+-- }}}
+
+-- Lsp Lightbulb {{{
+Group.new('LightBulbFloatWin', c.blacker, c.blue, s.none)
+Group.new('LightBulbVirtualText', c.blue, c.none, s.none)
+-- }}}
+
 -- Telescope {{{
 Group.new('TelescopeSelection', c.gray05, c.black, s.none)
 Group.new('TelescopeSelectionCaret', c.white, c.none, s.none)
@@ -275,10 +320,75 @@ Group.new('TelescopeMatching', c.gray14, c.none, s.none)
 Group.new('TelescopePromptPrefix', c.gray12, c.none, s.none)
 -- }}}
 
+-- Startify {{{
+Group.new('StartifyBracket', c.gray02, c.none, s.none)
+Group.new('StartifyFile', c.gray10, c.none, s.italic)
+Group.new('StartifyFooter', c.gray02, c.none, s.none)
+Group.new('StartifyHeader', c.gray02, c.none, s.none)
+Group.new('StartifyNumber', c.gray13, c.none, s.none)
+Group.new('StartifyPath', c.gray02, c.none, s.italic)
+Group.new('StartifySection', c.gray13, c.none, s.none)
+Group.new('StartifySelect', c.red, c.none, s.none)
+Group.new('StartifySlash', c.gray02, c.none, s.italic)
+Group.new('StartifySpecial', c.gray02, c.none, s.none)
+Group.new('StartifyVar', c.gray13, c.none, s.none)
+-- }}}
+
 -- Gitsigns {{{
 Group.new('DiffAddSign', c.green, c.none, s.none)
 Group.new('DiffChangeSign', c.blue, c.none, s.none)
 Group.new('DiffDeleteSign', c.red, c.none, s.none)
+-- }}}
+
+-- Nvim Tree {{{
+Group.new('NvimTreeNormal', c.gray02, c.none, s.none)
+
+Group.new('NvimTreeSymlink', c.gray02, c.none, s.none)
+Group.new('NvimTreeFolderName', c.gray12, c.none, s.none)
+Group.new('NvimTreeRootFolder', c.gray02, c.none, s.italic)
+Group.new('NvimTreeFolderIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeExecFile', c.gray02, c.none, s.none)
+Group.new('NvimTreeSpecialFile', c.gray02, c.none, s.none)
+Group.new('NvimTreeImageFile', c.gray02, c.none, s.none)
+Group.new('NvimTreeMarkdownFile', c.gray02, c.none, s.none)
+Group.new('NvimTreeIndentMarker', c.gray02, c.none, s.none)
+
+Group.new('NvimTreeLicenseIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeYamlIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeTomlIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeGitignoreIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeJsonIcon', c.gray02, c.none, s.none)
+
+Group.new('NvimTreeLuaIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreePythonIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeShellIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeJavascriptIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeCIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeReactIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeHtmlIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeRustIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeVimIcon', c.gray02, c.none, s.none)
+Group.new('NvimTreeTypescriptIcon', c.gray02, c.none, s.none)
+
+Group.new('NvimTreeGitDirty', c.gray10, c.none, s.italic)
+Group.new('NvimTreeGitStaged', c.lightgreen, c.none, s.italic)
+Group.new('NvimTreeGitMerge', c.magenta, c.none, s.italic)
+Group.new('NvimTreeGitRenamed', c.gray10, c.none, s.italic)
+Group.new('NvimTreeGitNew', c.gray10, c.none, s.italic)
+-- }}}
+
+-- Fern {{{
+Group.new('FernSpinner', c.blue, c.none, s.none)
+Group.new('FernMarkedLine', c.white, c.none, s.none)
+Group.new('FernMarkedText', c.white, c.none, s.none)
+Group.new('FernRootSymbol', c.gray02, c.none, s.none)
+Group.new('FernRootText', c.gray10, c.none, s.none)
+Group.new('FernLeafSymbol', c.gray02, c.none, s.none)
+Group.new('FernLeafText', c.gray08, c.none, s.none)
+Group.new('FernBranchSymbol', c.gray02, c.none, s.none)
+Group.new('FernBranchText', c.gray10, c.none, s.none)
+Group.new('FernWindowSelectIndicator', c.none, c.none, s.none)
+Group.new('FernWindowSelectStatusLine', c.none, c.none, s.none)
 -- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

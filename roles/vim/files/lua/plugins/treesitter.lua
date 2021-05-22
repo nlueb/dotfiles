@@ -1,4 +1,14 @@
 local ts = require 'nvim-treesitter.configs'
+-- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+
+-- parser_config.racket = {
+--   install_info = {
+--     url = "https://github.com/tautologico/tree-sitter-racket",
+--     files = {"src/parser.c"}
+--   },
+--   filetype = "scheme", -- if filetype does not agrees with parser name
+--   used_by = {"racket"} -- additional filetypes that use this parser
+-- }
 
 ts.setup {
 	ensure_installed = 'all', -- one of "all", "language", or a list of languages

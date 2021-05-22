@@ -15,3 +15,4 @@ bspc config gapless_monocle      true
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Screenkey manage=off
+bspc rule -a Emacs state=tiled

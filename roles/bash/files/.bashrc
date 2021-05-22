@@ -100,6 +100,7 @@ export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:/home/nils/.local/bin
 export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
+export PATH=$PATH:/home/nils/.local/share/racket/7.9/bin
 export GOPATH=$(go env GOPATH)
 # export GOFLAGS="-mod=vendor"
 export ALSA_CARD=G4M1
@@ -116,6 +117,9 @@ export JAR=/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.0.v202
 export GRADLE_HOME=/usr/share/java/gradle
 export JDTLS_CONFIG=/usr/share/java/jdtls/config_linux
 export WORKSPACE=/home/nils/.local/share/jdt-ls
+# export DOCKER_HOST=ssh://nils@80.158.57.148:22
+ export MANPAGER='nvim +Man!'
+ # export MANWIDTH=999
 # }}}
 
 # Sources {{{
@@ -142,6 +146,17 @@ shopt -s expand_aliases
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
+
+# Unlimited history size
+export HISTSIZE=
+export HISTFILESIZE=
+export HISTFILE=~/.bash_eternal_history
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# Ignore duplicate commands
+export HISTCONTROL=ignoreboth:erasedups
+
+
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 # }}}
@@ -176,6 +191,11 @@ termcolors() {
 
 average() {
 	awk '{ total += $1; count++ } END { print total/count }' $1
+}
+
+cht ()
+{
+	curl cht.sh/$1
 }
 
 #

@@ -1,20 +1,23 @@
 require 'util'
+local vim = vim
 
 -- Use space key as <leader> key
 vim.g.mapleader = ' '
 
 -- Leader mappings {{{
-map('<leader>tn', [[:tabnew<cr>]], {silent = true})
-map('<leader>tc', [[:tabclose<cr>]], {silent = true})
-map('<leader>tm', [[:tabmove<cr>]], {silent = true})
-map('<leader>]', [[:tabnext<cr>]], {silent = true})
-map('<leader>[', [[:tabprevious<cr>]], {silent = true})
-map('<leader>>', [[:bn<cr>]], {silent = true})
-map('<leader><', [[:bp<cr>]], {silent = true})
-map('<leader>h', [[:lua ShowHighlightCaptures()<cr>]], {silent = true})
--- map('<leader>h', [[:echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>]])
-map('<leader>d', [[:%s/\s\+$//e<cr>]], {silent = true})
-map('<leader>n', [[:noh<cr>]], {silent = true})
+map('<leader>tn', [[<cmd>tabnew<cr>]], {silent = true})
+map('<leader>tc', [[<cmd>tabclose<cr>]], {silent = true})
+map('<leader>tm', [[<cmd>tabmove<cr>]], {silent = true})
+map('<leader>]', [[<cmd>tabnext<cr>]], {silent = true})
+map('<leader>[', [[<cmd>tabprevious<cr>]], {silent = true})
+map('<leader>>', [[<cmd>bn<cr>]], {silent = true})
+map('<leader><', [[<cmd>bp<cr>]], {silent = true})
+map('<leader>h', [[<cmd>lua ShowHighlightCaptures()<cr>]], {silent = true})
+-- map('<leader>h', [[<cmd>echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>]])
+map('<leader>d', [[<cmd>%s/\s\+$//e<cr>]], {silent = true})
+map('<leader>n', [[<cmd>noh<cr>]], {silent = true})
+map('<leader>u', [[<cmd>MundoToggle<cr>]], {silent = true})
+map('<leader>s', [[<cmd>Startify<cr>]], {silent = true})
 
 -- Create a fold around visual selection in vimrc
 vnoremap('<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A }}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true})

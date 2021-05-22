@@ -25,14 +25,7 @@ cmd [[filetype indent on]]
 
 set 'termguicolors'
 
--- Dark {{{
--- set {'background', 'dark'}
--- cmd [[colorscheme yin]]
--- }}}
--- Light {{{
--- set {'background', 'light'}
--- cmd [[colorscheme yang]]
--- }}}
+cmd [[colorscheme yin]]
 
 -- show linenumbers
 setw 'number'
@@ -119,7 +112,7 @@ setb {'textwidth', 500}
 setw 'foldenable'
 
 -- Open most folds by default
-set {'foldlevelstart', 0}
+set {'foldlevelstart', 99}
 
 -- 10 nested fold max
 setw {'foldnestmax', 10}
