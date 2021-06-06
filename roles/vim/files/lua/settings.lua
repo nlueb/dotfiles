@@ -25,7 +25,8 @@ cmd [[filetype indent on]]
 
 set 'termguicolors'
 
-cmd [[colorscheme yin]]
+cmd [[colorscheme rose-pine]]
+vim.api.nvim_set_option('background', 'dark')
 
 -- show linenumbers
 setw 'number'
@@ -112,7 +113,7 @@ setb {'textwidth', 500}
 setw 'foldenable'
 
 -- Open most folds by default
-set {'foldlevelstart', 99}
+set {'foldlevelstart', -1}
 
 -- 10 nested fold max
 setw {'foldnestmax', 10}
@@ -182,7 +183,7 @@ set 'splitbelow'
 set 'splitright'
 
 -- Enable mouse support
-set {'mouse', 'a'}
+-- set {'mouse', 'a'}
 
 -- No annoying sound on errors
 set {'errorbells', false}
@@ -194,6 +195,23 @@ setw {'signcolumn', 'yes'}
 
 -- Turn on PASTE mode with F6
 set {'pastetoggle', '<F6>'}
+-- }}}
+
+-- WSL Specific {{{
+if IsWSL() then
+	vim.g.clipboard = {
+		name = 'win32yank-wsl',
+		copy = {
+			['+'] = 'win32yank.exe -i --crlf',
+			['*'] = 'win32yank.exe -i --crlf'
+		},
+		paste = {
+			['+'] = 'win32yank.exe -o --lf',
+			['*'] = 'win32yank.exe -o --lf'
+		},
+		cache_enabled = 0
+	}
+end
 -- }}}
 
 -- Neovide settings {{{

@@ -17,6 +17,11 @@ local function init(use)
 
 	-- Colorscheme
 	-- use {'tjdevries/colorbuddy.vim', config = [[require 'plugins/colorbuddy']]}
+	use {
+		'rose-pine/neovim',
+		as = 'rose-pine',
+		config = [[require 'plugins/rose-pine']]
+	}
 
 	-- Git
 	use 'lambdalisue/gina.vim'
@@ -25,7 +30,10 @@ local function init(use)
 	use 'tpope/vim-repeat'
 	use 'tpope/vim-fugitive'
 
-	use 'machakann/vim-sandwich'
+	use {
+		'machakann/vim-sandwich'
+		-- config = [[require 'plugins/sandwich']]
+	}
 	-- use 'rstacruz/vim-closer'
 	use {'alvan/vim-closetag', config = [[require 'plugins/closetag']]}
 	-- use {'jiangmiao/auto-pairs', config = [[require 'plugins/auto-pairs']]}
@@ -57,9 +65,14 @@ local function init(use)
 	-- use 'liuchengxu/vista.vim'
 
 	-- Syntax
+	use 'rktjmp/lush.nvim'
 	use 'sheerun/vim-polyglot'
 	use 'vmchale/dhall-vim'
 	-- use 'wlangstroth/vim-racket'
+	use {
+		'sunjon/shade.nvim',
+		config = [[require 'plugins/shade']]
+	}
 
 	use {'gcmt/taboo.vim', config = [[require 'plugins/taboo']]}
 

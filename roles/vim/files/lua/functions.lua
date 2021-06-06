@@ -3,37 +3,6 @@ local fold_metadata = {}
 local vim = vim
 -- }}}
 
-local actions = 'Not Set'
-
-function CodeActions()
-	local lsp_util = require("vim.lsp.util")
-	local params = lsp_util.make_range_params()
-	params.range.start = {character = 0, line = 0}
-	params.range['end'] = {character = 0, line = vim.api.nvim_buf_line_count(0)}
-	print(vim.inspect(params))
-	local result, cancel = vim.lsp.buf_request(0, 'textDocument/codeAction', params, UpdateSoos)
-	-- print(vim.inspect(result))
-end
-
-function UpdateSoos(err, method, result, client_id, bufnr, config)
-	actions = 'err: ' ..
-		vim.inspect(err) ..
-		' method: ' ..
-		vim.inspect(method) ..
-		' result: ' ..
-		vim.inspect(result) ..
-		' client_id: ' ..
-		vim.inspect(client_id) ..
-		' bufnr: ' ..
-		vim.inspect(bufnr) ..
-		' config: ' ..
-		vim.inspect(config)
-end
-
-function PrintSoos()
-	print(actions)
-end
-
 -- String Functions {{{
 function string:split(delimiter)
   return vim.split(self, delimiter)
@@ -302,6 +271,16 @@ function FoldText()
 	end
 end
 -- }}}
+-- }}}
+
+-- Windows WSL Stuff {{{
+function IsWSL()
+	local version = vim.fn.readfile('/proc/version', '', 1)
+	if vim.tbl_isempty(version) then
+		error 'Could not read /proc/version'
+	end
+	return string.find(version[1], 'microsoft')
+end
 -- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

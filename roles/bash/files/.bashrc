@@ -11,6 +11,12 @@
 
 [[ $- != *i* ]] && return
 
+if cat /proc/version | grep -q 'microsoft'; then
+	WSL=true
+else
+	WSL=false
+fi
+
 # Configure {{{
 # Change the window title of X terminals
 case ${TERM} in
@@ -83,9 +89,15 @@ alias uctl='systemctl --user'
 alias paci='sudo pacman --color=auto -S'
 alias pacr='sudo pacman --color=auto -Rs'
 alias pacu='sudo pacman --color=auto -Syu'
-alias yi='yay -S'
-alias yr='yay -R'
-alias yu='yay -Syu --devel --timeupdate'
+if [[ $WSL == true ]]; then
+	alias yi='sudo apt install'
+	alias yr='sudo apt --purge remove'
+	alias yu='sudo apt update && sudo apt upgrade'
+else
+	alias yi='yay -S'
+	alias yr='yay -R'
+	alias yu='yay -Syu --devel --timeupdate'
+fi
 alias dockerc='docker images -f "dangling=true" -q | xargs --no-run-if-empty docker rmi -f'
 alias e="edit.sh"
 alias er="edit.sh /"
@@ -93,6 +105,14 @@ alias ed="edit.sh ."
 alias eh="edit.sh ~"
 alias live="less +F" # Live reload files
 alias ss20="cd ~/Documents/h-da/ss20/"
+
+# WSL Specific {{{
+if [[ $WSL == true ]]; then
+	alias home="cd /mnt/c/Users/nluebker"
+	alias helmfile="~/bin/helmfile_linux_amd64"
+fi
+# }}}
+
 # }}}
 
 # Exports {{{
@@ -101,6 +121,9 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:/home/nils/.local/bin
 export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
 export PATH=$PATH:/home/nils/.local/share/racket/7.9/bin
+if [[ $WSL == true ]]; then
+	export PATH=$PATH:/home/nils/bin
+fi
 export GOPATH=$(go env GOPATH)
 # export GOFLAGS="-mod=vendor"
 export ALSA_CARD=G4M1
@@ -120,13 +143,18 @@ export WORKSPACE=/home/nils/.local/share/jdt-ls
 # export DOCKER_HOST=ssh://nils@80.158.57.148:22
  export MANPAGER='nvim +Man!'
  # export MANWIDTH=999
+# Proxy
+export HTTP_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
+export http_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+export HTTPS_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
+export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+export NO_PROXY="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
+export no_proxy="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
 # }}}
 
 # Sources {{{
 # source /home/nils/.oh-my-git/prompt.sh
 # source ~/.cargo/env
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-source /home/nils/.config/broot/launcher/bash/br
 # }}}
 
 # Misc {{{
@@ -251,4 +279,6 @@ if ! [[ "${PROMPT_COMMAND:-}" =~ _direnv_hook ]]; then
 fi
 # }}}
 
-# vim: foldmethod=marker foldlevel=0 foldenable formatoptions-=cro foldlevelstart=0
+. "$HOME/.cargo/env"
+
+# vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
