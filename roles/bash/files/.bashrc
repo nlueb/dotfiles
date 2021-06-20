@@ -144,17 +144,21 @@ export WORKSPACE=/home/nils/.local/share/jdt-ls
  export MANPAGER='nvim +Man!'
  # export MANWIDTH=999
 # Proxy
-export HTTP_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
-export http_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
-export HTTPS_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
-export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
-export NO_PROXY="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
-export no_proxy="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
+if [[ $WSL == true ]]; then
+	export HTTP_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
+	export http_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+	export HTTPS_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
+	export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+	export NO_PROXY="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
+	export no_proxy="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
+fi
 # }}}
 
 # Sources {{{
 # source /home/nils/.oh-my-git/prompt.sh
 # source ~/.cargo/env
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# source /home/nils/.config/broot/launcher/bash/br
 # }}}
 
 # Misc {{{

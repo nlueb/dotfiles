@@ -19,11 +19,10 @@ cl_smooth_zoom_time 0
 player_color_body 8349952
 player_color_feet 1891083
 player_skin "sheep"
-ui_page 10
 ui_settings_page 2
 ui_toolbox_page 2
-ui_server_address "193.70.37.160:8307"
-ui_mousesens 50
+ui_server_address "31.186.250.44:8306"
+ui_mousesens 100
 ui_color 4278190080
 dummy_name "el Norberto"
 dummy_clan "Eagle"
@@ -48,6 +47,8 @@ snd_nonactive_mute 1
 snd_gun 0
 gfx_screen_width 3840
 gfx_screen_height 2160
+gfx_desktop_height 3840
+gfx_desktop_height 2160
 gfx_fullscreen 0
 gfx_resizable 1
 gfx_high_detail 0
@@ -66,6 +67,7 @@ cl_show_ids 1
 cl_race_show_ghost 0
 cl_overlay_entities 100
 cl_show_quads 0
+cl_background_entities_color 2135
 cl_background_entities "bg_668.map"
 cl_menu_map ""
 cl_background_show_tiles_layers 1

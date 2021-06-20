@@ -25,8 +25,7 @@ cmd [[filetype indent on]]
 
 set 'termguicolors'
 
-cmd [[colorscheme rose-pine]]
-vim.api.nvim_set_option('background', 'dark')
+cmd [[colorscheme rose-base]]
 
 -- show linenumbers
 setw 'number'
@@ -113,7 +112,7 @@ setb {'textwidth', 500}
 setw 'foldenable'
 
 -- Open most folds by default
-set {'foldlevelstart', -1}
+set {'foldlevelstart', 20}
 
 -- 10 nested fold max
 setw {'foldnestmax', 10}

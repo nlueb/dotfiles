@@ -18,12 +18,12 @@ cl_show_welcome 0
 cl_smooth_zoom_time 0
 player_color_body 8349952
 player_color_feet 1891083
-player_skin "bluestripe"
-ui_page 10
+player_skin "Fluffy_1"
+ui_page 6
 ui_settings_page 2
 ui_toolbox_page 2
-ui_server_address "31.186.250.44:8302"
-ui_mousesens 50
+ui_server_address "185.254.96.83:8305"
+ui_mousesens 100
 ui_color 4278190080
 dummy_color_body 7717415
 dummy_color_feet 1891083
@@ -33,7 +33,7 @@ player_name "e"
 cl_auto_demo_record 1
 cl_auto_demo_max 1000
 cl_reset_wanted_weapon_on_death 0
-br_filter_string ""
+br_filter_string "KoG"
 br_sort 1
 br_demo_sort 1
 snd_volume 5
@@ -41,11 +41,12 @@ snd_ambient_volume 100
 snd_background_music_volume 51
 snd_nonactive_mute 1
 snd_gun 0
-gfx_screen_width 3840
-gfx_screen_height 2160
+gfx_screen_width 2560
+gfx_screen_height 1440
+gfx_desktop_height 3840
+gfx_desktop_height 2160
 gfx_fullscreen 0
 gfx_resizable 1
-gfx_high_detail 0
 gfx_refresh_rate 800
 gfx_tune_overlay 1
 cl_race_binds_set 1
@@ -60,6 +61,8 @@ conn_timeout 1000
 cl_show_ids 1
 cl_race_show_ghost 0
 cl_overlay_entities 100
+cl_show_quads 0
+cl_background_entities_color 1371
 cl_background_entities "bg_668.map"
 cl_menu_map ""
 cl_background_show_tiles_layers 1
@@ -77,7 +80,7 @@ bind b "say /top5"
 bind c "inp_mousesens 200"
 bind d "+right"
 bind e "toggle cl_dummy 0 1"
-bind f "exec \"deep_fly_on.cfg\""
+bind f "exec \"deep_fly_off.cfg\""
 bind g "say /team 27"
 bind h "say /team 7"
 bind i "toggle cl_dummy_copy_moves 0 1"
@@ -103,8 +106,6 @@ bind 4 "toggle cl_show_quads 0 1"
 bind 5 "toggle gfx_high_detail 0 1"
 bind 6 "toggle cl_showhud 0 1"
 bind 7 "cl_showhud 0"
-bind 8 "say пока"
-bind 9 "say йй"
 bind 0 "+showhookcoll"
 bind tab "+scoreboard"
 bind space "+jump"
@@ -120,7 +121,7 @@ bind left "rcon left"
 bind down "rcon down"
 bind up "rcon up"
 bind lshift "+show_chat"
-bind mouse1 "+fire"
+bind mouse1 "+fire;+toggle cl_dummy_hammer 1 0 "
 bind mouse2 "+hook"
 bind mouse3 "+weapon3"
 bind mouse5 "+weapon4"

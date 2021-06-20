@@ -17,11 +17,11 @@ local function init(use)
 
 	-- Colorscheme
 	-- use {'tjdevries/colorbuddy.vim', config = [[require 'plugins/colorbuddy']]}
-	use {
-		'rose-pine/neovim',
-		as = 'rose-pine',
-		config = [[require 'plugins/rose-pine']]
-	}
+	-- use {
+	-- 	'rose-pine/neovim',
+	-- 	as = 'rose-pine',
+	-- 	config = [[require 'plugins/rose-pine']]
+	-- }
 
 	-- Git
 	use 'lambdalisue/gina.vim'
@@ -38,7 +38,11 @@ local function init(use)
 	use {'alvan/vim-closetag', config = [[require 'plugins/closetag']]}
 	-- use {'jiangmiao/auto-pairs', config = [[require 'plugins/auto-pairs']]}
 
-	use 'junegunn/vim-peekaboo'
+	use {
+		'tversteeg/registers.nvim',
+		config = [[require 'plugins/registers']]
+	}
+	-- use 'junegunn/vim-peekaboo'
 	use 'junegunn/vim-easy-align'
 
 	-- Visualize undo tree
@@ -168,3 +172,4 @@ end
 local config = {display = {open_fn = util.float}}
 
 packer.startup {init, config = config}
+--vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

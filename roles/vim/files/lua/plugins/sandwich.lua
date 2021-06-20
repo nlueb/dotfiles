@@ -1,7 +1,5 @@
 local vim = vim
 
-print 'test'
-
 vim.g["sandwich#recipes"] = {}
 
 table.insert(vim.g["sandwich#recipes"], { buns = {'( ', ' )'}, nesting = 1, match_syntax = 1, input = {'('} })
