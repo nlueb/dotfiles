@@ -195,6 +195,8 @@ export HISTCONTROL=ignoreboth:erasedups
 # }}}
 
 # Functions {{{
+
+# Global {{{
 termcolors() {
 	local fgc bgc vals seq0
 
@@ -269,6 +271,19 @@ man() {
 		LESS_TERMCAP_us=$'\e[1;32m' \
 			man "$@"
 }
+#}}}
+
+# WSL {{{
+if [[ $WSL == true ]]; then
+       cdd() {
+               ignore_options="--exclude 'vendor' \
+                                               --exclude 'node_modules'"
+               fzf_options="--height 40% --layout=reverse"
+               cd $(fd . '/mnt/c/Users/nluebker/Dev' --type d $ignore_options | fzf $fzf_options)
+       }
+fi
+#}}}
+
 # }}}
 
 # Direnv {{{
