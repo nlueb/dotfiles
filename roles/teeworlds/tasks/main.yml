@@ -1,5 +1,0 @@
-- name: Link .teeworlds directory
-  file:
-    src: "{{ role_path }}/files"
-    dest: "{{ paths.home }}/.teeworlds"
-    state: link

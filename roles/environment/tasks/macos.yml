@@ -1,5 +1,0 @@
-- name: Install MacOS dependencies
-  homebrew:
-    name: "{{ packages.global + packages.macos }}"
-    state: present
-  become: true
