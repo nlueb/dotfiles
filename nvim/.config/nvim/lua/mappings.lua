@@ -18,6 +18,7 @@ map('<leader>d', [[<cmd>%s/\s\+$//e<cr>]], {silent = true})
 map('<leader>n', [[<cmd>noh<cr>]], {silent = true})
 map('<leader>u', [[<cmd>MundoToggle<cr>]], {silent = true})
 map('<leader>s', [[<cmd>Startify<cr>]], {silent = true})
+map('<leader>lt', [[<cmd>TroubleToggle<cr>]], {silent = true})
 
 -- Create a fold around visual selection in vimrc
 vnoremap('<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true})

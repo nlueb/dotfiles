@@ -110,7 +110,8 @@ alias tree="tre"
 # WSL Specific {{{
 if [[ $WSL == true ]]; then
 	alias home="cd /mnt/c/Users/nluebker"
-	alias helmfile="~/bin/helmfile_linux_amd64"
+	alias helmfile="~/.local/bin/helmfile_linux_amd64"
+	# alias rust-analyzer="rustup run nightly rust-analyzer"
 fi
 # }}}
 
@@ -119,12 +120,9 @@ fi
 # Exports {{{
 export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 export PATH=$PATH:$(go env GOPATH)/bin
-export PATH=$PATH:/home/nils/.local/bin
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
 export PATH=$PATH:/home/nils/.local/share/racket/7.9/bin
-if [[ $WSL == true ]]; then
-	export PATH=$PATH:/home/nils/bin
-fi
 export GOPATH=$(go env GOPATH)
 # export GOFLAGS="-mod=vendor"
 export ALSA_CARD=G4M1

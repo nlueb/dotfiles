@@ -25,7 +25,7 @@ vim.api.nvim_exec([[
 -- Use Enter for completion
 -- imap('<CR>', [[PerformCR()]], {expr = true, silent = true})
 -- imap('<CR>', [[pumvisible() ? complete_info()["selected"] != "-1" ? "<c-o>:call compe#confirm()<cr>" : "<c-o>:call compe#close()<cr>" : "<CR>"]], {expr = true, silent = true})
-imap('<CR>', [[compe#confirm("<cr>")]], {expr = true, silent = true})
+imap('<CR>', [[compe#confirm(lexima#expand('<LT>CR>', 'i'))]], {expr = true, silent = true})
 
 -- Use Ctrl + Space to toggle completion
 inoremap('<C-Space>', [[compe#complete()]], {expr = true, silent = true})

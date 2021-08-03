@@ -20,6 +20,9 @@ cmd [[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]]
 -- Set Cursor to beam when leaving vim
 -- cmd [[au VimLeave * set guicursor=a:ver30-blinkoff0]]
 
+-- Use spaces for YAML
+cmd [[autocmd FileType helm setlocal ts=2 sts=2 sw=2 expandtab]]
+
 vim.api.nvim_exec([[
 	function! InActiveLine()
 		return luaeval("require'plugins/status-line'.InActiveLine(vim.api.nvim_win_get_buf(_A), _A)", g:statusline_winid)
@@ -44,6 +47,9 @@ local autocmds = {
 	},
 	FiletypeSettings = {
 		{'FileType', 'scheme', [[setlocal shiftwidth=2 softtabstop=2 expandtab | let b:AutoPairs = {"(": ")", "[":"]", "{":"}", '"':'"'}]]}
+	},
+	Helmfile = {
+		{'BufRead,BufNewFile', '*.gotmpl', [[setfiletype helm]]}
 	}
 }
 

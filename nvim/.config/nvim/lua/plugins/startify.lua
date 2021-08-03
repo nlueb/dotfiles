@@ -16,6 +16,7 @@ vim.g.startify_bookmarks = {
 	{k = '~/.config/kitty/kitty.conf'},
 	{t = '~/.tmux.conf'},
 	{b = '~/.bashrc'},
+	{z = '~/.zshrc'},
 	{d = '~/Documents'},
 	{c = '~/.config'},
 }

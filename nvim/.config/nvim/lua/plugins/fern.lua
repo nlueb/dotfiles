@@ -1,7 +1,7 @@
 require 'util'
 local vim = vim
 
-vim.g['fern#smart_cursor'] = 'hide'
+vim.g['fern#hide_cursor'] = 'hide'
 vim.g['fern#mark_symbol'] = ''
 vim.g['fern#renderer'] = 'nerdfont'
 

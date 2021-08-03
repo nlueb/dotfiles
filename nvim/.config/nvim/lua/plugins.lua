@@ -9,164 +9,178 @@ local packer = require 'packer'
 local util = require 'packer.util'
 
 local function init(use)
-	-- Packer can manage itself as an optional plugin
-	use {'wbthomason/packer.nvim', opt = true}
+    -- Packer can manage itself as an optional plugin
+    use {'wbthomason/packer.nvim', opt = true}
 
-	-- Patches
-	use 'antoinemadec/FixCursorHold.nvim'
+    -- Patches
+    use 'antoinemadec/FixCursorHold.nvim'
 
-	-- Colorscheme
-	-- use {'tjdevries/colorbuddy.vim', config = [[require 'plugins/colorbuddy']]}
-	-- use {
-	-- 	'rose-pine/neovim',
-	-- 	as = 'rose-pine',
-	-- 	config = [[require 'plugins/rose-pine']]
-	-- }
+    -- Colorscheme
+    -- use {'tjdevries/colorbuddy.vim', config = [[require 'plugins/colorbuddy']]}
+    -- use {
+    -- 	'rose-pine/neovim',
+    -- 	as = 'rose-pine',
+    -- 	config = [[require 'plugins/rose-pine']]
+    -- }
 
-	-- Git
-	use 'lambdalisue/gina.vim'
+    -- Git
+    use 'lambdalisue/gina.vim'
 
-	use 'tpope/vim-commentary'
-	use 'tpope/vim-repeat'
-	use 'tpope/vim-fugitive'
+    use 'tpope/vim-commentary'
+    use 'tpope/vim-repeat'
+    use 'tpope/vim-fugitive'
 
-	use {
-		'machakann/vim-sandwich'
-		-- config = [[require 'plugins/sandwich']]
-	}
-	-- use 'rstacruz/vim-closer'
-	use {'alvan/vim-closetag', config = [[require 'plugins/closetag']]}
-	-- use {'jiangmiao/auto-pairs', config = [[require 'plugins/auto-pairs']]}
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = [[require 'plugins/indent-blankline']]
+    }
 
-	use {
-		'tversteeg/registers.nvim',
-		config = [[require 'plugins/registers']]
-	}
-	-- use 'junegunn/vim-peekaboo'
-	use 'junegunn/vim-easy-align'
+    use {
+        'machakann/vim-sandwich'
+        -- config = [[require 'plugins/sandwich']]
+    }
+    -- use 'rstacruz/vim-closer'
+    use { 'cohama/lexima.vim' }
+    use {'alvan/vim-closetag', config = [[require 'plugins/closetag']]}
+    -- use {'jiangmiao/auto-pairs', config = [[require 'plugins/auto-pairs']]}
 
-	-- Visualize undo tree
-	use 'simnalamburt/vim-mundo'
+    use {
+        'tversteeg/registers.nvim',
+        config = [[require 'plugins/registers']]
+    }
+    -- use 'junegunn/vim-peekaboo'
+    use 'junegunn/vim-easy-align'
 
-	use {'mhinz/vim-startify', config = [[require 'plugins/startify']]}
+    -- Visualize undo tree
+    use 'simnalamburt/vim-mundo'
 
-	-- File Drawers
-	-- use {'kyazdani42/nvim-tree.lua', config =[[require 'plugins/tree']]}
-	use {
-		'lambdalisue/fern.vim',
-		config = [[require 'plugins/fern']],
-		requires = {
-			'lambdalisue/fern-hijack.vim',
-			'lambdalisue/fern-renderer-nerdfont.vim',
-			'lambdalisue/nerdfont.vim',
-		},
-	}
+    use {'mhinz/vim-startify', config = [[require 'plugins/startify']]}
 
-	-- Highlight chars for f and t motions
-	-- use 'unblevable/quick-scope'
+    -- File Drawers
+    -- use {'kyazdani42/nvim-tree.lua', config =[[require 'plugins/tree']]}
+    use {
+        'lambdalisue/fern.vim',
+        config = [[require 'plugins/fern']],
+        requires = {
+            'lambdalisue/fern-hijack.vim',
+            'lambdalisue/fern-renderer-nerdfont.vim',
+            'lambdalisue/nerdfont.vim',
+        },
+    }
 
-	-- View and search LSP symbols, tags in Vim/NeoVim.
-	-- use 'liuchengxu/vista.vim'
+    -- Highlight chars for f and t motions
+    -- use 'unblevable/quick-scope'
 
-	-- Syntax
-	use 'rktjmp/lush.nvim'
-	use 'sheerun/vim-polyglot'
-	use 'vmchale/dhall-vim'
-	-- use 'wlangstroth/vim-racket'
-	use {
-		'sunjon/shade.nvim',
-		config = [[require 'plugins/shade']]
-	}
+    -- View and search LSP symbols, tags in Vim/NeoVim.
+    -- use 'liuchengxu/vista.vim'
 
-	use {'gcmt/taboo.vim', config = [[require 'plugins/taboo']]}
+    -- Syntax
+    use 'rktjmp/lush.nvim'
+    use 'sheerun/vim-polyglot'
+    use 'vmchale/dhall-vim'
+    -- use 'wlangstroth/vim-racket'
+    use {
+        'sunjon/shade.nvim',
+        config = [[require 'plugins/shade']]
+    }
 
-	use 'tweekmonster/startuptime.vim'
+    use {'gcmt/taboo.vim', config = [[require 'plugins/taboo']]}
 
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		config = [[require 'plugins/treesitter']],
-		requires = {
-			'romgrk/nvim-treesitter-context',
-			'nvim-treesitter/playground',
-			'nvim-treesitter/nvim-treesitter-textobjects',
-			'nvim-treesitter/nvim-treesitter-refactor',
-		},
-	}
+    use 'tweekmonster/startuptime.vim'
 
-	use {
-		'neovim/nvim-lspconfig',
-		-- after = {'lsp-status.nvim'},
-		config = [[require 'plugins/lsp']],
-	}
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        config = [[require 'plugins/treesitter']],
+        requires = {
+            'romgrk/nvim-treesitter-context',
+            'nvim-treesitter/playground',
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            'nvim-treesitter/nvim-treesitter-refactor',
+        },
+    }
 
-	use {
-		'kosayoda/nvim-lightbulb',
-		config = [[require 'plugins/lightbulb']]
-	}
+    use {
+        'neovim/nvim-lspconfig',
+        -- after = {'lsp-status.nvim'},
+        config = [[require 'plugins/lsp']],
+    }
 
-	use {
-		'onsails/lspkind-nvim',
-		config = [[require 'plugins/lspkind']]
-	}
+    -- use {
+    -- 	'kosayoda/nvim-lightbulb',
+    -- 	config = [[require 'plugins/lightbulb']]
+    -- }
 
-	use 'nvim-lua/lsp-status.nvim'
+    use {
+        'onsails/lspkind-nvim',
+        config = [[require 'plugins/lspkind']]
+    }
 
-	-- use {
-	-- 	'nvim-lua/completion-nvim',
-	-- 	config = [[require 'plugins/completion']],
-	-- 	requires = {'steelsojka/completion-buffers'},
-	-- }
+    use 'nvim-lua/lsp-status.nvim'
 
-	use {'hrsh7th/nvim-compe', config = [[require 'plugins/compe']]}
+    -- use {
+    -- 	'nvim-lua/completion-nvim',
+    -- 	config = [[require 'plugins/completion']],
+    -- 	requires = {'steelsojka/completion-buffers'},
+    -- }
 
-	use {
-		'hrsh7th/vim-vsnip',
-		config = [[require 'plugins/vsnip']],
-		requires = {'golang/vscode-go', 'microsoft/vscode-python', 'keyring/vsc-lua'},
-	}
+    use {'hrsh7th/nvim-compe', config = [[require 'plugins/compe']]}
 
-	use {'hrsh7th/vim-vsnip-integ', after = 'vim-vsnip'}
+    use {
+        'hrsh7th/vim-vsnip',
+        config = [[require 'plugins/vsnip']],
+        requires = {'golang/vscode-go', 'microsoft/vscode-python', 'keyring/vsc-lua'},
+    }
 
-	-- use {'RishabhRD/popfix', run = 'make'}
+    use {'hrsh7th/vim-vsnip-integ', after = 'vim-vsnip'}
 
-	-- use {
-	-- 	'RishabhRD/nvim-lsputils',
-	-- 	config = [[require 'plugins/lsputils']],
-	-- 	after = 'popfix',
-	-- }
+    -- use {'RishabhRD/popfix', run = 'make'}
 
-	use {'glepnir/lspsaga.nvim', config = [[require 'plugins/lspsaga']]}
+    -- use {
+    -- 	'RishabhRD/nvim-lsputils',
+    -- 	config = [[require 'plugins/lsputils']],
+    -- 	after = 'popfix',
+    -- }
 
-	use {
-		'rrethy/vim-hexokinase',
-		run = [[make hexokinase]],
-		config = [[require 'plugins/haxokinase']],
-	}
+    use {'glepnir/lspsaga.nvim', config = [[require 'plugins/lspsaga']]}
+    use {
+        "folke/trouble.nvim",
+        config = [[require 'plugins/trouble']]
+    }
 
-	use {
-		'nvim-telescope/telescope.nvim',
-		config = [[require 'plugins/telescope']],
-		requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
-	}
+    use {
+        "ray-x/lsp_signature.nvim"
+    }
 
-	use {
-		'nvim-telescope/telescope-fzy-native.nvim',
-		config = [[require 'plugins/fzy']],
-	}
+    use {
+        'rrethy/vim-hexokinase',
+        run = [[make hexokinase]],
+        config = [[require 'plugins/haxokinase']],
+    }
 
-	use {'kyazdani42/nvim-web-devicons', config = [[require 'plugins/devicons']]}
+    use {
+        'nvim-telescope/telescope.nvim',
+        config = [[require 'plugins/telescope']],
+        requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
+    }
 
-	use {'bfredl/nvim-luadev', config = [[require 'plugins/luadev']]}
+    use {
+        'nvim-telescope/telescope-fzy-native.nvim',
+        config = [[require 'plugins/fzy']],
+    }
 
-	use {
-		'lewis6991/gitsigns.nvim',
-		config = [[require 'plugins/gitsigns']],
-		requires = 'nvim-lua/plenary.nvim',
-	}
+    use {'kyazdani42/nvim-web-devicons', config = [[require 'plugins/devicons']]}
 
-	use {'lambdalisue/suda.vim', config = [[require 'plugins/suda']]}
+    use {'bfredl/nvim-luadev', config = [[require 'plugins/luadev']]}
 
-	use 'Shougo/deol.nvim'
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = [[require 'plugins/gitsigns']],
+        requires = 'nvim-lua/plenary.nvim',
+    }
+
+    use {'lambdalisue/suda.vim', config = [[require 'plugins/suda']]}
+
+    use 'Shougo/deol.nvim'
 end
 
 local config = {display = {open_fn = util.float}}

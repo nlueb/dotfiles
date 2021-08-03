@@ -4,6 +4,7 @@ local vim = vim
 local lsp = vim.lsp
 local lspcfg = require 'lspconfig'
 -- local completion = require 'completion'
+local lspsig = require 'lsp_signature'
 
 -- lsp-status {{{
 local lsp_status = require 'lsp-status'
@@ -24,6 +25,7 @@ lsp_status.register_progress()
 local function CustomOnAttach(client)
 	-- completion.on_attach(client)
 	lsp_status.on_attach(client)
+	lspsig.on_attach()
 end
 
 -- Language Servers {{{
@@ -165,7 +167,7 @@ lspcfg.efm.setup {
 lsp.handlers['textDocument/publishDiagnostics'] =
 	lsp.with(lsp.diagnostic.on_publish_diagnostics, {
 		underline = true,
-		virtual_text = false,
+		virtual_text = true,
 		-- {
 		-- 	spacing = 4,
 		-- 	-- prefix = '',
@@ -194,7 +196,7 @@ nnoremap('<leader>li', [[<cmd>lua vim.lsp.buf.implementation()<CR>]], {silent = 
 nnoremap('<leader>lf', [[<cmd>lua vim.lsp.buf.formatting()<CR>]], {silent = true})
 vnoremap('<leader>lf', [[<cmd>lua vim.lsp.buf.range_formatting()<CR>]], {silent = true})
 -- nnoremap('<leader>lr', [[<cmd>lua vim.lsp.buf.rename()<CR>]], {silent = true})
-nnoremap('<leader>lt', [[<cmd>lua vim.lsp.buf.type_definition()<CR>]], {silent = true})
+-- nnoremap('<leader>lt', [[<cmd>lua vim.lsp.buf.type_definition()<CR>]], {silent = true})
 nnoremap('<leader>ll', [[<cmd>lua print(vim.lsp.buf.server_ready())<CR>]], {silent = true})
 -- }}}
 

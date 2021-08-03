@@ -82,7 +82,8 @@ setw {'fillchars', 'vert:┃,fold: '}
 
 -- Indentation {{{
 -- Use tabs instead of spaces
-setb 'noexpandtab'
+-- setb 'noexpandtab'
+setb 'expandtab'
 
 -- Be smart when using tabs ;)
 set 'smarttab'
@@ -112,7 +113,7 @@ setb {'textwidth', 500}
 setw 'foldenable'
 
 -- Open most folds by default
-set {'foldlevelstart', 20}
+set {'foldlevelstart', 99}
 
 -- 10 nested fold max
 setw {'foldnestmax', 10}
