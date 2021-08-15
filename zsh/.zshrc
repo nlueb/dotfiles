@@ -1,0 +1,225 @@
+#
+#                       88
+#                       88
+#                       88
+# 888888888  ,adPPYba,  88,dPPYba,   8b,dPPYba,   ,adPPYba,
+#      a8P"  I8[    ""  88P'    "8a  88P'   "Y8  a8"     ""
+#   ,d8P'     `"Y8ba,   88       88  88          8b
+# ,d8"       aa    ]8I  88       88  88          "8a,   ,aa
+# 888888888  `"YbbdP"'  88       88  88           `"Ybbd8"'
+#
+
+source ~/.zplug/init.zsh
+
+if cat /proc/version | grep -q 'microsoft'; then
+	WSL=true
+else
+	WSL=false
+fi
+
+# Plugins {{{
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
+
+# Prompt
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+
+# ZSH Users
+zplug "zsh-users/zsh-completions",              defer:0
+zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
+# }}}
+
+# Settings {{{
+# Allows you to enter dirs without typing cd
+setopt autocd
+
+# Custom completions
+fpath+=~/.zfunc
+compinit
+# }}}
+
+# History {{{
+export HISTFILE=~/.zsh_history
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+
+# Add history immediately
+setopt INC_APPEND_HISTORY
+
+# Ignore duplicates
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+
+# Remove blanks
+setopt HIST_REDUCE_BLANKS
+# }}}
+
+# Alias {{{
+alias v='nvim'
+alias ls='exa'
+alias c='bat'
+alias cp='rsync -avhW --no-compress --progress'
+alias tree="tre"
+alias _='sudo'
+alias ctl='sudo systemctl'
+alias uctl='systemctl --user'
+if [[ $WSL == true ]]; then
+	alias yi='sudo apt install'
+	alias yr='sudo apt --purge remove'
+	alias yu='sudo apt update && sudo apt upgrade'
+else
+	alias yi='yay -S'
+	alias yr='yay -R'
+	alias yu='yay -Syu --devel --timeupdate'
+fi
+
+# WSL Specific {{{
+if [[ $WSL == true ]]; then
+	alias home="cd /mnt/c/Users/nluebker"
+	alias helmfile="~/.local/bin/helmfile_linux_amd64"
+	# alias rust-analyzer="rustup run nightly rust-analyzer"
+fi
+# }}}
+
+# }}}
+
+# Exports {{{
+export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
+export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
+export PATH=$PATH:/home/nils/.local/share/racket/7.9/bin
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export GOPATH=$(go env GOPATH)
+export EDITOR=nvim
+export MANPAGER='nvim +Man!'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color=dark
+--color=fg:#555169,bg:-1,hl:#2a2837,fg+:#555169,bg+:-1,hl+:#eb6f92
+--color=info:#c4a7e7,prompt:#ebbcba,pointer:#eb6f92,marker:#f6c177,spinner:#eb6f92
+'
+if [[ $WSL == true ]]; then
+	export HTTP_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
+	export http_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+	export HTTPS_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
+	export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+	export NO_PROXY="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
+	export no_proxy="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
+fi
+# }}}
+
+# Sources {{{
+source ~/.cargo/env
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [[ $WSL == true ]]; then
+	# Set up fnm (node version manager)
+	eval "$(fnm env)"
+fi
+# }}}
+
+# Functions {{{
+
+# Global {{{
+termcolors() {
+	local fgc bgc vals seq0
+
+	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
+
+	# foreground colors
+	for fgc in {30..37}; do
+		# background colors
+		for bgc in {40..47}; do
+			fgc=${fgc#37} # white
+			bgc=${bgc#40} # black
+
+			vals="${fgc:+$fgc;}${bgc}"
+			vals=${vals%%;}
+
+			seq0="${vals:+\e[${vals}m}"
+			printf "  %-9s" "${seq0:-(default)}"
+			printf " ${seq0}TEXT\e[m"
+			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+		done
+		echo; echo
+	done
+}
+
+average() {
+	awk '{ total += $1; count++ } END { print total/count }' $1
+}
+
+cht ()
+{
+	curl cht.sh/$1
+}
+
+#
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2)   tar xjf $1   ;;
+			*.tar.gz)    tar xzf $1   ;;
+			*.tar.xz)    tar -xvf $1  ;;
+			*.bz2)       bunzip2 $1   ;;
+			*.rar)       unrar x $1   ;;
+			*.gz)        gunzip $1    ;;
+			*.tar)       tar xf $1    ;;
+			*.tbz2)      tar xjf $1   ;;
+			*.tgz)       tar xzf $1   ;;
+			*.zip)       unzip $1     ;;
+			*.Z)         uncompress $1;;
+			*.7z)        7z x $1      ;;
+			*)           echo "'$1' cannot be extracted via ex()" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
+
+# Colorized man pages
+man() {
+	env \
+		LESS_TERMCAP_mb=$'\e[1;31m' \
+		LESS_TERMCAP_md=$'\e[1;31m' \
+		LESS_TERMCAP_me=$'\e[0m' \
+		LESS_TERMCAP_se=$'\e[0m' \
+		LESS_TERMCAP_so=$'\e[1;44;33m' \
+		LESS_TERMCAP_ue=$'\e[0m' \
+		LESS_TERMCAP_us=$'\e[1;32m' \
+		man "$@"
+	}
+#}}}
+
+# WSL {{{
+if [[ $WSL == true ]]; then
+	cdd() {
+		ignore_options=(--exclude 'vendor' --exclude 'node_modules')
+		fzf_options=(--height 40% --layout=reverse)
+		cd $(fd . --type d ${ignore_options} '/mnt/c/Users/nluebker/Dev' | fzf ${fzf_options})
+	}
+fi
+#}}}
+
+# }}}
+
+# zplug {{{
+# zplug check returns true if all packages are installed
+# Therefore, when it returns false, run zplug install
+if ! zplug check; then
+	zplug install
+fi
+
+zplug load
+# }}}
+
+# vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
