@@ -1,6 +1,5 @@
-require 'util'
-
 local vim = vim
+local cmd = vim.cmd
 
 -- https://github.com/norcalli/nvim_utils/blob/master/lua/nvim_utils.lua#L554-L567
 local function nvim_create_augroups(definitions)

@@ -1,13 +1,13 @@
-require 'util'
-local compe = require 'compe'
-
 local vim = vim
+local keymap = vim.api.nvim_set_keymap
+
+local compe = require 'compe'
 
 vim.o.completeopt = 'menu,menuone,noselect'
 
 -- Use <C-j> and <C-k> to navigate through popup menu
-inoremap('<C-j>', [[pumvisible() ? "<Down>" : "<C-j>"]], {expr = true})
-inoremap('<C-k>', [[pumvisible() ? "<Up>" : "<C-k>"]], {expr = true})
+keymap('i', '<C-j>', [[pumvisible() ? "<Down>" : "<C-j>"]], {expr = true, noremap = true})
+keymap('i', '<C-k>', [[pumvisible() ? "<Up>" : "<C-k>"]], {expr = true, noremap = true})
 
 vim.api.nvim_exec([[
 	function! PerformCR()
@@ -25,12 +25,12 @@ vim.api.nvim_exec([[
 -- Use Enter for completion
 -- imap('<CR>', [[PerformCR()]], {expr = true, silent = true})
 -- imap('<CR>', [[pumvisible() ? complete_info()["selected"] != "-1" ? "<c-o>:call compe#confirm()<cr>" : "<c-o>:call compe#close()<cr>" : "<CR>"]], {expr = true, silent = true})
-imap('<CR>', [[compe#confirm(lexima#expand('<LT>CR>', 'i'))]], {expr = true, silent = true})
+keymap('i', '<CR>', [[compe#confirm(lexima#expand('<LT>CR>', 'i'))]], {expr = true, silent = true}, {})
 
 -- Use Ctrl + Space to toggle completion
-inoremap('<C-Space>', [[compe#complete()]], {expr = true, silent = true})
+keymap('i', '<C-Space>', [[compe#complete()]], {expr = true, silent = true, noremap = true})
 
-inoremap('<C-e>', [[compe#close('<C-e>')]], {expr = true, silent = true})
+keymap('i', '<C-e>', [[compe#close('<C-e>')]], {expr = true, silent = true, noremap = true})
 
 compe.setup {
   enabled = true,

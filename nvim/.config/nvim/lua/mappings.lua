@@ -1,52 +1,48 @@
-require 'util'
 local vim = vim
+local keymap = vim.api.nvim_set_keymap
 
 -- Use space key as <leader> key
 vim.g.mapleader = ' '
 
 -- Leader mappings {{{
-map('<leader>tn', [[<cmd>tabnew<cr>]], {silent = true})
-map('<leader>tc', [[<cmd>tabclose<cr>]], {silent = true})
-map('<leader>tm', [[<cmd>tabmove<cr>]], {silent = true})
-map('<leader>]', [[<cmd>tabnext<cr>]], {silent = true})
-map('<leader>[', [[<cmd>tabprevious<cr>]], {silent = true})
-map('<leader>>', [[<cmd>bn<cr>]], {silent = true})
-map('<leader><', [[<cmd>bp<cr>]], {silent = true})
-map('<leader>h', [[<cmd>lua ShowHighlightCaptures()<cr>]], {silent = true})
--- map('<leader>h', [[<cmd>echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>]])
-map('<leader>d', [[<cmd>%s/\s\+$//e<cr>]], {silent = true})
-map('<leader>n', [[<cmd>noh<cr>]], {silent = true})
-map('<leader>u', [[<cmd>MundoToggle<cr>]], {silent = true})
-map('<leader>s', [[<cmd>Startify<cr>]], {silent = true})
-map('<leader>lt', [[<cmd>TroubleToggle<cr>]], {silent = true})
+keymap('', '<leader>tn', [[<cmd>tabnew<cr>]], {silent = true})
+keymap('', '<leader>tc', [[<cmd>tabclose<cr>]], {silent = true})
+keymap('', '<leader>tm', [[<cmd>tabmove<cr>]], {silent = true})
+keymap('', '<leader>]', [[<cmd>tabnext<cr>]], {silent = true})
+keymap('', '<leader>[', [[<cmd>tabprevious<cr>]], {silent = true})
+keymap('', '<leader>>', [[<cmd>bn<cr>]], {silent = true})
+keymap('', '<leader><', [[<cmd>bp<cr>]], {silent = true})
+keymap('', '<leader>h', [[<cmd>lua ShowHighlightCaptures()<cr>]], {silent = true})
+keymap('', '<leader>d', [[<cmd>%s/\s\+$//e<cr>]], {silent = true})
+keymap('', '<leader>n', [[<cmd>noh<cr>]], {silent = true})
+keymap('', '<leader>u', [[<cmd>MundoToggle<cr>]], {silent = true})
+keymap('', '<leader>s', [[<cmd>Startify<cr>]], {silent = true})
+keymap('', '<leader>lt', [[<cmd>TroubleToggle<cr>]], {silent = true})
 
 -- Create a fold around visual selection in vimrc
-vnoremap('<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true})
+keymap('v', '<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true, noremap = true})
 -- Add modeline with foldmarker
-nnoremap('<leader>f', [[mfGo<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>Avim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}<esc>`f]], {silent = true})
--- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
+keymap('n', '<leader>f', [[mfGo<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>Avim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}<esc>`f]], {silent = true, noremap = true})
 -- }}}
 
 -- Mappings {{{
 -- Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap('ga', [[<Plug>(EasyAlign)]])
+keymap('x', 'ga', [[<Plug>(EasyAlign)]], {})
 -- Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap('ga', [[<Plug>(EasyAlign)]])
+keymap('n', 'ga', [[<Plug>(EasyAlign)]], {})
 
 -- Insert new lines with enter and backspace in normal mode
-nnoremap('\\', [[m'O<esc>0d$`']])
-nnoremap('<CR>', [[m'o<esc>0d$`']])
+keymap('n', '\\', [[m'O<esc>0d$`']], {noremap = true})
+keymap('n', '<CR>', [[m'o<esc>0d$`']], {noremap = true})
 
 -- Leave Terminal with Ctrl-\ Ctrl-[
-tnoremap([[<C-\><C-[>]], [[<C-\><C-n>]])
+keymap('t', [[<C-\><C-[>]], [[<C-\><C-n>]], {noremap = true})
 
 -- Tab shifting
-nnoremap('<Tab>', '>>')
-nnoremap('<S-Tab>', '<<')
-vnoremap('<Tab>', '>gv')
-vnoremap('<S-Tab>', '<gv')
--- imap('<cr>', [[pumvisible() ? complete_info()['selected'] != '-1' ? '<Plug>(completion_confirm_completion)' : '<c-e><CR>' : '<CR>']], {expr = true})
--- imap('<Enter>', [[vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<Enter>']], {expr = true})
+keymap('n', '<Tab>', '>>', {noremap = true})
+keymap('n', '<S-Tab>', '<<', {noremap = true})
+keymap('v', '<Tab>', '>gv', {noremap = true})
+keymap('v', '<S-Tab>', '<gv', {noremap = true})
 -- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

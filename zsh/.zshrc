@@ -115,10 +115,7 @@ fi
 source ~/.cargo/env
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [[ $WSL == true ]]; then
-	# Set up fnm (node version manager)
-	eval "$(fnm env)"
-fi
+eval "$(fnm env)"
 # }}}
 
 # Functions {{{

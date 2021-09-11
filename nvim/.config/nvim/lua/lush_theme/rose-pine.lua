@@ -82,7 +82,7 @@ local theme = lush(function()
 		-- styling for that group (meaning they mostly get styled as Normal)
 		-- or leave them commented to apply vims default colouring or linking.
 
-		Comment      { bg = base, fg = subtle, gui = 'italic' }; -- any comment
+		Comment      { fg = subtle, gui = 'italic' }; -- any comment
 		-- ColorColumn  { }; -- used for the columns set with 'colorcolumn'
 		-- Conceal      { }; -- placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor       { bg = text, fg = base }; -- character under the cursor
@@ -90,7 +90,7 @@ local theme = lush(function()
 		-- CursorIM     { }; -- like Cursor, but used when in IME mode |CursorIM|
 		-- CursorColumn { }; -- Screen-column at the cursor, when 'cursorcolumn' is set.
 		CursorLine   { bg = highlight_inactive }; -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-		Directory    { bg = base, fg = foam }; -- directory names (and other special names in listings)
+		Directory    { fg = foam }; -- directory names (and other special names in listings)
 		DiffAdd      { bg = highlight, fg = foam }; -- diff mode: Added line |diff.txt|
 		DiffChange   { bg = highlight, fg = gold }; -- diff mode: Changed line |diff.txt|
 		DiffDelete   { fg = love }; -- diff mode: Deleted line |diff.txt|
@@ -98,21 +98,21 @@ local theme = lush(function()
 		-- EndOfBuffer  { }; -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
 		-- TermCursor   { }; -- cursor in a focused terminal
 		-- TermCursorNC { }; -- cursor in an unfocused terminal
-		ErrorMsg     { bg = base, fg = love, gui = 'bold' }; -- error messages on the command line
-		VertSplit    { bg = base, fg = overlay }; -- the column separating vertically split windows
+		ErrorMsg     { fg = love, gui = 'bold' }; -- error messages on the command line
+		VertSplit    { fg = overlay }; -- the column separating vertically split windows
 		Folded       { bg = surface, fg = subtle }; -- line used for closed folds
-		SignColumn   { bg = base, fg = text }; -- column where |signs| are displayed
+		SignColumn   { fg = text }; -- column where |signs| are displayed
 		FoldColumn   { SignColumn }; -- 'foldcolumn'
 		IncSearch    { bg = highlight }; -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		-- Substitute   { }; -- |:substitute| replacement text highlighting
-		LineNr       { bg = base, fg = inactive }; -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-		CursorLineNr { bg = base, fg = text }; -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+		LineNr       { fg = inactive }; -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		CursorLineNr { fg = text }; -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		MatchParen   { bg = overlay, fg = text }; -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		-- ModeMsg      { }; -- 'showmode' message (e.g., "-- INSERT -- ")
 		-- MsgArea      { }; -- Area for messages and cmdline
 		-- MsgSeparator { }; -- Separator for scrolled messages, `msgsep` flag of 'display'
-		MoreMsg      { bg = base, fg = iris }; -- |more-prompt|
-		NonText      { bg = base, fg = inactive }; -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+		MoreMsg      { fg = iris }; -- |more-prompt|
+		NonText      { fg = inactive }; -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
 		Normal       { bg = base, fg = text }; -- normal text
 		-- NormalFloat  { }; -- Normal text in floating windows.
 		-- NormalNC     { }; -- normal text in non-current windows
@@ -120,23 +120,23 @@ local theme = lush(function()
 		PmenuSel     { bg = overlay, fg = text }; -- Popup menu: selected item.
 		PmenuSbar    { bg = overlay }; -- Popup menu: scrollbar.
 		PmenuThumb   { bg = inactive }; -- Popup menu: Thumb of the scrollbar.
-		Question     { bg = base, fg = gold }; -- |hit-enter| prompt and yes/no questions
+		Question     { fg = gold }; -- |hit-enter| prompt and yes/no questions
 		-- QuickFixLine { }; -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
 		Search       { bg = highlight_overlay, fg = iris }; -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-		SpecialKey   { bg = base, fg = foam }; -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+		SpecialKey   { fg = foam }; -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
 		-- SpellBad     { }; -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
 		-- SpellCap     { }; -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
 		-- SpellLocal   { }; -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		-- SpellRare    { }; -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
 		StatusLine   { bg = surface, fg = text }; -- status line of current window
 		StatusLineNC { bg = surface, fg = subtle }; -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-		TabLine      { bg = base, fg = subtle }; -- tab pages line, not active tab page label
+		TabLine      { fg = subtle }; -- tab pages line, not active tab page label
 		TabLineFill  { }; -- tab pages line, where there are no labels
 		TabLineSel   { fg = text }; -- tab pages line, active tab page label
-		Title        { bg = base, fg = rose }; -- titles for output from ":set all", ":autocmd" etc.
+		Title        { fg = rose }; -- titles for output from ":set all", ":autocmd" etc.
 		Visual       { bg = highlight }; -- Visual mode selection
 		-- VisualNOS    { }; -- Visual mode selection when vim is "Not Owning the Selection".
-		WarningMsg   { bg = base, fg = gold }; -- warning messages
+		WarningMsg   { fg = gold }; -- warning messages
 		Whitespace   { fg = overlay }; -- "nbsp", "space", "tab" and "trail" in 'listchars'
 		-- WildMenu     { }; -- current match in 'wildmenu' completion
 --}}}
@@ -148,52 +148,52 @@ local theme = lush(function()
 		-- default,
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Constant       { bg = base, fg = gold }; -- (preferred) any constant
-		String         { bg = base, fg = gold }; --   a string constant: "this is a string"
-		Character      { bg = base, fg = gold }; --  a character constant: 'c', '\n'
-		Number         { bg = base, fg = gold }; --   a number constant: 234, 0xff
-		Boolean        { bg = base, fg = gold }; --  a boolean constant: TRUE, false
-		Float          { bg = base, fg = gold }; --    a floating point constant: 2.3e10
+		Constant       { fg = gold }; -- (preferred) any constant
+		String         { fg = gold }; --   a string constant: "this is a string"
+		Character      { fg = gold }; --  a character constant: 'c', '\n'
+		Number         { fg = gold }; --   a number constant: 234, 0xff
+		Boolean        { fg = gold }; --  a boolean constant: TRUE, false
+		Float          { fg = gold }; --    a floating point constant: 2.3e10
 
-		Identifier     { bg = base, fg = rose }; -- (preferred) any variable name
-		Function       { bg = base, fg = rose }; -- function name (also: methods for classes)
+		Identifier     { fg = rose }; -- (preferred) any variable name
+		Function       { fg = rose }; -- function name (also: methods for classes)
 
-		Statement      { bg = base, fg = pine }; -- (preferred) any statement
-		Conditional    { bg = base, fg = pine }; --  if, then, else, endif, switch, etc.
-		Repeat         { bg = base, fg = pine }; --   for, do, while, etc.
-		Label          { bg = base, fg = foam }; --    case, default, etc.
-		Operator       { bg = base, fg = subtle }; -- "sizeof", "+", "*", etc.
-		Keyword        { bg = base, fg = pine }; --  any other keyword
-		Exception      { bg = base, fg = pine }; --  try, catch, throw
+		Statement      { fg = pine }; -- (preferred) any statement
+		Conditional    { fg = pine }; --  if, then, else, endif, switch, etc.
+		Repeat         { fg = pine }; --   for, do, while, etc.
+		Label          { fg = foam }; --    case, default, etc.
+		Operator       { fg = subtle }; -- "sizeof", "+", "*", etc.
+		Keyword        { fg = pine }; --  any other keyword
+		Exception      { fg = pine }; --  try, catch, throw
 
-		PreProc        { bg = base, fg = iris }; -- (preferred) generic Preprocessor
-		Include        { bg = base, fg = iris }; --  preprocessor #include
-		Define         { bg = base, fg = iris }; --   preprocessor #define
-		Macro          { bg = base, fg = iris }; --    same as Define
-		PreCondit      { bg = base, fg = iris }; --  preprocessor #if, #else, #endif, etc.
+		PreProc        { fg = iris }; -- (preferred) generic Preprocessor
+		Include        { fg = iris }; --  preprocessor #include
+		Define         { fg = iris }; --   preprocessor #define
+		Macro          { fg = iris }; --    same as Define
+		PreCondit      { fg = iris }; --  preprocessor #if, #else, #endif, etc.
 
-		Type           { bg = base, fg = foam }; -- (preferred) int, long, char, etc.
-		StorageClass   { bg = base, fg = foam }; -- static, register, volatile, etc.
-		Structure      { bg = base, fg = foam }; --  struct, union, enum, etc.
-		Typedef        { bg = base, fg = foam }; --  A typedef
+		Type           { fg = foam }; -- (preferred) int, long, char, etc.
+		StorageClass   { fg = foam }; -- static, register, volatile, etc.
+		Structure      { fg = foam }; --  struct, union, enum, etc.
+		Typedef        { fg = foam }; --  A typedef
 
-		Special        { bg = base, fg = rose }; -- (preferred) any special symbol
-		SpecialChar    { bg = base, fg = rose }; --  special character in a constant
-		Tag            { bg = base, fg = rose }; --    you can use CTRL-] on this
-		Delimiter      { bg = base, fg = rose }; --  character that needs attention
-		SpecialComment { bg = base, fg = iris }; -- special things inside a comment
-		Debug          { bg = base, fg = rose }; --    debugging statements
+		Special        { fg = rose }; -- (preferred) any special symbol
+		SpecialChar    { fg = rose }; --  special character in a constant
+		Tag            { fg = rose }; --    you can use CTRL-] on this
+		Delimiter      { fg = rose }; --  character that needs attention
+		SpecialComment { fg = iris }; -- special things inside a comment
+		Debug          { fg = rose }; --    debugging statements
 
-		Underlined { bg = base, fg = foam,  gui = "underline" }; -- (preferred) text that stands out, HTML links
+		Underlined { fg = foam,  gui = "underline" }; -- (preferred) text that stands out, HTML links
 		-- Bold       { gui = "bold" };
 		-- Italic     { gui = "italic" };
 
 		-- ("Ignore", below, may be invisible...)
 		-- Ignore         { }; -- (preferred) left blank, hidden  |hl-Ignore|
 
-		Error          { bg = base, fg = love }; -- (preferred) any erroneous construct
+		Error          { fg = love }; -- (preferred) any erroneous construct
 
-		Todo           { bg = base, fg = iris }; -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+		Todo           { fg = iris }; -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 --}}}
 
 -- LSP {{{
@@ -205,10 +205,10 @@ local theme = lush(function()
 		LspReferenceRead                     { LspReferenceText }; -- used for highlighting "read" references
 		LspReferenceWrite                    { LspReferenceText }; -- used for highlighting "write" references
 
-		LspDiagnosticsDefaultError           { bg = base, fg = love }; -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-		LspDiagnosticsDefaultWarning         { bg = base, fg = gold }; -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-		LspDiagnosticsDefaultInformation     { bg = base, fg = foam }; -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-		LspDiagnosticsDefaultHint            { bg = base, fg = iris }; -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+		LspDiagnosticsDefaultError           { fg = love }; -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+		LspDiagnosticsDefaultWarning         { fg = gold }; -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+		LspDiagnosticsDefaultInformation     { fg = foam }; -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+		LspDiagnosticsDefaultHint            { fg = iris }; -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
 		LspDiagnosticsVirtualTextError       { LspDiagnosticsDefaultError }; -- Used for "Error" diagnostic virtual text
 		LspDiagnosticsVirtualTextWarning     { LspDiagnosticsDefaultWarning }; -- Used for "Warning" diagnostic virtual text
@@ -240,63 +240,63 @@ local theme = lush(function()
 
 		-- TSAnnotation         { };    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
 		-- TSAttribute          { };    -- (unstable) TODO: docs
-		TSBoolean            { bg = base, fg = rose };    -- For booleans.
+		TSBoolean            { fg = rose };    -- For booleans.
 		-- TSCharacter          { };    -- For characters.
-		TSComment            { bg = base, fg = subtle, gui = 'italic' };    -- For comment blocks.
-		TSConstructor        { bg = base, fg = foam };    -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
+		TSComment            { fg = subtle, gui = 'italic' };    -- For comment blocks.
+		TSConstructor        { fg = foam };    -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
 		-- TSConditional        { };    -- For keywords related to conditionnals.
-		TSConstant           { bg = base, fg = foam };    -- For constants
-		TSConstBuiltin       { bg = base, fg = love };    -- For constant that are built in the language: `nil` in Lua.
+		TSConstant           { fg = foam };    -- For constants
+		TSConstBuiltin       { fg = love };    -- For constant that are built in the language: `nil` in Lua.
 		-- TSConstMacro         { };    -- For constants that are defined by macros: `NULL` in C.
 		-- TSError              { };    -- For syntax/parser errors.
 		-- TSException          { };    -- For exception related keywords.
 		-- TSField              { };    -- For fields.
 		-- TSFloat              { };    -- For floats.
-		TSFunction           { bg = base, fg = rose };    -- For function (calls and definitions).
-		TSFuncBuiltin        { bg = base, fg = love };    -- For builtin functions: `table.insert` in Lua.
+		TSFunction           { fg = rose };    -- For function (calls and definitions).
+		TSFuncBuiltin        { fg = love };    -- For builtin functions: `table.insert` in Lua.
 		-- TSFuncMacro          { };    -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-		TSInclude            { bg = base, fg = pine };    -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-		TSKeyword            { bg = base, fg = pine };    -- For keywords that don't fall in previous categories.
+		TSInclude            { fg = pine };    -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+		TSKeyword            { fg = pine };    -- For keywords that don't fall in previous categories.
 		-- TSKeywordFunction    { };    -- For keywords used to define a fuction.
 		-- TSLabel              { };    -- For labels: `label:` in C and `:label:` in Lua.
 		-- TSMethod             { };    -- For method calls and definitions.
 		-- TSNamespace          { };    -- For identifiers referring to modules and namespaces.
 		-- TSNone               { };    -- TODO: docs
 		-- TSNumber             { };    -- For all numbers
-		TSOperator           { bg = base, fg = pine };    -- For any operator: `+`, but also `->` and `*` in C.
-		TSParameter          { bg = base, fg = iris, gui = 'italic' };    -- For parameters of a function.
+		TSOperator           { fg = pine };    -- For any operator: `+`, but also `->` and `*` in C.
+		TSParameter          { fg = iris, gui = 'italic' };    -- For parameters of a function.
 		-- TSParameterReference { };    -- For references to parameters of a function.
-		TSProperty           { bg = base, fg = iris, gui = 'italic' };    -- Same as `TSField`.
-		TSPunctDelimiter     { bg = base, fg = subtle };    -- For delimiters ie: `.`
-		TSPunctBracket       { bg = base, fg = subtle };    -- For brackets and parens.
-		TSPunctSpecial       { bg = base, fg = subtle };    -- For special punctutation that does not fall in the catagories before.
+		TSProperty           { fg = iris, gui = 'italic' };    -- Same as `TSField`.
+		TSPunctDelimiter     { fg = subtle };    -- For delimiters ie: `.`
+		TSPunctBracket       { fg = subtle };    -- For brackets and parens.
+		TSPunctSpecial       { fg = subtle };    -- For special punctutation that does not fall in the catagories before.
 		-- TSRepeat             { };    -- For keywords related to loops.
 		-- TSString             { };    -- For strings.
 		-- TSStringRegex        { };    -- For regexes.
-		TSStringEscape       { bg = base, fg = pine };    -- For escape characters within a string.
+		TSStringEscape       { fg = pine };    -- For escape characters within a string.
 		-- TSSymbol             { };    -- For identifiers referring to symbols or atoms.
 		-- TSType               { };    -- For types.
 		-- TSTypeBuiltin        { };    -- For builtin types.
-		TSVariable           { bg = base, fg = text, gui = 'italic' };    -- Any variable name that does not have another highlight.
-		TSVariableBuiltin    { bg = base, fg = love };    -- Variable names that are defined by the languages, like `this` or `self`.
+		TSVariable           { fg = text, gui = 'italic' };    -- Any variable name that does not have another highlight.
+		TSVariableBuiltin    { fg = love };    -- Variable names that are defined by the languages, like `this` or `self`.
 
-		TSTag                { bg = base, fg = foam };    -- Tags like html tag names.
-		TSTagDelimiter       { bg = base, fg = subtle };    -- Tag delimiter like `<` `>` `/`
+		TSTag                { fg = foam };    -- Tags like html tag names.
+		TSTagDelimiter       { fg = subtle };    -- Tag delimiter like `<` `>` `/`
 		-- TSText               { };    -- For strings considered text in a markup language.
 		-- TSEmphasis           { };    -- For text to be represented with emphasis.
 		-- TSUnderline          { };    -- For text to be represented with an underline.
 		-- TSStrike             { };    -- For strikethrough text.
 		-- TSTitle              { };    -- Text that is part of a title.
 		-- TSLiteral            { };    -- Literal text.
-		TSURI                { bg = base, fg = gold, gui = 'underline' };    -- Any URI like a link or email.
+		TSURI                { fg = gold, gui = 'underline' };    -- Any URI like a link or email.
 --}}}
 
 -- StatusLine {{{
-		SLModeText   { bg = base, gui = 'bold' };
+		SLModeText   { gui = 'bold' };
 		SLModeSep    { bg = surface,  fg = base };
 		SLNormalText { bg = surface, fg = subtle };
 		SLDimText    { bg = surface, fg = subtle };
-		SLLightText  { bg = base, fg = subtle };
+		SLLightText  { fg = subtle };
 		SLLightSep   { bg = surface, fg = base };
 		SLDarkText   { bg = surface };
 		SLError      { bg = surface, fg = love };

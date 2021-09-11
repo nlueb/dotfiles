@@ -1,5 +1,5 @@
-require 'util'
 local vim = vim
+local keymap = vim.api.nvim_set_keymap
 
 vim.g['fern#hide_cursor'] = 'hide'
 vim.g['fern#mark_symbol'] = ''
@@ -12,4 +12,4 @@ function FernInit()
 	vim.api.nvim_win_set_option(0, 'signcolumn', 'number')
 end
 
-nnoremap('<c-b>', [[<cmd>Fern . -drawer -toggle<cr>]], {silent = true})
+keymap('n', '<c-b>', [[<cmd>Fern . -drawer -toggle<cr>]], {silent = true, noremap = true})

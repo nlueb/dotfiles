@@ -1,6 +1,5 @@
-require 'util'
-
 local vim = vim
+local keymap = vim.api.nvim_set_keymap
 
 vim.g.nvim_tree_ignore = {'.git', 'node_modules', '.cache'}
 vim.g.nvim_tree_auto_open = 0
@@ -14,4 +13,4 @@ vim.g.nvim_tree_show_icons = {
 	files = 1,
  }
 
-nnoremap('<C-n>', '<cmd>NvimTreeToggle<cr>', {silent=true})
+keymap('n', '<C-n>', '<cmd>NvimTreeToggle<cr>', {silent=true, noremap = true})

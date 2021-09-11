@@ -1,4 +1,5 @@
-require 'util'
+local vim = vim
+local keymap = vim.api.nvim_set_keymap
 
-map('<leader>l', [[<Plug>(Luadev-RunLine)]])
-map('<leader>r', [[<Plug>(Luadev-Run)]])
+keymap('n', '<leader>l', [[<Plug>(Luadev-RunLine)]], {})
+keymap('n', '<leader>r', [[<Plug>(Luadev-Run)]], {})

@@ -14,6 +14,8 @@ ts.setup {
 	ensure_installed = 'all', -- one of "all", "language", or a list of languages
 	highlight = { enable = true },
 	indent = { enable = true },
+    autopairs = {enable = true},
+    autotag = {enable = true},
 	playground = {
 		enable = true,
 		disable = {},

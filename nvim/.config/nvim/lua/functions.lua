@@ -48,7 +48,7 @@ local function _is_treesitter_hl()
 	return false
 end
 
-function ShowHighlightCaptures()
+function _G.ShowHighlightCaptures()
 	local fn = vim.fn
 	if _is_treesitter_hl() then
 		vim.cmd('TSHighlightCapturesUnderCursor')
@@ -69,7 +69,7 @@ end
 -- }}}
 
 -- Telescope {{{
-function PopulateLocationList()
+function _G.PopulateLocationList()
 	if not vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
 		vim.lsp.diagnostic.set_loclist { open_loclist=false }
 	end
@@ -138,7 +138,7 @@ local function GetFoldMarker()
 	}
 end
 
-function UpdateLongestFoldTitle()
+function _G.UpdateLongestFoldTitle()
 	if vim.api.nvim_win_get_option(0, 'foldmethod') ~= 'marker' then
 		return
 	end
@@ -259,7 +259,7 @@ end
 -- }}}
 
 -- Fold Text {{{
-function FoldText()
+function _G.FoldText()
 	local foldstart = vim.api.nvim_get_vvar('foldstart')
 	local foldend = vim.api.nvim_get_vvar('foldend')
 	-- local foldlevel = vim.api.nvim_get_vvar('foldlevel')
@@ -274,7 +274,7 @@ end
 -- }}}
 
 -- Windows WSL Stuff {{{
-function IsWSL()
+function _G.IsWSL()
 	local version = vim.fn.readfile('/proc/version', '', 1)
 	if vim.tbl_isempty(version) then
 		error 'Could not read /proc/version'

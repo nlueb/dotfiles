@@ -1,14 +1,15 @@
-require 'util'
+local vim = vim
+local keymap = vim.api.nvim_set_keymap
 
 local vim = vim
 
 -- Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap('<C-j>', [[pumvisible() ? "<C-n>" : "<C-j>"]], {expr = true})
-inoremap('<C-k>', [[pumvisible() ? "<C-p>" : "<C-k>"]], {expr = true})
+keymap('i', '<C-j>', [[pumvisible() ? "<C-n>" : "<C-j>"]], {expr = true, noremap = true})
+keymap('i', '<C-k>', [[pumvisible() ? "<C-p>" : "<C-k>"]], {expr = true, noremap = true})
 
 -- Use Enter for completion
 vim.g.completion_confirm_key = ''
-imap('<CR>', [[pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)" : "<c-e><CR>" : "<CR>"]], {expr = true})
+keymap('i', '<CR>', [[pumvisible() ? complete_info()["selected"] != "-1" ? "<Plug>(completion_confirm_completion)" : "<c-e><CR>" : "<CR>"]], {expr = true}, {})
 -- imap('<CR>', [[pumvisible() ? complete_info()['selected'] != '-1' ? '<Plug>(completion_confirm_completion)' : '<c-e><CR>' : '<CR><Plug>CloserClose']], {expr = true})
 
 -- Set completeopt to have a better completion experience
@@ -16,7 +17,7 @@ set {'completeopt', 'menuone,noinsert,noselect'}
 
 -- Use Ctrl + Space to toggle completion
 vim.g.completion_enable_auto_popup = 1
-imap('<C-Space>', [[<Plug>(completion_trigger)]], {silent = true})
+keymap('i', '<C-Space>', [[<Plug>(completion_trigger)]], {silent = true}, {})
 
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
 vim.g.completion_matching_smart_case = 1

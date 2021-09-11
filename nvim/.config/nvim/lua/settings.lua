@@ -1,21 +1,20 @@
-require 'util'
-
-local vim = vim
+local cmd = vim.cmd
+local opt = vim.opt
 
 -- Cursor {{{
-set {'guicursor', 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'}
+opt.guicursor =  'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 -- }}}
 
 -- Temporary files {{{
-setb 'undofile'
-set {'undodir', '/home/nils/.config/nvim/undo'}
+opt.undofile = true
+opt.undodir = '/home/nils/.config/nvim/undo'
 
-set 'backup'
-setb {'backupcopy', 'auto'}
-set {'backupdir', '/home/nils/.config/nvim/backup'}
+opt.backup = true
+opt.backupcopy = 'auto'
+opt.backupdir = '/home/nils/.config/nvim/backup'
 
-setb 'swapfile'
-set {'directory', '/home/nils/.config/nvim/swap'}
+opt.swapfile = true
+opt.directory = '/home/nils/.config/nvim/swap'
 -- }}}
 
 -- Color settings {{{
@@ -23,49 +22,49 @@ cmd [[syntax on]]
 cmd [[filetype plugin on]]
 cmd [[filetype indent on]]
 
-set 'termguicolors'
+opt.termguicolors = true
 
-cmd [[colorscheme rose-base]]
+cmd [[colorscheme yin]]
 
 -- show linenumbers
-setw 'number'
+opt.number = true
 
 -- show relative linenumbers
-setw 'relativenumber'
+opt.relativenumber = true
 
 -- highlight the line where the cursor is at
-setw 'nocursorline'
+opt.cursorline = false
 -- }}}
 
 -- Modeline {{{
-setb 'modeline'
-set {'modelines', 1}
+opt.modeline = true
+opt.modelines = 1
 -- }}}
 
 -- Statusline {{{
 -- show statusline all the time
-set {'laststatus', 2}
+opt.laststatus = 2
 -- don't show mode, bcs it's already in the statusline
-set 'noshowmode'
+opt.showmode = false
 -- }}}
 
 -- Search {{{
 -- Ignore case when searching
-set 'ignorecase'
+opt.ignorecase = true
 -- When searching try to be smart about cases
-set 'smartcase'
+opt.smartcase = true
 -- Highlight search results
-set 'hlsearch'
+opt.hlsearch = true
 -- Makes search act like search in modern browsers
-set 'incsearch'
+opt.incsearch = true
 -- }}}
 
 -- Fillchars {{{
 -- VertSplit
-setw {'fillchars', 'vert:┃,fold: '}
+opt.fillchars = 'vert:┃,fold: '
 
 -- Highlight characters after 90
--- setw {'colorcolumn', '90'}
+-- opt.colorcolumn = '90'
 
 -- Statusline
 -- set fillchars+=stl:\- 
@@ -77,124 +76,124 @@ setw {'fillchars', 'vert:┃,fold: '}
 -- set statusline=╍
 
 -- Folding
--- setw {'fillchars', 'fold:─'}
+-- opt.fillchars = 'fold:─'
 -- }}}
 
 -- Indentation {{{
 -- Use tabs instead of spaces
--- setb 'noexpandtab'
-setb 'expandtab'
+-- opt.expandtab = false
+opt.expandtab = true
 
 -- Be smart when using tabs ;)
-set 'smarttab'
+opt.smarttab = true
 
 -- Show indent guides
-setw 'list'
-setw {'listchars', 'tab:│ ,trail:━'}
+opt.list = true
+opt.listchars = 'tab:│ ,trail:━'
 
 -- Tabstop width
-setb {'shiftwidth', 4}
-setb {'tabstop', 4}
-setb {'softtabstop', 4}
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.softtabstop = 4
 
-setb 'autoindent'
-setb 'smartindent'
+opt.autoindent = true
+opt.smartindent = true
 
-setw {'wrap', false}
+opt.wrap = false
 
 -- Linebreak on 500 characters
-setw 'linebreak'
-setb {'textwidth', 500}
+opt.linebreak = true
+opt.textwidth = 500
 -- set {g, 'showbreak', '〉'}
 -- }}}
 
 -- Folding {{{
 -- Enable folding
-setw 'foldenable'
+opt.foldenable = true
 
 -- Open most folds by default
-set {'foldlevelstart', 99}
+opt.foldlevelstart = 99
 
 -- 10 nested fold max
-setw {'foldnestmax', 10}
+opt.foldnestmax = 10
 
 -- Fold based on indent level
 -- set foldmethod=syntax
 
 -- Fold based on treesitter
-setw {'foldmethod', 'expr'}
-setw {'foldexpr', 'nvim_treesitter#foldexpr()'}
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Improved foldtext
-setw {'foldtext', [[luaeval('FoldText()')]]}
+opt.foldtext = [[v:lua.FoldText()]]
 
 -- Fold Markers
-setw {'foldmarker', '{{{,}}}'}
+opt.foldmarker = '{{{,}}}'
 -- }}}
 
 -- Misc settings {{{
 
 -- Display the completion matches using the popupmenu
-set {'wildoptions', 'pum'}
+opt.wildoptions = 'pum'
 
 -- Enable live feedback for the :substitute command
-set {'inccommand', 'split'}
+opt.inccommand = 'split'
 
 -- Smaller updatetime for CursorHold and CursorHoldI
-set {'updatetime', 300}
+opt.updatetime = 300
 
-set {'wildignore', '*.o,*.obj,*.class,*/nvim/backup/*,*/nvim/undo/*,*/nvim/swap/*'}
+opt.wildignore = '*.o,*.obj,*.class,*/nvim/backup/*,*/nvim/undo/*,*/nvim/swap/*'
 
 -- Set to auto read when a file is changed from the outside
-setb 'autoread'
+opt.autoread = true
 
 -- Set utf8 as standard encoding and en_US as the standard language
-set {'encoding', 'utf8'}
+opt.encoding = 'utf8'
 cmd [[language en_US.UTF-8]]
 
 -- Turn on the Wild menu
-set 'wildmenu'
+opt.wildmenu = true
 
 -- show command in bottom bar
-set 'showcmd'
+opt.showcmd = true
 
 -- A buffer becomes hidden when it is abandoned
-set 'hidden'
+opt.hidden = true
 
 -- -- Configure backspace so it acts as it should act
-set {'backspace', 'eol,start,indent'}
-set {'whichwrap', 'b,s'}
+opt.backspace = 'eol,start,indent'
+opt.whichwrap = 'b,s'
 
 -- Don't redraw while executing macros (good performance config)
-set 'lazyredraw'
+opt.lazyredraw = true
 
 -- don't give |ins-completion-menu| messages.  For example,
 -- '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
-set {'shortmess', vim.o.shortmess .. 'c'}
+opt.shortmess = vim.o.shortmess .. 'c'
 
 -- For regular expressions turn magic on
-set 'magic'
+opt.magic = true
 
 -- Show matching brackets when text indicator is over them
-set 'showmatch'
+opt.showmatch = true
 
 -- More natural split opening
-set 'splitbelow'
-set 'splitright'
+opt.splitbelow = true
+opt.splitright = true
 
 -- Enable mouse support
--- set {'mouse', 'a'}
+-- opt.mouse = 'a'
 
 -- No annoying sound on errors
-set {'errorbells', false}
-set {'visualbell', false}
-set {'timeoutlen', 500}
+opt.errorbells = false
+opt.visualbell = false
+opt.timeoutlen = 500
 
 -- Always show signcolumn
-setw {'signcolumn', 'yes'}
+opt.signcolumn = 'yes'
 
 -- Turn on PASTE mode with F6
-set {'pastetoggle', '<F6>'}
+opt.pastetoggle = '<F6>'
 -- }}}
 
 -- WSL Specific {{{
@@ -217,7 +216,7 @@ end
 -- Neovide settings {{{
 vim.g.neovide_refresh_rate = 144
 -- vim.g.neovide_cursor_vfx_mode = "railgun"
-set {'guifont', 'JetBrainsMono Nerd Font:h32'}
+opt.guifont = 'JetBrainsMono Nerd Font:h32'
 -- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
