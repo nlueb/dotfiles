@@ -59,7 +59,7 @@ local function init(use)
     use 'nacro90/numb.nvim'
     -- use 'cohama/lexima.vim'
 
-    use 'tversteeg/registers.nvim'
+    -- use 'tversteeg/registers.nvim'
     use 'junegunn/vim-easy-align'
 
     -- Visualize undo tree
@@ -163,6 +163,13 @@ local function init(use)
         'lewis6991/gitsigns.nvim',
         requires = 'nvim-lua/plenary.nvim',
     }
+
+    use {
+        'folke/todo-comments.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+    }
+
+    use 'folke/which-key.nvim'
 
     use 'lambdalisue/suda.vim'
 end

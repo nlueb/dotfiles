@@ -1,6 +1,8 @@
+
 -- Local Variables {{{
-local fold_metadata = {}
 local vim = vim
+
+local fold_metadata = {}
 -- }}}
 
 -- String Functions {{{
@@ -8,8 +10,12 @@ function string:split(delimiter)
   return vim.split(self, delimiter)
 end
 
+function string:empty()
+	return self == nil or self == ''
+end
+
 function string:to_regex()
-	return self:gsub('[%{%}%(%)%%%.%+%-%*%[%?%^%$]', '%%%1')
+	return self:gsub('[%{%}%(%)%%%.%+%-%*%[%]%?%^%$]', '%%%1')
 end
 
 local function CenterString(str, length)
@@ -282,5 +288,41 @@ function _G.IsWSL()
 	return string.find(version[1], 'microsoft')
 end
 -- }}}
+
+-- Jump Out {{{
+local function jump_regex(chars)
+    return '[^'
+        .. table.concat(chars, ''):to_regex()
+        .. ']'
+end
+
+function _G.JumpOut()
+    local jump_chars = {'}', ')', ']', "'", '"',}
+
+    local curr_line = vim.api.nvim_get_current_line()
+    local _, cursor_col = unpack(vim.api.nvim_win_get_cursor(0))
+
+    if cursor_col == curr_line:len() then
+        return
+    end
+
+    local text_after_cursor = curr_line:sub(cursor_col + 1)
+
+    local jump_targets = text_after_cursor:gsub(jump_regex(jump_chars), '')
+    if jump_targets:empty() then
+        return
+    end
+
+    local jump_target = jump_targets:sub(1, 1)
+    if jump_target:empty() then
+        return
+    end
+
+    local action = '<esc>f' .. jump_target .. 'a'
+    local keys = vim.api.nvim_replace_termcodes(action, true, false, true)
+
+    vim.api.nvim_feedkeys(keys, 'n!', false)
+end
+--}}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

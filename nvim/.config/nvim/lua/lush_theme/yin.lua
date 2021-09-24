@@ -198,12 +198,12 @@ local theme = lush(function()
         TSType { Type };
         TSTypeBuiltin { Type };
         TSInclude { Include };
-        TSVariable { Normal, gui = 'italic'};
+        TSVariable { fg = Normal.fg, gui = 'italic'};
         TSVariableBuiltin { Special };
-        TSText { Normal };
-        TSStrong { Normal, gui = 'bold' };
-        TSEmphasis { Normal, gui = 'italic' };
-        TSUnderline { Normal, gui = 'underline' };
+        TSText { fg = Normal.fg };
+        TSStrong { TSText, gui = 'bold' };
+        TSEmphasis { TSText, gui = 'italic' };
+        TSUnderline { TSText, gui = 'underline' };
         TSTitle { Title };
         TSLiteral { String };
         TSURI { Underlined };

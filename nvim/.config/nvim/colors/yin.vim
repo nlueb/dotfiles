@@ -1,4 +1,4 @@
-"Theme built with Lush.nvim, exported at Sat 11 Sep 2021 08:41:18 PM CEST
+"Theme built with Lush.nvim, exported at Sun 12 Sep 2021 10:28:53 AM CEST
 highlight NvimTreeShellIcon guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link FernWindowSelectStatusLine Normal
 highlight! link StorageClass Type
@@ -98,12 +98,12 @@ highlight MoreMsg guifg=#9E9E9E guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight SpecialKey guifg=#595959 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight DiffAdd guifg=#000000 guibg=#537970 guisp=NONE gui=NONE blend=NONE
 highlight CursorLine guifg=NONE guibg=#262626 guisp=NONE gui=NONE blend=NONE
-highlight TSVariable guifg=#BDBDBD guibg=#0F0F0F guisp=NONE gui=italic blend=NONE
+highlight TSVariable guifg=#BDBDBD guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight String guifg=#9E9E9E guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight SLLightText guifg=#949494 guibg=#262626 guisp=NONE gui=italic blend=NONE
 highlight StartifySlash guifg=#454545 guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight StartifyFile guifg=#9E9E9E guibg=NONE guisp=NONE gui=italic blend=NONE
-highlight TSEmphasis guifg=#BDBDBD guibg=#0F0F0F guisp=NONE gui=italic blend=NONE
+highlight TSEmphasis guifg=#BDBDBD guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight DiffChangeSign guifg=#447A9C guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Error guifg=#CE4056 guibg=#1C1C1C guisp=NONE gui=bold blend=NONE
 highlight LspFloatWinBorder guifg=#B3B3B3 guibg=#1C1C1C guisp=NONE gui=NONE blend=NONE
@@ -126,7 +126,7 @@ highlight LspDiagnosticsUnderlineInformation guifg=#447A9C guibg=NONE guisp=NONE
 highlight! link TSRepeat Repeat
 highlight LightBulbFloatWin guifg=#0F0F0F guibg=#447A9C guisp=NONE gui=NONE blend=NONE
 highlight NvimTreeNormal guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
-highlight TSStrong guifg=#BDBDBD guibg=#0F0F0F guisp=NONE gui=bold blend=NONE
+highlight TSStrong guifg=#BDBDBD guibg=NONE guisp=NONE gui=bold blend=NONE
 highlight! link ErrorMsg Error
 highlight StartifyHeader guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight NvimTreeGitMerge guifg=#FF0A54 guibg=NONE guisp=NONE gui=italic blend=NONE
@@ -145,7 +145,7 @@ highlight NvimTreeReactIcon guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=N
 highlight FernMarkedLine guifg=#EDEDED guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight StatusLineNC guifg=#595959 guibg=#1C1C1C guisp=NONE gui=NONE blend=NONE
 highlight! link TSString String
-highlight! link TSText Normal
+highlight TSText guifg=#BDBDBD guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight NvimTreeGitignoreIcon guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link TSTag Label
 highlight SLModeSep guifg=#949494 guibg=#0F0F0F guisp=NONE gui=NONE blend=NONE
@@ -167,7 +167,7 @@ highlight! link TSTypeBuiltin Type
 highlight SpellBad guifg=#CE4056 guibg=#1C1C1C guisp=NONE gui=undercurl blend=NONE
 highlight TelescopeBorder guifg=#B3B3B3 guibg=#0F0F0F guisp=NONE gui=NONE blend=NONE
 highlight NvimTreeYamlIcon guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
-highlight TSUnderline guifg=#BDBDBD guibg=#0F0F0F guisp=NONE gui=underline blend=NONE
+highlight TSUnderline guifg=#BDBDBD guibg=NONE guisp=NONE gui=underline blend=NONE
 highlight EndOfBuffer guifg=#262626 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link DiagnosticError Normal
 highlight LspDiagnosticsVirtualTextHint guifg=#E3E3E3 guibg=NONE guisp=NONE gui=italic blend=NONE

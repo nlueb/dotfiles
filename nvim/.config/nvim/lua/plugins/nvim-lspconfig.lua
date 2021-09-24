@@ -1,7 +1,6 @@
 local vim = vim
 local lsp = vim.lsp
 local cmd = vim.cmd
-local keymap = vim.api.nvim_set_keymap
 
 local lspcfg = require 'lspconfig'
 local lspsig = require 'lsp_signature'
@@ -110,7 +109,11 @@ lspcfg.bashls.setup {
 -- }}}
 
 -- Python {{{
-lspcfg.pyright.setup {
+-- lspcfg.pyright.setup {
+--     on_attach = CustomOnAttach,
+--     capabilities = custom_capabilities
+-- }
+lspcfg.pylsp.setup {
     on_attach = CustomOnAttach,
     capabilities = custom_capabilities
 }
@@ -137,6 +140,13 @@ lspcfg.racket_langserver.setup {
     capabilities = custom_capabilities
 }
 -- }}}
+
+-- Json {{{
+lspcfg.jsonls.setup {
+    on_attach = CustomOnAttach,
+    capabilities = custom_capabilities
+}
+--}}}
 
 lspcfg.solargraph.setup {
     on_attach = CustomOnAttach,
@@ -235,27 +245,6 @@ lsp.handlers['textDocument/publishDiagnostics'] =
         signs = true,
         update_in_insert = true
     })
--- }}}
-
--- Mapping {{{
--- nnoremap('K', [[<cmd>lua vim.lsp.buf.hover()<CR>]], {silent = true})
--- nnoremap('<c-k>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], {silent = true})
-keymap('n', '<c-j>',
-       [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]],
-       {noremap = true})
--- keymap('n', '<leader>ld', [[<cmd>lua vim.lsp.buf.definition()<CR>]], {silent = true}, {noremap = true})
-keymap('n', '<leader>li', [[<cmd>lua vim.lsp.buf.implementation()<CR>]],
-       {silent = true, noremap = true})
--- keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<CR>]], {silent = true}, {noremap = true})
--- vnoremap('<leader>la', [[<cmd>lua vim.lsp.buf.range_code_action()<CR>]], {silent = true})
-keymap('n', '<leader>lf', [[<cmd>lua vim.lsp.buf.formatting()<CR>]],
-       {silent = true, noremap = true})
-keymap('v', '<leader>lf', [[<cmd>lua vim.lsp.buf.range_formatting()<CR>]],
-       {silent = true, noremap = true})
--- keymap('n', '<leader>lr', [[<cmd>lua vim.lsp.buf.rename()<CR>]], {silent = true}, {noremap = true})
--- keymap('n', '<leader>lt', [[<cmd>lua vim.lsp.buf.type_definition()<CR>]], {silent = true}, {noremap = true})
-keymap('n', '<leader>ll', [[<cmd>lua print(vim.lsp.buf.server_ready())<CR>]],
-       {silent = true, noremap = true})
 -- }}}
 
 -- Signs {{{

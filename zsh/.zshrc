@@ -204,6 +204,12 @@ if [[ $WSL == true ]]; then
 		fzf_options=(--height 40% --layout=reverse)
 		cd $(fd . --type d ${ignore_options} '/mnt/c/Users/nluebker/Dev' | fzf ${fzf_options})
 	}
+else
+    cdd() {
+        ignore_options=(--exclude 'vendor' --exclude 'node_modules')
+        fzf_options=(--height 40% --layout=reverse)
+        cd $(fd . --type d ${ignore_options} '/home/nils/Documents' | fzf ${fzf_options})
+    }
 fi
 #}}}
 
