@@ -12,9 +12,9 @@
 source ~/.zplug/init.zsh
 
 if cat /proc/version | grep -q 'microsoft'; then
-	WSL=true
+    WSL=true
 else
-	WSL=false
+    WSL=false
 fi
 
 # Plugins {{{
@@ -67,20 +67,20 @@ alias _='sudo'
 alias ctl='sudo systemctl'
 alias uctl='systemctl --user'
 if [[ $WSL == true ]]; then
-	alias yi='sudo apt install'
-	alias yr='sudo apt --purge remove'
-	alias yu='sudo apt update && sudo apt upgrade'
+    alias yi='sudo apt install'
+    alias yr='sudo apt --purge remove'
+    alias yu='sudo apt update && sudo apt upgrade'
 else
-	alias yi='yay -S'
-	alias yr='yay -R'
-	alias yu='yay -Syu --devel --timeupdate'
+    alias yi='yay -S'
+    alias yr='yay -R'
+    alias yu='yay -Syu --devel --timeupdate'
 fi
 
 # WSL Specific {{{
 if [[ $WSL == true ]]; then
-	alias home="cd /mnt/c/Users/nluebker"
-	alias helmfile="~/.local/bin/helmfile_linux_amd64"
-	# alias rust-analyzer="rustup run nightly rust-analyzer"
+    alias home="cd /mnt/c/Users/nluebker"
+    alias helmfile="~/.local/bin/helmfile_linux_amd64"
+    # alias rust-analyzer="rustup run nightly rust-analyzer"
 fi
 # }}}
 
@@ -102,12 +102,28 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=info:#c4a7e7,prompt:#ebbcba,pointer:#eb6f92,marker:#f6c177,spinner:#eb6f92
 '
 if [[ $WSL == true ]]; then
-	export HTTP_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
-	export http_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
-	export HTTPS_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
-	export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
-	export NO_PROXY="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
-	export no_proxy="localhost,.t-internal.com,.telekom.de,.t-systems.com,.webex.com,10.0.0.0/8"
+    export HTTP_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
+    export http_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+    export HTTPS_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
+    export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+    export NO_PROXY="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
+    export no_proxy="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
+    # enable passphrase prompt for gpg
+    export GPG_TTY=$(tty)
+    # Copy from: https://dev.to/bowmanjd/using-podman-on-windows-subsystem-for-linux-wsl-58ji
+    # Without systemd, the $XDG_RUNTIME_DIR was not available for podman to use for temporary files.
+    # This script checks if the $XDG_RUNTIME_DIR is set, and, if not, sets it to the default systemd
+    # location (/run/user/$UID). If that does not exist, then set and create a temporary directory
+    # for the current user.
+    if [[ -z "$XDG_RUNTIME_DIR" ]]; then
+        export XDG_RUNTIME_DIR=/run/user/$UID
+        if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
+            export XDG_RUNTIME_DIR=/tmp/$USER-runtime
+            if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
+                mkdir -m 0700 "$XDG_RUNTIME_DIR"
+            fi
+        fi
+    fi
 fi
 # }}}
 
@@ -122,39 +138,39 @@ eval "$(fnm env)"
 
 # Global {{{
 termcolors() {
-	local fgc bgc vals seq0
+    local fgc bgc vals seq0
 
-	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
-	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
+    printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+    printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+    printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+    printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
 
-	# foreground colors
-	for fgc in {30..37}; do
-		# background colors
-		for bgc in {40..47}; do
-			fgc=${fgc#37} # white
-			bgc=${bgc#40} # black
+    # foreground colors
+    for fgc in {30..37}; do
+        # background colors
+        for bgc in {40..47}; do
+            fgc=${fgc#37} # white
+            bgc=${bgc#40} # black
 
-			vals="${fgc:+$fgc;}${bgc}"
-			vals=${vals%%;}
+            vals="${fgc:+$fgc;}${bgc}"
+            vals=${vals%%;}
 
-			seq0="${vals:+\e[${vals}m}"
-			printf "  %-9s" "${seq0:-(default)}"
-			printf " ${seq0}TEXT\e[m"
-			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-		done
-		echo; echo
-	done
+            seq0="${vals:+\e[${vals}m}"
+            printf "  %-9s" "${seq0:-(default)}"
+            printf " ${seq0}TEXT\e[m"
+            printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+        done
+        echo; echo
+    done
 }
 
 average() {
-	awk '{ total += $1; count++ } END { print total/count }' $1
+    awk '{ total += $1; count++ } END { print total/count }' $1
 }
 
 cht ()
 {
-	curl cht.sh/$1
+    curl cht.sh/$1
 }
 
 #
@@ -162,48 +178,48 @@ cht ()
 # # usage: ex <file>
 ex ()
 {
-	if [ -f $1 ] ; then
-		case $1 in
-			*.tar.bz2)   tar xjf $1   ;;
-			*.tar.gz)    tar xzf $1   ;;
-			*.tar.xz)    tar -xvf $1  ;;
-			*.bz2)       bunzip2 $1   ;;
-			*.rar)       unrar x $1   ;;
-			*.gz)        gunzip $1    ;;
-			*.tar)       tar xf $1    ;;
-			*.tbz2)      tar xjf $1   ;;
-			*.tgz)       tar xzf $1   ;;
-			*.zip)       unzip $1     ;;
-			*.Z)         uncompress $1;;
-			*.7z)        7z x $1      ;;
-			*)           echo "'$1' cannot be extracted via ex()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1   ;;
+            *.tar.gz)    tar xzf $1   ;;
+            *.tar.xz)    tar -xvf $1  ;;
+            *.bz2)       bunzip2 $1   ;;
+            *.rar)       unrar x $1   ;;
+            *.gz)        gunzip $1    ;;
+            *.tar)       tar xf $1    ;;
+            *.tbz2)      tar xjf $1   ;;
+            *.tgz)       tar xzf $1   ;;
+            *.zip)       unzip $1     ;;
+            *.Z)         uncompress $1;;
+            *.7z)        7z x $1      ;;
+            *)           echo "'$1' cannot be extracted via ex()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
 # Colorized man pages
 man() {
-	env \
-		LESS_TERMCAP_mb=$'\e[1;31m' \
-		LESS_TERMCAP_md=$'\e[1;31m' \
-		LESS_TERMCAP_me=$'\e[0m' \
-		LESS_TERMCAP_se=$'\e[0m' \
-		LESS_TERMCAP_so=$'\e[1;44;33m' \
-		LESS_TERMCAP_ue=$'\e[0m' \
-		LESS_TERMCAP_us=$'\e[1;32m' \
-		man "$@"
-	}
+    env \
+        LESS_TERMCAP_mb=$'\e[1;31m' \
+        LESS_TERMCAP_md=$'\e[1;31m' \
+        LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_se=$'\e[0m' \
+        LESS_TERMCAP_so=$'\e[1;44;33m' \
+        LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[1;32m' \
+        man "$@"
+    }
 #}}}
 
 # WSL {{{
 if [[ $WSL == true ]]; then
-	cdd() {
-		ignore_options=(--exclude 'vendor' --exclude 'node_modules')
-		fzf_options=(--height 40% --layout=reverse)
-		cd $(fd . --type d ${ignore_options} '/mnt/c/Users/nluebker/Dev' | fzf ${fzf_options})
-	}
+    cdd() {
+        ignore_options=(--exclude 'vendor' --exclude 'node_modules')
+        fzf_options=(--height 40% --layout=reverse)
+        cd $(fd . --type d ${ignore_options} '/mnt/c/Users/nluebker/Dev' | fzf ${fzf_options})
+    }
 else
     cdd() {
         ignore_options=(--exclude 'vendor' --exclude 'node_modules')
@@ -219,7 +235,7 @@ fi
 # zplug check returns true if all packages are installed
 # Therefore, when it returns false, run zplug install
 if ! zplug check; then
-	zplug install
+    zplug install
 fi
 
 zplug load
