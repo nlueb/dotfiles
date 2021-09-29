@@ -169,6 +169,8 @@ local function init(use)
         requires = 'nvim-lua/plenary.nvim',
     }
 
+    use 'karb94/neoscroll.nvim'
+
     use 'folke/which-key.nvim'
 
     use 'lambdalisue/suda.vim'

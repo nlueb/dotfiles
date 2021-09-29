@@ -4,10 +4,15 @@ local indent = require 'indent_blankline'
 
 indent.setup {
     char = '│',
-    -- show_current_context = true,
-    buftype_exclude = {'terminal'},
+    use_treesitter = true,
+    show_trailing_blankline_indent = false,
+    show_current_context = false,
+    buftype_exclude = {
+        'terminal',
+    },
+    filetype_exclude = {
+        'help',
+        'packer',
+        'startify'
+    }
 }
-
-vim.g.indentLine_char = '│'
-vim.g.indent_blankline_use_treesitter = true
-vim.g.indent_blankline_show_trailing_blankline_indent = false

@@ -1,4 +1,4 @@
-"Theme built with Lush.nvim, exported at Sun 12 Sep 2021 10:28:53 AM CEST
+"Theme built with Lush.nvim, exported at Sun 26 Sep 2021 05:21:42 PM CEST
 highlight NvimTreeShellIcon guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link FernWindowSelectStatusLine Normal
 highlight! link StorageClass Type
@@ -121,7 +121,7 @@ highlight StartifyBracket guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NON
 highlight DiagnosticTruncateLine guifg=#262626 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link CursorColumn CursorLine
 highlight! link TSType Type
-highlight StatusLine guifg=#ADADAD guibg=#1C1C1C guisp=NONE gui=NONE blend=NONE
+highlight StatusLine guifg=#ADADAD guibg=#0F0F0F guisp=NONE gui=NONE blend=NONE
 highlight LspDiagnosticsUnderlineInformation guifg=#447A9C guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight! link TSRepeat Repeat
 highlight LightBulbFloatWin guifg=#0F0F0F guibg=#447A9C guisp=NONE gui=NONE blend=NONE
@@ -143,7 +143,7 @@ highlight LspSagaCodeActionContent guifg=#808080 guibg=NONE guisp=NONE gui=NONE 
 highlight TSKeyword guifg=#666666 guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight NvimTreeReactIcon guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight FernMarkedLine guifg=#EDEDED guibg=NONE guisp=NONE gui=NONE blend=NONE
-highlight StatusLineNC guifg=#595959 guibg=#1C1C1C guisp=NONE gui=NONE blend=NONE
+highlight StatusLineNC guifg=#595959 guibg=#0F0F0F guisp=NONE gui=NONE blend=NONE
 highlight! link TSString String
 highlight TSText guifg=#BDBDBD guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight NvimTreeGitignoreIcon guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -229,7 +229,7 @@ highlight TSDefinition guifg=#F193B4 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link Include PreProc
 highlight SpellLocal guifg=#CE4056 guibg=#1C1C1C guisp=NONE gui=undercurl blend=NONE
 highlight DiffRemoved guifg=#CE4056 guibg=#1C1C1C guisp=NONE gui=NONE blend=NONE
-highlight VertSplit guifg=#0F0F0F guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight VertSplit guifg=#000000 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link Conditional Statement
 highlight LineDiagTuncateLine guifg=#262626 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight PmenuThumb guifg=#4F4F4F guibg=#949494 guisp=NONE gui=NONE blend=NONE

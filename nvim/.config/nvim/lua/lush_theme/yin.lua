@@ -130,13 +130,13 @@ local theme = lush(function()
         PmenuSbar { bg = gray15, fg = black };
         PmenuSel { bg = gray10, fg = gray03 };
         PmenuThumb { bg = gray09, fg = gray03 };
-        StatusLine { bg = black, fg = gray11 };
+        StatusLine { Normal , fg = gray11 };
         TabLineSel { StatusLine };
-        StatusLineNC { bg = black, fg = gray04 };
+        StatusLineNC { StatusLine, fg = gray04 };
         TabLine { StatusLineNC };
         TabLineFill { StatusLineNC };
         WildMenu { fg = gray08 };
-        VertSplit { fg = blacker };
+        VertSplit { fg = blackest };
         DiffAdd { bg = green, fg = blackest };
         DiffChange { bg = blue, fg = blackest };
         DiffDelete { bg = red, fg = blackest };
@@ -379,7 +379,9 @@ local theme = lush(function()
         FernWindowSelectStatusLine { Normal };
 -- }}}
 
+-- Indent Blankline {{{
     IndentBlanklineChar { fg = gray01 }
+--}}}
 	}
 end)
 
