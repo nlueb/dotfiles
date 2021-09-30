@@ -22,7 +22,7 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
 # Prompt
 zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+# zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 # ZSH Users
 zplug "zsh-users/zsh-completions",              defer:0
@@ -42,8 +42,9 @@ compinit
 
 # History {{{
 export HISTFILE=~/.zsh_history
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+export HISTFILESIZE=$SAVEHIST
+export HISTSIZE=$SAVEHIST
 
 # Add history immediately
 setopt INC_APPEND_HISTORY
@@ -55,6 +56,9 @@ setopt HIST_SAVE_NO_DUPS
 
 # Remove blanks
 setopt HIST_REDUCE_BLANKS
+
+# Enable History
+setopt SHARE_HISTORY
 # }}}
 
 # Alias {{{
@@ -132,6 +136,7 @@ source ~/.cargo/env
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(fnm env)"
+eval "$(starship init zsh)"
 # }}}
 
 # Functions {{{
