@@ -45,7 +45,8 @@ local autocmds = {
 		{'FileType', 'fern', [[lua FernInit()]]}
 	},
 	FiletypeSettings = {
-		{'FileType', 'scheme', [[setlocal shiftwidth=2 softtabstop=2 expandtab | let b:AutoPairs = {"(": ")", "[":"]", "{":"}", '"':'"'}]]}
+		{'FileType', 'scheme', [[setlocal shiftwidth=2 softtabstop=2 expandtab | let b:AutoPairs = {"(": ")", "[":"]", "{":"}", '"':'"'}]]},
+        {'FileType', 'help', [[setlocal number relativenumber]]}
 	},
 	Helmfile = {
 		{'BufRead,BufNewFile', '*.gotmpl', [[setfiletype helm]]}

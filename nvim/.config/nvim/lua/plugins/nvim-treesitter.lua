@@ -34,6 +34,10 @@ ts.setup {
 	refactor = {
 		highlight_definitions = { enable = true },
 	},
+    matchup = {
+        enable = true,
+        -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+    },
 	textobjects = {
 		select = {
 			enable = true,

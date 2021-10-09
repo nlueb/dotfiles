@@ -200,10 +200,13 @@ local function init(use)
         after = 'nvim-treesitter'
     }
 
+    use 'AndrewRadev/splitjoin.vim'
+    use 'andymass/vim-matchup'
+
     use {
         'michaelb/sniprun',
         run = 'bash ./install.sh',
-        commit = '9f258624a03c972b502942b252fd8b13a12af6b4'
+        commit = '9f258624a03c972b502942b252fd8b13a12af6b4',
     }
 
     use 'lambdalisue/suda.vim'
