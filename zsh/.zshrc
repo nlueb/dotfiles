@@ -105,6 +105,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=fg:#555169,bg:-1,hl:#2a2837,fg+:#555169,bg+:-1,hl+:#eb6f92
 --color=info:#c4a7e7,prompt:#ebbcba,pointer:#eb6f92,marker:#f6c177,spinner:#eb6f92
 '
+# enable passphrase prompt for gpg
+export GPG_TTY=$(tty)
 if [[ $WSL == true ]]; then
     export HTTP_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
     export http_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
@@ -112,8 +114,6 @@ if [[ $WSL == true ]]; then
     export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
     export NO_PROXY="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
     export no_proxy="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
-    # enable passphrase prompt for gpg
-    export GPG_TTY=$(tty)
     # Copy from: https://dev.to/bowmanjd/using-podman-on-windows-subsystem-for-linux-wsl-58ji
     # Without systemd, the $XDG_RUNTIME_DIR was not available for podman to use for temporary files.
     # This script checks if the $XDG_RUNTIME_DIR is set, and, if not, sets it to the default systemd

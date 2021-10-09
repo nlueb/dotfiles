@@ -1,15 +1,25 @@
 local telescope = require 'telescope'
-local previewers = require 'telescope.previewers'
 
 telescope.setup {
-	defaults = {
-		prompt_prefix = '  ',
-		color_devicons = false,
-		file_previewer = previewers.vim_buffer_cat.new,
-		grep_previewer = previewers.vim_buffer_vimgrep.new,
-		qflist_previewer = previewers.vim_buffer_qflist.new,
-		file_ignore_patterns = {
-			'node_modules/*'
-		},
-	},
+    defaults = {
+        prompt_prefix = '  ',
+        color_devicons = false,
+        file_ignore_patterns = {'node_modules/*'}
+    },
+    pickers = {
+        find_files = {
+            -- theme = 'dropdown'
+        }
+    },
+    extensions = {
+        fzf = {
+            fuzzy = true, -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true, -- override the file sorter
+            case_mode = 'smart_case' -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+        }
+    }
 }
+
+telescope.load_extension 'fzf'

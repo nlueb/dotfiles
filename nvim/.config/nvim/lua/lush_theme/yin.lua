@@ -96,7 +96,7 @@ local theme = lush(function()
         Question { Special };
         SpecialComment { fg = gray03, gui = 'bold' };
         Title { fg = gray07, gui = 'bold' };
-        Todo { bg = black, fg = purple };
+        Todo { fg = purple };
         Comment { fg = gray03, gui = 'italic' };
         LineNr { fg = gray04 };
         Folded { LineNr, gui = 'italic' };
@@ -110,26 +110,28 @@ local theme = lush(function()
         VisualNOS { Visual };
         Search { bg = gray11, fg = gray01 };
         IncSearch { bg = gray07, fg = black, gui = 'bold' };
-        SpellBad { bg = black, fg = red, gui = 'undercurl' };
-        SpellCap { bg = black, fg = red, gui = 'undercurl' };
-        SpellLocal { bg = black, fg = red, gui = 'undercurl' };
-        SpellRare { bg = black, fg = brown, gui = 'undercurl' };
-        Error { bg = black, fg = red, gui = 'bold' };
+        SpellBad { fg = red, gui = 'undercurl' };
+        SpellCap { fg = red, gui = 'undercurl' };
+        SpellLocal { fg = red, gui = 'undercurl' };
+        SpellRare { fg = brown, gui = 'undercurl' };
+        Error { fg = red, gui = 'bold' };
         ErrorMsg { Error };
-        ErrorMsg { bg = black, fg = red };
-        WarningMsg { bg = black, fg = brown };
+        ErrorMsg { fg = red };
+        WarningMsg { fg = brown };
         ModeMsg { fg = gray10 };
         MoreMsg { fg = gray10 };
-        MatchParen { bg = black, fg = magenta, gui = 'bold' };
+        MatchParen { fg = magenta, gui = 'bold' };
         Cursor { bg = gray12 };
         Underlined { fg = gray08, gui = 'underline' };
         SpecialKey { fg = gray04 };
         NonText { fg = gray04 };
         Directory { fg = gray08 };
-        Pmenu { bg = gray03, fg = gray10 };
-        PmenuSbar { bg = gray15, fg = black };
-        PmenuSel { bg = gray10, fg = gray03 };
-        PmenuThumb { bg = gray09, fg = gray03 };
+        Pmenu { fg = gray06 };
+        PmenuSbar { fg = black };
+        -- PmenuSbar { bg = Error.fg };
+        -- PmenuThumb { bg = gray09, fg = gray03 };
+        PmenuThumb { bg = gray01};
+        PmenuSel { bg = gray06, fg = blacker };
         StatusLine { Normal , fg = gray11 };
         TabLineSel { StatusLine };
         StatusLineNC { StatusLine, fg = gray04 };
@@ -141,9 +143,9 @@ local theme = lush(function()
         DiffChange { bg = blue, fg = blackest };
         DiffDelete { bg = red, fg = blackest };
         DiffText { bg = lightblue, fg = black };
-        DiffAdded { bg = black, fg = green };
-        DiffChanged { bg = black, fg = blue };
-        DiffRemoved { bg = black, fg = red };
+        DiffAdded { fg = green };
+        DiffChanged { fg = blue };
+        DiffRemoved { fg = red };
 -- }}}
 
 -- Status Line {{{
@@ -246,7 +248,7 @@ local theme = lush(function()
 
 -- Lsp Saga {{{
 -- Misc
-        LspFloatWinBorder { bg = black, fg = gray12 };
+        LspFloatWinBorder { fg = gray12 };
         LspSagaBorderTitle { fg = gray10, gui = 'bold' };
         TargetWord { fg = gray04 };
         TargetFileName { fg = gray04 };
@@ -254,7 +256,7 @@ local theme = lush(function()
         SagaShadow { fg = red };
         LspSagaFinderSelection { fg = gray15 };
 -- Diagnostic
-        LspLinesDiagBorder { bg = black, fg = gray12 };
+        LspLinesDiagBorder { fg = gray12 };
         DiagnosticTruncateLine { fg = gray01 };
         DiagnosticError { Normal };
         DiagnosticWarning { Normal };
@@ -267,16 +269,16 @@ local theme = lush(function()
         LspSagaCodeActionTitle { fg = gray10 };
         LspSagaCodeActionTruncateLine { fg = gray01 };
         LspSagaCodeActionContent { fg = gray07 };
-        LspSagaCodeActionBorder { bg = black, fg = gray12 };
+        LspSagaCodeActionBorder { fg = gray12 };
 -- Rename
         LspSagaRenamePromptPrefix { fg = gray08 };
-        LspSagaRenameBorder { bg = black, fg = gray12 };
+        LspSagaRenameBorder { fg = gray12 };
 -- Hover
-        LspSagaHoverBorder { bg = black, fg = gray12 };
-        LspSagaSignatureHelpBorder { bg = black, fg = gray12 };
+        LspSagaHoverBorder { fg = gray12 };
+        LspSagaSignatureHelpBorder { fg = gray12 };
         LspSagaAutoPreview { fg = gray12 };
 -- Definition
-        LspSagaDefPreviewBorder { bg = black, fg = gray12 };
+        LspSagaDefPreviewBorder { fg = gray12 };
         DefinitionPreviewTitle { fg = gray10 };
         ReferencesCount { fg = gray08 };
         DefinitionCount { fg = gray08 };
@@ -380,7 +382,27 @@ local theme = lush(function()
 -- }}}
 
 -- Indent Blankline {{{
-    IndentBlanklineChar { fg = gray01 }
+    IndentBlanklineChar { fg = gray01 };
+--}}}
+
+-- Cmp {{{
+        -- The abbr field.
+        CmpItemAbbr { Normal };
+
+        -- The deprecated item's abbr field.
+        CmpItemAbbrDeprecated { Error };
+
+        -- The matched characters highlight.
+        CmpItemAbbrMatch { Error };
+
+        -- The fuzzy matched characters highlight.
+        CmpItemAbbrMatchFuzzy { Error };
+
+        -- The kind field.
+        CmpItemKind { WarningMsg };
+
+        -- The menu field.
+        CmpItemMenu { Normal };
 --}}}
 	}
 end)

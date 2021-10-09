@@ -23,6 +23,7 @@ wk.register({
         n = { [[<cmd>noh<cr>]], 'Remove search highlight', silent = true },
         u = { [[<cmd>MundoToggle<cr>]], 'Open undo tree', silent = true },
         s = { [[<cmd>Startify<cr>]], 'Startify', silent = true },
+        r = { [[<cmd>SnipRun<cr>]], 'SnipRun', silent = true },
         l = {
             name = 'lsp',
             t = { [[<cmd>TroubleToggle<cr>]], 'Show Quickfix', silent = true },
@@ -44,6 +45,7 @@ wk.register({
             q = { [[<cmd>Telescope quickfix<cr>]], 'Quickfix', noremap = true },
             l = { [[<cmd>lua PopulateLocationList()<cr>]], 'Populate Location List', noremap = true },
             m = { [[<cmd>Telescope man_pages<cr>]], 'Map Pages', noremap = true },
+            n = { [[<cmd>Telescope notify<cr>]], 'Notifications', noremap = true }
         },
     },
     K = { [[<cmd>Lspsaga hover_doc<cr>]], 'Hover Doc', silent = true, noremap = true },
@@ -61,6 +63,14 @@ wk.register({
 -- vnoremap('<leader>la', [[<cmd>lua vim.lsp.buf.range_code_action()<CR>]], {silent = true})
 -- keymap('n', '<leader>lr', [[<cmd>lua vim.lsp.buf.rename()<CR>]], {silent = true}, {noremap = true})
 -- keymap('n', '<leader>lt', [[<cmd>lua vim.lsp.buf.type_definition()<CR>]], {silent = true}, {noremap = true})
+--}}}
+
+-- Visual Mode {{{
+wk.register({
+    ['<leader>'] = {
+        r = { [[<cmd>'<,'>SnipRun<cr><esc>]], 'SnipRun', silent = true },
+    },
+}, {mode = 'v'})
 --}}}
 
 keymap('v', '<leader>lf', [[<cmd>lua vim.lsp.buf.range_formatting()<CR>]], {silent = true, noremap = true})

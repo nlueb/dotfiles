@@ -10,7 +10,8 @@ local packer = require 'packer'
 local util = require 'packer.util'
 
 local function file_exists(filename)
-    local config_path = vim.fn.expand('~/.config/nvim/lua/plugins/'..filename..'.lua')
+    local config_path = vim.fn.expand(
+                            '~/.config/nvim/lua/plugins/' .. filename .. '.lua')
     local config_readable = vim.fn.filereadable(config_path) == 1
     return config_readable
 end
@@ -41,7 +42,10 @@ local function init(use)
     local use = use_wrapper(use)
 
     -- Packer can manage itself as an optional plugin
-    use {'wbthomason/packer.nvim', opt = true}
+    use {
+        'wbthomason/packer.nvim',
+        opt = true
+    }
 
     -- Patches
     use 'antoinemadec/FixCursorHold.nvim'
@@ -73,9 +77,8 @@ local function init(use)
         'lambdalisue/fern.vim',
         requires = {
             'lambdalisue/fern-hijack.vim',
-            'lambdalisue/fern-renderer-nerdfont.vim',
-            'lambdalisue/nerdfont.vim',
-        },
+            'lambdalisue/fern-renderer-nerdfont.vim', 'lambdalisue/nerdfont.vim'
+        }
     }
 
     -- Highlight chars for f and t motions
@@ -98,11 +101,10 @@ local function init(use)
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         requires = {
-            'romgrk/nvim-treesitter-context',
-            'nvim-treesitter/playground',
+            'romgrk/nvim-treesitter-context', 'nvim-treesitter/playground',
             'nvim-treesitter/nvim-treesitter-textobjects',
-            'nvim-treesitter/nvim-treesitter-refactor',
-        },
+            'nvim-treesitter/nvim-treesitter-refactor'
+        }
     }
 
     use "folke/lua-dev.nvim"
@@ -119,7 +121,10 @@ local function init(use)
     use 'hrsh7th/cmp-nvim-lua'
     use 'ray-x/cmp-treesitter'
 
-    use {'windwp/nvim-autopairs', after = 'nvim-cmp'}
+    use {
+        'windwp/nvim-autopairs',
+        after = 'nvim-cmp'
+    }
     use 'windwp/nvim-ts-autotag'
 
     -- use {'hrsh7th/nvim-compe', config = [[require 'plugins/compe']]}
@@ -127,10 +132,15 @@ local function init(use)
 
     use {
         'hrsh7th/vim-vsnip',
-        requires = {'golang/vscode-go', 'microsoft/vscode-python', 'keyring/vsc-lua'},
+        requires = {
+            'golang/vscode-go', 'microsoft/vscode-python', 'keyring/vsc-lua'
+        }
     }
 
-    use {'hrsh7th/vim-vsnip-integ', after = 'vim-vsnip'}
+    use {
+        'hrsh7th/vim-vsnip-integ',
+        after = 'vim-vsnip'
+    }
 
     -- use {'RishabhRD/popfix', run = 'make'}
 
@@ -147,39 +157,57 @@ local function init(use)
 
     use {
         'rrethy/vim-hexokinase',
-        run = [[make hexokinase]],
+        run = [[make hexokinase]]
     }
 
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
+        requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}
     }
 
-    use 'nvim-telescope/telescope-fzy-native.nvim'
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make'
+    }
 
     use 'kyazdani42/nvim-web-devicons'
 
     use {
         'lewis6991/gitsigns.nvim',
-        requires = 'nvim-lua/plenary.nvim',
+        requires = 'nvim-lua/plenary.nvim'
     }
 
     use {
         'folke/todo-comments.nvim',
-        requires = 'nvim-lua/plenary.nvim',
+        requires = 'nvim-lua/plenary.nvim'
     }
 
-    use 'karb94/neoscroll.nvim'
+    -- Smooth scrolling
+    -- use 'karb94/neoscroll.nvim'
 
     use 'folke/which-key.nvim'
+
+    use {
+        'Saecki/crates.nvim',
+        event = {'BufRead Cargo.toml'},
+        requires = {{'nvim-lua/plenary.nvim'}}
+    }
+
+    use 'rcarriga/nvim-notify'
+
+    use {
+        'michaelb/sniprun',
+        run = 'bash ./install.sh',
+        commit = '9f258624a03c972b502942b252fd8b13a12af6b4'
+    }
 
     use 'lambdalisue/suda.vim'
 end
 
-local function float()
-    return util.float{ border = 'single' }
-end
+local config = {
+    display = {
+        open_fn = util.float
+    }
+}
 
-local config = {display = {open_fn = float}}
-
-packer.startup {init, config = config}
+packer.startup { init, config = config }

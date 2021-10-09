@@ -49,7 +49,10 @@ local autocmds = {
 	},
 	Helmfile = {
 		{'BufRead,BufNewFile', '*.gotmpl', [[setfiletype helm]]}
-	}
+	},
+    CompletionSources = {
+        {'FileType', 'toml', [[lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }]]}
+    }
 }
 
 nvim_create_augroups(autocmds)
