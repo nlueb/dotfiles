@@ -51,7 +51,9 @@ local autocmds = {
 		{'BufRead,BufNewFile', '*.gotmpl', [[setfiletype helm]]}
 	},
     CompletionSources = {
-        {'FileType', 'toml', [[lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }]]}
+        {'FileType', 'toml', [[lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }]]},
+        {'FileType', 'org', [[lua require('cmp').setup.buffer { sources = { { name = 'orgmode' }, { name = 'buffer' }, { name = 'path' } } }]]},
+        {'FileType', 'norg', [[lua require('cmp').setup.buffer { sources = { { name = 'neorg' }, { name = 'buffer' }, { name = 'path' } } }]]}
     }
 }
 

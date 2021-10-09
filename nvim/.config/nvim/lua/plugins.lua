@@ -196,6 +196,11 @@ local function init(use)
     use 'rcarriga/nvim-notify'
 
     use {
+        'nvim-neorg/neorg',
+        after = 'nvim-treesitter'
+    }
+
+    use {
         'michaelb/sniprun',
         run = 'bash ./install.sh',
         commit = '9f258624a03c972b502942b252fd8b13a12af6b4'
