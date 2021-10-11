@@ -115,32 +115,38 @@ local function init(use)
 
     use 'nvim-lua/lsp-status.nvim'
 
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'ray-x/cmp-treesitter'
-
     use {
         'windwp/nvim-autopairs',
         after = 'nvim-cmp'
     }
     use 'windwp/nvim-ts-autotag'
 
-    -- use {'hrsh7th/nvim-compe', config = [[require 'plugins/compe']]}
-    use 'hrsh7th/nvim-cmp'
-
     use {
-        'hrsh7th/vim-vsnip',
+        'hrsh7th/nvim-cmp',
         requires = {
-            'golang/vscode-go', 'microsoft/vscode-python', 'keyring/vsc-lua'
+            'kdheepak/cmp-latex-symbols',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
+            'saadparwaiz1/cmp_luasnip',
+            'ray-x/cmp-treesitter',
         }
     }
 
-    use {
-        'hrsh7th/vim-vsnip-integ',
-        after = 'vim-vsnip'
-    }
+    use 'L3MON4D3/LuaSnip'
+
+    -- use {
+    --     'hrsh7th/vim-vsnip',
+    --     requires = {
+    --         'golang/vscode-go', 'microsoft/vscode-python', 'keyring/vsc-lua'
+    --     }
+    -- }
+
+    -- use {
+    --     'hrsh7th/vim-vsnip-integ',
+    --     after = 'vim-vsnip'
+    -- }
 
     -- use {'RishabhRD/popfix', run = 'make'}
 

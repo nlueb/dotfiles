@@ -1,8 +1,6 @@
 local vim = vim
 local keymap = vim.api.nvim_set_keymap
 
-local vim = vim
-
 -- Use <Tab> and <S-Tab> to navigate through popup menu
 keymap('i', '<C-j>', [[pumvisible() ? "<C-n>" : "<C-j>"]], {expr = true, noremap = true})
 keymap('i', '<C-k>', [[pumvisible() ? "<C-p>" : "<C-k>"]], {expr = true, noremap = true})

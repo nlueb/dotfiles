@@ -33,7 +33,7 @@ lsp_status.register_progress()
 lsp.handlers['textDocument/publishDiagnostics'] =
     lsp.with(lsp.diagnostic.on_publish_diagnostics, {
         underline = true,
-        virtual_text = true,
+        virtual_text = false,
         -- {
         -- 	spacing = 4,
         -- 	-- prefix = '',

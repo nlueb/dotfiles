@@ -3,7 +3,9 @@ local lspkind = require 'lspkind'
 
 cmp.setup {
     snippet = {
-        expand = function(args) vim.fn["vsnip#anonymous"](args.body) end
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end
     },
     mapping = {
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -13,12 +15,20 @@ cmp.setup {
         ['<C-k>'] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select})
     },
     sources = {
+        {name = 'latex_symbols'},
+        {name = 'luasnip'},
         {name = 'nvim_lsp'},
-        {name = 'vsnip'},
         {name = 'buffer'},
         {name = 'path'}
     },
     formatting = {
         format = lspkind.cmp_format()
     },
+    documentation = {
+        border = { '', '', '', ' ', '', '', '', ' ' },
+    },
+    experimental = {
+        native_menu = false,
+        ghost_text = true,
+    }
 }
