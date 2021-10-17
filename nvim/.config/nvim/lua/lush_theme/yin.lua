@@ -103,7 +103,7 @@ local theme = lush(function()
         FoldColumn { bg = gray01, fg = gray07 };
         SignColumn { fg = gray07 };
         ColorColumn { bg = blacker };
-        CursorLine { bg = gray01 };
+        CursorLine { bg = black };
         CursorColumn { CursorLine };
         CursorLineNr { LineNr, fg = gray10, gui = 'bold' };
         Visual { bg = gray06, fg = black };
@@ -399,7 +399,7 @@ local theme = lush(function()
         CmpItemAbbrMatchFuzzy { Error };
 
         -- The kind field.
-        CmpItemKind { WarningMsg };
+        CmpItemKind { fg = gray03 };
 
         -- The menu field.
         CmpItemMenu { Normal };

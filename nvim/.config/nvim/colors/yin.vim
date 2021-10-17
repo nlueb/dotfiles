@@ -1,4 +1,4 @@
-"Theme built with Lush.nvim, exported at Sat 09 Oct 2021 01:11:15 AM CEST
+"Theme built with Lush.nvim, exported at Tue 12 Oct 2021 07:29:06 PM CEST
 highlight NvimTreeShellIcon guifg=#454545 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link FernWindowSelectStatusLine Normal
 highlight! link StorageClass Type
@@ -97,7 +97,7 @@ highlight! link TSURI Underlined
 highlight MoreMsg guifg=#9E9E9E guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight SpecialKey guifg=#595959 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight DiffAdd guifg=#000000 guibg=#537970 guisp=NONE gui=NONE blend=NONE
-highlight CursorLine guifg=NONE guibg=#262626 guisp=NONE gui=NONE blend=NONE
+highlight CursorLine guifg=NONE guibg=#1C1C1C guisp=NONE gui=NONE blend=NONE
 highlight TSVariable guifg=#BDBDBD guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight String guifg=#9E9E9E guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight SLLightText guifg=#949494 guibg=#262626 guisp=NONE gui=italic blend=NONE
@@ -209,7 +209,7 @@ highlight! link TSCharacter Character
 highlight Function guifg=#8A8A8A guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Keyword guifg=#666666 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Statement guifg=#666666 guibg=NONE guisp=NONE gui=bold blend=NONE
-highlight! link CmpItemKind WarningMsg
+highlight CmpItemKind guifg=#4F4F4F guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link FernWindowSelectIndicator Normal
 highlight! link TSTitle Title
 highlight ModeMsg guifg=#9E9E9E guibg=NONE guisp=NONE gui=NONE blend=NONE

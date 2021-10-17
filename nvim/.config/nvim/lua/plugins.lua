@@ -209,6 +209,13 @@ local function init(use)
     use 'AndrewRadev/splitjoin.vim'
     use 'andymass/vim-matchup'
 
+    -- use {
+    --     'gelguy/wilder.nvim',
+    --     run = ':UpdateRemotePlugins'
+    -- }
+
+    use 'folke/twilight.nvim'
+
     use {
         'michaelb/sniprun',
         run = 'bash ./install.sh',

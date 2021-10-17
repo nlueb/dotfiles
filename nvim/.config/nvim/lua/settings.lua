@@ -1,3 +1,4 @@
+local vim = vim
 local cmd = vim.cmd
 local opt = vim.opt
 
@@ -33,7 +34,7 @@ opt.number = true
 opt.relativenumber = true
 
 -- highlight the line where the cursor is at
-opt.cursorline = false
+opt.cursorline = true
 -- }}}
 
 -- Modeline {{{
