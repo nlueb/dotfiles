@@ -7,14 +7,14 @@ opt.guicursor =  'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 
 -- Temporary files {{{
 opt.undofile = true
-opt.undodir = '/home/nils/.config/nvim/undo'
+opt.undodir = vim.fn.stdpath('config') .. '/undo'
 
 opt.backup = true
 opt.backupcopy = 'auto'
-opt.backupdir = '/home/nils/.config/nvim/backup'
+opt.backupdir = vim.fn.stdpath('config') .. '/backup'
 
 opt.swapfile = true
-opt.directory = '/home/nils/.config/nvim/swap'
+opt.directory = vim.fn.stdpath('config') .. '/swap'
 -- }}}
 
 -- Color settings {{{
