@@ -135,6 +135,7 @@ fi
 source ~/.cargo/env
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+eval "$(direnv hook zsh)"
 eval "$(fnm env)"
 eval "$(starship init zsh)"
 # }}}

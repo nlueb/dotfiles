@@ -115,10 +115,7 @@ local function init(use)
 
     use 'nvim-lua/lsp-status.nvim'
 
-    use {
-        'windwp/nvim-autopairs',
-        after = 'nvim-cmp'
-    }
+    use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
 
     use {
