@@ -1,5 +1,4 @@
 local vim = vim
-local keymap = vim.api.nvim_set_keymap
 local wk = require 'which-key'
 
 -- Use space key as <leader> key
@@ -48,75 +47,52 @@ wk.register({
             n = { [[<cmd>Telescope notify<cr>]], 'Notifications', noremap = true }
         },
     },
+    ga = { [[<Plug>(EasyAlign)]], 'Align' },
     K = { [[<cmd>Lspsaga hover_doc<cr>]], 'Hover Doc', silent = true, noremap = true },
     ['<c-j>'] = { [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]], 'Show line diagnostics', noremap = true },
     ['<m-j>'] = { [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>]], 'Scroll docs up', silent = true, noremap = true },
     ['<m-k>'] = { [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>]], 'Scroll docs down', silent = true, noremap = true },
     ['<c-k>'] = { [[<cmd>Lspsaga signature_help<CR>]], 'Show signature', silent = true, noremap = true },
+    ['\\'] = { [[m'O<esc>0d$`']], '', noremap = true },
+    ['<CR>'] = { [[m'o<esc>0d$`']], '', noremap = true },
+    ['<Tab>'] = { '>>', '', noremap = true },
+    ['<S-Tab>'] = { '<<', '', noremap = true },
+    -- Colemak shuffle
+    -- j = { 'n', 'Colemak next search', noremap = true },
+    -- k = { 'e', 'Colemak end', noremap = true },
+    -- n = { 'j|', 'Colemak down', noremap = true },
+    -- e = { 'k|', 'Colemak down', noremap = true },
 }, {mode = 'n'})
-
--- keymap('n', '<c-j>', [[<cmd>LspSagaShowLineDiags<cr>]], {silent = true, noremap = true})
--- nnoremap('K', [[<cmd>lua vim.lsp.buf.hover()<CR>]], {silent = true})
--- nnoremap('<c-k>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], {silent = true})
--- keymap('n', '<leader>ld', [[<cmd>lua vim.lsp.buf.definition()<CR>]], {silent = true}, {noremap = true})
--- keymap('n', '<leader>la', [[<cmd>lua vim.lsp.buf.code_action()<CR>]], {silent = true}, {noremap = true})
--- vnoremap('<leader>la', [[<cmd>lua vim.lsp.buf.range_code_action()<CR>]], {silent = true})
--- keymap('n', '<leader>lr', [[<cmd>lua vim.lsp.buf.rename()<CR>]], {silent = true}, {noremap = true})
--- keymap('n', '<leader>lt', [[<cmd>lua vim.lsp.buf.type_definition()<CR>]], {silent = true}, {noremap = true})
 --}}}
 
 -- Visual Mode {{{
 wk.register({
     ['<leader>'] = {
         r = { [[<cmd>'<,'>SnipRun<cr><esc>]], 'SnipRun', silent = true },
+        -- vim.api.nvim_set_keymap('v', '<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true, noremap = true})
+        f = { [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], silent = true, noremap = true },
+        l = {
+            name = 'lsp',
+            f = { [[<cmd>lua vim.lsp.buf.range_formatting()<CR>]], 'Format Range', silent = true, noremap = true },
+            a = { [[<cmd><C-U>Lspsaga range_code_action<cr>]], 'Range Code Action', silent = true, noremap = true },
+        },
     },
-}, {mode = 'v'})
+    ['ga'] = { [[<Plug>(EasyAlign)]], 'Align' },
+    ['<Tab>'] = { '>gv', 'Indent', noremap = true },
+    ['<S-Tab>'] = { '<gv', 'DedentDedent', noremap = true },
+}, {mode = 'x'})
 --}}}
 
-keymap('v', '<leader>lf', [[<cmd>lua vim.lsp.buf.range_formatting()<CR>]], {silent = true, noremap = true})
-keymap('v', '<leader>la', [[<cmd><C-U>Lspsaga range_code_action<cr>]], {silent = true, noremap = true})
+-- Insert Mode {{{
+wk.register({
+    ['<c-q>'] = { [[<cmd>lua JumpOut()<cr>]], '', silent = true },
+}, {mode = 'i'})
+--}}}
 
--- Leader mappings {{{
--- keymap('', '<leader>tn', [[<cmd>tabnew<cr>]], {silent = true})
--- keymap('', '<leader>tc', [[<cmd>tabclose<cr>]], {silent = true})
--- keymap('', '<leader>tm', [[<cmd>tabmove<cr>]], {silent = true})
--- keymap('', '<leader>]', [[<cmd>tabnext<cr>]], {silent = true})
--- keymap('', '<leader>[', [[<cmd>tabprevious<cr>]], {silent = true})
--- keymap('', '<leader>>', [[<cmd>bn<cr>]], {silent = true})
--- keymap('', '<leader><', [[<cmd>bp<cr>]], {silent = true})
--- keymap('', '<leader>h', [[<cmd>lua ShowHighlightCaptures()<cr>]], {silent = true})
--- keymap('', '<leader>d', [[<cmd>%s/\s\+$//e<cr>]], {silent = true})
--- keymap('', '<leader>n', [[<cmd>noh<cr>]], {silent = true})
--- keymap('', '<leader>u', [[<cmd>MundoToggle<cr>]], {silent = true})
--- keymap('', '<leader>s', [[<cmd>Startify<cr>]], {silent = true})
--- keymap('', '<leader>lt', [[<cmd>TroubleToggle<cr>]], {silent = true})
-
--- Create a fold around visual selection in vimrc
-keymap('v', '<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true, noremap = true})
--- Add modeline with foldmarker
--- keymap('n', '<leader>f', [[mfGo<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>Avim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}<esc>`f]], {silent = true, noremap = true})
--- }}}
-
--- Mappings {{{
--- Start interactive EasyAlign in visual mode (e.g. vipga)
-keymap('x', 'ga', [[<Plug>(EasyAlign)]], {noremap = true})
--- Start interactive EasyAlign for a motion/text object (e.g. gaip)
-keymap('n', 'ga', [[<Plug>(EasyAlign)]], {noremap = true})
-
--- Insert new lines with enter and backspace in normal mode
-keymap('n', '\\', [[m'O<esc>0d$`']], {noremap = true})
-keymap('n', '<CR>', [[m'o<esc>0d$`']], {noremap = true})
-
-keymap('i', '<c-q>', [[<cmd>lua JumpOut()<cr>]], {silent = true})
-
--- Leave Terminal with Ctrl-\ Ctrl-[
-keymap('t', [[<C-\><C-[>]], [[<C-\><C-n>]], {noremap = true})
-
--- Tab shifting
-keymap('n', '<Tab>', '>>', {noremap = true})
-keymap('n', '<S-Tab>', '<<', {noremap = true})
-keymap('v', '<Tab>', '>gv', {noremap = true})
-keymap('v', '<S-Tab>', '<gv', {noremap = true})
--- }}}
+-- Terminal Mode {{{
+wk.register({
+    [ [[<C-\><C-[>]] ] = { [[<C-\><C-n>]], 'Leave Terminal', noremap = true },
+}, {mode = 't'})
+--}}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

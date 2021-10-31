@@ -14,14 +14,6 @@ local function nvim_create_augroups(definitions)
 	end
 end
 
--- Highlight yanked region
-cmd [[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]]
--- Set Cursor to beam when leaving vim
--- cmd [[au VimLeave * set guicursor=a:ver30-blinkoff0]]
-
--- Use spaces for YAML
-cmd [[autocmd FileType helm setlocal ts=2 sts=2 sw=2 expandtab]]
-
 vim.api.nvim_exec([[
 	function! InActiveLine()
 		return luaeval("require'plugins/status-line'.InActiveLine(vim.api.nvim_win_get_buf(_A), _A)", g:statusline_winid)
@@ -32,7 +24,16 @@ vim.api.nvim_exec([[
 	endfunction
 ]], false)
 
+
+-- Use spaces for YAML
 local autocmds = {
+-- Set Cursor to beam when leaving vim
+    -- BeamCursor = {
+    --     {'VimLeave', '*', [[set guicursor=a:ver30-blinkoff0]]}
+    -- },
+    YankHighlight = {
+        {'TextYankPost', '*', [[silent! lua vim.highlight.on_yank()]]}
+    },
 	StatusLine = {
 		{'WinEnter,BufEnter', '*', [[setlocal statusline=%!ActiveLine()]]},
 		{'WinLeave,BufLeave', '*', [[setlocal statusline=%!InActiveLine()]]},
@@ -55,7 +56,8 @@ local autocmds = {
         {'FileType', 'lua', [[lua require('cmp').setup.buffer { sources = { {name = 'latex_symbols'}, {name = 'nvim_lua'}, {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'path'} } }]]},
         {'FileType', 'toml', [[lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }]]},
         {'FileType', 'org', [[lua require('cmp').setup.buffer { sources = { { name = 'orgmode' }, { name = 'buffer' }, { name = 'path' } } }]]},
-        {'FileType', 'norg', [[lua require('cmp').setup.buffer { sources = { { name = 'neorg' }, { name = 'buffer' }, { name = 'path' } } }]]}
+        {'FileType', 'norg', [[lua require('cmp').setup.buffer { sources = { { name = 'neorg' }, { name = 'buffer' }, { name = 'path' } } }]]},
+        {'FileType', 'helm', [[setlocal ts=2 sts=2 sw=2 expandtab]]}
     }
 }
 

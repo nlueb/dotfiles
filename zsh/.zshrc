@@ -63,7 +63,7 @@ setopt SHARE_HISTORY
 
 # Alias {{{
 alias v='nvim'
-alias ls='exa'
+alias ls='exa --icons'
 alias c='bat'
 alias cp='rsync -avhW --no-compress --progress'
 alias tree="tre"
@@ -105,6 +105,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=fg:#555169,bg:-1,hl:#2a2837,fg+:#555169,bg+:-1,hl+:#eb6f92
 --color=info:#c4a7e7,prompt:#ebbcba,pointer:#eb6f92,marker:#f6c177,spinner:#eb6f92
 '
+export EXA_ICON_SPACING=2
 # enable passphrase prompt for gpg
 export GPG_TTY=$(tty)
 if [[ $WSL == true ]]; then

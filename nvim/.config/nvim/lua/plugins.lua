@@ -156,7 +156,7 @@ local function init(use)
     use 'glepnir/lspsaga.nvim'
     use 'folke/trouble.nvim'
 
-    use 'ray-x/lsp_signature.nvim'
+    -- use 'ray-x/lsp_signature.nvim'
 
     use {
         'rrethy/vim-hexokinase',
@@ -212,12 +212,6 @@ local function init(use)
     -- }
 
     use 'folke/twilight.nvim'
-
-    use {
-        'michaelb/sniprun',
-        run = 'bash ./install.sh',
-        commit = '9f258624a03c972b502942b252fd8b13a12af6b4',
-    }
 
     use 'lambdalisue/suda.vim'
 end

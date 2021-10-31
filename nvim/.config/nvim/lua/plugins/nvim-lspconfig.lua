@@ -3,7 +3,7 @@ local lsp = vim.lsp
 local cmd = vim.cmd
 
 local lspcfg = require 'lspconfig'
-local lspsig = require 'lsp_signature'
+-- local lspsig = require 'lsp_signature'
 local cmp_lsp = require 'cmp_nvim_lsp'
 local luadev = require 'lua-dev'
 
@@ -88,28 +88,31 @@ cmd [[sign define DiagnosticSignHint text=┣ texthl=LspDiagnosticsSignHint line
 -- cmd [[sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=]]
 -- }}}
 
-if IsWSL() then
-    return
-end
-
 -- Language Servers {{{
 local function CustomOnAttach(client, bufnr)
     -- completion.on_attach(client)
     lsp_status.on_attach(client)
-    lspsig.on_attach({
-        bind = true,
-        floating_window = true,
-        -- floating_window_above_cur_line = true,
-        hint_enable = false,
-        doc_lines = 0,
-        fix_pos = true,
-        handler_opts = {
-            border = "none"
-        }
-    }, bufnr)
+    -- lspsig.on_attach({
+    --     bind = true,
+    --     floating_window = true,
+    --     -- floating_window_above_cur_line = true,
+    --     hint_enable = false,
+    --     doc_lines = 0,
+    --     fix_pos = true,
+    --     handler_opts = {
+    --         border = "none"
+    --     }
+    -- }, bufnr)
 end
 
 local custom_capabilities = cmp_lsp.update_capabilities(lsp_status.capabilities)
+
+lspcfg.terraformls.setup {
+    on_attach = CustomOnAttach,
+    capabilities = custom_capabilities
+}
+
+if IsWSL() then return end
 
 -- Lua {{{
 local lua_conf = luadev.setup {
@@ -209,7 +212,7 @@ lspcfg.jsonls.setup {
     on_attach = CustomOnAttach,
     capabilities = custom_capabilities
 }
---}}}
+-- }}}
 
 lspcfg.solargraph.setup {
     on_attach = CustomOnAttach,
