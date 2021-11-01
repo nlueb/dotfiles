@@ -128,6 +128,7 @@ local function init(use)
             'hrsh7th/cmp-nvim-lua',
             'saadparwaiz1/cmp_luasnip',
             'ray-x/cmp-treesitter',
+            'hrsh7th/cmp-cmdline',
         }
     }
 
