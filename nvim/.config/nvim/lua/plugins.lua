@@ -73,13 +73,13 @@ local function init(use)
 
     -- File Drawers
     -- use {'kyazdani42/nvim-tree.lua', config =[[require 'plugins/tree']]}
-    use {
-        'lambdalisue/fern.vim',
-        requires = {
-            'lambdalisue/fern-hijack.vim',
-            'lambdalisue/fern-renderer-nerdfont.vim', 'lambdalisue/nerdfont.vim'
-        }
-    }
+    -- use {
+    --     'lambdalisue/fern.vim',
+    --     requires = {
+    --         'lambdalisue/fern-hijack.vim',
+    --         'lambdalisue/fern-renderer-nerdfont.vim', 'lambdalisue/nerdfont.vim'
+    --     }
+    -- }
 
     -- Highlight chars for f and t motions
     -- use 'unblevable/quick-scope'
@@ -95,7 +95,7 @@ local function init(use)
 
     use 'gcmt/taboo.vim'
 
-    use 'tweekmonster/startuptime.vim'
+    -- use 'tweekmonster/startuptime.vim'
 
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -107,7 +107,7 @@ local function init(use)
         }
     }
 
-    use "folke/lua-dev.nvim"
+    use 'folke/lua-dev.nvim'
 
     use 'neovim/nvim-lspconfig'
 
@@ -154,7 +154,7 @@ local function init(use)
     -- 	after = 'popfix',
     -- }
 
-    use 'glepnir/lspsaga.nvim'
+    -- use 'glepnir/lspsaga.nvim'
     use 'folke/trouble.nvim'
 
     -- use 'ray-x/lsp_signature.nvim'

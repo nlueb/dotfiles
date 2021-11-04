@@ -107,12 +107,30 @@ end
 
 local custom_capabilities = cmp_lsp.update_capabilities(lsp_status.capabilities)
 
+-- Terraform {{{
 lspcfg.terraformls.setup {
     on_attach = CustomOnAttach,
     capabilities = custom_capabilities
 }
+-- }}}
 
 if IsWSL() then return end
+
+-- CCLS {{{
+-- lspcfg.clangd.setup {
+--     filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+--     on_attach = CustomOnAttach,
+--     capabilities = custom_capabilities
+-- }
+lspcfg.ccls.setup {
+    init_options = {
+        compilationDatabaseDirectory = 'build',
+    },
+    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+    on_attach = CustomOnAttach,
+    capabilities = custom_capabilities
+}
+-- }}}
 
 -- Lua {{{
 local lua_conf = luadev.setup {
