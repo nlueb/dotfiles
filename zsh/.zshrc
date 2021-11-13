@@ -249,3 +249,5 @@ zplug load
 # }}}
 
 # vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
+
+alias luamake=/home/nils/Documents/lua/lua-language-server/3rd/luamake/luamake

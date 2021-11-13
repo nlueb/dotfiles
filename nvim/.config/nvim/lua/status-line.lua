@@ -1,8 +1,7 @@
-
--- Local Variable {{{
 local vim = vim
 local M = {}
 
+-- Icons / Highlight {{{
 local HlGroup = {
 	ModeText   = '%#SLModeText#',
 	ModeSep    = '%#SLModeSep#',
@@ -38,8 +37,7 @@ local Icon = {
 	Function = '𝑓',
 	NoFile = ' ',
 }
-
--- }}}
+--}}}
 
 -- Helper Functions {{{
 local function Spacer(num)

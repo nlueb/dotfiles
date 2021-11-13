@@ -20,11 +20,11 @@ luasnip.config.setup {
 }
 
 -- Jump forward
-keymap('i', '<C-l>',   [[<cmd>lua require('luasnip').jump(1)<cr>]], {silent = true, noremap = true})
-keymap('n', '<C-l>',   [[<cmd>lua require('luasnip').jump(1)<cr>]], {silent = true, noremap = true})
-keymap('s', '<C-l>',   [[<cmd>lua require('luasnip').jump(1)<cr>]], {silent = true, noremap = true})
+keymap('i', '<C-l>',  [[<cmd>lua require('luasnip').jump(1)<cr>]], {silent = true, noremap = true})
+keymap('n', '<C-l>',  [[<cmd>lua require('luasnip').jump(1)<cr>]], {silent = true, noremap = true})
+keymap('s', '<C-l>',  [[<cmd>lua require('luasnip').jump(1)<cr>]], {silent = true, noremap = true})
 
 -- Jump backward
-keymap('i', '<C-h>',   [[<cmd>lua require('luasnip').jump(-1)<cr>]], {silent = true, noremap = true})
-keymap('n', '<C-h>',   [[<cmd>lua require('luasnip').jump(-1)<cr>]], {silent = true, noremap = true})
-keymap('s', '<C-h>',   [[<cmd>lua require('luasnip').jump(-1)<cr>]], {silent = true, noremap = true})
+keymap('i', '<C-h>',  [[<cmd>lua require('luasnip').jump(-1)<cr>]], {silent = true, noremap = true})
+keymap('n', '<C-h>',  [[<cmd>lua require('luasnip').jump(-1)<cr>]], {silent = true, noremap = true})
+keymap('s', '<C-h>',  [[<cmd>lua require('luasnip').jump(-1)<cr>]], {silent = true, noremap = true})

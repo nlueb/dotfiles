@@ -1,7 +1,7 @@
 local vim = vim
+local keymap = vim.api.nvim_set_keymap
 local wk = require 'which-key'
 
--- Use space key as <leader> key
 vim.g.mapleader = ' '
 
 -- Normal Mode {{{
@@ -22,7 +22,11 @@ wk.register({
         n = { [[<cmd>noh<cr>]], 'Remove search highlight', silent = true },
         u = { [[<cmd>MundoToggle<cr>]], 'Open undo tree', silent = true },
         s = { [[<cmd>Startify<cr>]], 'Startify', silent = true },
-        r = { [[<cmd>SnipRun<cr>]], 'SnipRun', silent = true },
+        e = {
+            name = 'trouble',
+            d = { [[<cmd>TroubleToggle<cr>]], 'Toggle Diagnostics', silent = true },
+            t = { [[<cmd>TodoTrouble<cr>]], 'Toggle Todos', silent = true },
+        },
         l = {
             name = 'lsp',
             t = { [[<cmd>TroubleToggle<cr>]], 'Show Quickfix', silent = true },
@@ -44,55 +48,45 @@ wk.register({
             q = { [[<cmd>Telescope quickfix<cr>]], 'Quickfix', noremap = true },
             l = { [[<cmd>lua PopulateLocationList()<cr>]], 'Populate Location List', noremap = true },
             m = { [[<cmd>Telescope man_pages<cr>]], 'Map Pages', noremap = true },
-            n = { [[<cmd>Telescope notify<cr>]], 'Notifications', noremap = true }
+            n = { [[<cmd>Telescope notify<cr>]], 'Notifications', noremap = true },
+            p = { [[<cmd>Telescope projects<cr>]], 'Projects', noremap = true },
         },
     },
-    ga = { [[<Plug>(EasyAlign)]], 'Align' },
-    K = { [[<cmd>lua vim.lsp.buf.hover()<cr>]], 'Hover Doc', silent = true, noremap = true },
-    ['<c-j>'] = { [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]], 'Show line diagnostics', noremap = true },
-    -- ['<m-j>'] = { [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>]], 'Scroll docs up', silent = true, noremap = true },
-    -- ['<m-k>'] = { [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>]], 'Scroll docs down', silent = true, noremap = true },
-    ['<c-k>'] = { [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], 'Show signature', silent = true, noremap = true },
-    ['\\'] = { [[m'O<esc>0d$`']], '', noremap = true },
-    ['<CR>'] = { [[m'o<esc>0d$`']], '', noremap = true },
-    ['<Tab>'] = { '>>', '', noremap = true },
-    ['<S-Tab>'] = { '<<', '', noremap = true },
-    -- Colemak shuffle
-    -- j = { 'n', 'Colemak next search', noremap = true },
-    -- k = { 'e', 'Colemak end', noremap = true },
-    -- n = { 'j|', 'Colemak down', noremap = true },
-    -- e = { 'k|', 'Colemak down', noremap = true },
 }, {mode = 'n'})
+keymap('n', 'ga', [[<Plug>(EasyAlign)]], {})
+keymap('n', 'K', [[<cmd>lua vim.lsp.buf.hover()<cr>]], {silent = true, noremap = true })
+keymap('n', '<c-j>', [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]], {noremap = true })
+-- keymap('n', '<m-j>', [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>]], {silent = true, noremap = true })
+-- keymap('n', '<m-k>', [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>]], {silent = true, noremap = true })
+keymap('n', '<c-k>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], {silent = true, noremap = true })
+keymap('n', '\\', [[m'O<esc>0d$`']], {noremap = true })
+keymap('n', '<CR>', [[m'o<esc>0d$`']], {noremap = true })
+keymap('n', '<Tab>', '>>', {noremap = true })
+keymap('n', '<S-Tab>', '<<', {noremap = true })
 --}}}
 
 -- Visual Mode {{{
 wk.register({
     ['<leader>'] = {
-        r = { [[<cmd>'<,'>SnipRun<cr><esc>]], 'SnipRun', silent = true },
-        -- vim.api.nvim_set_keymap('v', '<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true, noremap = true})
-        f = { [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], silent = true, noremap = true },
         l = {
             name = 'lsp',
             f = { [[<cmd>lua vim.lsp.buf.range_formatting()<CR>]], 'Format Range', silent = true, noremap = true },
             a = { [[<cmd><C-U>Lspsaga range_code_action<cr>]], 'Range Code Action', silent = true, noremap = true },
         },
     },
-    ['ga'] = { [[<Plug>(EasyAlign)]], 'Align' },
-    ['<Tab>'] = { '>gv', 'Indent', noremap = true },
-    ['<S-Tab>'] = { '<gv', 'DedentDedent', noremap = true },
 }, {mode = 'x'})
+keymap('x', '<Tab>', '>gv', {noremap = true })
+keymap('x', '<S-Tab>', '<gv', {noremap = true })
+keymap('x', 'ga', [[<Plug>(EasyAlign)]], {})
+keymap('x', '<leader>f', [[<esc>'>o<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A}}}<esc>'<O<esc>:call setline(line('.'), split(&commentstring, '%s')[0])<cr>A {{{<esc>_f{hi ]], {silent = true, noremap = true})
 --}}}
 
 -- Insert Mode {{{
-wk.register({
-    ['<c-q>'] = { [[<cmd>lua JumpOut()<cr>]], '', silent = true },
-}, {mode = 'i'})
+keymap('i', '<c-q>', [[<cmd>lua JumpOut()<cr>]], {silent = true})
 --}}}
 
 -- Terminal Mode {{{
-wk.register({
-    [ [[<C-\><C-[>]] ] = { [[<C-\><C-n>]], 'Leave Terminal', noremap = true },
-}, {mode = 't'})
+keymap('t', [[<C-\><C-[>]], [[<C-\><C-n>]], {noremap = true})
 --}}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

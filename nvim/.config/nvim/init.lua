@@ -1,5 +1,6 @@
-require 'plugins'
 require 'functions'
+require 'plugins'
 require 'settings'
 require 'mappings'
-require 'autocmd'
+require 'foldtext'
+require 'autocmds'
