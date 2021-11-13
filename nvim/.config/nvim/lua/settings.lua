@@ -16,7 +16,7 @@ opt.directory = vim.fn.stdpath('config') .. '/swap'
 
 -- Colors {{{
 opt.termguicolors = true
-cmd [[colorscheme yin]]
+cmd [[colorscheme term]]
 
 opt.number = true
 opt.relativenumber = true

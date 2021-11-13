@@ -16,3 +16,9 @@ ddnet-info.json
 *skins*
 ddnet-saves.txt
 *workspace*
+
+# ignore nvim temp files
+undo
+backup
+swap
+packer_compiled.lua
