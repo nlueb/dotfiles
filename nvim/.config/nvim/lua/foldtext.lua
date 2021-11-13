@@ -120,11 +120,11 @@ local function FoldMarkerText(foldstart, foldend)
 	local first_line = fn.getline(foldstart)
 	local number_of_lines = (foldend + 1) - foldstart
 	local section_title
-	if vim.startswith(first_line, comment_string) then
-		section_title = first_line:match(comment_string:to_regex() .. '%s*(.-)%s*' .. markers.start:to_regex())
-	else
-		section_title = first_line:match('%s*(.-)%s*' .. markers.start:to_regex())
-	end
+	-- if vim.startswith(first_line, comment_string) then
+		section_title = first_line:match('%s*' .. comment_string:to_regex() .. '%s*(.-)%s*' .. markers.start:to_regex())
+	-- else
+	-- 	section_title = first_line:match('%s*(.-)%s*' .. markers.start:to_regex())
+	-- end
 	local line_count = api.nvim_buf_line_count(0)
 	local line_percent = math.floor((number_of_lines / line_count) * 100)
 	local line_width = GetLineWidth()
