@@ -2,72 +2,35 @@ local lush = require 'lush'
 local hsl = lush.hsl
 
 -- Colors {{{
-function getColors()
-  local colorTable = {}
-  local home = os.getenv("HOME")
-  local pywal_colors  = home .. "/.cache/wal/colors2"
-  file = io.open(pywal_colors, "r")
-  for line in file:lines() do
-    table.insert(colorTable,line)
-  end
-  return colorTable
+-- ========================================
+-- Function to get colors from xresources
+-- ========================================
+local function get_xresources_color (c)
+   local command = io.popen('xrdb -query | grep ' .. c .. ' -m 1 | cut -f 2')
+   local color = command:read("*l")
+   return color
 end
 
-local colors = getColors()
 
-local color1 = hsl(colors[1])
-local color2 = hsl(colors[2])
-local color3 = hsl(colors[3])
-local color4 = hsl(colors[4])
-local color5 = hsl(colors[5])
-local color6 = hsl(colors[6])
-local color7 = hsl(colors[7])
-local color8 = hsl(colors[8])
-local color9 = hsl(colors[9])
-local color10 = hsl(colors[10])
-local color11 = hsl(colors[11])
-local color12 = hsl(colors[12])
-local color13 = hsl(colors[13])
-local color14 = hsl(colors[14])
-local color15 = hsl(colors[15])
-local color16 = hsl(colors[16])
+local color1  = hsl(get_xresources_color('color0'))
+local color2  = hsl(get_xresources_color('color1'))
+local color3  = hsl(get_xresources_color('color2'))
+local color4  = hsl(get_xresources_color('color3'))
+local color5  = hsl(get_xresources_color('color4'))
+local color6  = hsl(get_xresources_color('color5'))
+local color7  = hsl(get_xresources_color('color6'))
+local color8  = hsl(get_xresources_color('color7'))
+local color9  = hsl(get_xresources_color('color8'))
+local color10 = hsl(get_xresources_color('color9'))
+local color11 = hsl(get_xresources_color('color10'))
+local color12 = hsl(get_xresources_color('color11'))
+local color13 = hsl(get_xresources_color('color12'))
+local color14 = hsl(get_xresources_color('color13'))
+local color15 = hsl(get_xresources_color('color14'))
+local color16 = hsl(get_xresources_color('color15'))
 
-local bg = hsl(colors[17])
-local fg = hsl(colors[18])
-
-local blackest = hsl(0, 0, 0)
-local blacker  = hsl(0, 0, 6)
-local black    = hsl(0, 0, 11)
-local gray01   = hsl(0, 0, 15)
-local gray02   = hsl(0, 0, 27)
-local gray03   = hsl(0, 0, 31)
-local gray04   = hsl(0, 0, 35)
-local gray05   = hsl(0, 0, 40)
-local gray06   = hsl(0, 0, 46)
-local gray07   = hsl(0, 0, 50)
-local gray08   = hsl(0, 0, 54)
-local gray09   = hsl(0, 0, 58)
-local gray10   = hsl(0, 0, 62)
-local gray11   = hsl(0, 0, 68)
-local gray12   = hsl(0, 0, 70)
-local gray13   = hsl(0, 0, 74)
-local gray14   = hsl(0, 0, 78)
-local gray15   = hsl(0, 0, 89)
-local white = hsl(0, 0, 93)
-
-local red = hsl(351, 59, 53)
-local lightred = hsl(4, 98, 77)
-local blue = hsl(203, 39, 44)
-local lightblue = hsl(224, 28, 67)
-local green = hsl(165, 19, 40)
-local lightgreen = hsl(133, 18, 59)
-local purple = hsl(274, 100, 75)
-local orange = hsl(27, 87, 67)
-local bright_orange = hsl(17, 83, 54)
-local yellow = hsl(40, 100, 67)
-local magenta = hsl(342, 100, 52)
-local pink = hsl(339, 77, 76)
-local brown = hsl(27, 31, 55)
+local bg = hsl(get_xresources_color('background'))
+local fg = hsl(get_xresources_color('foreground'))
 -- }}}
 
 -- NeoVim Terminal {{{
