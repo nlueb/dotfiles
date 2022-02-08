@@ -13,6 +13,8 @@ indent.setup {
     filetype_exclude = {
         'help',
         'packer',
-        'startify'
+        'startify',
+        'racket',
+        'scheme'
     }
 }

@@ -2,6 +2,8 @@ local vim = vim
 local keymap = vim.api.nvim_set_keymap
 local wk = require 'which-key'
 
+local c = require 'default'
+
 vim.g.mapleader = ' '
 
 -- Normal Mode {{{
@@ -27,7 +29,7 @@ wk.register({
             d = { [[<cmd>TroubleToggle<cr>]], 'Toggle Diagnostics', silent = true },
             t = { [[<cmd>TodoTrouble<cr>]], 'Toggle Todos', silent = true },
         },
-        l = {
+        [c:get('mappings.normal.lsp', 'l')] = {
             name = 'lsp',
             t = { [[<cmd>TroubleToggle<cr>]], 'Show Quickfix', silent = true },
             i = { [[<cmd>lua vim.lsp.buf.implementation()<CR>]], 'Goto Implementation', silent = true, noremap = true },
@@ -55,14 +57,22 @@ wk.register({
 }, {mode = 'n'})
 keymap('n', 'ga', [[<Plug>(EasyAlign)]], {})
 keymap('n', 'K', [[<cmd>lua vim.lsp.buf.hover()<cr>]], {silent = true, noremap = true })
-keymap('n', '<c-j>', [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]], {noremap = true })
+keymap('n', '<c-n>', [[<cmd>lua vim.diagnostic.open_float()<CR>]], {noremap = true })
 -- keymap('n', '<m-j>', [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>]], {silent = true, noremap = true })
 -- keymap('n', '<m-k>', [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>]], {silent = true, noremap = true })
-keymap('n', '<c-k>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], {silent = true, noremap = true })
+keymap('n', '<c-e>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], {silent = true, noremap = true })
 keymap('n', '\\', [[m'O<esc>0d$`']], {noremap = true })
 keymap('n', '<CR>', [[m'o<esc>0d$`']], {noremap = true })
 keymap('n', '<Tab>', '>>', {noremap = true })
 keymap('n', '<S-Tab>', '<<', {noremap = true })
+-- keymap('', 'n', 'j', {noremap = true })
+-- keymap('', 'N', 'J', {noremap = true })
+-- keymap('', 'j', 'n', {noremap = true })
+-- keymap('', 'J', 'N', {noremap = true })
+-- keymap('', 'e', 'k', {noremap = true })
+-- keymap('', 'E', 'K', {noremap = true })
+-- keymap('', 'k', 'e', {noremap = true })
+-- keymap('', 'K', 'E', {noremap = true })
 --}}}
 
 -- Visual Mode {{{

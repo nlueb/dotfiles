@@ -67,6 +67,7 @@ alias ls='exa --icons'
 alias c='bat'
 alias cp='rsync -avhW --no-compress --progress'
 alias tree="tre"
+alias htop="gotop"
 alias _='sudo'
 alias ctl='sudo systemctl'
 alias uctl='systemctl --user'
@@ -248,6 +249,6 @@ fi
 zplug load
 # }}}
 
-# vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
-
 alias luamake=/home/nils/Documents/lua/lua-language-server/3rd/luamake/luamake
+
+# vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

@@ -1,0 +1,5 @@
+return {
+    normal = {
+        lsp = 'l'
+    }
+}

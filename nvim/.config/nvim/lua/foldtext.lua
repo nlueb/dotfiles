@@ -119,12 +119,7 @@ local function FoldMarkerText(foldstart, foldend)
 
 	local first_line = fn.getline(foldstart)
 	local number_of_lines = (foldend + 1) - foldstart
-	local section_title
-	-- if vim.startswith(first_line, comment_string) then
-		section_title = first_line:match('%s*' .. comment_string:to_regex() .. '%s*(.-)%s*' .. markers.start:to_regex())
-	-- else
-	-- 	section_title = first_line:match('%s*(.-)%s*' .. markers.start:to_regex())
-	-- end
+	local section_title = first_line:match('%s*' .. comment_string:to_regex() .. '%s*(.-)%s*' .. markers.start:to_regex())
 	local line_count = api.nvim_buf_line_count(0)
 	local line_percent = math.floor((number_of_lines / line_count) * 100)
 	local line_width = GetLineWidth()
@@ -142,6 +137,33 @@ local function FoldMarkerText(foldstart, foldend)
 	return foldtext_left
 		.. string.rep('─', line_width - foldtext_left_width - foldtext_right_width)
 		.. foldtext_right
+end
+-- }}}
+
+-- Fold[Diff] Text {{{
+local function FoldDiffText(foldstart, foldend)
+	local number_of_lines = (foldend + 1) - foldstart
+	local line_count = api.nvim_buf_line_count(0)
+	local line_percent = math.floor((number_of_lines / line_count) * 100)
+	local line_width = GetLineWidth()
+
+    local fold_symbol = '═'
+
+	local foldtext_left = string.rep(fold_symbol, 4)
+        .. '╡ '
+        .. tostring(number_of_lines):align(3, 'right') .. 'ℓ ◦ '
+        .. tostring(line_percent):align(2, 'right') .. '% ╞'
+	local foldtext_left_width = api.nvim_strwidth(foldtext_left)
+
+	return foldtext_left
+		.. string.rep(fold_symbol, line_width - foldtext_left_width)
+	-- local foldtext_left = '──── '
+ --        .. tostring(number_of_lines):align(3, 'right') .. 'ℓ ◦ '
+ --        .. tostring(line_percent):align(2, 'right') .. '% ────'
+	-- local foldtext_left_width = api.nvim_strwidth(foldtext_left)
+	--
+	-- return foldtext_left
+	-- 	.. string.rep('─', line_width - foldtext_left_width)
 end
 -- }}}
 
@@ -188,11 +210,12 @@ function _G.FoldText()
 	local foldstart = api.nvim_get_vvar('foldstart')
 	local foldend = api.nvim_get_vvar('foldend')
 	-- local foldlevel = api.nvim_get_vvar('foldlevel')
-	if api.nvim_win_get_option(0, 'foldmethod') ~= 'marker' then
-		return FoldOtherText(foldstart, foldend)
-		-- return fn.foldtext()
-	else
+	if api.nvim_win_get_option(0, 'foldmethod') == 'diff' then
+		return FoldDiffText(foldstart, foldend)
+    elseif api.nvim_win_get_option(0, 'foldmethod') == 'marker' then
 		return FoldMarkerText(foldstart, foldend)
+	else
+		return FoldOtherText(foldstart, foldend)
 	end
 end
 -- }}}

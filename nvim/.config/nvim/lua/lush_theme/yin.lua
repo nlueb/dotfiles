@@ -37,7 +37,6 @@ local pink = hsl(339, 77, 76)
 local brown = hsl(27, 31, 55)
 -- }}}
 
-
 local theme = lush(function() return {
 -- Vim Editor {{{
     Normal { bg = blacker, fg = gray13 };
@@ -81,8 +80,8 @@ local theme = lush(function() return {
     Comment { fg = gray03, gui = 'italic' };
     LineNr { fg = gray04 };
     Folded { LineNr, gui = 'italic' };
-    FoldColumn { bg = gray01, fg = gray07 };
     SignColumn { fg = gray07 };
+    FoldColumn { SignColumn };
     ColorColumn { bg = blacker };
     CursorLine { bg = black };
     CursorColumn { CursorLine };

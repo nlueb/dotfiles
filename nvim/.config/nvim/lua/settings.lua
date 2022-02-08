@@ -16,7 +16,7 @@ opt.directory = vim.fn.stdpath('config') .. '/swap'
 
 -- Colors {{{
 opt.termguicolors = true
-cmd [[colorscheme term]]
+cmd [[colorscheme yin]]
 
 opt.number = true
 opt.relativenumber = true
@@ -43,7 +43,9 @@ opt.smartcase = true
 
 -- Fillchars {{{
 -- VertSplit
-opt.fillchars = 'vert:┃,fold: '
+opt.fillchars = 'vert:┃,fold: ,diff:,foldclose:,foldopen:'
+        -- item = { '', '' },
+        -- section = { '', '' },
 
 -- Highlight characters after 90
 -- opt.colorcolumn = '90'
@@ -85,7 +87,7 @@ opt.foldtext = [[v:lua.FoldText()]]
 
 -- Misc settings {{{
 -- Enable live feedback for the :substitute command
-opt.inccommand = 'split'
+-- opt.inccommand = 'split'
 
 -- Smaller updatetime for CursorHold and CursorHoldI
 opt.updatetime = 300

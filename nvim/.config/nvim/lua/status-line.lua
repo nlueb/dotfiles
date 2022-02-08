@@ -260,7 +260,7 @@ local function HasLSP(bufnr)
 end
 
 local function GetLSPDisagnosticCount(bufnr, diagnostic_type)
-	return vim.lsp.diagnostic.get_count(bufnr, diagnostic_type)
+	return vim.tbl_count(vim.diagnostic.get(bufnr, {severity = diagnostic_type}))
 end
 
 local function InsideOfFunctionBlock(bufnr)
@@ -275,28 +275,28 @@ end
 local function GetLSPDiagnosticsStatusline(bufnr)
 	local statusline = ''
 	statusline = statusline .. Spacer() .. HlGroup.NormalText
-	local error_count = GetLSPDisagnosticCount(bufnr, 'Error')
+	local error_count = GetLSPDisagnosticCount(bufnr, vim.diagnostic.severity.ERROR)
 	if error_count and error_count > 0 then
 		statusline = statusline .. Spacer() .. HlGroup.Error
 				  -- .. Icon.Error .. Spacer() .. error_count
 				  .. error_count
 				  .. Spacer() .. HlGroup.DimText .. Sep.RightAlt
 	end
-	local warning_count = GetLSPDisagnosticCount(bufnr, 'Warning')
+	local warning_count = GetLSPDisagnosticCount(bufnr, vim.diagnostic.severity.WARN)
 	if warning_count and warning_count > 0 then
 		statusline = statusline .. Spacer() .. HlGroup.Warning
 				  -- .. Icon.Warning .. Spacer() .. warning_count
 				  .. warning_count
 				  .. Spacer() .. HlGroup.DimText .. Sep.RightAlt
 	end
-	local info_count = GetLSPDisagnosticCount(bufnr, 'Information')
+	local info_count = GetLSPDisagnosticCount(bufnr, vim.diagnostic.severity.INFO)
 	if info_count and info_count > 0 then
 		statusline = statusline .. Spacer() .. HlGroup.Info
 				  -- .. Icon.Info .. Spacer() .. info_count
 				  .. info_count
 				  .. Spacer() .. HlGroup.DimText .. Sep.RightAlt
 	end
-	local hint_count = GetLSPDisagnosticCount(bufnr, 'Hint')
+	local hint_count = GetLSPDisagnosticCount(bufnr, vim.diagnostic.severity.HINT)
 	if hint_count and hint_count > 0 then
 		statusline = statusline .. Spacer() .. HlGroup.Hint
 				  -- .. Icon.Hint .. Spacer() .. hint_count

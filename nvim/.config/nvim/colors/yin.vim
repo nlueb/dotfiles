@@ -51,7 +51,6 @@ highlight FernRootText guifg=#9E9E9E guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight FernSpinner guifg=#447A9C guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Float guifg=#757575 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link TSFloat Float
-highlight FoldColumn guifg=#808080 guibg=#262626 guisp=NONE gui=NONE blend=NONE
 highlight Folded guifg=#595959 guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight Function guifg=#8A8A8A guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link TSFunction Function
@@ -204,6 +203,7 @@ highlight SLWarning guifg=#F4A462 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight SagaShadow guifg=#CE4056 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Search guifg=#262626 guibg=#ADADAD guisp=NONE gui=NONE blend=NONE
 highlight SignColumn guifg=#808080 guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight! link FoldColumn SignColumn
 highlight Special guifg=#666666 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link Debug Special
 highlight! link Delimiter Special

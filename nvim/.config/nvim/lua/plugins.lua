@@ -43,7 +43,10 @@ local function init(use)
 -- Init {{{
     local use = use_wrapper(use)
     use { 'wbthomason/packer.nvim', opt = true }
+    -- use 'rktjmp/hotpot.nvim'
     use 'antoinemadec/FixCursorHold.nvim'
+    use 'lambdalisue/suda.vim'
+    use 'lewis6991/impatient.nvim'
 --}}}
 
 -- UI {{{
@@ -56,6 +59,8 @@ local function init(use)
     use 'rcarriga/nvim-notify'
     use 'folke/which-key.nvim'
     use 'folke/trouble.nvim'
+    use 'TimUntersberger/neogit'
+    use 'sindrets/diffview.nvim'
 --}}}
 
 -- Actions {{{
@@ -87,6 +92,7 @@ local function init(use)
 --}}}
 
 -- Languages {{{
+    use 'wlangstroth/vim-racket'
     use {
         'Saecki/crates.nvim',
         event = {'BufRead Cargo.toml'},
@@ -129,7 +135,8 @@ end
 local config = {
     display = {
         open_fn = util.float
-    }
+    },
+    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
 }
 
 packer.startup { init, config = config }

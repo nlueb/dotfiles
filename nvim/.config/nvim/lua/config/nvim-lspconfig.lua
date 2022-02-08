@@ -70,6 +70,12 @@ end
 
 local custom_capabilities = cmp_lsp.update_capabilities(lsp.protocol.make_client_capabilities())
 
+-- Go {{{
+lspcfg.gopls.setup {
+    capabilities = custom_capabilities
+}
+-- }}}
+
 -- Terraform {{{
 lspcfg.terraformls.setup {
     capabilities = custom_capabilities
@@ -122,12 +128,6 @@ lspcfg.clangd.setup {
 -- }
 
 -- lspcfg.sumneko_lua.setup(lua_conf)
--- }}}
-
--- Go {{{
-lspcfg.gopls.setup {
-    capabilities = custom_capabilities
-}
 -- }}}
 
 -- Rust {{{
@@ -202,52 +202,9 @@ lspcfg.ansiblels.setup {
 -- }}}
 
 -- Julia {{{
-local function julia_new_config(new_config)
-    local server_path = "/home/nils/.julia/packages/LanguageServer/y1ebo/src"
-    local cmd = {
-        "julia", "--project=" .. server_path, "--startup-file=no",
-        "--history-file=no", "-e", [[
-			using Pkg;
-			Pkg.instantiate()
-			using LanguageServer; using SymbolServer;
-			depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
-			project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
-			# Make sure that we only load packages from this environment specifically.
-			@info "Running language server" env=Base.load_path()[1] pwd() project_path depot_path
-			server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
-			server.runlinter = true;
-			run(server);
-		]]
-    };
-    new_config.cmd = cmd
-end
-
 lspcfg.julials.setup {
-    on_new_config = julia_new_config,
-    capabilities = custom_capabilities
+    capabilities = custom_capabilities,
 }
--- }}}
-
--- EFM {{{
--- lspcfg.efm.setup {
---     init_options = {documentFormatting = true, publishDiagnostics = true},
---     root_dir = lspcfg.util.root_pattern('.git', 'pom.xml', 'go.mod'),
---     filetypes = {'go', 'gomod', 'lua'},
---     settings = {
---         rootMarkers = {'.git/', 'pom.xml', 'go.mod'},
---         languages = {
---             lua = {{formatCommand = 'lua-format -i', formatStdin = true}},
---             go = {
---                 {
---                     formatCommand = 'gopls format',
---                     lintCommand = 'revive -config /home/nils/.config/revive/config.toml',
---                     lintIgnoreExitCode = true,
---                     lintFormats = {'%f:%l:%c: %m'}
---                 }
---             }
---         }
---     }
--- }
 -- }}}
 -- }}}
 
