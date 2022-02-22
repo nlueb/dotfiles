@@ -1,9 +1,17 @@
 local vim = vim
 local cmd = vim.cmd
 
+vim.g.vscode_style = 'dark'
+vim.g.vscode_italic_comment = 1
+
 cmd [[ packadd packer.nvim ]]
 
-cmd [[ autocmd BufWritePost init.lua PackerCompile ]]
+cmd [[
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
+]]
 
 local packer = require 'packer'
 local util = require 'packer.util'
@@ -61,6 +69,7 @@ local function init(use)
     use 'folke/trouble.nvim'
     use 'TimUntersberger/neogit'
     use 'sindrets/diffview.nvim'
+    use 'j-hui/fidget.nvim'
 --}}}
 
 -- Actions {{{
@@ -89,6 +98,7 @@ local function init(use)
         'folke/todo-comments.nvim',
         requires = 'nvim-lua/plenary.nvim'
     }
+    use 'Mofiqul/vscode.nvim'
 --}}}
 
 -- Languages {{{
@@ -128,6 +138,7 @@ local function init(use)
     }
 
     use { 'windwp/nvim-autopairs', after = 'nvim-cmp' }
+    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 --}}}
 end
 
@@ -136,7 +147,8 @@ local config = {
     display = {
         open_fn = util.float
     },
-    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+    -- compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+    compile_path = vim.fn.stdpath('config')..'/plugin/packer_compiled.lua',
 }
 
 packer.startup { init, config = config }
