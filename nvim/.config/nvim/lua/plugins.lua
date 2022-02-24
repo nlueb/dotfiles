@@ -71,6 +71,7 @@ local function init(use)
     use 'sindrets/diffview.nvim'
     use 'j-hui/fidget.nvim'
     use 'simnalamburt/vim-mundo'
+    use 'lewis6991/gitsigns.nvim'
 --}}}
 
 -- Actions {{{

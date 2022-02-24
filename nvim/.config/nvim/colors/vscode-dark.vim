@@ -123,8 +123,13 @@ highlight PmenuThumb guifg=NONE guibg=#BBBBBB guisp=NONE gui=NONE blend=NONE
 highlight PreProc guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Question guifg=#569CD6 guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
 highlight Repeat guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight SLError guifg=#F44747 guibg=#084671 guisp=NONE gui=NONE blend=NONE
+highlight SLHint guifg=#569CD6 guibg=#084671 guisp=NONE gui=NONE blend=NONE
+highlight SLInfo guifg=#569CD6 guibg=#084671 guisp=NONE gui=NONE blend=NONE
+highlight SLModeText guifg=#1E1E1E guibg=#6A9955 guisp=NONE gui=bold blend=NONE
+highlight SLNormalText guifg=#D4D4D4 guibg=#084671 guisp=NONE gui=NONE blend=NONE
+highlight SLWarning guifg=NONE guibg=#084671 guisp=NONE gui=NONE blend=NONE
 highlight Search guifg=NONE guibg=#264F78 guisp=NONE gui=NONE blend=NONE
-highlight! link TSDefinition Search
 highlight! link TSDefinitionUsage Search
 highlight SignColumn guifg=NONE guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
 highlight Special guifg=#D7BA7D guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -136,8 +141,8 @@ highlight SpellCap guifg=#F44747 guibg=#1E1E1E guisp=NONE gui=undercurl blend=NO
 highlight SpellLocal guifg=#F44747 guibg=#1E1E1E guisp=NONE gui=undercurl blend=NONE
 highlight SpellRare guifg=#F44747 guibg=#1E1E1E guisp=NONE gui=undercurl blend=NONE
 highlight Statement guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
-highlight StatusLine guifg=#D4D4D4 guibg=#373737 guisp=NONE gui=NONE blend=NONE
-highlight StatusLineNC guifg=#D4D4D4 guibg=#252526 guisp=NONE gui=NONE blend=NONE
+highlight StatusLine guifg=#084671 guibg=#084671 guisp=NONE gui=NONE blend=NONE
+highlight StatusLineNC guifg=#084671 guibg=#084671 guisp=NONE gui=NONE blend=NONE
 highlight StorageClass guifg=#569CD6 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight String guifg=#CE9178 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Structure guifg=#569CD6 guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -152,6 +157,7 @@ highlight! link CmpItemKindConstant TSConstant
 highlight! link CmpItemKindEvent TSConstant
 highlight TSConstructor guifg=#4EC9B0 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight TSDanger guifg=#F44747 guibg=NONE guisp=NONE gui=bold blend=NONE
+highlight TSDefinition guifg=NONE guibg=#264F78 guisp=NONE gui=bold blend=NONE
 highlight TSEmphasis guifg=#D4D4D4 guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight TSError guifg=#F44747 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight TSException guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE

@@ -94,8 +94,8 @@ local theme = lush(function() return {
     Question { fg = vscBlue, bg = vscBack };
     Search { bg = vscSearch };
     SpecialKey { fg = vscBlue };
-    StatusLine { fg = vscFront, bg = vscLeftMid };
-    StatusLineNC { fg = vscFront, bg = vscLeftDark };
+    StatusLine { fg = vscUiBlue, bg = vscUiBlue };
+    StatusLineNC { fg = vscUiBlue, bg = vscUiBlue };
     TabLine { fg = vscFront, bg = vscTabOther };
     TabLineFill { fg = vscFront, bg = vscTabOutside };
     TabLineSel { fg = vscFront, bg = vscTabCurrent };
@@ -602,21 +602,21 @@ local theme = lush(function() return {
     CmpItemKindTypeParameter { TSParameter };
 -- }}}
 
--- TODO: Port all hl groups below
+-- Status Line {{{
+    SLModeText { fg = vscBack, bg = vscGreen, gui = 'bold' };
+    -- SLModeSep { bg = blacker, fg = gray09 };
+    SLNormalText { fg = vscFront, bg = vscUiBlue };
+    -- SLDimText { bg = blacker, fg = gray01 };
+    -- SLLightText { bg = gray01, fg = gray09, gui = 'italic' };
+    -- SLLightSep { bg = blacker, fg = gray01 };
+    -- SLDarkText { bg = blacker, fg = blackest };
+    SLError { fg = DiagnosticError.fg, bg = vscUiBlue };
+    SLWarning { fg = DiagnosticWarning.fg, bg = vscUiBlue };
+    SLInfo { fg = DiagnosticInfo.fg, bg = vscUiBlue };
+    SLHint { fg = DiagnosticHint.fg, bg = vscUiBlue };
+-- }}}
 
--- -- Status Line {{{
---     SLModeText { bg = gray09, fg = black, gui = 'bold' };
---     SLModeSep { bg = blacker, fg = gray09 };
---     SLNormalText { bg = blacker, fg = gray09 };
---     SLDimText { bg = blacker, fg = gray01 };
---     SLLightText { bg = gray01, fg = gray09, gui = 'italic' };
---     SLLightSep { bg = blacker, fg = gray01 };
---     SLDarkText { bg = blacker, fg = blackest };
---     SLError { fg = red };
---     SLWarning { fg = orange };
---     SLInfo { fg = blue };
---     SLHint { fg = gray15 };
--- -- }}}
+-- TODO: Port all hl groups below
 
 -- -- Lsp {{{
 --     LspDiagnosticsDefaultError { fg = red };

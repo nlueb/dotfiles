@@ -68,7 +68,8 @@ opt.softtabstop = 4
 opt.smartindent = true
 
 opt.list = true
-opt.listchars = 'tab:│ ,trail:━'
+-- opt.listchars = 'tab:│ ,trail:━'
+opt.listchars = 'tab:⇥ ,trail:━'
 
 opt.wrap = false
 --}}}
