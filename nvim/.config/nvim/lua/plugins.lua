@@ -70,6 +70,7 @@ local function init(use)
     use 'TimUntersberger/neogit'
     use 'sindrets/diffview.nvim'
     use 'j-hui/fidget.nvim'
+    use 'simnalamburt/vim-mundo'
 --}}}
 
 -- Actions {{{

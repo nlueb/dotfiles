@@ -17,3 +17,9 @@ run(require 'lush_theme.rose-pine',
     {prepend, 'set background=dark'},
     {prepend, 'let g:colors_name="rose-pine"'},
     {overwrite, '../colors/rose-pine.vim'})
+
+run(require 'lush_theme.vscode-dark',
+    lushwright.to_vimscript,
+    {prepend, 'set background=dark'},
+    {prepend, 'let g:colors_name="vscode-dark"'},
+    {overwrite, '../colors/vscode-dark.vim'})

@@ -4,7 +4,6 @@ local hsl = lush.hsl
 -- TODO: Switch colors to hsl
 
 -- Colors {{{
-local vscNone = 'NONE'
 local vscFront = '#D4D4D4'
 local vscBack = '#1E1E1E'
 
@@ -81,10 +80,10 @@ local theme = lush(function() return {
     Folded { fg = vscLeftLight, bg = vscLeftDark };
     FoldColumn { fg = vscLineNumber, bg = vscBack };
     SignColumn { bg = vscBack };
-    IncSearch { fg = vscNone, bg = vscSearchCurrent };
+    IncSearch { bg = vscSearchCurrent };
     LineNr { fg = vscLineNumber, bg = vscBack };
     CursorLineNr { fg = vscPopupFront, bg = vscBack };
-    MatchParen { fg = vscNone, bg = vscCursorDark };
+    MatchParen { bg = vscCursorDark };
     ModeMsg { fg = vscFront, bg = vscLeftDark };
     MoreMsg { fg = vscFront, bg = vscLeftDark };
     NonText { fg = vscLineNumber, bg = vscBack };
@@ -93,18 +92,18 @@ local theme = lush(function() return {
     PmenuSbar { bg = vscPopupHighlightGray };
     PmenuThumb { bg = vscPopupFront };
     Question { fg = vscBlue, bg = vscBack };
-    Search { fg = vscNone, bg = vscSearch };
-    SpecialKey { fg = vscBlue, bg = vscNone };
+    Search { bg = vscSearch };
+    SpecialKey { fg = vscBlue };
     StatusLine { fg = vscFront, bg = vscLeftMid };
     StatusLineNC { fg = vscFront, bg = vscLeftDark };
     TabLine { fg = vscFront, bg = vscTabOther };
     TabLineFill { fg = vscFront, bg = vscTabOutside };
     TabLineSel { fg = vscFront, bg = vscTabCurrent };
-    Title { fg = vscNone, bg = vscNone, gui='bold' };
-    Visual { fg = vscNone, bg = vscSelection };
-    VisualNOS { fg = vscNone, bg = vscSelection };
+    Title { gui='bold' };
+    Visual { bg = vscSelection };
+    VisualNOS { bg = vscSelection };
     WarningMsg { fg = vscRed, bg = vscBack, gui='bold' };
-    WildMenu { fg = vscNone, bg = vscSelection };
+    WildMenu { bg = vscSelection };
     Comment { fg = vscGreen, gui = 'italic' };
     Constant { fg = vscBlue };
     String { fg = vscOrange };
@@ -135,7 +134,7 @@ local theme = lush(function() return {
     Delimiter { fg = vscFront };
     SpecialComment { fg = vscGreen };
     Debug { fg = vscFront };
-    Underlined { fg = vscNone, gui='underline' };
+    Underlined { gui='underline' };
     Conceal { fg = vscFront, bg = vscBack };
     Ignore { fg = vscFront };
     Error { fg = vscRed, bg = vscBack, gui = 'undercurl' };
@@ -148,6 +147,7 @@ local theme = lush(function() return {
 -- }}}
 
 -- Treesitter {{{
+
     TSError { fg = vscRed };
     TSPunctBracket { fg = vscFront };
     TSPunctSpecial { fg = vscFront };
@@ -173,16 +173,16 @@ local theme = lush(function() return {
     TSField { fg = vscLightBlue };
     TSProperty { fg = vscLightBlue };
     TSConstructor { fg = vscBlueGreen };
-    TSConditional { fg = vscPink };
     TSRepeat { fg = vscPink };
     TSLabel { fg = vscLightBlue };
-    TSKeyword { fg = vscBlue };
+    TSKeyword { fg = vscPink };
+    TSConditional { TSKeyword };
     TSKeywordFunction { fg = vscBlue };
     TSKeywordOperator { fg = vscBlue };
     TSOperator { fg = vscFront };
     TSException { fg = vscPink };
     TSType { fg = vscBlueGreen };
-    TSTypeBuiltin { fg = vscBlue };
+    TSTypeBuiltin { TSType };
     TSStructure { fg = vscLightBlue };
     TSInclude { fg = vscPink };
     TSVariable { fg = vscLightBlue };
@@ -204,6 +204,11 @@ local theme = lush(function() return {
     TSNote { fg = vscBlueGreen, gui='bold' };
     TSWarning { fg = vscYellowOrange, gui='bold' };
     TSDanger { fg = vscRed, gui='bold' };
+
+-- Refactor {{{
+    TSDefinitionUsage { Search };
+    TSDefinition { Search, gui='bold' };
+-- }}}
 -- }}}
 
 --  Extra Languages {{{
@@ -475,6 +480,9 @@ local theme = lush(function() return {
 -- }}}
 
 -- Git Signs {{{
+--     DiffAddSign { fg = green };
+--     DiffChangeSign { fg = blue };
+--     DiffDeleteSign { fg = red };
     GitSignsAdd { fg = vscGreen };
     GitSignsChange { fg = vscYellow };
     GitSignsDelete { fg = vscRed };
@@ -546,6 +554,23 @@ local theme = lush(function() return {
 -- }}}
 
 -- Cmp {{{
+-- -- The abbr field.
+--     CmpItemAbbr { Normal };
+--
+-- -- The deprecated item's abbr field.
+--     CmpItemAbbrDeprecated { Error };
+--
+-- -- The matched characters highlight.
+--     CmpItemAbbrMatch { Error };
+--
+-- -- The fuzzy matched characters highlight.
+--     CmpItemAbbrMatchFuzzy { Error };
+--
+-- -- The kind field.
+--     CmpItemKind { fg = gray03 };
+--
+-- -- The menu field.
+--     CmpItemMenu { Normal };
     CmpItemKindVariable { fg = vscLightBlue };
     CmpItemKindInterface { fg = vscLightBlue };
     CmpItemKindText { fg = vscLightBlue };
@@ -579,96 +604,6 @@ local theme = lush(function() return {
 
 -- TODO: Port all hl groups below
 
--- -- Vim Editor {{{
---     Normal { bg = blacker, fg = gray13 };
---     Whitespace { fg = gray01 };
---     EndOfBuffer { fg = gray01 };
---     Conceal { Normal };
---     Constant { fg = gray05, gui = 'bold' };
---     Character { Constant };
---     String { fg = gray10 };
---     Number { fg = gray06 };
---     Float { fg = gray06 };
---     NormalFloat { bg = gray01, fg = gray12 };
---     Boolean { Number };
---     Identifier { fg = gray08 };
---     Function { fg = gray08 };
---     Statement { fg = gray05, gui = 'bold' };
---     Conditional { Statement };
---     Repeat { Statement };
---     Label { Statement };
---     Exception { Statement };
---     Operator { fg = gray05 };
---     Keyword { fg = gray05 };
---     PreProc { fg = gray07 };
---     Include { PreProc };
---     Define { PreProc };
---     Macro { PreProc };
---     PreCondit { PreProc };
---     Type { fg = gray05, gui = 'bold' };
---     StorageClass { Type };
---     Structure { Type };
---     Typedef { Type };
---     Special { fg = gray05 };
---     SpecialChar { Special };
---     Tag { Special };
---     Delimiter { Special };
---     Debug { Special };
---     Question { Special };
---     SpecialComment { fg = gray03, gui = 'bold' };
---     Title { fg = gray07, gui = 'bold' };
---     Todo { fg = purple };
---     Comment { fg = gray03, gui = 'italic' };
---     LineNr { fg = gray04 };
---     Folded { LineNr, gui = 'italic' };
---     SignColumn { fg = gray07 };
---     FoldColumn { SignColumn };
---     ColorColumn { bg = blacker };
---     CursorLine { bg = black };
---     CursorColumn { CursorLine };
---     CursorLineNr { LineNr, fg = gray10, gui = 'bold' };
---     Visual { bg = gray06, fg = black };
---     VisualNOS { Visual };
---     Search { bg = gray11, fg = gray01 };
---     IncSearch { bg = gray07, fg = black, gui = 'bold' };
---     SpellBad { fg = red, gui = 'undercurl' };
---     SpellCap { fg = red, gui = 'undercurl' };
---     SpellLocal { fg = red, gui = 'undercurl' };
---     SpellRare { fg = brown, gui = 'undercurl' };
---     Error { fg = red, gui = 'bold' };
---     ErrorMsg { Error };
---     ErrorMsg { fg = red };
---     WarningMsg { fg = brown };
---     ModeMsg { fg = gray10 };
---     MoreMsg { fg = gray10 };
---     MatchParen { fg = magenta, gui = 'bold' };
---     Cursor { bg = gray12 };
---     Underlined { fg = gray08, gui = 'underline' };
---     SpecialKey { fg = gray04 };
---     NonText { fg = gray04 };
---     Directory { fg = gray08 };
---     Pmenu { fg = gray06 };
---     PmenuSbar { fg = black };
--- -- PmenuSbar { bg = Error.fg };
--- -- PmenuThumb { bg = gray09, fg = gray03 };
---     PmenuThumb { bg = gray01};
---     PmenuSel { bg = gray06, fg = blacker };
---     StatusLine { Normal , fg = gray11 };
---     TabLineSel { StatusLine };
---     StatusLineNC { StatusLine, fg = gray04 };
---     TabLine { StatusLineNC };
---     TabLineFill { StatusLineNC };
---     WildMenu { fg = gray08 };
---     VertSplit { fg = blackest };
---     DiffAdd { bg = green, fg = blackest };
---     DiffChange { bg = blue, fg = blackest };
---     DiffDelete { bg = red, fg = blackest };
---     DiffText { bg = lightblue, fg = black };
---     DiffAdded { fg = green };
---     DiffChanged { fg = blue };
---     DiffRemoved { fg = red };
--- -- }}}
---
 -- -- Status Line {{{
 --     SLModeText { bg = gray09, fg = black, gui = 'bold' };
 --     SLModeSep { bg = blacker, fg = gray09 };
@@ -682,65 +617,7 @@ local theme = lush(function() return {
 --     SLInfo { fg = blue };
 --     SLHint { fg = gray15 };
 -- -- }}}
---
--- -- Treesitter {{{
---     TSComment { Comment, gui = 'italic' };
---     TSPunctDelimiter { Delimiter };
---     TSPunctBracket { Delimiter };
---     TSPunctSpecial { Delimiter };
---     TSConstant { Constant };
---     TSConstBuiltin { Special };
---     TSConstMacro { Define };
---     TSString { String };
---     TSStringRegex { String };
---     TSStringEscape { SpecialChar };
---     TSCharacter { Character };
---     TSNumber { Number };
---     TSBoolean { Boolean };
---     TSFloat { Float };
---     TSFunction { Function };
---     TSFuncBuiltin { Special };
---     TSFuncMacro { Macro };
---     TSParameter { Identifier, gui = 'italic' };
---     TSParameterReference { TSParameter };
---     TSMethod { Function };
---     TSField { Identifier };
---     TSProperty { Identifier, gui = 'italic' };
---     TSConstructor { Special };
---     TSAnnotation { PreProc };
---     TSAttribute { PreProc };
---     TSNamespace { Include };
---     TSConditional { Conditional };
---     TSRepeat { Repeat };
---     TSLabel { Label };
---     TSOperator { Operator };
---     TSKeyword { Keyword, gui = 'italic' };
---     TSKeywordFunction { Keyword };
---     TSKeywordOperator { TSOperator };
---     TSException { Exception };
---     TSType { Type };
---     TSTypeBuiltin { Type };
---     TSInclude { Include };
---     TSVariable { fg = Normal.fg, gui = 'italic'};
---     TSVariableBuiltin { Special };
---     TSText { fg = Normal.fg };
---     TSStrong { TSText, gui = 'bold' };
---     TSEmphasis { TSText, gui = 'italic' };
---     TSUnderline { TSText, gui = 'underline' };
---     TSTitle { Title };
---     TSLiteral { String };
---     TSURI { Underlined };
---     TSTag { Label };
---     TSTagDelimiter { Delimiter };
---     TSPlaygroundFocus { Visual };
---
--- -- Refactor {{{
---     TSDefinitionUsage { fg = white };
---     TSDefinition { fg = pink };
--- -- }}}
---
--- -- }}}
---
+
 -- -- Lsp {{{
 --     LspDiagnosticsDefaultError { fg = red };
 --     LspDiagnosticsVirtualTextError { LspDiagnosticsDefaultError, gui = 'italic' };
@@ -766,7 +643,7 @@ local theme = lush(function() return {
 --     LspDiagnosticsSignHint { LspDiagnosticsDefaultHint };
 --     LspDiagnosticsUnderlineHint { LspDiagnosticsDefaultHint, gui = 'italic' };
 -- -- }}}
---
+
 -- -- Diagnostics {{{
 --     DiagnosticError { LspDiagnosticsDefaultError };
 --     DiagnosticVirtualTextError { LspDiagnosticsVirtualTextError };
@@ -792,7 +669,7 @@ local theme = lush(function() return {
 --     DiagnosticFloatingHint { LspDiagnosticsFloatingHint };
 --     DiagnosticSignHint { LspDiagnosticsSignHint };
 -- --}}}
---
+
 -- -- Lsp Saga {{{
 -- -- Misc
 --     LspFloatWinBorder { fg = gray12 };
@@ -832,12 +709,12 @@ local theme = lush(function() return {
 --     DefinitionIcon { fg = gray08 };
 --     ReferencesIcon { fg = gray08 };
 -- -- }}}
---
+
 -- -- Lsp Lightbulb {{{
 --     LightBulbFloatWin { bg = blue, fg = blacker };
 --     LightBulbVirtualText { fg = blue };
 -- -- }}}
---
+
 -- -- Telescope {{{
 --     TelescopeSelection { Normal, fg = gray05 };
 --     TelescopeSelectionCaret { fg = white };
@@ -856,7 +733,7 @@ local theme = lush(function() return {
 -- -- Used for the prompt prefix
 --     TelescopePromptPrefix { fg = gray12 };
 -- -- }}}
---
+
 -- -- Startify {{{
 --     StartifyBracket { fg = gray02 };
 --     StartifyFile { fg = gray10, gui = 'italic' };
@@ -870,87 +747,7 @@ local theme = lush(function() return {
 --     StartifySpecial { fg = gray02 };
 --     StartifyVar { fg = gray13 };
 -- -- }}}
---
--- -- Gitsigns {{{
---     DiffAddSign { fg = green };
---     DiffChangeSign { fg = blue };
---     DiffDeleteSign { fg = red };
--- -- }}}
---
--- -- Nvim Tree {{{
---     NvimTreeNormal { fg = gray02 };
---
---     NvimTreeSymlink { fg = gray02 };
---     NvimTreeFolderName { fg = gray12 };
---     NvimTreeRootFolder { fg = gray02, gui = 'italic' };
---     NvimTreeFolderIcon { fg = gray02 };
---     NvimTreeExecFile { fg = gray02 };
---     NvimTreeSpecialFile { fg = gray02 };
---     NvimTreeImageFile { fg = gray02 };
---     NvimTreeMarkdownFile { fg = gray02 };
---     NvimTreeIndentMarker { fg = gray02 };
---
---     NvimTreeLicenseIcon { fg = gray02 };
---     NvimTreeYamlIcon { fg = gray02 };
---     NvimTreeTomlIcon { fg = gray02 };
---     NvimTreeGitignoreIcon { fg = gray02 };
---     NvimTreeJsonIcon { fg = gray02 };
---
---     NvimTreeLuaIcon { fg = gray02 };
---     NvimTreePythonIcon { fg = gray02 };
---     NvimTreeShellIcon { fg = gray02 };
---     NvimTreeJavascriptIcon { fg = gray02 };
---     NvimTreeCIcon { fg = gray02 };
---     NvimTreeReactIcon { fg = gray02 };
---     NvimTreeHtmlIcon { fg = gray02 };
---     NvimTreeRustIcon { fg = gray02 };
---     NvimTreeVimIcon { fg = gray02 };
---     NvimTreeTypescriptIcon { fg = gray02 };
---
---     NvimTreeGitDirty { fg = gray10, gui = 'italic' };
---     NvimTreeGitStaged { fg = lightgreen, gui = 'italic' };
---     NvimTreeGitMerge { fg = magenta, gui = 'italic' };
---     NvimTreeGitRenamed { fg = gray10, gui = 'italic' };
---     NvimTreeGitNew { fg = gray10, gui = 'italic' };
--- -- }}}
---
--- -- Fern {{{
---     FernSpinner { fg = blue };
---     FernMarkedLine { fg = white };
---     FernMarkedText { fg = white };
---     FernRootSymbol { fg = gray02 };
---     FernRootText { fg = gray10 };
---     FernLeafSymbol { fg = gray02 };
---     FernLeafText { fg = gray08 };
---     FernBranchSymbol { fg = gray02 };
---     FernBranchText { fg = gray10 };
---     FernWindowSelectIndicator { Normal };
---     FernWindowSelectStatusLine { Normal };
--- -- }}}
---
--- -- Indent Blankline {{{
---     IndentBlanklineChar { fg = gray01 };
--- --}}}
---
--- -- Cmp {{{
--- -- The abbr field.
---     CmpItemAbbr { Normal };
---
--- -- The deprecated item's abbr field.
---     CmpItemAbbrDeprecated { Error };
---
--- -- The matched characters highlight.
---     CmpItemAbbrMatch { Error };
---
--- -- The fuzzy matched characters highlight.
---     CmpItemAbbrMatchFuzzy { Error };
---
--- -- The kind field.
---     CmpItemKind { fg = gray03 };
---
--- -- The menu field.
---     CmpItemMenu { Normal };
--- --}}}
+
 } end)
 
 return theme
