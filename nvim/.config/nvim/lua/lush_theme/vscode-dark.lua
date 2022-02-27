@@ -489,6 +489,45 @@ local theme = lush(function() return {
     GitSignsAddLn { fg = vscBack, bg = vscGreen };
     GitSignsChangeLn { fg = vscBack, bg = vscYellow };
     GitSignsDeleteLn { fg = vscBack, bg = vscRed };
+    GitSignsAddNr { GitSignsAdd };
+    GitSignsChangeNr { GitSignsChange };
+    GitSignsDeleteNr { GitSignsDelete };
+-- }}}
+
+-- Diffview {{{
+    DiffviewDiffAddAsDelete { bg = '#6F1313' };
+    DiffviewDiffDelete { NonText };
+    DiffviewFilePanelTitle { fg = '#569CD6', gui = 'bold' };
+    DiffviewSecondary { fg = '#569CD6' };
+    DiffviewPrimary { fg = '#9CDCFE' };
+    DiffviewDim1 { NonText };
+    DiffviewFilePanelFileName { fg = '#D4D4D4' };
+    DiffviewFilePanelCounter { fg = '#9CDCFE', gui = 'bold' };
+    DiffviewStatusUnknown { diffRemoved };
+    DiffviewStatusUnmerged { diffChanged };
+    DiffviewNonText { NonText };
+    DiffviewStatusCopied { diffChanged };
+    DiffviewStatusUntracked { diffAdded };
+    DiffviewStatusAdded { diffAdded };
+    DiffviewFolderSign { PreProc };
+    DiffviewFolderName { Directory };
+    DiffviewSignColumn { Normal };
+    DiffviewFilePanelInsertions { diffAdded };
+    DiffviewFilePanelPath { Comment };
+    DiffviewFilePanelRootPath { DiffviewFilePanelTitle };
+    DiffviewEndOfBuffer { EndOfBuffer };
+    DiffviewVertSplit { VertSplit };
+    DiffviewStatusLine { StatusLine };
+    DiffviewNormal { Normal };
+    DiffviewCursorLine { CursorLine };
+    DiffviewFilePanelDeletions { diffRemoved };
+    DiffviewStatusLineNC { StatusLineNC };
+    DiffviewStatusModified { diffChanged };
+    DiffviewStatusRenamed { diffChanged };
+    DiffviewStatusTypeChange { diffChanged };
+    DiffviewStatusIgnored { Comment };
+    DiffviewStatusBroken { diffRemoved };
+    DiffviewStatusDeleted { diffRemoved };
 -- }}}
 
 -- Nvim Tree {{{
@@ -534,7 +573,7 @@ local theme = lush(function() return {
 -- Indent Blankline {{{
     IndentBlanklineContextChar { fg = vscRed };
     IndentBlanklineContextStart { IndentBlanklineContextChar };
-    IndentBlanklineChar { fg = vscLineNumber };
+    IndentBlanklineChar { fg = vscSplitThumb };
     IndentBlanklineSpaceChar { IndentBlanklineChar };
     IndentBlanklineSpaceCharBlankline { IndentBlanklineChar };
 -- }}}
@@ -551,6 +590,11 @@ local theme = lush(function() return {
     LspReferenceText { bg = vscPopupHighlightGray };
     LspReferenceRead { bg = vscPopupHighlightGray };
     LspReferenceWrite { bg = vscPopupHighlightGray };
+
+-- Lsp Signature {{{
+    LspSignatureActiveParameter { Search };
+-- }}}
+
 -- }}}
 
 -- Cmp {{{
@@ -610,7 +654,7 @@ local theme = lush(function() return {
     -- SLLightText { bg = gray01, fg = gray09, gui = 'italic' };
     -- SLLightSep { bg = blacker, fg = gray01 };
     -- SLDarkText { bg = blacker, fg = blackest };
-    SLError { fg = DiagnosticError.fg, bg = vscUiBlue };
+    SLError { fg = vscLightRed, bg = vscUiBlue };
     SLWarning { fg = DiagnosticWarning.fg, bg = vscUiBlue };
     SLInfo { fg = DiagnosticInfo.fg, bg = vscUiBlue };
     SLHint { fg = DiagnosticHint.fg, bg = vscUiBlue };

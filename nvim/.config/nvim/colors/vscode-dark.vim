@@ -36,12 +36,15 @@ highlight CmpItemKindUnit guifg=#D4D4D4 guibg=NONE guisp=NONE gui=NONE blend=NON
 highlight CmpItemKindVariable guifg=#9CDCFE guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight ColorColumn guifg=NONE guibg=#222222 guisp=NONE gui=NONE blend=NONE
 highlight Comment guifg=#6A9955 guibg=NONE guisp=NONE gui=italic blend=NONE
+highlight! link DiffviewFilePanelPath Comment
+highlight! link DiffviewStatusIgnored Comment
 highlight Conceal guifg=#D4D4D4 guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
 highlight Conditional guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Constant guifg=#569CD6 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Cursor guifg=#51504F guibg=#AEAFAD guisp=NONE gui=NONE blend=NONE
 highlight CursorColumn guifg=NONE guibg=#222222 guisp=NONE gui=NONE blend=NONE
 highlight CursorLine guifg=NONE guibg=#222222 guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewCursorLine CursorLine
 highlight CursorLineNr guifg=#BBBBBB guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
 highlight Debug guifg=#D4D4D4 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Define guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -61,8 +64,17 @@ highlight! link diffChanged DiffChange
 highlight DiffDelete guifg=NONE guibg=#6F1313 guisp=NONE gui=NONE blend=NONE
 highlight! link diffRemoved DiffDelete
 highlight DiffText guifg=NONE guibg=#6F1313 guisp=NONE gui=NONE blend=NONE
+highlight DiffviewDiffAddAsDelete guifg=NONE guibg=#6F1313 guisp=NONE gui=NONE blend=NONE
+highlight DiffviewFilePanelCounter guifg=#9CDCFE guibg=NONE guisp=NONE gui=bold blend=NONE
+highlight DiffviewFilePanelFileName guifg=#D4D4D4 guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight DiffviewFilePanelTitle guifg=#569CD6 guibg=NONE guisp=NONE gui=bold blend=NONE
+highlight! link DiffviewFilePanelRootPath DiffviewFilePanelTitle
+highlight DiffviewPrimary guifg=#9CDCFE guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight DiffviewSecondary guifg=#569CD6 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Directory guifg=#569CD6 guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewFolderName Directory
 highlight EndOfBuffer guifg=#1E1E1E guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewEndOfBuffer EndOfBuffer
 highlight Error guifg=#F44747 guibg=#1E1E1E guisp=NONE gui=undercurl blend=NONE
 highlight ErrorMsg guifg=#F44747 guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
 highlight Exception guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -74,16 +86,19 @@ highlight GitGutterAdd guifg=#6A9955 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight GitGutterChange guifg=#DCDCAA guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight GitGutterDelete guifg=#F44747 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight GitSignsAdd guifg=#6A9955 guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight! link GitSignsAddNr GitSignsAdd
 highlight GitSignsAddLn guifg=#1E1E1E guibg=#6A9955 guisp=NONE gui=NONE blend=NONE
 highlight GitSignsChange guifg=#DCDCAA guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight! link GitSignsChangeNr GitSignsChange
 highlight GitSignsChangeLn guifg=#1E1E1E guibg=#DCDCAA guisp=NONE gui=NONE blend=NONE
 highlight GitSignsDelete guifg=#F44747 guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight! link GitSignsDeleteNr GitSignsDelete
 highlight GitSignsDeleteLn guifg=#1E1E1E guibg=#F44747 guisp=NONE gui=NONE blend=NONE
 highlight Identifier guifg=#9CDCFE guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Ignore guifg=#D4D4D4 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight IncSearch guifg=NONE guibg=#4B5632 guisp=NONE gui=NONE blend=NONE
 highlight Include guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
-highlight IndentBlanklineChar guifg=#5A5A5A guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight IndentBlanklineChar guifg=#424242 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link IndentBlanklineSpaceChar IndentBlanklineChar
 highlight! link IndentBlanklineSpaceCharBlankline IndentBlanklineChar
 highlight IndentBlanklineContextChar guifg=#F44747 guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -99,7 +114,12 @@ highlight MatchParen guifg=NONE guibg=#51504F guisp=NONE gui=NONE blend=NONE
 highlight ModeMsg guifg=#D4D4D4 guibg=#252526 guisp=NONE gui=NONE blend=NONE
 highlight MoreMsg guifg=#D4D4D4 guibg=#252526 guisp=NONE gui=NONE blend=NONE
 highlight NonText guifg=#5A5A5A guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewDiffDelete NonText
+highlight! link DiffviewDim1 NonText
+highlight! link DiffviewNonText NonText
 highlight Normal guifg=#D4D4D4 guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewNormal Normal
+highlight! link DiffviewSignColumn Normal
 highlight Number guifg=#B5CEA8 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight NvimTreeCursorLine guifg=NONE guibg=#222222 guisp=NONE gui=NONE blend=NONE
 highlight NvimTreeEmptyFolderName guifg=#808080 guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -121,15 +141,17 @@ highlight PmenuSbar guifg=NONE guibg=#343B41 guisp=NONE gui=NONE blend=NONE
 highlight PmenuSel guifg=#BBBBBB guibg=#004b72 guisp=NONE gui=NONE blend=NONE
 highlight PmenuThumb guifg=NONE guibg=#BBBBBB guisp=NONE gui=NONE blend=NONE
 highlight PreProc guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewFolderSign PreProc
 highlight Question guifg=#569CD6 guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
 highlight Repeat guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
-highlight SLError guifg=#F44747 guibg=#084671 guisp=NONE gui=NONE blend=NONE
+highlight SLError guifg=#D16969 guibg=#084671 guisp=NONE gui=NONE blend=NONE
 highlight SLHint guifg=#569CD6 guibg=#084671 guisp=NONE gui=NONE blend=NONE
 highlight SLInfo guifg=#569CD6 guibg=#084671 guisp=NONE gui=NONE blend=NONE
 highlight SLModeText guifg=#1E1E1E guibg=#6A9955 guisp=NONE gui=bold blend=NONE
 highlight SLNormalText guifg=#D4D4D4 guibg=#084671 guisp=NONE gui=NONE blend=NONE
 highlight SLWarning guifg=NONE guibg=#084671 guisp=NONE gui=NONE blend=NONE
 highlight Search guifg=NONE guibg=#264F78 guisp=NONE gui=NONE blend=NONE
+highlight! link LspSignatureActiveParameter Search
 highlight! link TSDefinitionUsage Search
 highlight SignColumn guifg=NONE guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
 highlight Special guifg=#D7BA7D guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -142,7 +164,9 @@ highlight SpellLocal guifg=#F44747 guibg=#1E1E1E guisp=NONE gui=undercurl blend=
 highlight SpellRare guifg=#F44747 guibg=#1E1E1E guisp=NONE gui=undercurl blend=NONE
 highlight Statement guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight StatusLine guifg=#084671 guibg=#084671 guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewStatusLine StatusLine
 highlight StatusLineNC guifg=#084671 guibg=#084671 guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewStatusLineNC StatusLineNC
 highlight StorageClass guifg=#569CD6 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight String guifg=#CE9178 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Structure guifg=#569CD6 guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -223,6 +247,7 @@ highlight Type guifg=#569CD6 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Typedef guifg=#569CD6 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Underlined guifg=NONE guibg=NONE guisp=NONE gui=underline blend=NONE
 highlight VertSplit guifg=#444444 guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewVertSplit VertSplit
 highlight Visual guifg=NONE guibg=#264F78 guisp=NONE gui=NONE blend=NONE
 highlight VisualNOS guifg=NONE guibg=#264F78 guisp=NONE gui=NONE blend=NONE
 highlight WarningMsg guifg=#F44747 guibg=#1E1E1E guisp=NONE gui=bold blend=NONE
@@ -250,6 +275,18 @@ highlight cssUnitDecorators guifg=#CE9178 guibg=NONE guisp=NONE gui=NONE blend=N
 highlight cssValueLength guifg=#CE9178 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight cssValueNumber guifg=#CE9178 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight cssVendor guifg=#CE9178 guibg=NONE guisp=NONE gui=NONE blend=NONE
+highlight! link DiffviewFilePanelInsertions diffAdded
+highlight! link DiffviewStatusAdded diffAdded
+highlight! link DiffviewStatusUntracked diffAdded
+highlight! link DiffviewStatusCopied diffChanged
+highlight! link DiffviewStatusModified diffChanged
+highlight! link DiffviewStatusRenamed diffChanged
+highlight! link DiffviewStatusTypeChange diffChanged
+highlight! link DiffviewStatusUnmerged diffChanged
+highlight! link DiffviewFilePanelDeletions diffRemoved
+highlight! link DiffviewStatusBroken diffRemoved
+highlight! link DiffviewStatusDeleted diffRemoved
+highlight! link DiffviewStatusUnknown diffRemoved
 highlight gitcommitBlank guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight gitcommitBranch guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight gitcommitComment guifg=#808080 guibg=NONE guisp=NONE gui=NONE blend=NONE

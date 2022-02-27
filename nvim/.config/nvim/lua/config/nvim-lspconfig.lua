@@ -53,22 +53,17 @@ cmd [[sign define DiagnosticSignHint text= texthl=DiagnosticHint linehl= numh
 -- }}}
 
 -- Language Servers {{{
-local function CustomOnAttach(client, bufnr)
-    lsp_status.on_attach(client)
-    -- lspsig.on_attach({
-    --     bind = true,
-    --     floating_window = true,
-    --     -- floating_window_above_cur_line = true,
-    --     hint_enable = false,
-    --     doc_lines = 0,
-    --     fix_pos = true,
-    --     handler_opts = {
-    --         border = "none"
-    --     }
-    -- }, bufnr)
-end
+-- local function CustomOnAttach(client, bufnr)
+--     lsp_status.on_attach(client)
+-- end
 
-local custom_capabilities = cmp_lsp.update_capabilities(lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = { "documentation", "detail", "additionalTextEdits" },
+}
+
+local custom_capabilities = cmp_lsp.update_capabilities(capabilities)
 
 -- Go {{{
 lspcfg.gopls.setup {
@@ -78,6 +73,16 @@ lspcfg.gopls.setup {
 
 -- Terraform {{{
 lspcfg.terraformls.setup {
+    capabilities = custom_capabilities
+}
+-- }}}
+
+-- Python {{{
+-- lspcfg.pyright.setup {
+--     on_attach = CustomOnAttach,
+--     capabilities = custom_capabilities
+-- }
+lspcfg.pylsp.setup {
     capabilities = custom_capabilities
 }
 -- }}}
@@ -99,35 +104,47 @@ lspcfg.clangd.setup {
 -- }}}
 
 -- Lua {{{
--- local lua_conf = luadev.setup {
---     -- add any options here, or leave empty to use the default settings
---     lspconfig = {
---         cmd = {
---             '/usr/bin/lua-language-server', '-E',
---             '/usr/share/lua-language-server/main.lua'
---         },
---         on_attach = CustomOnAttach,
---         capabilities = custom_capabilities,
---         settings = {
---             Lua = {
---                 runtime = {
---                     version = 'LuaJIT',
---                     path = vim.split(package.path, ';')
---                 },
---                 diagnostics = {enable = true, globals = {'vim', 'it'}},
---                 workspace = {
---                     library = {
---                         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
---                         [vim.fn.expand('~/.config/nvim/lua')] = true
---                     }
---                 },
---                 telemetry = {enable = false}
---             }
---         }
---     }
--- }
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
 
--- lspcfg.sumneko_lua.setup(lua_conf)
+lspcfg.sumneko_lua.setup({
+    cmd = {
+        '/home/nils/Documents/lua/lua-language-server/bin/lua-language-server', '-E',
+        '/home/nils/Documents/lua/lua-language-server/main.lua'
+    },
+    capabilities = custom_capabilities,
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+                path = runtime_path,
+            },
+            diagnostics = {
+                enable = true,
+                globals = {'vim', 'it'}
+            },
+            workspace = {
+                -- library = {
+                --     [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                --     [vim.fn.expand('~/.config/nvim/lua')] = true
+                -- }
+                library = vim.api.nvim_get_runtime_file('', true),
+                checkThirdParty = false,
+            },
+            telemetry = {
+                enable = false
+            }
+        }
+    },
+    commands = {
+        Format = {
+            function()
+                require('stylua-nvim').format_file()
+            end,
+        },
+    },
+})
 -- }}}
 
 -- Rust {{{
@@ -144,16 +161,6 @@ lspcfg.cssls.setup {
 
 -- Bash {{{
 lspcfg.bashls.setup {
-    capabilities = custom_capabilities
-}
--- }}}
-
--- Python {{{
--- lspcfg.pyright.setup {
---     on_attach = CustomOnAttach,
---     capabilities = custom_capabilities
--- }
-lspcfg.pylsp.setup {
     capabilities = custom_capabilities
 }
 -- }}}

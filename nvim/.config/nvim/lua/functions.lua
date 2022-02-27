@@ -115,4 +115,27 @@ function _G.JumpOut()
 end
 --}}}
 
+-- Diffview Helper {{{
+local function InsideDiff()
+    return vim.opt.diff:get()
+end
+
+local function InsideDiffviewFiles()
+    local current_buf = 0
+    return vim.api.nvim_buf_get_option(current_buf, 'filetype') == 'DiffviewFiles'
+end
+
+local function InsideDiffview()
+    return InsideDiff() or InsideDiffviewFiles()
+end
+
+function _G.DiffviewToggle()
+    if InsideDiffview() then
+        vim.cmd 'DiffviewClose'
+    else
+        vim.cmd 'DiffviewOpen'
+    end
+end
+-- }}}
+
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

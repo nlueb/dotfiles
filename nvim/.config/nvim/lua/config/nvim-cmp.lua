@@ -56,8 +56,8 @@ cmp.setup {
         ['<C-k>'] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}),
     },
     sources = {
-        { name = 'luasnip', option = { use_show_condition = false } },
         { name = 'nvim_lsp' },
+        { name = 'luasnip', option = { use_show_condition = false } },
         { name = 'buffer' },
         { name = 'latex_symbols' },
         { name = 'path' },
@@ -76,6 +76,17 @@ cmp.setup {
     }
 }
 --}}}
+
+cmp.setup.filetype('lua', {
+    sources = {
+        { name = 'nvim_lua' },
+        { name = 'nvim_lsp' },
+        { name = 'luasnip', option = { use_show_condition = false } },
+        { name = 'buffer' },
+        { name = 'latex_symbols' },
+        { name = 'path' },
+    }
+})
 
 -- Cmdline {{{
 cmp.setup.cmdline('/', {

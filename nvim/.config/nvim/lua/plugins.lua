@@ -100,7 +100,6 @@ local function init(use)
         'folke/todo-comments.nvim',
         requires = 'nvim-lua/plenary.nvim'
     }
-    use 'Mofiqul/vscode.nvim'
 --}}}
 
 -- Languages {{{
@@ -110,6 +109,7 @@ local function init(use)
         event = {'BufRead Cargo.toml'},
         requires = 'nvim-lua/plenary.nvim'
     }
+    use 'ckipp01/stylua-nvim'
 --}}}
 
 -- Finder {{{
@@ -136,12 +136,19 @@ local function init(use)
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
             'kdheepak/cmp-latex-symbols',
+            'hrsh7th/cmp-nvim-lua',
         },
     }
 
     use { 'windwp/nvim-autopairs', after = 'nvim-cmp' }
-    use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+    -- use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+    use 'mfussenegger/nvim-lint'
+    use 'ray-x/lsp_signature.nvim'
 --}}}
+
+-- Snippets {{{
+    use 'rafamadriz/friendly-snippets'
+-- }}}
 end
 
 -- Packer Init {{{

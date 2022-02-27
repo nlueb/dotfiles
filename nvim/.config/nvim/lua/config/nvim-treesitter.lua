@@ -4,7 +4,6 @@ ts.setup {
     ensure_installed = 'all',
     highlight = { enable = true },
     indent = { enable = true },
-    autotag = { enable = true },
 
 -- Refactor {{{
     refactor = {

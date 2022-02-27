@@ -52,15 +52,16 @@ wk.register({
             m = { [[<cmd>Telescope man_pages theme=ivy<cr>]], 'Map Pages', noremap = true },
             n = { [[<cmd>Telescope notify theme=ivy<cr>]], 'Notifications', noremap = true },
             p = { [[<cmd>Telescope projects theme=ivy<cr>]], 'Projects', noremap = true },
+            d = { [[<cmd>lua DiffviewToggle()<cr>]], 'Diffview', noremap = true },
         },
     },
 }, {mode = 'n'})
 keymap('n', 'ga', [[<Plug>(EasyAlign)]], {})
 keymap('n', 'K', [[<cmd>lua vim.lsp.buf.hover()<cr>]], {silent = true, noremap = true })
-keymap('n', '<c-n>', [[<cmd>lua vim.diagnostic.open_float()<CR>]], {noremap = true })
+keymap('n', '<c-j>', [[<cmd>lua vim.diagnostic.open_float()<CR>]], {noremap = true })
 -- keymap('n', '<m-j>', [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>]], {silent = true, noremap = true })
 -- keymap('n', '<m-k>', [[<cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>]], {silent = true, noremap = true })
-keymap('n', '<c-e>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], {silent = true, noremap = true })
+keymap('n', '<c-k>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], {silent = true, noremap = true })
 keymap('n', '\\', [[m'O<esc>0d$`']], {noremap = true })
 keymap('n', '<CR>', [[m'o<esc>0d$`']], {noremap = true })
 keymap('n', '<Tab>', '>>', {noremap = true })

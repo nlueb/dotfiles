@@ -352,7 +352,11 @@ local function TSPlaygroundLine(_, _, active)
 end
 
 local function GitCommitMessageLine(_, _, active)
-    return GenericPluginStatusLine(' Message', active)
+    return GenericPluginStatusLine(' Commit', active)
+end
+
+local function DiffviewFilesStatusLine(_, _, active)
+    return GenericPluginStatusLine(' Diff', active)
 end
 
 local function DetectPluginWindow(bufnr, winnr, active)
@@ -368,6 +372,7 @@ local function DetectPluginWindow(bufnr, winnr, active)
         man = ManStatusLine,
         tsplayground = TSPlaygroundLine,
         gitcommit = GitCommitMessageLine,
+        DiffviewFiles = DiffviewFilesStatusLine,
     }
     for plugin, func in pairs(plugin_list) do
         if filetype == plugin or filename == plugin then
