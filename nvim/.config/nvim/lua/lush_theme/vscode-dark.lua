@@ -80,7 +80,6 @@ local theme = lush(function() return {
     Folded { fg = vscLeftLight, bg = vscLeftDark };
     FoldColumn { fg = vscLineNumber, bg = vscBack };
     SignColumn { bg = vscBack };
-    IncSearch { bg = vscSearchCurrent };
     LineNr { fg = vscLineNumber, bg = vscBack };
     CursorLineNr { fg = vscPopupFront, bg = vscBack };
     MatchParen { bg = vscCursorDark };
@@ -93,6 +92,8 @@ local theme = lush(function() return {
     PmenuThumb { bg = vscPopupFront };
     Question { fg = vscBlue, bg = vscBack };
     Search { bg = vscSearch };
+    IncSearch { bg = vscSearchCurrent };
+    Substitute { IncSearch };
     SpecialKey { fg = vscBlue };
     StatusLine { fg = vscUiBlue, bg = vscUiBlue };
     StatusLineNC { fg = vscUiBlue, bg = vscUiBlue };

@@ -16,6 +16,7 @@ ddnet-info.json
 *skins*
 ddnet-saves.txt
 *workspace*
+.luarc.json
 
 # ignore nvim temp files
 undo

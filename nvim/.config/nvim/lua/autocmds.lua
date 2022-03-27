@@ -1,20 +1,6 @@
 local vim = vim
-local cmd = vim.cmd
-
--- Autocmd Helper {{{
--- https://github.com/norcalli/nvim_utils/blob/master/lua/nvim_utils.lua#L554-L567
-local function nvim_create_augroups(definitions)
-    for group_name, definition in pairs(definitions) do
-        vim.api.nvim_command('augroup '..group_name)
-        vim.api.nvim_command('autocmd!')
-        for _, def in ipairs(definition) do
-            local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
-            vim.api.nvim_command(command)
-        end
-        vim.api.nvim_command('augroup END')
-    end
-end
---}}}
+local nvim_create_augroup = vim.api.nvim_create_augroup
+local nvim_create_autocmd = vim.api.nvim_create_autocmd
 
 -- StatusLine setup {{{
 vim.api.nvim_exec([[
@@ -29,45 +15,107 @@ vim.api.nvim_exec([[
 --}}}
 
 -- Auto commands {{{
-nvim_create_augroups {
-    -- Set Cursor to beam when leaving vim
-    -- BeamCursor = {
-    --     {'VimLeave', '*', [[set guicursor=a:ver30-blinkoff0]]}
-    -- },
-    YankHighlight = {
-        {'TextYankPost', '*', [[silent! lua vim.highlight.on_yank()]]}
-    },
-    StatusLine = {
-        {'WinEnter,BufEnter', '*', [[setlocal statusline=%!ActiveLine()]]},
-        {'WinLeave,BufLeave', '*', [[setlocal statusline=%!InActiveLine()]]},
-        {'User StartifyReady', '', [[setlocal statusline=%!ActiveLine()]]},
-    },
-    FoldText = {
-        {'BufEnter,InsertLeave,TextChanged', '*', [[lua UpdateLongestFoldTitle()]]},
-    },
-    FiletypeSettings = {
-        {'FileType', 'scheme', [[setlocal shiftwidth=2 softtabstop=2 expandtab | let b:AutoPairs = {"(": ")", "[":"]", "{":"}", '"':'"'}]]},
-        {'FileType', 'help', [[setlocal number relativenumber]]},
+
+-- YankHighlight {{{
+local YankHighlight = nvim_create_augroup('YankHighlight', { clear = false })
+nvim_create_autocmd('TextYankPost', {
+    group = YankHighlight,
+    callback = vim.highlight.on_yank
+})
+-- }}}
+
+-- StatusLine {{{
+local StatusLine = nvim_create_augroup('StatusLine', { clear = false })
+nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
+    group = StatusLine,
+    callback = function()
+        vim.opt_local.statusline = '%!ActiveLine()'
+    end
+})
+nvim_create_autocmd({'WinLeave', 'BufLeave'}, {
+    group = StatusLine,
+    callback = function()
+        vim.opt_local.statusline = '%!InActiveLine()'
+    end
+})
+nvim_create_autocmd('User StartifyReady', {
+    group = StatusLine,
+    pattern = '',
+    callback = function()
+        vim.opt_local.statusline = '%!ActiveLine()'
+    end
+})
+-- }}}
+
+-- FoldText {{{
+local FoldText = nvim_create_augroup('FoldText', { clear = false })
+nvim_create_autocmd({'BufEnter', 'InsertLeave', 'TextChanged'}, {
+    group = FoldText,
+    callback = _G.UpdateLongestFoldTitle
+})
+-- }}}
+
+-- FiletypeSettings {{{
+local FiletypeSettings = nvim_create_augroup('FiletypeSettings', { clear = false })
+-- {'FileType', 'lua', [[lua require('cmp').setup.buffer { sources = { {name = 'latex_symbols'}, {name = 'nvim_lua'}, {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'path'} } }]]},
+-- {'FileType', 'toml', [[lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }]]},
+-- {'FileType', 'org', [[lua require('cmp').setup.buffer { sources = { { name = 'orgmode' }, { name = 'buffer' }, { name = 'path' } } }]]},
+-- {'FileType', 'norg', [[lua require('cmp').setup.buffer { sources = { { name = 'neorg' }, { name = 'buffer' }, { name = 'path' } } }]]},
+-- {'FileType', 'helm', [[setlocal ts=2 sts=2 sw=2 expandtab]]}
+nvim_create_autocmd('FileType', {
+    group = FiletypeSettings,
+    pattern = 'scheme',
+    callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.expandtab = true
+        vim.b.AutoPairs = {
+            ['('] = ')',
+            ['['] = ']',
+            ['{'] = '}',
+            ['"'] = '"',
+        }
+    end
+})
+nvim_create_autocmd('FileType', {
+    group = FiletypeSettings,
+    pattern = 'help',
+    callback = function()
+        vim.opt_local.number = true
+        vim.opt_local.relativenumber = true
+    end
+})
+nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
+    group = FiletypeSettings,
+    callback = function()
         -- Don't insert comments automatically
-        {'WinEnter,BufEnter', '*', [[setlocal formatoptions-=o]]},
-    },
-    Helmfile = {
-        {'BufRead,BufNewFile', '*.gotmpl', [[setfiletype helm]]}
-    },
-    CommentString ={
-        {'WinEnter,BufEnter', '*', [[lua require('ts_context_commentstring.internal').update_commentstring()]]}
-    },
-    IndentRefresh = {
-        {'CursorHold', '*', [[IndentBlanklineRefresh]]}
-    },
-    CompletionSources = {
-        -- {'FileType', 'lua', [[lua require('cmp').setup.buffer { sources = { {name = 'latex_symbols'}, {name = 'nvim_lua'}, {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'path'} } }]]},
-        {'FileType', 'toml', [[lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }]]},
-        {'FileType', 'org', [[lua require('cmp').setup.buffer { sources = { { name = 'orgmode' }, { name = 'buffer' }, { name = 'path' } } }]]},
-        {'FileType', 'norg', [[lua require('cmp').setup.buffer { sources = { { name = 'neorg' }, { name = 'buffer' }, { name = 'path' } } }]]},
-        {'FileType', 'helm', [[setlocal ts=2 sts=2 sw=2 expandtab]]}
-    }
-}
+        -- See fo-o help page for more info
+        vim.opt_local.formatoptions:remove('o')
+    end
+})
+nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+    group = FiletypeSettings,
+    pattern = '*.gotmpl',
+    command = 'setfiletype helm'
+})
+-- }}}
+
+-- CommentString {{{
+local CommentString = nvim_create_augroup('CommentString', { clear = false })
+nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
+    group = CommentString,
+    callback = require('ts_context_commentstring.internal').update_commentstring
+})
+-- }}}
+
+-- IndentRefresh {{{
+local IndentRefresh = nvim_create_augroup('IndentRefresh', { clear = false })
+nvim_create_autocmd('CursorHold', {
+    group = IndentRefresh,
+    command = 'IndentBlanklineRefresh'
+})
+-- }}}
+
 --}}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

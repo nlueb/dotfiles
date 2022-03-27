@@ -97,6 +97,7 @@ highlight GitSignsDeleteLn guifg=#1E1E1E guibg=#F44747 guisp=NONE gui=NONE blend
 highlight Identifier guifg=#9CDCFE guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight Ignore guifg=#D4D4D4 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight IncSearch guifg=NONE guibg=#4B5632 guisp=NONE gui=NONE blend=NONE
+highlight! link Substitute IncSearch
 highlight Include guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight IndentBlanklineChar guifg=#424242 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight! link IndentBlanklineSpaceChar IndentBlanklineChar

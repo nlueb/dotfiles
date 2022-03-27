@@ -34,6 +34,7 @@ opt.modelines = 1
 
 -- Statusline {{{
 opt.showmode = false
+opt.laststatus = 3
 -- }}}
 
 -- Search {{{
@@ -43,7 +44,7 @@ opt.smartcase = true
 
 -- Fillchars {{{
 -- VertSplit
-opt.fillchars = 'vert:┃,fold: ,diff:,foldclose:,foldopen:'
+opt.fillchars = 'fold: ,diff:,foldclose:,foldopen:'
         -- item = { '', '' },
         -- section = { '', '' },
 

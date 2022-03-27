@@ -95,6 +95,7 @@ fi
 export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/nvim/bin
 export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
 export PATH=$PATH:/home/nils/.local/share/racket/7.9/bin
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
