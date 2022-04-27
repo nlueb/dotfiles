@@ -72,6 +72,7 @@ local function init(use)
     use 'j-hui/fidget.nvim'
     use 'simnalamburt/vim-mundo'
     use 'lewis6991/gitsigns.nvim'
+    use 'elihunter173/dirbuf.nvim'
 --}}}
 
 -- Actions {{{
@@ -144,6 +145,7 @@ local function init(use)
     -- use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
     use 'mfussenegger/nvim-lint'
     use 'ray-x/lsp_signature.nvim'
+    use 'lukas-reineke/lsp-format.nvim'
 --}}}
 
 -- Snippets {{{

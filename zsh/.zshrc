@@ -74,7 +74,7 @@ alias uctl='systemctl --user'
 if [[ $WSL == true ]]; then
     alias yi='sudo apt install'
     alias yr='sudo apt --purge remove'
-    alias yu='sudo apt update && sudo apt upgrade'
+    alias yu='sudo apt update && sudo apt upgrade && sudo apt full-upgrade'
 else
     alias yi='yay -S'
     alias yr='yay -R'
@@ -84,7 +84,6 @@ fi
 # WSL Specific {{{
 if [[ $WSL == true ]]; then
     alias home="cd /mnt/c/Users/nluebker"
-    alias helmfile="~/.local/bin/helmfile_linux_amd64"
     # alias rust-analyzer="rustup run nightly rust-analyzer"
 fi
 # }}}
@@ -227,7 +226,7 @@ if [[ $WSL == true ]]; then
     cdd() {
         ignore_options=(--exclude 'vendor' --exclude 'node_modules')
         fzf_options=(--height 40% --layout=reverse)
-        cd $(fd . --type d ${ignore_options} '/mnt/c/Users/nluebker/Dev' | fzf ${fzf_options})
+        cd $(fd . --type d ${ignore_options} '/home/nils/MagentaCI/future-diagnostics' | fzf ${fzf_options})
     }
 else
     cdd() {

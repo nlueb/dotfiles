@@ -64,8 +64,8 @@ cmp.setup {
     },
     formatting = {
         format = function(entry, vim_item)
-            vim_item.kind = symbol_map[vim_item.kind] .. ' '
-            vim_item.menu = menu_abbr[entry.source.name]
+            vim_item.kind = symbol_map[vim_item.kind] .. '  ' .. vim_item.kind
+            -- vim_item.menu = menu_abbr[entry.source.name]
             vim_item.abbr = vim_item.abbr:gsub("%(.*%)", "(…)")
             return vim_item
         end
@@ -91,7 +91,10 @@ cmp.setup.filetype('lua', {
 cmp.setup.cmdline('/', {
     sources = {
         { name = 'buffer' }
-    }
+    },
+    view = {
+        entries = {name = 'custom', selection_order = 'near_cursor'}
+    },
 })
 
 cmp.setup.cmdline(':', {
@@ -99,7 +102,10 @@ cmp.setup.cmdline(':', {
         { name = 'path' }
     }, {
         { name = 'cmdline' }
-    })
+    }),
+    view = {
+        entries = {name = 'custom', selection_order = 'near_cursor'}
+    },
 })
 --}}}
 

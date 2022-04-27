@@ -359,6 +359,10 @@ local function DiffviewFilesStatusLine(_, _, active)
     return GenericPluginStatusLine(' Diff', active)
 end
 
+local function TelescopePromptStatusLine(_, _, active)
+    return GenericPluginStatusLine(' Telescope', active)
+end
+
 local function DetectPluginWindow(bufnr, winnr, active)
     local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
     local filename = GetFileName(bufnr)
@@ -373,6 +377,7 @@ local function DetectPluginWindow(bufnr, winnr, active)
         tsplayground = TSPlaygroundLine,
         gitcommit = GitCommitMessageLine,
         DiffviewFiles = DiffviewFilesStatusLine,
+        TelescopePrompt = TelescopePromptStatusLine,
     }
     for plugin, func in pairs(plugin_list) do
         if filetype == plugin or filename == plugin then

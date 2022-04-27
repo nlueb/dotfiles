@@ -4,6 +4,7 @@ local cmd = vim.cmd
 
 local lspcfg = require 'lspconfig'
 local cmp_lsp = require 'cmp_nvim_lsp'
+local lsp_format = require 'lsp-format'
 
 -- Handlers {{{
 lsp.handlers['textDocument/publishDiagnostics'] =
@@ -53,9 +54,10 @@ cmd [[sign define DiagnosticSignHint text= texthl=DiagnosticHint linehl= numh
 -- }}}
 
 -- Language Servers {{{
--- local function CustomOnAttach(client, bufnr)
---     lsp_status.on_attach(client)
--- end
+local function CustomOnAttach(client, bufnr)
+    -- lsp_status.on_attach(client)
+    lsp_format.on_attach(client)
+end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -87,12 +89,11 @@ lspcfg.pylsp.setup {
 }
 -- }}}
 
-if IsWSL() then return end
-
 -- C {{{
 lspcfg.clangd.setup {
     filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-    capabilities = custom_capabilities
+    capabilities = custom_capabilities,
+    on_attach = CustomOnAttach,
 }
 -- lspcfg.ccls.setup {
 --     init_options = {
@@ -102,6 +103,8 @@ lspcfg.clangd.setup {
 --     capabilities = custom_capabilities
 -- }
 -- }}}
+
+if IsWSL() then return end
 
 -- Lua {{{
 local runtime_path = vim.split(package.path, ';')

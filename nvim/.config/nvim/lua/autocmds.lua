@@ -20,7 +20,9 @@ vim.api.nvim_exec([[
 local YankHighlight = nvim_create_augroup('YankHighlight', { clear = false })
 nvim_create_autocmd('TextYankPost', {
     group = YankHighlight,
-    callback = vim.highlight.on_yank
+    callback = function()
+        vim.highlight.on_yank()
+    end
 })
 -- }}}
 
