@@ -69,7 +69,8 @@ local custom_capabilities = cmp_lsp.update_capabilities(capabilities)
 
 -- Go {{{
 lspcfg.gopls.setup {
-    capabilities = custom_capabilities
+    capabilities = custom_capabilities,
+    on_attach = CustomOnAttach,
 }
 -- }}}
 
@@ -85,7 +86,8 @@ lspcfg.terraformls.setup {
 --     capabilities = custom_capabilities
 -- }
 lspcfg.pylsp.setup {
-    capabilities = custom_capabilities
+    capabilities = custom_capabilities,
+    on_attach = CustomOnAttach,
 }
 -- }}}
 

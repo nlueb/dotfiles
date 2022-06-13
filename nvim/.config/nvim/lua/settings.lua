@@ -35,6 +35,7 @@ opt.modelines = 1
 -- Statusline {{{
 opt.showmode = false
 opt.laststatus = 3
+opt.cmdheight = 0
 -- }}}
 
 -- Search {{{

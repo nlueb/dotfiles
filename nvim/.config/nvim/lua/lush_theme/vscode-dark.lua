@@ -208,7 +208,7 @@ local theme = lush(function() return {
 
 -- Refactor {{{
     TSDefinitionUsage { Search };
-    TSDefinition { Search, gui='bold' };
+    TSDefinition { IncSearch };
 -- }}}
 -- }}}
 

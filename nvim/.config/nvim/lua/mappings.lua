@@ -33,7 +33,7 @@ wk.register({
             name = 'lsp',
             t = { [[<cmd>TroubleToggle<cr>]], 'Show Quickfix', silent = true },
             i = { [[<cmd>lua vim.lsp.buf.implementation()<CR>]], 'Goto Implementation', silent = true, noremap = true },
-            f = { [[<cmd>lua vim.lsp.buf.formatting()<CR>]], 'Format Buffer', silent = true, noremap = true },
+            f = { [[<cmd>lua vim.lsp.buf.format{ async = true }<CR>]], 'Format Buffer', silent = true, noremap = true },
             l = { [[<cmd>lua print(vim.lsp.buf.server_ready())<CR>]], 'Lsp Status', silent = true, noremap = true },
             r = { [[<cmd>lua vim.lsp.buf.rename()<cr>]], 'Rename', silent = true, noremap = true },
             a = { [[<cmd>lua vim.lsp.buf.code_action()<cr>]], 'Code Action', silent = true, noremap = true },

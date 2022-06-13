@@ -153,7 +153,6 @@ highlight SLNormalText guifg=#D4D4D4 guibg=#084671 guisp=NONE gui=NONE blend=NON
 highlight SLWarning guifg=NONE guibg=#084671 guisp=NONE gui=NONE blend=NONE
 highlight Search guifg=NONE guibg=#264F78 guisp=NONE gui=NONE blend=NONE
 highlight! link LspSignatureActiveParameter Search
-highlight! link TSDefinitionUsage Search
 highlight SignColumn guifg=NONE guibg=#1E1E1E guisp=NONE gui=NONE blend=NONE
 highlight Special guifg=#D7BA7D guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight SpecialChar guifg=#D4D4D4 guibg=NONE guisp=NONE gui=NONE blend=NONE
@@ -182,7 +181,8 @@ highlight! link CmpItemKindConstant TSConstant
 highlight! link CmpItemKindEvent TSConstant
 highlight TSConstructor guifg=#4EC9B0 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight TSDanger guifg=#F44747 guibg=NONE guisp=NONE gui=bold blend=NONE
-highlight TSDefinition guifg=NONE guibg=#264F78 guisp=NONE gui=bold blend=NONE
+highlight TSDefinition guifg=NONE guibg=#4B5632 guisp=NONE gui=bold blend=NONE
+highlight TSDefinitionUsage guifg=NONE guibg=NONE guisp=NONE gui=underline blend=NONE
 highlight TSEmphasis guifg=#D4D4D4 guibg=NONE guisp=NONE gui=italic blend=NONE
 highlight TSError guifg=#F44747 guibg=NONE guisp=NONE gui=NONE blend=NONE
 highlight TSException guifg=#C586C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
