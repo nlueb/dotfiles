@@ -116,6 +116,7 @@ if [[ $WSL == true ]]; then
     export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
     export NO_PROXY="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
     export no_proxy="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
+    export PATH="$PATH:/mnt/c/Program Files/Win32Yank"
     # Copy from: https://dev.to/bowmanjd/using-podman-on-windows-subsystem-for-linux-wsl-58ji
     # Without systemd, the $XDG_RUNTIME_DIR was not available for podman to use for temporary files.
     # This script checks if the $XDG_RUNTIME_DIR is set, and, if not, sets it to the default systemd

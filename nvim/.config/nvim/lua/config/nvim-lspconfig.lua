@@ -71,6 +71,15 @@ local custom_capabilities = cmp_lsp.update_capabilities(capabilities)
 lspcfg.gopls.setup {
     capabilities = custom_capabilities,
     on_attach = CustomOnAttach,
+    settings = {
+        gopls = {
+            analyses = {
+                nilness = true,
+            },
+            staticcheck = true,
+            usePlaceholders = true,
+        },
+    },
 }
 -- }}}
 

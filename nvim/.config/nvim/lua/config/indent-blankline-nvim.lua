@@ -6,7 +6,7 @@ indent.setup {
     use_treesitter = true,
     show_trailing_blankline_indent = false,
     show_current_context = false,
-    max_indent_increase = 1,
+    max_indent_increase = 3,
     buftype_exclude = {
         'terminal',
     },
