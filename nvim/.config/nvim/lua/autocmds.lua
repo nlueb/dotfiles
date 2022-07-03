@@ -102,14 +102,6 @@ nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 })
 -- }}}
 
--- CommentString {{{
-local CommentString = nvim_create_augroup('CommentString', { clear = false })
-nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
-    group = CommentString,
-    callback = require('ts_context_commentstring.internal').update_commentstring
-})
--- }}}
-
 -- IndentRefresh {{{
 local IndentRefresh = nvim_create_augroup('IndentRefresh', { clear = false })
 nvim_create_autocmd('CursorHold', {

@@ -2,8 +2,6 @@ local vim = vim
 local keymap = vim.api.nvim_set_keymap
 local wk = require 'which-key'
 
-local c = require 'default'
-
 vim.g.mapleader = ' '
 
 -- Normal Mode {{{
@@ -20,7 +18,7 @@ wk.register({
         ['>'] = { [[<cmd>bn<cr>]], 'Next buffer', silent = true },
         ['<'] = { [[<cmd>bp<cr>]], 'Previous buffer', silent = true },
         h = { [[<cmd>lua ShowHighlightCaptures()<cr>]], 'Show highlight groups', silent = true },
-        d = { [[<cmd>%s/\s\+$//e<cr>]], 'Remove trailing space', silent = true },
+        dd = { [[<cmd>%s/\s\+$//e<cr>]], 'Remove trailing space', silent = true },
         n = { [[<cmd>noh<cr>]], 'Remove search highlight', silent = true },
         u = { [[<cmd>MundoToggle<cr>]], 'Open undo tree', silent = true },
         s = { [[<cmd>Startify<cr>]], 'Startify', silent = true },
@@ -29,7 +27,7 @@ wk.register({
             d = { [[<cmd>TroubleToggle<cr>]], 'Toggle Diagnostics', silent = true },
             t = { [[<cmd>TodoTrouble<cr>]], 'Toggle Todos', silent = true },
         },
-        [c:get('mappings.normal.lsp', 'l')] = {
+        l = {
             name = 'lsp',
             t = { [[<cmd>TroubleToggle<cr>]], 'Show Quickfix', silent = true },
             i = { [[<cmd>lua vim.lsp.buf.implementation()<CR>]], 'Goto Implementation', silent = true, noremap = true },

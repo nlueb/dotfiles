@@ -43,11 +43,11 @@ local menu_abbr = {
 
 -- Setup {{{
 cmp.setup {
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end
-    },
+--    snippet = {
+--        expand = function(args)
+--            require('luasnip').lsp_expand(args.body)
+--        end
+--    },
     mapping = {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false}),
@@ -89,23 +89,19 @@ cmp.setup.filetype('lua', {
 
 -- Cmdline {{{
 cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = 'buffer' }
-    },
-    view = {
-        entries = {name = 'custom', selection_order = 'near_cursor'}
     },
 })
 
 cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = 'path' }
     }, {
         { name = 'cmdline' }
     }),
-    view = {
-        entries = {name = 'custom', selection_order = 'near_cursor'}
-    },
 })
 --}}}
 

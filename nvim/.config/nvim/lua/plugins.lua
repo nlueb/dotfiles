@@ -1,9 +1,6 @@
 local vim = vim
 local cmd = vim.cmd
 
-vim.g.vscode_style = 'dark'
-vim.g.vscode_italic_comment = 1
-
 cmd [[ packadd packer.nvim ]]
 
 cmd [[
@@ -61,16 +58,16 @@ local function init(use)
     use 'kyazdani42/nvim-web-devicons'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'mhinz/vim-startify'
-    use 'gcmt/taboo.vim'
-    use 'winston0410/cmd-parser.nvim'
-    use 'winston0410/range-highlight.nvim'
+--    use 'gcmt/taboo.vim'
+--    use 'winston0410/cmd-parser.nvim'
+--    use 'winston0410/range-highlight.nvim'
     use 'rcarriga/nvim-notify'
     use 'folke/which-key.nvim'
-    use 'folke/trouble.nvim'
-    use 'TimUntersberger/neogit'
-    use 'sindrets/diffview.nvim'
+--    use 'folke/trouble.nvim'
+--    use 'TimUntersberger/neogit'
+--    use 'sindrets/diffview.nvim'
     use 'j-hui/fidget.nvim'
-    use 'simnalamburt/vim-mundo'
+--    use 'simnalamburt/vim-mundo'
     use 'lewis6991/gitsigns.nvim'
     use 'elihunter173/dirbuf.nvim'
 --}}}
@@ -83,70 +80,68 @@ local function init(use)
 --}}}
 
 -- Colors {{{
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        requires = {
-            'nvim-treesitter/playground',
-            'nvim-treesitter/nvim-treesitter-textobjects',
-            'nvim-treesitter/nvim-treesitter-refactor',
-            'windwp/nvim-ts-autotag',
-            'JoosepAlviste/nvim-ts-context-commentstring',
-        }
-    }
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+    use { 'nvim-treesitter/playground', after = 'nvim-treesitter' }
+    use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' }
+    use { 'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter' }
+    use { 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' }
+    use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
+
     use 'rktjmp/lush.nvim'
     use 'rktjmp/shipwright.nvim'
     use 'norcalli/nvim-colorizer.lua'
-    use {
-        'folke/todo-comments.nvim',
-        requires = 'nvim-lua/plenary.nvim'
-    }
+
+    use { 'folke/todo-comments.nvim', requires = 'nvim-lua/plenary.nvim' }
 --}}}
 
 -- Languages {{{
-    use 'wlangstroth/vim-racket'
-    use {
-        'Saecki/crates.nvim',
-        event = {'BufRead Cargo.toml'},
-        requires = 'nvim-lua/plenary.nvim'
-    }
-    use 'ckipp01/stylua-nvim'
+--    use 'wlangstroth/vim-racket'
+--    use {
+--        'Saecki/crates.nvim',
+--        event = {'BufRead Cargo.toml'},
+--        requires = 'nvim-lua/plenary.nvim'
+--    }
+--    use 'ckipp01/stylua-nvim'
 --}}}
 
 -- Finder {{{
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = { 'nvim-lua/plenary.nvim' }
     }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use 'ahmedkhalf/project.nvim'
+--    use 'ahmedkhalf/project.nvim'
 --}}}
 
 -- Lsp / Completion {{{
-    use 'neovim/nvim-lspconfig'
     use 'L3MON4D3/LuaSnip'
-    use 'onsails/lspkind-nvim'
 
-    use {
-        'hrsh7th/nvim-cmp',
-        after = 'LuaSnip',
-        requires = {
-            'hrsh7th/cmp-nvim-lsp',
-            'saadparwaiz1/cmp_luasnip',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'kdheepak/cmp-latex-symbols',
-            'hrsh7th/cmp-nvim-lua',
-        },
-    }
+    use { 'hrsh7th/nvim-cmp', after = 'LuaSnip' }
+
+    use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
+    use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
+    use { 'kdheepak/cmp-latex-symbols', after = 'nvim-cmp' }
+    use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
 
     use { 'windwp/nvim-autopairs', after = 'nvim-cmp' }
-    -- use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-    use 'mfussenegger/nvim-lint'
-    use 'ray-x/lsp_signature.nvim'
+
     use 'lukas-reineke/lsp-format.nvim'
+
+    use { 'neovim/nvim-lspconfig', after = { 'lsp-format.nvim', 'cmp-nvim-lsp' } }
+
+--    -- use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+--    use 'mfussenegger/nvim-lint'
+    use 'ray-x/lsp_signature.nvim'
 --}}}
+
+-- Debugging {{{
+    use 'mfussenegger/nvim-dap'
+    use 'leoluz/nvim-dap-go'
+-- }}}
 
 -- Snippets {{{
     use 'rafamadriz/friendly-snippets'
@@ -158,7 +153,6 @@ local config = {
     display = {
         open_fn = util.float
     },
-    -- compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
     compile_path = vim.fn.stdpath('config')..'/plugin/packer_compiled.lua',
 }
 

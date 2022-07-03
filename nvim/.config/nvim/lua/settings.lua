@@ -44,22 +44,10 @@ opt.smartcase = true
 -- }}}
 
 -- Fillchars {{{
--- VertSplit
 opt.fillchars = 'fold: ,diff:,foldclose:,foldopen:'
-        -- item = { '', '' },
-        -- section = { '', '' },
 
 -- Highlight characters after 90
 -- opt.colorcolumn = '90'
-
--- Statusline
--- set fillchars+=stl:\- 
--- set fillchars+=stlnc:− 
--- set fillchars+=stl:\═
--- set fillchars+=stlnc:\═
--- set fillchars+=stl:\╌
--- set fillchars+=stlnc:\╌
--- set statusline=╍
 -- }}}
 
 -- Indentation {{{
@@ -70,8 +58,7 @@ opt.softtabstop = 4
 opt.smartindent = true
 
 opt.list = true
--- opt.listchars = 'tab:│ ,trail:━'
-opt.listchars = 'tab:⇥ ,trail:━'
+opt.listchars = 'tab:⇥ ,trail:░'
 
 opt.wrap = false
 --}}}

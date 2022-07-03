@@ -81,6 +81,12 @@ else
     alias yu='yay -Syu --devel --timeupdate'
 fi
 
+# Git
+alias gc='git commit'
+alias ga='git add'
+alias gs='git status'
+alias gw='git worktree'
+
 # WSL Specific {{{
 if [[ $WSL == true ]]; then
     alias home="cd /mnt/c/Users/nluebker"
@@ -117,6 +123,7 @@ if [[ $WSL == true ]]; then
     export NO_PROXY="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
     export no_proxy="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
     export PATH="$PATH:/mnt/c/Program Files/Win32Yank"
+    export PATH="$PATH:/home/nils/go/bin"
     # Copy from: https://dev.to/bowmanjd/using-podman-on-windows-subsystem-for-linux-wsl-58ji
     # Without systemd, the $XDG_RUNTIME_DIR was not available for podman to use for temporary files.
     # This script checks if the $XDG_RUNTIME_DIR is set, and, if not, sets it to the default systemd

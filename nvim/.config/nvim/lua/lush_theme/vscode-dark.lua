@@ -661,6 +661,15 @@ local theme = lush(function() return {
     SLHint { fg = DiagnosticHint.fg, bg = vscUiBlue };
 -- }}}
 
+-- Nvim Dap {{{
+    DapBreakpoint { fg = vscRed };
+    DapBreakpointCondition { fg = vscLightRed };
+    DapLogPoint { fg = vscPink };
+    DapStoppedLine { bg = vscTabOther };
+    DapStopped { bg = vscMediumBlue };
+    DapBreakpointRejected { fg = vscDiffRedLightLight };
+-- }}}
+
 -- TODO: Port all hl groups below
 
 -- -- Lsp {{{
