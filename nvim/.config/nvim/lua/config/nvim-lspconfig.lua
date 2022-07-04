@@ -1,6 +1,7 @@
 local vim = vim
 local lsp = vim.lsp
 local cmd = vim.cmd
+local sign_define = vim.fn.sign_define
 
 local lspcfg = require 'lspconfig'
 local cmp_lsp = require 'cmp_nvim_lsp'
@@ -27,10 +28,10 @@ lsp.handlers['textDocument/publishDiagnostics'] =
 -- cmd [[sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=]]
 -- cmd [[sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=]]
 
-cmd [[sign define DiagnosticSignError text= texthl=DiagnosticError linehl= numhl=]]
-cmd [[sign define DiagnosticSignWarn text= texthl=DiagnosticWarn linehl= numhl=]]
-cmd [[sign define DiagnosticSignInfo text= texthl=DiagnosticInfo linehl= numhl=]]
-cmd [[sign define DiagnosticSignHint text= texthl=DiagnosticHint linehl= numhl=]]
+sign_define('DiagnosticSignError', {text='', texthl='DiagnosticError', linehl='', numhl=''})
+sign_define('DiagnosticSignWarn', {text='', texthl='DiagnosticWarn', linehl='', numhl=''})
+sign_define('DiagnosticSignInfo', {text='', texthl='DiagnosticInfo', linehl='', numhl=''})
+sign_define('DiagnosticSignHint', {text='', texthl='DiagnosticHint', linehl='', numhl=''})
 
 -- cmd [[sign define LspDiagnosticsSignError text=┣ texthl=LspDiagnosticsSignError linehl= numhl=]]
 -- cmd [[sign define LspDiagnosticsSignWarning text=┣ texthl=LspDiagnosticsSignWarning linehl= numhl=]]

@@ -1,14 +1,17 @@
 local vim = vim
 local cmd = vim.cmd
 
+local create_augroup = vim.api.nvim_create_augroup
+local create_autocmd = vim.api.nvim_create_autocmd
+
 cmd [[ packadd packer.nvim ]]
 
-cmd [[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-    augroup end
-]]
+local PackerUserConfig = create_augroup('PackerUserConfig', { clear = false })
+create_autocmd('BufWritePost', {
+    group = PackerUserConfig,
+    pattern = 'plugins.lua',
+    command = 'source <afile> | PackerCompile'
+})
 
 local packer = require 'packer'
 local util = require 'packer.util'

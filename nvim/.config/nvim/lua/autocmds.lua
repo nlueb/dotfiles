@@ -1,6 +1,6 @@
 local vim = vim
-local nvim_create_augroup = vim.api.nvim_create_augroup
-local nvim_create_autocmd = vim.api.nvim_create_autocmd
+local create_augroup = vim.api.nvim_create_augroup
+local create_autocmd = vim.api.nvim_create_autocmd
 
 -- StatusLine setup {{{
 vim.api.nvim_exec([[
@@ -17,8 +17,8 @@ vim.api.nvim_exec([[
 -- Auto commands {{{
 
 -- YankHighlight {{{
-local YankHighlight = nvim_create_augroup('YankHighlight', { clear = false })
-nvim_create_autocmd('TextYankPost', {
+local YankHighlight = create_augroup('YankHighlight', { clear = false })
+create_autocmd('TextYankPost', {
     group = YankHighlight,
     callback = function()
         vim.highlight.on_yank()
@@ -27,20 +27,20 @@ nvim_create_autocmd('TextYankPost', {
 -- }}}
 
 -- StatusLine {{{
-local StatusLine = nvim_create_augroup('StatusLine', { clear = false })
-nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
+local StatusLine = create_augroup('StatusLine', { clear = false })
+create_autocmd({'WinEnter', 'BufEnter'}, {
     group = StatusLine,
     callback = function()
         vim.opt_local.statusline = '%!ActiveLine()'
     end
 })
-nvim_create_autocmd({'WinLeave', 'BufLeave'}, {
+create_autocmd({'WinLeave', 'BufLeave'}, {
     group = StatusLine,
     callback = function()
         vim.opt_local.statusline = '%!InActiveLine()'
     end
 })
-nvim_create_autocmd('User StartifyReady', {
+create_autocmd('User StartifyReady', {
     group = StatusLine,
     pattern = '',
     callback = function()
@@ -50,21 +50,21 @@ nvim_create_autocmd('User StartifyReady', {
 -- }}}
 
 -- FoldText {{{
-local FoldText = nvim_create_augroup('FoldText', { clear = false })
-nvim_create_autocmd({'BufEnter', 'InsertLeave', 'TextChanged'}, {
+local FoldText = create_augroup('FoldText', { clear = false })
+create_autocmd({'BufEnter', 'InsertLeave', 'TextChanged'}, {
     group = FoldText,
     callback = _G.UpdateLongestFoldTitle
 })
 -- }}}
 
 -- FiletypeSettings {{{
-local FiletypeSettings = nvim_create_augroup('FiletypeSettings', { clear = false })
+local FiletypeSettings = create_augroup('FiletypeSettings', { clear = false })
 -- {'FileType', 'lua', [[lua require('cmp').setup.buffer { sources = { {name = 'latex_symbols'}, {name = 'nvim_lua'}, {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'path'} } }]]},
 -- {'FileType', 'toml', [[lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }]]},
 -- {'FileType', 'org', [[lua require('cmp').setup.buffer { sources = { { name = 'orgmode' }, { name = 'buffer' }, { name = 'path' } } }]]},
 -- {'FileType', 'norg', [[lua require('cmp').setup.buffer { sources = { { name = 'neorg' }, { name = 'buffer' }, { name = 'path' } } }]]},
 -- {'FileType', 'helm', [[setlocal ts=2 sts=2 sw=2 expandtab]]}
-nvim_create_autocmd('FileType', {
+create_autocmd('FileType', {
     group = FiletypeSettings,
     pattern = 'scheme',
     callback = function()
@@ -79,7 +79,7 @@ nvim_create_autocmd('FileType', {
         }
     end
 })
-nvim_create_autocmd('FileType', {
+create_autocmd('FileType', {
     group = FiletypeSettings,
     pattern = 'help',
     callback = function()
@@ -87,7 +87,7 @@ nvim_create_autocmd('FileType', {
         vim.opt_local.relativenumber = true
     end
 })
-nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
+create_autocmd({'WinEnter', 'BufEnter'}, {
     group = FiletypeSettings,
     callback = function()
         -- Don't insert comments automatically
@@ -95,7 +95,7 @@ nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
         vim.opt_local.formatoptions:remove('o')
     end
 })
-nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+create_autocmd({'BufRead', 'BufNewFile'}, {
     group = FiletypeSettings,
     pattern = '*.gotmpl',
     command = 'setfiletype helm'
@@ -103,8 +103,8 @@ nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
 -- }}}
 
 -- IndentRefresh {{{
-local IndentRefresh = nvim_create_augroup('IndentRefresh', { clear = false })
-nvim_create_autocmd('CursorHold', {
+local IndentRefresh = create_augroup('IndentRefresh', { clear = false })
+create_autocmd('CursorHold', {
     group = IndentRefresh,
     command = 'IndentBlanklineRefresh'
 })
