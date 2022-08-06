@@ -1,0 +1,27 @@
+[delta]
+    features = vscode-theme
+
+[delta "vscode-theme"]
+    dark = true
+    true-color = always
+    side-by-side = false
+    syntax-theme = none
+    commit-decoration-style = "#2D2D2D" ol
+    commit-style = "#f28b25" bold
+    file-decoration-style = omit
+    file-style = bold "#f28b25"
+    hunk-header-style = omit
+    line-numbers = true
+    line-numbers-left-format = "{nm:^4} ┆"
+    line-numbers-left-style = "#373737"
+    line-numbers-right-format = "{np:^4} │ "
+    line-numbers-right-style = "#373737"
+    line-numbers-minus-style = "#F44747"
+    line-numbers-plus-style = "#6A9955"
+    minus-emph-style = "#F44747" bold "#2E2626"
+    minus-non-emph-style = "#898989" "#2E2626"
+    minus-style = "#898989" "#2E2626"
+    plus-emph-style = "#6A9955" bold "#2B2E26"
+    plus-non-emph-style = "#898989" "#2B2E26"
+    plus-style = "#898989" "#2B2E26"
+    zero-style = "#636369"
