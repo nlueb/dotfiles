@@ -109,8 +109,12 @@ export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
---color=fg:#555169,bg:-1,hl:#2a2837,fg+:#555169,bg+:-1,hl+:#eb6f92
---color=info:#c4a7e7,prompt:#ebbcba,pointer:#eb6f92,marker:#f6c177,spinner:#eb6f92
+--color=fg:#363636,bg:-1,hl:#636363,fg+:#363636,bg+:-1,hl+:#C586C0
+--color=info:#C586C0,prompt:#C586C0,pointer:#C586C0,marker:#D7BA7D,spinner:#C586C0
+--info=inline
+--prompt=" "
+--pointer=""
+--marker=""
 '
 export EXA_ICON_SPACING=2
 # enable passphrase prompt for gpg
@@ -216,17 +220,17 @@ ex ()
 }
 
 # Colorized man pages
-man() {
-    env \
-        LESS_TERMCAP_mb=$'\e[1;31m' \
-        LESS_TERMCAP_md=$'\e[1;31m' \
-        LESS_TERMCAP_me=$'\e[0m' \
-        LESS_TERMCAP_se=$'\e[0m' \
-        LESS_TERMCAP_so=$'\e[1;44;33m' \
-        LESS_TERMCAP_ue=$'\e[0m' \
-        LESS_TERMCAP_us=$'\e[1;32m' \
-        man "$@"
-    }
+# man() {
+#     env \
+#         LESS_TERMCAP_mb=$'\e[1;31m' \
+#         LESS_TERMCAP_md=$'\e[1;31m' \
+#         LESS_TERMCAP_me=$'\e[0m' \
+#         LESS_TERMCAP_se=$'\e[0m' \
+#         LESS_TERMCAP_so=$'\e[1;44;33m' \
+#         LESS_TERMCAP_ue=$'\e[0m' \
+#         LESS_TERMCAP_us=$'\e[1;32m' \
+#         man "$@"
+#     }
 #}}}
 
 # WSL {{{
