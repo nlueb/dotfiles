@@ -11,9 +11,9 @@ local lsp_format = require 'lsp-format'
 lsp.handlers['textDocument/publishDiagnostics'] =
     lsp.with(lsp.diagnostic.on_publish_diagnostics, {
         underline = true,
-        virtual_text = false,
+        virtual_text = true,
         signs = true,
-        update_in_insert = false
+        update_in_insert = true
     })
 -- }}}
 
@@ -58,6 +58,9 @@ sign_define('DiagnosticSignHint', {text='', texthl='DiagnosticHint', linehl='
 local function CustomOnAttach(client, bufnr)
     -- lsp_status.on_attach(client)
     lsp_format.on_attach(client)
+    if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+        vim.diagnostic.disable()
+    end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -189,7 +192,15 @@ lspcfg.jdtls.setup {
 
 -- Yaml {{{
 lspcfg.yamlls.setup {
-    capabilities = custom_capabilities
+    capabilities = custom_capabilities,
+    on_attach = CustomOnAttach,
+    settings = {
+        redhat = {
+            telemetry = {
+                enabled = false
+            }
+        }
+    }
 }
 -- }}}
 

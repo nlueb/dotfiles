@@ -65,7 +65,7 @@ local function init(use)
 --    use 'winston0410/cmd-parser.nvim'
 --    use 'winston0410/range-highlight.nvim'
     use 'rcarriga/nvim-notify'
-    use 'folke/which-key.nvim'
+    -- use 'folke/which-key.nvim'
 --    use 'folke/trouble.nvim'
 --    use 'TimUntersberger/neogit'
 --    use 'sindrets/diffview.nvim'

@@ -2,6 +2,8 @@ local vim = vim
 local cmd = vim.cmd
 local opt = vim.opt
 
+opt.mouse=""
+
 -- Temporary files {{{
 opt.undofile = true
 opt.undodir = vim.fn.stdpath('config') .. '/undo'

@@ -95,11 +95,11 @@ create_autocmd({'WinEnter', 'BufEnter'}, {
         vim.opt_local.formatoptions:remove('o')
     end
 })
-create_autocmd({'BufRead', 'BufNewFile'}, {
-    group = FiletypeSettings,
-    pattern = '*.gotmpl',
-    command = 'setfiletype helm'
-})
+-- create_autocmd({'BufRead', 'BufNewFile'}, {
+--     group = FiletypeSettings,
+--     pattern = '*/templates/*.yaml,*/templates/*.tpl,*.gotmpl,helmfile.yaml',
+--     command = 'setfiletype helm'
+-- })
 -- }}}
 
 -- IndentRefresh {{{
