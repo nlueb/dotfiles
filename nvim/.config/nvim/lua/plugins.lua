@@ -139,6 +139,7 @@ local function init(use)
 --    -- use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 --    use 'mfussenegger/nvim-lint'
     use 'ray-x/lsp_signature.nvim'
+    use 'jose-elias-alvarez/null-ls.nvim'
 --}}}
 
 -- Debugging {{{
