@@ -1,6 +1,50 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+${custom.jira_ticket}\
+$hg_branch\
+$python\
+$nix_shell\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$time\
+$status\
+$shell\
+$character"""
+
+[custom.jira_ticket]
+command = "find-jira-ticket"
+when = "detect-jira-ticket"
+format = "with [ $output](blue) "
+
 [aws]
 disabled = true
 symbol = "  "
+
+[azure]
+disabled = true
+
+[battery]
+disabled = true
 
 [buf]
 symbol = " "
