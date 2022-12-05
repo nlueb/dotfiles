@@ -1,6 +1,6 @@
 let g:colors_name="yin"
 set background=dark
-highlight Normal guifg=#BDBDBD guibg=#0F0F0F guisp=NONE blend=NONE gui=NONE
+highlight Normal guifg=#BDBDBD guibg=#000000 guisp=NONE blend=NONE gui=NONE
 highlight! link CmpItemAbbr Normal
 highlight! link CmpItemMenu Normal
 highlight! link Conceal Normal
@@ -237,9 +237,9 @@ highlight! link Conditional Statement
 highlight! link Exception Statement
 highlight! link Label Statement
 highlight! link Repeat Statement
-highlight StatusLine guifg=#ADADAD guibg=#0F0F0F guisp=NONE blend=NONE gui=NONE
+highlight StatusLine guifg=#ADADAD guibg=#000000 guisp=NONE blend=NONE gui=NONE
 highlight! link TabLineSel StatusLine
-highlight StatusLineNC guifg=#595959 guibg=#0F0F0F guisp=NONE blend=NONE gui=NONE
+highlight StatusLineNC guifg=#595959 guibg=#000000 guisp=NONE blend=NONE gui=NONE
 highlight! link TabLine StatusLineNC
 highlight! link TabLineFill StatusLineNC
 highlight String guifg=#9E9E9E guibg=NONE guisp=NONE blend=NONE gui=NONE
@@ -261,11 +261,11 @@ highlight TSUnderline guifg=#BDBDBD guibg=NONE guisp=NONE blend=NONE gui=underli
 highlight TSVariable guifg=#BDBDBD guibg=NONE guisp=NONE blend=NONE gui=italic
 highlight TargetFileName guifg=#595959 guibg=NONE guisp=NONE blend=NONE gui=NONE
 highlight TargetWord guifg=#595959 guibg=NONE guisp=NONE blend=NONE gui=NONE
-highlight TelescopeBorder guifg=#B3B3B3 guibg=#0F0F0F guisp=NONE blend=NONE gui=NONE
+highlight TelescopeBorder guifg=#B3B3B3 guibg=#000000 guisp=NONE blend=NONE gui=NONE
 highlight TelescopeMatching guifg=#C7C7C7 guibg=NONE guisp=NONE blend=NONE gui=NONE
-highlight TelescopeNormal guifg=#666666 guibg=#0F0F0F guisp=NONE blend=NONE gui=NONE
+highlight TelescopeNormal guifg=#666666 guibg=#000000 guisp=NONE blend=NONE gui=NONE
 highlight TelescopePromptPrefix guifg=#B3B3B3 guibg=NONE guisp=NONE blend=NONE gui=NONE
-highlight TelescopeSelection guifg=#666666 guibg=#0F0F0F guisp=NONE blend=NONE gui=NONE
+highlight TelescopeSelection guifg=#666666 guibg=#000000 guisp=NONE blend=NONE gui=NONE
 highlight TelescopeSelectionCaret guifg=#EDEDED guibg=NONE guisp=NONE blend=NONE gui=NONE
 highlight Title guifg=#808080 guibg=NONE guisp=NONE blend=NONE gui=bold
 highlight! link TSTitle Title

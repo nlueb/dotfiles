@@ -43,11 +43,11 @@ local menu_abbr = {
 
 -- Setup {{{
 cmp.setup {
-   snippet = {
-       expand = function(args)
-           require('luasnip').lsp_expand(args.body)
-       end
-   },
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end
+    },
     mapping = {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false}),

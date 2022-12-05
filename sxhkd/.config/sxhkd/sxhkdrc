@@ -8,10 +8,10 @@ super + n
 
 # terminal emulator
 super + Return
-	kitty
+	wezterm
 
 super + shift + Return
-	alacritty
+	kitty
 
 # program launcher
 super + @space

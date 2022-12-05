@@ -1,7 +1,7 @@
 # xrandr --output DisplayPort-0 --mode 1920x1080 --rate 144
 xrandr --fb 6913x2160 --dpi 138 \
-	--output DisplayPort-1 --mode 2560x1440 --rate 144 --scale 1.2x1.2 --pos 3840x360 \
-	--output DisplayPort-0 --mode 3840x2160 --rate 60 --pos 0x0 --primary &
+	--output DisplayPort-0 --mode 2560x1440 --rate 144 --scale 1.2x1.2 --pos 3840x360 \
+	--output DisplayPort-1 --mode 3840x2160 --rate 60 --pos 0x0 --primary &
 # xrandr --fb 6400x3600 --dpi 138 \
 # 	--output DisplayPort-1 --mode 2560x1440 --rate 144 --scale 1.2x1.2 --pos 3840x720 --panning 2560x1440+3840+720 \
 # 	--output DisplayPort-0 --mode 3840x2160 --rate 60 --pos 0x0 --panning 3840x2160+0+0 --primary &

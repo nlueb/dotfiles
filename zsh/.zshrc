@@ -117,6 +117,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --marker=""
 '
 export EXA_ICON_SPACING=2
+export XDG_CURRENT_DESKTOP="X-Generic"
 # enable passphrase prompt for gpg
 export GPG_TTY=$(tty)
 if [[ $WSL == true ]]; then

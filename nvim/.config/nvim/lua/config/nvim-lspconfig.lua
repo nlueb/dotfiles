@@ -64,12 +64,12 @@ local function CustomOnAttach(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
+
+local custom_capabilities = cmp_lsp.default_capabilities(capabilities)
+custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
+custom_capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = { "documentation", "detail", "additionalTextEdits" },
 }
-
-local custom_capabilities = cmp_lsp.update_capabilities(capabilities)
 
 -- Go {{{
 lspcfg.gopls.setup {

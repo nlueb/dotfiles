@@ -39,7 +39,8 @@ local brown = hsl(27, 31, 55)
 
 local theme = lush(function() return {
 -- Vim Editor {{{
-    Normal { bg = blacker, fg = gray13 };
+    Normal { bg = blackest, fg = gray13 };
+    --[[ Normal { bg = blacker, fg = gray13 }; ]]
     Whitespace { fg = gray01 };
     EndOfBuffer { fg = gray01 };
     Conceal { Normal };

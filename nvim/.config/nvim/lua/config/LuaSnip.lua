@@ -17,7 +17,7 @@ luasnip.config.setup {
     enable_autosnippets = false,
 }
 
-vscode.load()
+--[[ vscode.load() ]]
 
 -- Jump forward
 keymap('i', '<C-l>',  [[<cmd>lua require('luasnip').jump(1)<cr>]], {silent = true, noremap = true})

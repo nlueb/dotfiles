@@ -1,3 +1,7 @@
 local fidget = require 'fidget'
 
-fidget.setup {}
+fidget.setup {
+    window = {
+        blend = 0,
+    }
+}

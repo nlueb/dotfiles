@@ -96,6 +96,7 @@ local function init(use)
     use 'norcalli/nvim-colorizer.lua'
 
     use { 'folke/todo-comments.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use { "catppuccin/nvim", as = "catppuccin" }
 --}}}
 
 -- Languages {{{
