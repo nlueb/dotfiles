@@ -5,12 +5,6 @@
 add_newline = true
 
 format = """
-$username\
-$hostname\
-$localip\
-$shlvl\
-$singularity\
-$kubernetes\
 $directory\
 $vcsh\
 $git_branch\

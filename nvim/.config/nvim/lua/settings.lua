@@ -1,5 +1,6 @@
 local vim = vim
-local cmd = vim.cmd
+local colorscheme = vim.cmd.colorscheme
+
 local opt = vim.opt
 
 opt.mouse=""
@@ -18,9 +19,7 @@ opt.directory = vim.fn.stdpath('config') .. '/swap'
 
 -- Colors {{{
 opt.termguicolors = true
--- [[ cmd [[colorscheme vscode-dark]] ]]
-cmd [[colorscheme catppuccin]]
--- [[ cmd [[colorscheme yin]] ]]
+colorscheme 'catppuccin'
 
 opt.number = true
 opt.relativenumber = true

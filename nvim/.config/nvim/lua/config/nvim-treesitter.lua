@@ -67,8 +67,9 @@ ts.setup {
 
 }
 
-local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
+-- Helm {{{
 parser_config.gotmpl = {
     install_info = {
         url = "https://github.com/ngalaiko/tree-sitter-go-template",
@@ -77,5 +78,18 @@ parser_config.gotmpl = {
     filetype = "helm",
     used_by = {"helm"}
 }
+-- }}}
+
+-- Cue {{{
+parser_config.cue = {
+    install_info = {
+        url = "https://github.com/eonpatapon/tree-sitter-cue", -- local path or git repo
+        files = {"src/parser.c", "src/scanner.c"},
+        branch = "main"
+    },
+    filetype = "cue", -- if filetype does not agrees with parser name
+    used_by = {"cue"}
+}
+-- }}}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

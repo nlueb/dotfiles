@@ -33,7 +33,12 @@ zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-synta
 
 # Settings {{{
 # Allows you to enter dirs without typing cd
-setopt autocd
+# https://zsh.sourceforge.io/Doc/Release/Options.html#Changing-Directories
+setopt AUTO_CD
+
+# Enable job control
+# https://zsh.sourceforge.io/Doc/Release/Options.html#Job-Control
+setopt MONITOR
 
 # Custom completions
 fpath+=~/.zfunc
@@ -121,10 +126,10 @@ export XDG_CURRENT_DESKTOP="X-Generic"
 # enable passphrase prompt for gpg
 export GPG_TTY=$(tty)
 if [[ $WSL == true ]]; then
-    export HTTP_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
-    export http_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
-    export HTTPS_PROXY="http://HE112113.emea1.cds.t-internal.com:8080"
-    export https_proxy="http://HE112113.emea1.cds.t-internal.com:8080"
+    export HTTP_PROXY="http://sia-lb.telekom.de:8080"
+    export http_proxy="http://sia-lb.telekom.de:8080"
+    export HTTPS_PROXY="http://sia-lb.telekom.de:8080"
+    export https_proxy="http://sia-lb.telekom.de:8080"
     export NO_PROXY="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
     export no_proxy="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
     export PATH="$PATH:/mnt/c/Program Files/Win32Yank"
