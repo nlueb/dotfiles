@@ -3,7 +3,10 @@ local colorscheme = vim.cmd.colorscheme
 
 local opt = vim.opt
 
-opt.mouse=""
+opt.mouse = ""
+
+opt.relativenumber = true
+opt.number = true
 
 -- Temporary files {{{
 opt.undofile = true
@@ -19,7 +22,8 @@ opt.directory = vim.fn.stdpath('config') .. '/swap'
 
 -- Colors {{{
 opt.termguicolors = true
-colorscheme 'catppuccin'
+-- colorscheme 'zaibatsu'
+colorscheme 'dobri-next'
 
 opt.number = true
 opt.relativenumber = true
@@ -46,13 +50,6 @@ opt.ignorecase = true
 opt.smartcase = true
 -- }}}
 
--- Fillchars {{{
-opt.fillchars = 'fold: ,diff:,foldclose:,foldopen:'
-
--- Highlight characters after 90
--- opt.colorcolumn = '90'
--- }}}
-
 -- Indentation {{{
 opt.expandtab = true
 opt.shiftwidth = 4
@@ -66,24 +63,16 @@ opt.listchars = 'tab:⇥ ,trail:░'
 opt.wrap = false
 --}}}
 
--- Folding {{{
--- Open most folds by default
-opt.foldlevelstart = 99
-
--- Fold based on treesitter
-opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
-
--- Improved foldtext
-opt.foldtext = [[v:lua.FoldText()]]
--- }}}
-
 -- Misc settings {{{
 -- Enable live feedback for the :substitute command
 -- opt.inccommand = 'split'
 
 -- Smaller updatetime for CursorHold and CursorHoldI
-opt.updatetime = 300
+opt.updatetime = 250
+opt.timeoutlen = 300
+
+-- Set completeopt to have a better completion experience
+opt.completeopt = 'menuone,noselect'
 
 opt.wildignore = '*.o,*.obj,*.class,*/nvim/backup/*,*/nvim/undo/*,*/nvim/swap/*,*.ppm'
 
@@ -100,23 +89,30 @@ opt.showmatch = true
 -- More natural split opening
 opt.splitbelow = true
 opt.splitright = true
+
+-- To ALWAYS use the clipboard for ALL operations
+-- opt.clipboard = 'unnamedplus'
 -- }}}
 
--- WSL Specific {{{
-if IsWSL() then
-	vim.g.clipboard = {
-		name = 'win32yank-wsl',
-		copy = {
-			['+'] = 'win32yank.exe -i --crlf',
-			['*'] = 'win32yank.exe -i --crlf'
-		},
-		paste = {
-			['+'] = 'win32yank.exe -o --lf',
-			['*'] = 'win32yank.exe -o --lf'
-		},
-		cache_enabled = 0
-	}
-end
--- }}}
+vim.diagnostic.config {
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN]  = '',
+            [vim.diagnostic.severity.INFO]  = '',
+            [vim.diagnostic.severity.HINT]  = '',
+            -- [vim.diagnostic.severity.ERROR] = '',
+            -- [vim.diagnostic.severity.WARN]  = '',
+            -- [vim.diagnostic.severity.INFO]  = '',
+            -- [vim.diagnostic.severity.HINT]  = '',
+        },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
+            [vim.diagnostic.severity.WARN]  = 'DiagnosticWarn',
+            [vim.diagnostic.severity.INFO]  = 'DiagnosticInfo',
+            [vim.diagnostic.severity.HINT]  = 'DiagnosticHint',
+        },
+    },
+}
 
 -- vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

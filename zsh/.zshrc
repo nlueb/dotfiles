@@ -95,6 +95,7 @@ alias gw='git worktree'
 # WSL Specific {{{
 if [[ $WSL == true ]]; then
     alias home="cd /mnt/c/Users/nluebker"
+    alias fd="fdfind"
     # alias rust-analyzer="rustup run nightly rust-analyzer"
 fi
 # }}}
@@ -103,6 +104,7 @@ fi
 
 # Exports {{{
 export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/.local/nvim/bin
@@ -117,9 +119,9 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=fg:#363636,bg:-1,hl:#636363,fg+:#363636,bg+:-1,hl+:#C586C0
 --color=info:#C586C0,prompt:#C586C0,pointer:#C586C0,marker:#D7BA7D,spinner:#C586C0
 --info=inline
---prompt=" "
---pointer=""
---marker=""
+--prompt="󱎸 "
+--pointer=""
+--marker=""
 '
 export EXA_ICON_SPACING=2
 export XDG_CURRENT_DESKTOP="X-Generic"
@@ -134,6 +136,8 @@ if [[ $WSL == true ]]; then
     export no_proxy="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
     export PATH="$PATH:/mnt/c/Program Files/Win32Yank"
     export PATH="$PATH:/home/nils/go/bin"
+    export CLONE_PATH="/home/nils/MagentaCI"
+    export CLONE_BARE="true"
     # Copy from: https://dev.to/bowmanjd/using-podman-on-windows-subsystem-for-linux-wsl-58ji
     # Without systemd, the $XDG_RUNTIME_DIR was not available for podman to use for temporary files.
     # This script checks if the $XDG_RUNTIME_DIR is set, and, if not, sets it to the default systemd
@@ -241,10 +245,15 @@ ex ()
 
 # WSL {{{
 if [[ $WSL == true ]]; then
-    cdd() {
+    cdf() {
         ignore_options=(--exclude 'vendor' --exclude 'node_modules')
         fzf_options=(--height 40% --layout=reverse)
         cd $(fd . --type d ${ignore_options} '/home/nils/MagentaCI/future-diagnostics' | fzf ${fzf_options})
+    }
+    cdd() {
+        ignore_options=(--exclude 'vendor' --exclude 'node_modules')
+        fzf_options=(--height 40% --layout=reverse)
+        cd $(fd . --type d ${ignore_options} '/home/nils/MagentaCI/vanya' | fzf ${fzf_options})
     }
 else
     cdd() {

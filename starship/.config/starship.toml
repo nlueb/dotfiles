@@ -28,7 +28,7 @@ $character"""
 [custom.jira_ticket]
 command = "find-jira-ticket"
 when = "detect-jira-ticket"
-format = "with [ $output](blue) "
+format = "with [󰌃 $output](blue) "
 
 [aws]
 disabled = true
@@ -53,7 +53,7 @@ symbol = " "
 symbol = " "
 
 [directory]
-read_only = " "
+read_only = " "
 
 [docker_context]
 symbol = " "
@@ -83,10 +83,10 @@ symbol = " "
 symbol = " "
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 
 [nim]
-symbol = " "
+symbol = " "
 
 [nix_shell]
 symbol = " "
@@ -95,13 +95,13 @@ symbol = " "
 symbol = " "
 
 [package]
-symbol = " "
+symbol = " "
 
 [python]
 symbol = " "
 
 [spack]
-symbol = "🅢 "
+symbol = "󰏗 "
 
 [rust]
 symbol = " "

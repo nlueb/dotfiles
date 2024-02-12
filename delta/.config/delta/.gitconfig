@@ -3,6 +3,7 @@
 
 [delta "vscode-theme"]
     dark = true
+    light = false
     true-color = always
     side-by-side = false
     syntax-theme = none
