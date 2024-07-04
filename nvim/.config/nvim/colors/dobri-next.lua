@@ -78,6 +78,32 @@ vim.api.nvim_set_hl(HL_NAMESPACE, 'TermCursor', { fg = colors.Black, bg = colors
 vim.api.nvim_set_hl(HL_NAMESPACE, 'TermCursorNC', { bg = colors.Yellow })
 ----------------------------------
 
+-- Lsp: neovim.io/doc/user/lsp.html
+-----------------------------------------
+vim.api.nvim_set_hl(HL_NAMESPACE, 'LspInlayHint', { fg = colors.GrayBlue })
+
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticError', {bg = colors.LightRed, fg = colors.Background})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticHint', {bg = colors.LightBlue, fg = colors.Background})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticInfo', {bg = colors.LightGreen, fg = colors.Background})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticWarn', {bg = colors.LightOrange, fg = colors.Background})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingError', {link = 'DiagnosticVirtualTextError'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingHint', {link = 'DiagnosticVirtualTextHint'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingInfo', {link = 'DiagnosticVirtualTextInfo'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingWarn', {link = 'DiagnosticVirtualTextWarn'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticSignError', {link = 'DiagnosticError'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticSignHint', {link = 'DiagnosticHint'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticSignInfo', {link = 'DiagnosticInfo'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticSignWarn', {link = 'DiagnosticWarn'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticUnderlineError', {})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticUnderlineHint', {})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticUnderlineInfo', {})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticUnderlineWarn', {})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextError', {fg = colors.LightRed})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextHint', {fg = colors.LightBlue})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextInfo', {fg = colors.LightGreen})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextWarn', {fg = colors.LightOrange})
+----------------------------------
+
 vim.api.nvim_set_hl(HL_NAMESPACE, 'ColorColumn', {})
 vim.api.nvim_set_hl(HL_NAMESPACE, 'Conceal', {})
 vim.api.nvim_set_hl(HL_NAMESPACE, 'CurSearch', { fg = colors.Black, bg = colors.LightBrown })
@@ -352,21 +378,21 @@ vim.api.nvim_set_hl(HL_NAMESPACE, 'GitGutterDelete', {})
 -- Indent-blankline: github.com/lukas-reineke/indent-blankline.nvim
 -----------------------------------------
 vim.api.nvim_set_hl(HL_NAMESPACE, 'IblScope', { fg = colors.DarkBlue3 })
-vim.api.nvim_set_hl(HL_NAMESPACE, 'IblIndent', { fg = colors.Black })
+vim.api.nvim_set_hl(HL_NAMESPACE, 'IblIndent', { fg = '#0c1317' })
 vim.api.nvim_set_hl(HL_NAMESPACE, 'IblWhitespace', { fg = colors.Black })
 -----------------------------------------
 
 
 -- Lsp: neovim.io/doc/user/lsp.html
 -----------------------------------------
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticError', {bg = colors.LightRed, fg = colors.Black})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticHint', {bg = colors.LightBlue, fg = colors.Black})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticInfo', {bg = colors.LightGreen, fg = colors.Black})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticWarn', {bg = colors.LightOrange, fg = colors.Black})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingError', {})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingHint', {})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingInfo', {})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingWarn', {})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticError', {bg = colors.LightRed, fg = colors.Background})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticHint', {bg = colors.LightBlue, fg = colors.Background})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticInfo', {bg = colors.LightGreen, fg = colors.Background})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticWarn', {bg = colors.LightOrange, fg = colors.Background})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingError', {link = 'DiagnosticVirtualTextError'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingHint', {link = 'DiagnosticVirtualTextHint'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingInfo', {link = 'DiagnosticVirtualTextInfo'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticFloatingWarn', {link = 'DiagnosticVirtualTextWarn'})
 vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticSignError', {link = 'DiagnosticError'})
 vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticSignHint', {link = 'DiagnosticHint'})
 vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticSignInfo', {link = 'DiagnosticInfo'})
@@ -375,10 +401,10 @@ vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticUnderlineError', {})
 vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticUnderlineHint', {})
 vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticUnderlineInfo', {})
 vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticUnderlineWarn', {})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextError', {link = 'DiagnosticError'})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextHint', {link = 'DiagnosticHint'})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextInfo', {link = 'DiagnosticInfo'})
-vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextWarn', {link = 'DiagnosticWarn'})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextError', {fg = colors.LightRed})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextHint', {fg = colors.LightBlue})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextInfo', {fg = colors.LightGreen})
+vim.api.nvim_set_hl(HL_NAMESPACE, 'DiagnosticVirtualTextWarn', {fg = colors.LightOrange})
 -----------------------------------------
 
 

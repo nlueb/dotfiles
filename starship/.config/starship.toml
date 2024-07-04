@@ -5,7 +5,8 @@
 add_newline = true
 
 format = """
-$directory\
+${custom.git_directory}\
+${custom.directory}\
 $vcsh\
 $git_branch\
 $git_commit\
@@ -29,6 +30,20 @@ $character"""
 command = "find-jira-ticket"
 when = "detect-jira-ticket"
 format = "with [󰌃 $output](blue) "
+
+[custom.git_directory]
+command = "print-working-git-project"
+when = "git rev-parse --is-inside-work-tree"
+style = "#fca326"
+# style = "#fc6d26"
+format = "[$output]($style) "
+
+[custom.directory]
+command = "print-working-directory"
+when = "! git rev-parse --is-inside-work-tree"
+symbol = ""
+style = "#4780b2"
+format = "[$symbol $output]($style) "
 
 [aws]
 disabled = true

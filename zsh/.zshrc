@@ -28,7 +28,6 @@ zplug mafredri/zsh-async, from:github
 zplug "zsh-users/zsh-completions",              defer:0
 zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
 # }}}
 
 # Settings {{{
@@ -39,6 +38,10 @@ setopt AUTO_CD
 # Enable job control
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Job-Control
 setopt MONITOR
+
+# Enable command line editing in vim
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd V edit-command-line
 
 # Custom completions
 fpath+=~/.zfunc
@@ -90,7 +93,7 @@ fi
 alias gc='git commit'
 alias ga='git add'
 alias gs='git status'
-alias gw='git worktree'
+# alias gw='git worktree'
 
 # WSL Specific {{{
 if [[ $WSL == true ]]; then
@@ -138,6 +141,7 @@ if [[ $WSL == true ]]; then
     export PATH="$PATH:/home/nils/go/bin"
     export CLONE_PATH="/home/nils/MagentaCI"
     export CLONE_BARE="true"
+    export GIT_TICKET_COMMIT_MSG_TYPE="prefix"
     # Copy from: https://dev.to/bowmanjd/using-podman-on-windows-subsystem-for-linux-wsl-58ji
     # Without systemd, the $XDG_RUNTIME_DIR was not available for podman to use for temporary files.
     # This script checks if the $XDG_RUNTIME_DIR is set, and, if not, sets it to the default systemd
@@ -160,8 +164,9 @@ source ~/.cargo/env
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
 # }}}
 
 # Functions {{{
@@ -198,16 +203,14 @@ average() {
     awk '{ total += $1; count++ } END { print total/count }' $1
 }
 
-cht ()
-{
+cht() {
     curl cht.sh/$1
 }
 
 #
 # # ex - archive extractor
 # # usage: ex <file>
-ex ()
-{
+ex() {
     if [ -f $1 ] ; then
         case $1 in
             *.tar.bz2)   tar xjf $1   ;;
@@ -226,6 +229,33 @@ ex ()
         esac
     else
         echo "'$1' is not a valid file"
+    fi
+}
+
+gw() {
+    CLI_COMMAND="${1}"
+    if [[ "${CLI_COMMAND}" == "switch" ]] || [[ "${CLI_COMMAND}" == "s" ]]; then
+        if RESULT="$(get-or-create-worktree)"; then
+            WORKTREE_PATH="${RESULT}"
+            cd "${WORKTREE_PATH}"
+        else
+            ERROR_MSG="${RESULT}"
+            echo "${ERROR_MSG}"
+        fi
+    elif [[ "${CLI_COMMAND}" == "remove" ]] || [[ "${CLI_COMMAND}" == "r" ]]; then
+        find-and-remove-worktree
+    elif [[ "${CLI_COMMAND}" == "create" ]] || [[ "${CLI_COMMAND}" == "c" ]]; then
+        if RESULT="$(create-new-worktree "${@:2}")"; then
+            WORKTREE_PATH="${RESULT}"
+            cd "${WORKTREE_PATH}"
+        else
+            ERROR_MSG="${RESULT}"
+            echo "${ERROR_MSG}"
+        fi
+    elif [[ "${CLI_COMMAND}" == "list" ]] || [[ "${CLI_COMMAND}" == "l" ]]; then
+        git worktree list
+    else
+        echo 'Usage: gw [(s)witch|(r)emove|(c)reate]'
     fi
 }
 
@@ -248,12 +278,41 @@ if [[ $WSL == true ]]; then
     cdf() {
         ignore_options=(--exclude 'vendor' --exclude 'node_modules')
         fzf_options=(--height 40% --layout=reverse)
-        cd $(fd . --type d ${ignore_options} '/home/nils/MagentaCI/future-diagnostics' | fzf ${fzf_options})
+        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/future-diagnostics' --exec dirname {} | fzf ${fzf_options})"
+        if [[ -n "${selected_dest}" ]]; then
+            cd "${selected_dest}"
+        fi
     }
     cdd() {
-        ignore_options=(--exclude 'vendor' --exclude 'node_modules')
         fzf_options=(--height 40% --layout=reverse)
-        cd $(fd . --type d ${ignore_options} '/home/nils/MagentaCI/vanya' | fzf ${fzf_options})
+        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/vanya' --exec dirname {} | fzf ${fzf_options})"
+        if [[ -n "${selected_dest}" ]]; then
+            cd "${selected_dest}"
+        fi
+    }
+    cdb() {
+        fzf_options=(--height 40% --layout=reverse)
+        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/b2b-dtp' --exec dirname {} | fzf ${fzf_options})"
+        if [[ -n "${selected_dest}" ]]; then
+            cd "${selected_dest}"
+            gw switch
+        fi
+    }
+    cds() {
+        fzf_options=(--height 40% --layout=reverse)
+        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/service-area-gk' --exec dirname {} | fzf ${fzf_options})"
+        if [[ -n "${selected_dest}" ]]; then
+            cd "${selected_dest}"
+            gw switch
+        fi
+    }
+    cdi() {
+        fzf_options=(--height 40% --layout=reverse)
+        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/innersource' --exec dirname {} | fzf ${fzf_options})"
+        if [[ -n "${selected_dest}" ]]; then
+            cd "${selected_dest}"
+            gw switch
+        fi
     }
 else
     cdd() {
@@ -274,6 +333,19 @@ if ! zplug check; then
 fi
 
 zplug load
+# }}}
+
+# PyEnv {{{
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Restart your shell for the changes to take effect.
+
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.bashrc:
+
+eval "$(pyenv virtualenv-init -)"
 # }}}
 
 alias luamake=/home/nils/Documents/lua/lua-language-server/3rd/luamake/luamake
