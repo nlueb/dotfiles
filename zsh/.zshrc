@@ -110,6 +110,7 @@ export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/bin/zig-linux-x86_64-0.15.0-dev.532+a3693aae3
 export PATH=$PATH:~/.local/nvim/bin
 export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
 export PATH=$PATH:/home/nils/.local/share/racket/7.9/bin
@@ -128,6 +129,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 '
 export EXA_ICON_SPACING=2
 export XDG_CURRENT_DESKTOP="X-Generic"
+export CC=clang
+export CXX=clang++
 # enable passphrase prompt for gpg
 export GPG_TTY=$(tty)
 if [[ $WSL == true ]]; then
@@ -156,6 +159,8 @@ if [[ $WSL == true ]]; then
             fi
         fi
     fi
+else
+    export WLR_RENDERER=vulkan
 fi
 # }}}
 
@@ -345,7 +350,7 @@ eval "$(pyenv init -)"
 # Load pyenv-virtualenv automatically by adding
 # the following to ~/.bashrc:
 
-eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
 # }}}
 
 alias luamake=/home/nils/Documents/lua/lua-language-server/3rd/luamake/luamake

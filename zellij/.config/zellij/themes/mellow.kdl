@@ -1,0 +1,21 @@
+themes { // a node named "themes"
+    mellow { // a nested node inside the "themes" node indicating the theme name
+        // a list of nodes defining the UI components
+        frame_selected {
+            base 42 42 45
+            background 0 0 0
+            emphasis_0 255 53 94
+            emphasis_1 255 255 255
+            emphasis_2 0 217 227
+            emphasis_3 255 0 255
+        }
+        frame_highlight {
+            base 42 42 45
+            background 0 0 0
+            emphasis_0 255 121 198
+            emphasis_1 255 184 108
+            emphasis_2 255 184 108
+            emphasis_3 255 184 108
+        }
+    }
+}
