@@ -10,6 +10,7 @@ return {
                 -- char = '┆',
                 -- char = '╎',
                 char = '▏',
+                tab_char = '▏',
                 -- char = '░',
             },
         },

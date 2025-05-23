@@ -13,14 +13,14 @@ vim.o.breakindent = true
 
 vim.o.undofile = true
 vim.o.undofile = true
-vim.o.undodir = vim.fn.stdpath 'config' .. '/undo'
+vim.o.undodir = vim.fn.stdpath('config') .. '/undo'
 
 vim.o.backup = true
 vim.o.backupcopy = 'auto'
-vim.o.backupdir = vim.fn.stdpath 'config' .. '/backup'
+vim.o.backupdir = vim.fn.stdpath('config') .. '/backup'
 
 vim.o.swapfile = true
-vim.o.directory = vim.fn.stdpath 'config' .. '/swap'
+vim.o.directory = vim.fn.stdpath('config') .. '/swap'
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -55,6 +55,10 @@ vim.o.softtabstop = 4
 
 vim.o.wrap = false
 
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldlevelstart = 99
+
 vim.opt.wildignore = {
     '*.o',
     '*.obj',
@@ -63,4 +67,30 @@ vim.opt.wildignore = {
     '*/nvim/undo/*',
     '*/nvim/swap/*',
     '*.ppm',
+}
+
+if IsWSL() then
+    vim.g.clipboard = {
+        name = 'WslClipboard',
+        copy = {
+            ['+'] = 'clip.exe',
+            ['*'] = 'clip.exe',
+        },
+        paste = {
+            ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        },
+        cache_enabled = 0,
+    }
+end
+
+vim.filetype.add {
+    extension = {
+        gotmpl = 'gotmpl',
+    },
+    pattern = {
+        ['.*/templates/.*%.tpl'] = 'helm',
+        ['.*/templates/.*%.ya?ml'] = 'helm',
+        ['helmfile.*%.ya?ml'] = 'helm',
+    },
 }

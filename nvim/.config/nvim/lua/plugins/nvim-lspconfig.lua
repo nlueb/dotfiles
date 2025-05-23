@@ -169,6 +169,8 @@ return {
                 -- ts_ls = {},
                 --
 
+                bashls = {},
+
                 lua_ls = {
                     -- cmd = { ... },
                     -- filetypes = { ... },
@@ -180,6 +182,24 @@ return {
                             },
                             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
                             -- diagnostics = { disable = { 'missing-fields' } },
+                        },
+                    },
+                },
+
+                gopls = {
+                    settings = {
+                        gopls = {
+                            semanticTokens = false,
+                            usePlaceholders = true,
+                            hints = {
+                                assignVariableTypes = true,
+                                compositeLiteralFields = true,
+                                compositeLiteralTypes = true,
+                                constantValues = true,
+                                functionTypeParameters = true,
+                                parameterNames = true,
+                                rangeVariableTypes = true,
+                            },
                         },
                     },
                 },
@@ -207,18 +227,27 @@ return {
 
             require('mason-lspconfig').setup {
                 ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+                automatic_enable = true,
                 automatic_installation = false,
-                handlers = {
-                    function(server_name)
-                        local server = servers[server_name] or {}
-                        -- This handles overriding only values explicitly passed
-                        -- by the server configuration above. Useful when disabling
-                        -- certain features of an LSP (for example, turning off formatting for ts_ls)
-                        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                        require('lspconfig')[server_name].setup(server)
-                    end,
-                },
+                -- handlers = {
+                --     function(server_name)
+                --         local server = servers[server_name] or {}
+                --         -- This handles overriding only values explicitly passed
+                --         -- by the server configuration above. Useful when disabling
+                --         -- certain features of an LSP (for example, turning off formatting for ts_ls)
+                --         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+                --         require('lspconfig')[server_name].setup(server)
+                --     end,
+                -- },
             }
+
+            for server_name, config in pairs(servers) do
+                -- This handles overriding only values explicitly passed
+                -- by the server configuration above. Useful when disabling
+                -- certain features of an LSP (for example, turning off formatting for ts_ls)
+                config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
+                require('lspconfig')[server_name].setup(config)
+            end
 
             require('lspconfig')['zls'].setup {
                 capabilities = capabilities,

@@ -39,7 +39,7 @@ return {
             },
         },
         config = function(_, opts)
-            local conform = require 'conform'
+            local conform = require('conform')
 
             conform.setup(opts)
 

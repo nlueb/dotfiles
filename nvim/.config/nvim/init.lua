@@ -5,8 +5,16 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true
 
-require 'setup.settings'
-require 'setup.mappings'
-require 'setup.autocmds'
+function _G.IsWSL()
+    local version = vim.fn.readfile('/proc/version', '', 1)
+    if vim.tbl_isempty(version) then
+        error('Could not read /proc/version')
+    end
+    return string.find(version[1], 'microsoft')
+end
 
-require 'setup.lazy'
+require('setup.settings')
+require('setup.mappings')
+require('setup.autocmds')
+
+require('setup.lazy')
