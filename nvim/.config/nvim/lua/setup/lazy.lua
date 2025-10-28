@@ -1,6 +1,6 @@
 local vim = vim
 
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
     local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
@@ -10,7 +10,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lazy = require 'lazy'
+local lazy = require('lazy')
 
 lazy.setup {
     spec = {
@@ -21,5 +21,11 @@ lazy.setup {
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { 'habamax' } },
     -- automatically check for plugin updates
-    checker = { enabled = true },
+    checker = {
+        enabled = true,
+        notify = true,
+    },
+    change_detection = {
+        notify = false,
+    },
 }

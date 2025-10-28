@@ -1,6 +1,5 @@
-themes { // a node named "themes"
-    mellow { // a nested node inside the "themes" node indicating the theme name
-        // a list of nodes defining the UI components
+themes {
+    mellow {
         frame_selected {
             base 42 42 45
             background 0 0 0

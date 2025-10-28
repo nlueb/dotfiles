@@ -11,7 +11,7 @@ return {
             sections = {
                 {
                     section = 'terminal',
-                    cmd = 'chafa ~/Pictures/neovim-3190867428.png --format symbols --symbols vhalf --view-size 60x17 --align center; sleep .1',
+                    cmd = 'chafa /home/nils/Pictures/neovim-3190867428.png --format symbols --symbols vhalf --view-size 60x17 --align center; sleep .1',
                     height = 17,
                     padding = 1,
                 },

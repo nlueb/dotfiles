@@ -114,6 +114,8 @@ export PATH=$PATH:~/.local/bin/zig-linux-x86_64-0.15.0-dev.621+a63f7875f
 export PATH=$PATH:~/.local/nvim/bin
 export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
 export PATH=$PATH:/home/nils/.local/share/racket/7.9/bin
+export PATH=$PATH:/home/nils/.local/bin/krr
+export PATH=$PATH:/home/nils/.fvm_flutter/bin
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export GOPATH=$(go env GOPATH)
 export EDITOR=nvim
@@ -134,31 +136,9 @@ export CXX=clang++
 # enable passphrase prompt for gpg
 export GPG_TTY=$(tty)
 if [[ $WSL == true ]]; then
-    export HTTP_PROXY="http://sia-lb.telekom.de:8080"
-    export http_proxy="http://sia-lb.telekom.de:8080"
-    export HTTPS_PROXY="http://sia-lb.telekom.de:8080"
-    export https_proxy="http://sia-lb.telekom.de:8080"
-    export NO_PROXY="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
-    export no_proxy="localhost,.t-internal.com,.telekom.de,.webex.com,10.0.0.0/8"
-    export PATH="$PATH:/mnt/c/Program Files/Win32Yank"
-    export PATH="$PATH:/home/nils/go/bin"
     export CLONE_PATH="/home/nils/MagentaCI"
     export CLONE_BARE="true"
     export GIT_TICKET_COMMIT_MSG_TYPE="prefix"
-    # Copy from: https://dev.to/bowmanjd/using-podman-on-windows-subsystem-for-linux-wsl-58ji
-    # Without systemd, the $XDG_RUNTIME_DIR was not available for podman to use for temporary files.
-    # This script checks if the $XDG_RUNTIME_DIR is set, and, if not, sets it to the default systemd
-    # location (/run/user/$UID). If that does not exist, then set and create a temporary directory
-    # for the current user.
-    if [[ -z "$XDG_RUNTIME_DIR" ]]; then
-        export XDG_RUNTIME_DIR=/run/user/$UID
-        if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
-            export XDG_RUNTIME_DIR=/tmp/$USER-runtime
-            if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
-                mkdir -m 0700 "$XDG_RUNTIME_DIR"
-            fi
-        fi
-    fi
 else
     export WLR_RENDERER=vulkan
 fi
@@ -280,43 +260,72 @@ gw() {
 
 # WSL {{{
 if [[ $WSL == true ]]; then
-    cdf() {
-        ignore_options=(--exclude 'vendor' --exclude 'node_modules')
-        fzf_options=(--height 40% --layout=reverse)
-        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/future-diagnostics' --exec dirname {} | fzf ${fzf_options})"
+    cdp() {
+        local search_root='/home/nils/MagentaCI/nils.luebker'
+        local ignore_options=(--exclude 'vendor' --exclude 'node_modules')
+        local fzf_options=(--height 40% --layout=reverse)
+        local selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' "${search_root}" --exec dirname {} | sed "s|^${search_root}/||" | fzf ${fzf_options})"
         if [[ -n "${selected_dest}" ]]; then
-            cd "${selected_dest}"
-        fi
-    }
-    cdd() {
-        fzf_options=(--height 40% --layout=reverse)
-        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/vanya' --exec dirname {} | fzf ${fzf_options})"
-        if [[ -n "${selected_dest}" ]]; then
-            cd "${selected_dest}"
+            cd "${search_root}/${selected_dest}"
+            gw switch
         fi
     }
     cdb() {
-        fzf_options=(--height 40% --layout=reverse)
-        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/b2b-dtp' --exec dirname {} | fzf ${fzf_options})"
+        local search_root='/home/nils/MagentaCI/b2b-dtp'
+        local fzf_options=(--height 40% --layout=reverse)
+        local selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' "${search_root}" --exec dirname {} | sed "s|^${search_root}/||" | fzf ${fzf_options})"
         if [[ -n "${selected_dest}" ]]; then
-            cd "${selected_dest}"
+            cd "${search_root}/${selected_dest}"
             gw switch
         fi
     }
     cds() {
-        fzf_options=(--height 40% --layout=reverse)
-        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/service-area-gk' --exec dirname {} | fzf ${fzf_options})"
+        local search_root='/home/nils/MagentaCI/service-area-gk'
+        local fzf_options=(--height 40% --layout=reverse)
+        local selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' "${search_root}" --exec dirname {} | sed "s|^${search_root}/||" | fzf ${fzf_options})"
         if [[ -n "${selected_dest}" ]]; then
-            cd "${selected_dest}"
+            cd "${search_root}/${selected_dest}"
+            gw switch
+        fi
+    }
+    cdm() {
+        local search_root='/home/nils/MagentaCI/mbsp'
+        local fzf_options=(--height 40% --layout=reverse)
+        local selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' "${search_root}" --exec dirname {} | sed "s|^${search_root}/||" | fzf ${fzf_options})"
+        if [[ -n "${selected_dest}" ]]; then
+            cd "${search_root}/${selected_dest}"
             gw switch
         fi
     }
     cdi() {
-        fzf_options=(--height 40% --layout=reverse)
-        selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' '/home/nils/MagentaCI/innersource' --exec dirname {} | fzf ${fzf_options})"
+        local search_root='/home/nils/MagentaCI/innersource'
+        local fzf_options=(--height 40% --layout=reverse)
+        local selected_dest="$(fd --type directory --unrestricted --absolute-path '\.bare$|\.git$' "${search_root}" --exec dirname {} | sed "s|^${search_root}/||" | fzf ${fzf_options})"
         if [[ -n "${selected_dest}" ]]; then
-            cd "${selected_dest}"
+            cd "${search_root}/${selected_dest}"
             gw switch
+        fi
+    }
+    cdc() {
+        local git_root="$(git rev-parse --show-toplevel)"
+        local fzf_options=(--height 40% --layout=reverse)
+        local selected_dest="$(fd --type file gitlab.env "${git_root}" --exec dirname {} | sed "s|^${git_root}/||" | fzf "${fzf_options[@]}")"
+        if [[ -n "${selected_dest}" ]]; then
+            cd "${git_root}/${selected_dest}"
+        fi
+    }
+    cdd() {
+        local git_root="$(git rev-parse --show-toplevel)"
+        local fzf_options=(--height 40% --layout=reverse)
+        local selected_dest="$(fd . --type directory "${git_root}" | sed "s|^${git_root}/||" | fzf "${fzf_options[@]}")"
+        if [[ -n "${selected_dest}" ]]; then
+            cd "${git_root}/${selected_dest}"
+        fi
+    }
+    cdr() {
+        local git_root="$(git rev-parse --show-toplevel)"
+        if [[ -n "${git_root}" ]]; then
+            cd "${git_root}"
         fi
     }
 else
@@ -355,4 +364,16 @@ eval "$(pyenv init -)"
 
 alias luamake=/home/nils/Documents/lua/lua-language-server/3rd/luamake/luamake
 
-# vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# FVM
+export PATH="/home/nils/.fvm_flutter/bin:$PATH"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/nils/.dart-cli-completion/zsh-config.zsh ]] && . /home/nils/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
+## vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

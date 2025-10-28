@@ -5,7 +5,7 @@ return {
             -- {'<C-\\>', [[<Cmd>lua require'fzf-lua'.buffers()<CR>]]},
             -- {'<C-k>', [[<Cmd>lua require'fzf-lua'.builtin()<CR>]]},
             { '<leader>ff', [[<Cmd>lua require'fzf-lua'.files()<CR>]] },
-            { '<leader>fg', [[<Cmd>lua require'fzf-lua'.live_grep_glob()<CR>]] },
+            { '<leader>fg', [[<Cmd>lua require'fzf-lua'.live_grep()<CR>]] },
             -- {'<C-g>', [[<Cmd>lua require'fzf-lua'.grep_project()<CR>]]},
             { '<leader>fh', [[<Cmd>lua require'fzf-lua'.help_tags()<CR>]] },
         },
@@ -29,7 +29,7 @@ return {
                 '%.swp$',
             },
             files = {
-                fd_opts = '--type f --exclude node_modules --exclude undo',
+                fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude node_modules --exclude undo]],
             },
             grep = {
                 rg_opts = "--column --line-number --color=always --smart-case -g '!{.git,node_modules,undo}/'",

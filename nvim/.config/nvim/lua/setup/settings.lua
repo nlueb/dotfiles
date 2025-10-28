@@ -37,7 +37,7 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '░', nbsp = '␣' }
 
-vim.opt.fillchars:append { eob = ' ' }
+vim.opt.fillchars:append { eob = ' ', fold = ' ' }
 
 vim.o.inccommand = 'nosplit'
 
@@ -57,6 +57,7 @@ vim.o.wrap = false
 
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldtext = ''
 vim.o.foldlevelstart = 99
 
 vim.opt.wildignore = {

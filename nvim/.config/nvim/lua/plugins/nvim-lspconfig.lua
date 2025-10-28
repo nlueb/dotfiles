@@ -203,6 +203,8 @@ return {
                         },
                     },
                 },
+
+                cssls = {},
             }
 
             -- Ensure the servers and tools above are installed
@@ -233,12 +235,26 @@ return {
 
             for server_name, config in pairs(servers) do
                 config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
-                require('lspconfig')[server_name].setup(config)
+                -- require('lspconfig')[server_name].setup(config)
+                vim.lsp.config(server_name, config)
             end
 
-            require('lspconfig')['zls'].setup {
+            vim.lsp.config('zls', {
                 capabilities = capabilities,
-            }
+            })
+            -- require('lspconfig')['zls'].setup {
+            --     capabilities = capabilities,
+            -- }
+
+            vim.lsp.config('dartls', {
+                cmd = { 'fvm', 'dart', 'language-server', '--protocol=lsp' },
+                capabilities = capabilities,
+            })
+
+            -- require('lspconfig')['dartls'].setup {
+            --     cmd = { 'fvm', 'dart', 'language-server', '--protocol=lsp' },
+            --     capabilities = capabilities,
+            -- }
         end,
     },
 }

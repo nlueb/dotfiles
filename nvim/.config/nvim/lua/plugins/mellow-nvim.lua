@@ -10,9 +10,9 @@ return {
                 ['CursorLineNr'] = { fg = '#9998a8', bg = '#181818', bold = true },
                 ['SignColumn'] = { fg = '#9998a8', bg = '#181818' },
                 ['Comment'] = { fg = '#2a2a2d', italic = true },
-                ['LspInlayHint'] = { fg = '#2d2d2f' },
+                ['LspInlayHint'] = { fg = '#57575f' },
             }
-            vim.cmd.colorscheme 'mellow'
+            vim.cmd.colorscheme('mellow')
         end,
     },
 }

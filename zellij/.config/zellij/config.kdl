@@ -53,10 +53,10 @@ keybinds clear-defaults=true {
         bind "y" { ToggleActiveSyncTab; SwitchToMode "normal"; }
     }
     resize {
-        bind "left" { Resize "Increase left"; }
-        bind "down" { Resize "Increase down"; }
-        bind "up" { Resize "Increase up"; }
-        bind "right" { Resize "Increase right"; }
+        bind "Left" { Resize "Increase left"; }
+        bind "Down" { Resize "Increase down"; }
+        bind "Up" { Resize "Increase up"; }
+        bind "Right" { Resize "Increase right"; }
         bind "H" { Resize "Decrease left"; }
         bind "J" { Resize "Decrease down"; }
         bind "K" { Resize "Decrease up"; }
@@ -71,16 +71,16 @@ keybinds clear-defaults=true {
         bind "e" { EditScrollback; SwitchToMode "normal"; }
     }
     search {
-        bind "down" { ScrollDown; }
-        bind "up" { ScrollUp; }
+        bind "Down" { ScrollDown; }
+        bind "Up" { ScrollUp; }
         bind "N" { Search "up"; }
         bind "n" { Search "down"; }
     }
     shared_except "normal" "locked" "scroll" "entersearch" "search" {
-        bind "enter" { SwitchToMode "normal"; }
+        bind "Enter" { SwitchToMode "normal"; }
     }
     shared_except "normal" "locked" "scroll" "entersearch" "search" "renametab" "renamepane" {
-        bind "esc" { SwitchToMode "normal"; }
+        bind "Esc" { SwitchToMode "normal"; }
     }
     shared_among "scroll" "search" {
         bind "/" { SwitchToMode "entersearch"; SearchInput 0; }
@@ -94,22 +94,22 @@ keybinds clear-defaults=true {
         bind "k" { ScrollUp; }
         bind "u" { HalfPageScrollUp; }
         bind "Ctrl u" { HalfPageScrollUp; }
-        bind "esc" { ScrollToBottom; SwitchToMode "normal"; }
-        bind "enter" { ScrollToBottom; SwitchToMode "normal"; }
+        bind "Esc" { ScrollToBottom; SwitchToMode "normal"; }
+        bind "Enter" { ScrollToBottom; SwitchToMode "normal"; }
     }
     entersearch {
         bind "Ctrl c" { SwitchToMode "scroll"; }
-        bind "esc" { SwitchToMode "scroll"; }
-        bind "enter" { SwitchToMode "search"; }
+        bind "Esc" { SwitchToMode "scroll"; }
+        bind "Enter" { SwitchToMode "search"; }
     }
     renametab {
-        bind "esc" { UndoRenameTab; SwitchToMode "normal"; }
+        bind "Esc" { UndoRenameTab; SwitchToMode "normal"; }
     }
     shared_among "renametab" "renamepane" {
         bind "Ctrl c" { SwitchToMode "normal"; }
     }
     renamepane {
-        bind "esc" { UndoRenamePane; SwitchToMode "normal"; }
+        bind "Esc" { UndoRenamePane; SwitchToMode "normal"; }
     }
 }
 
