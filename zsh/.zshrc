@@ -9,26 +9,15 @@
 # 888888888  `"YbbdP"'  88       88  88           `"Ybbd8"'
 #
 
-source ~/.zplug/init.zsh
+# zmodload zsh/zprof
+
+source ~/.nix-profile/share/zinit/zinit.zsh
 
 if cat /proc/version | grep -q 'microsoft'; then
     WSL=true
 else
     WSL=false
 fi
-
-# Plugins {{{
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
-
-# Prompt
-zplug mafredri/zsh-async, from:github
-# zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-
-# ZSH Users
-zplug "zsh-users/zsh-completions",              defer:0
-zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting",      defer:3, on:"zsh-users/zsh-autosuggestions"
-# }}}
 
 # Settings {{{
 # Allows you to enter dirs without typing cd
@@ -43,9 +32,16 @@ setopt MONITOR
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd V edit-command-line
 
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
 # Custom completions
-fpath+=~/.zfunc
-compinit
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 # }}}
 
 # History {{{
@@ -97,8 +93,6 @@ alias gs='git status'
 
 # WSL Specific {{{
 if [[ $WSL == true ]]; then
-    alias home="cd /mnt/c/Users/nluebker"
-    alias fd="fdfind"
     # alias rust-analyzer="rustup run nightly rust-analyzer"
 fi
 # }}}
@@ -106,19 +100,10 @@ fi
 # }}}
 
 # Exports {{{
-export PATH=$PATH:/home/nils/scripts:/home/nils/bin/DDNet-11.8-linux_x86_64/
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/.local/bin/zig-linux-x86_64-0.15.0-dev.621+a63f7875f
-export PATH=$PATH:~/.local/nvim/bin
-export PATH=$PATH:/home/nils/.gem/ruby/2.7.0/bin
-export PATH=$PATH:/home/nils/.local/share/racket/7.9/bin
-export PATH=$PATH:/home/nils/.local/bin/krr
-export PATH=$PATH:/home/nils/.fvm_flutter/bin
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export GOPATH=$(go env GOPATH)
-export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
@@ -145,11 +130,9 @@ fi
 # }}}
 
 # Sources {{{
-source ~/.cargo/env
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
-eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 # }}}
@@ -339,41 +322,17 @@ fi
 
 # }}}
 
-# zplug {{{
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
-if ! zplug check; then
-    zplug install
-fi
+# Plugins {{{
+zinit ice wait lucid
+zinit light zsh-users/zsh-completions
 
-zplug load
+zinit ice wait lucid
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait lucid
+zinit light zsh-users/zsh-syntax-highlighting
 # }}}
 
-# PyEnv {{{
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# Restart your shell for the changes to take effect.
-
-# Load pyenv-virtualenv automatically by adding
-# the following to ~/.bashrc:
-
-eval "$(pyenv init -)"
-# }}}
-
-alias luamake=/home/nils/Documents/lua/lua-language-server/3rd/luamake/luamake
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# FVM
-export PATH="/home/nils/.fvm_flutter/bin:$PATH"
-
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[[ -f /home/nils/.dart-cli-completion/zsh-config.zsh ]] && . /home/nils/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
+# zprof
 
 ## vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}
