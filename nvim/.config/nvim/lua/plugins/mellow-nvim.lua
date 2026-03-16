@@ -12,7 +12,7 @@ return {
                 ['Comment'] = { fg = '#2a2a2d', italic = true },
                 ['LspInlayHint'] = { fg = '#57575f' },
             }
-            vim.cmd.colorscheme('mellow')
+            vim.cmd.colorscheme 'mellow'
         end,
     },
 }

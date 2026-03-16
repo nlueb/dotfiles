@@ -11,7 +11,7 @@
 
 # zmodload zsh/zprof
 
-source ~/.nix-profile/share/zinit/zinit.zsh
+source /home/nils/.local/share/zinit/zinit.git/zinit.zsh
 
 if cat /proc/version | grep -q 'microsoft'; then
     WSL=true
@@ -31,6 +31,7 @@ setopt MONITOR
 # Enable command line editing in vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd V edit-command-line
+bindkey \e vi-cmd-mode
 
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
@@ -81,7 +82,7 @@ if [[ $WSL == true ]]; then
     alias yu='sudo apt update && sudo apt upgrade && sudo apt full-upgrade'
 else
     alias yi='yay -S'
-    alias yr='yay -R'
+    alias yr='yay -Rns'
     alias yu='yay -Syu --devel --timeupdate'
 fi
 
@@ -317,6 +318,10 @@ else
         fzf_options=(--height 40% --layout=reverse)
         cd $(fd . --type d ${ignore_options} '/home/nils/Documents' | fzf ${fzf_options})
     }
+    zvm_config() {
+        ZVM_VI_SURROUND_BINDKEY="s-prefix"
+        ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+    }
 fi
 #}}}
 
@@ -331,8 +336,21 @@ zinit light zsh-users/zsh-autosuggestions
 
 zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
+
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
 # }}}
 
 # zprof
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
 
 ## vim: foldmethod=marker foldlevel=0 foldenable foldmarker={{{,}}}

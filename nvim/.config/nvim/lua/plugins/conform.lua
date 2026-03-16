@@ -16,10 +16,13 @@ return {
         opts = {
             notify_on_error = false,
             format_on_save = function(bufnr)
+                if vim.bo[bufnr].filetype == 'cpp' and vim.fn.expand '%:e' == 'in' then
+                    return nil
+                end
                 -- Disable "format_on_save lsp_fallback" for languages that don't
                 -- have a well standardized coding style. You can add additional
                 -- languages here or re-enable it for the disabled ones.
-                local disable_filetypes = { c = true, cpp = true }
+                local disable_filetypes = { c = true }
                 if disable_filetypes[vim.bo[bufnr].filetype] then
                     return nil
                 else
@@ -39,7 +42,7 @@ return {
             },
         },
         config = function(_, opts)
-            local conform = require('conform')
+            local conform = require 'conform'
 
             conform.setup(opts)
 
