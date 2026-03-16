@@ -1,0 +1,118 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /home/nils/.config/ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# font-family = Iosevka
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+font-family = "Maple Mono"
+font-family = "codicon"
+font-family = "3270 Nerd Font"
+font-feature = "zero"
+font-feature = "ss01"
+font-feature = "ss20"
+font-size = 15
+cursor-style = block
+cursor-style-blink = false
+cursor-color = cell-foreground
+cursor-text = cell-background
+window-padding-balance = true
+window-padding-x = 10
+window-padding-y = 5
+
+keybind = ctrl+[=text:\x1b
+keybind = shift+enter=text:\x1b[13;2u
+keybind = ctrl+shift+p=paste_from_clipboard
+
+copy-on-select = clipboard
+right-click-action = copy
+app-notifications = no-clipboard-copy
+
+# background-image = ~/Pictures/linux_PNG11.png
+background-image = ~/Pictures/gc0rfdc571ilqrql1v628u4gpl-44352b1b74b99498cc445d59bb2c265e.png
+background-image-position = center
+background-image-fit = none
+background-image-opacity = 0.1
+
+custom-shader = ./shaders/cursor_smear.glsl
+# custom-shader = ./shaders/cursor_blaze.glsl
+# custom-shader = ./shaders/cursor_blaze_no_trail.glsl
+# custom-shader = ./shaders/cursor_frozen.glsl
+# custom-shader = ./shaders/debug_cursor_animated.glsl
+# custom-shader = ./shaders/manga_slash.glsl
+# custom-shader = ./shaders/party_sparks.glsl
+# custom-shader = ./shaders/shake.glsl
+# custom-shader = ./shaders/cursor_smear_fade.glsl
+# custom-shader = ./shaders/cursor_smear_gradient.glsl
+# custom-shader = ./shaders/cursor_smear_original.glsl
+# custom-shader = ./shaders/cursor_smear_rainbow.glsl
+# custom-shader = ./shaders/cursor_blaze_tapered.glsl
+
+foreground = c9c7cd
+background = 161617
+cursor-color = e3e2e5
+cursor-text = 161617
+selection-background = 3c3b3e
+selection-foreground = e3e2e5
+
+# ansi (0-7)
+palette = 0=27272a
+palette = 1=f5a191
+palette = 2=90b99f
+palette = 3=e6b99d
+palette = 4=aca1cf
+palette = 5=e29eca
+palette = 6=ea83a5
+palette = 7=c1c0d4
+
+# brights (8-15)
+palette = 8=353539
+palette = 9=ffae9f
+palette = 10=9dc6ac
+palette = 11=f0c5a9
+palette = 12=b9aeda
+palette = 13=ecaad6
+palette = 14=f591b2
+palette = 15=cac9dd
