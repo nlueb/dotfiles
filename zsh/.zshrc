@@ -11,10 +11,14 @@
 
 # zmodload zsh/zprof
 
-source /home/nils/.local/share/zinit/zinit.git/zinit.zsh
+if [[ -f "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
+    source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+fi
 
-if cat /proc/version | grep -q 'microsoft'; then
-    WSL=true
+if [[ -f "/proc/version" ]]; then
+    if cat /proc/version | grep -q 'microsoft'; then
+        WSL=true
+    fi
 else
     WSL=false
 fi
@@ -68,10 +72,9 @@ setopt SHARE_HISTORY
 
 # Alias {{{
 alias v='nvim'
-alias ls='exa --icons'
+alias ls='eza --icons'
 alias c='bat'
-alias cp='rsync -avhW --no-compress --progress'
-alias tree="tre"
+# alias cp='rsync -avhW --no-compress --progress'
 alias htop="gotop"
 alias _='sudo'
 alias ctl='sudo systemctl'

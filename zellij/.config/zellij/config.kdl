@@ -28,6 +28,8 @@ keybinds clear-defaults=true {
         bind "L" { MovePane "right"; SwitchToMode "normal"; }
         bind "[" { GoToPreviousTab; SwitchToMode "normal"; }
         bind "]" { GoToNextTab; SwitchToMode "normal"; }
+        bind "{" { MoveTab "Left"; SwitchToMode "normal"; }
+        bind "}" { MoveTab "Right"; SwitchToMode "normal"; }
         bind "Ctrl a" { ToggleTab; SwitchToMode "normal"; }
         bind "a" {
             LaunchOrFocusPlugin "session-manager" {
@@ -70,7 +72,7 @@ keybinds clear-defaults=true {
     }
     scroll {
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "normal"; }
-        bind "e" { EditScrollback; SwitchToMode "normal"; }
+        bind "e" { EditScrollback ansi=true; SwitchToMode "normal"; }
     }
     search {
         bind "Down" { ScrollDown; }
@@ -98,6 +100,7 @@ keybinds clear-defaults=true {
         bind "Ctrl u" { HalfPageScrollUp; }
         bind "Esc" { ScrollToBottom; SwitchToMode "normal"; }
         bind "Enter" { ScrollToBottom; SwitchToMode "normal"; }
+        bind "Ctrl a" { SwitchToMode "pane"; }
     }
     entersearch {
         bind "Ctrl c" { SwitchToMode "scroll"; }
