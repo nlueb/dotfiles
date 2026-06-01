@@ -32,11 +32,6 @@ setopt AUTO_CD
 # https://zsh.sourceforge.io/Doc/Release/Options.html#Job-Control
 setopt MONITOR
 
-# Enable command line editing in vim
-autoload edit-command-line; zle -N edit-command-line
-bindkey -M vicmd V edit-command-line
-bindkey \e vi-cmd-mode
-
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 

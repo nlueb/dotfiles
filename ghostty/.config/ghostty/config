@@ -62,6 +62,8 @@ window-padding-balance = true
 window-padding-x = 10
 window-padding-y = 5
 
+window-decoration = none
+
 keybind = ctrl+[=text:\x1b
 keybind = shift+enter=text:\x1b[13;2u
 keybind = ctrl+shift+p=paste_from_clipboard

@@ -11,7 +11,7 @@ return {
 			sections = {
 				{
 					section = "terminal",
-					cmd = "chafa /Users/nlueb/Pictures/apple-logo.png --format symbols --symbols vhalf --view-size 60x22 --align center; sleep .1",
+					cmd = "chafa /home/nils/Pictures/NixOS.png --format symbols --symbols vhalf --view-size 46x46 --align center; sleep .1",
 					height = 22,
 					padding = 0,
 					ttl = 5 * 60,
